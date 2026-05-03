@@ -1,18 +1,28 @@
 import { revalidateTag } from 'next/cache';
 import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload';
 
-export const revalidateOnChange: CollectionAfterChangeHook = ({ doc, collection }) => {
-  revalidateTag(`collection:${collection.slug}`, 'max');
+const safeRevalidateTag = (tag: string) => {
+  try {
+    revalidateTag(tag, 'max');
+  } catch {
+    // Fuera del contexto App Router (seeds, scripts, Local API)
+  }
+};
+
+export const revalidateOnChange: CollectionAfterChangeHook = ({ doc, collection, req }) => {
+  if (req?.context?.disableRevalidate) return doc;
+  safeRevalidateTag(`collection:${collection.slug}`);
   if (doc?.slug && typeof doc.slug === 'string') {
-    revalidateTag(`collection:${collection.slug}:${doc.slug}`, 'max');
+    safeRevalidateTag(`collection:${collection.slug}:${doc.slug}`);
   }
   return doc;
 };
 
-export const revalidateOnDelete: CollectionAfterDeleteHook = ({ doc, collection }) => {
-  revalidateTag(`collection:${collection.slug}`, 'max');
+export const revalidateOnDelete: CollectionAfterDeleteHook = ({ doc, collection, req }) => {
+  if (req?.context?.disableRevalidate) return doc;
+  safeRevalidateTag(`collection:${collection.slug}`);
   if (doc?.slug && typeof doc.slug === 'string') {
-    revalidateTag(`collection:${collection.slug}:${doc.slug}`, 'max');
+    safeRevalidateTag(`collection:${collection.slug}:${doc.slug}`);
   }
   return doc;
 };
