@@ -4,8 +4,11 @@ import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'paylo
 const safeRevalidateTag = (tag: string) => {
   try {
     revalidateTag(tag, 'max');
-  } catch {
-    // Fuera del contexto App Router (seeds, scripts, Local API)
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    // Esperado al usar Local API fuera de un request Next (seeds, scripts).
+    if (message.includes('static generation store')) return;
+    console.warn(`[revalidateRoutes] revalidateTag(${tag}) falló:`, err);
   }
 };
 
