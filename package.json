@@ -16,7 +16,8 @@
     "typecheck": "tsc --noEmit",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
-    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap"
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "seed:autores": "bun scripts/seed-autores.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.83.0",
