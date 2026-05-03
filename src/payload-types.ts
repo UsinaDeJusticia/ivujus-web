@@ -67,8 +67,19 @@ export interface Config {
   };
   blocks: {};
   collections: {
-    users: User;
+    articulos: Articulo;
+    autores: Autore;
+    ciclos: Ciclo;
+    declaraciones: Declaracione;
+    dossiers: Dossier;
+    'fichas-glosario': FichasGlosario;
+    'indice-legislativo-entradas': IndiceLegislativoEntrada;
+    instituciones: Institucione;
     media: Media;
+    'paginas-estaticas': PaginasEstatica;
+    publicaciones: Publicacione;
+    simposios: Simposio;
+    users: User;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -76,8 +87,19 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
-    users: UsersSelect<false> | UsersSelect<true>;
+    articulos: ArticulosSelect<false> | ArticulosSelect<true>;
+    autores: AutoresSelect<false> | AutoresSelect<true>;
+    ciclos: CiclosSelect<false> | CiclosSelect<true>;
+    declaraciones: DeclaracionesSelect<false> | DeclaracionesSelect<true>;
+    dossiers: DossiersSelect<false> | DossiersSelect<true>;
+    'fichas-glosario': FichasGlosarioSelect<false> | FichasGlosarioSelect<true>;
+    'indice-legislativo-entradas': IndiceLegislativoEntradasSelect<false> | IndiceLegislativoEntradasSelect<true>;
+    instituciones: InstitucionesSelect<false> | InstitucionesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    'paginas-estaticas': PaginasEstaticasSelect<false> | PaginasEstaticasSelect<true>;
+    publicaciones: PublicacionesSelect<false> | PublicacionesSelect<true>;
+    simposios: SimposiosSelect<false> | SimposiosSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -119,30 +141,139 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "articulos".
  */
-export interface User {
+export interface Articulo {
   id: number;
-  nombre?: string | null;
-  rol: 'admin' | 'editor' | 'autor' | 'institucion';
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
+  titulo: string;
+  slug: string;
+  /**
+   * Primera oración citable. Se usa como resumen del artículo en listados, snippets y por los LLMs.
+   */
+  bajada?: string | null;
+  contenido: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  autor: (number | Autore)[];
+  tipo?: ('articulo' | 'ensayo' | 'columna' | 'resena_libro' | 'comentario_caso') | null;
+  tags?:
     | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
+        tag?: string | null;
+        id?: string | null;
       }[]
     | null;
-  password?: string | null;
-  collection: 'users';
+  imagen_destacada?: (number | null) | Media;
+  tiempo_lectura_min?: number | null;
+  citas_bibliograficas?:
+    | {
+        referencia_apa: string;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  fichas_relacionadas?: (number | FichasGlosario)[] | null;
+  articulos_relacionados?: (number | Articulo)[] | null;
+  estado: 'borrador' | 'en_revision' | 'pendiente_autor' | 'publicado' | 'archivado';
+  /**
+   * Origen del contenido. Crítico para auditoría futura.
+   */
+  fuente: 'humano' | 'agente_ai' | 'migracion_wp' | 'migracion_usina';
+  /**
+   * Modelo, versión del prompt, timestamp y costo del agente que generó el contenido. Solo aplica si el origen es "Agente IA".
+   */
+  agente_metadata?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Usuario humano que aprobó el contenido. Vacío hasta que pase a publicado.
+   */
+  revisado_por?: (number | null) | User;
+  traduccion_estado?: ('pendiente' | 'automatica' | 'revisada_humano' | 'publicada') | null;
+  /**
+   * Marcar para artículos firmados por autores externos. Bloquea la publicación automática de la traducción.
+   */
+  requiere_revision_autor?: boolean | null;
+  /**
+   * Fecha de publicación pública. Puede diferir de la fecha de creación.
+   */
+  publicado_en?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "autores".
+ */
+export interface Autore {
+  id: number;
+  nombre_completo: string;
+  slug: string;
+  /**
+   * Ej.: "Doctora en Derecho".
+   */
+  titulo_academico?: string | null;
+  afiliacion_institucional?: string | null;
+  pais?: string | null;
+  bio_corta?: string | null;
+  bio_completa?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  foto?: (number | null) | Media;
+  rol_ivujus?: ('consejo_directivo' | 'comite_cientifico' | 'invitado') | null;
+  /**
+   * Solo si es Consejo Directivo. Ej.: "Directora", "Secretaria".
+   */
+  cargo?: string | null;
+  enlaces_academicos?: {
+    google_scholar?: string | null;
+    orcid?: string | null;
+    researchgate?: string | null;
+    academia_edu?: string | null;
+    wikipedia?: string | null;
+    /**
+     * Ej.: Q12345. Crítico para GEO.
+     */
+    wikidata_id?: string | null;
+    sitio_personal?: string | null;
+  };
+  /**
+   * Orden de aparición en listados del Consejo y Comité.
+   */
+  orden?: number | null;
+  activo?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -169,6 +300,753 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "fichas-glosario".
+ */
+export interface FichasGlosario {
+  id: number;
+  termino: string;
+  slug: string;
+  /**
+   * Primera oración de autoridad. Crítica para GEO: es la que los LLMs usan como definición.
+   */
+  definicion_canonica: string;
+  contenido_extendido?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  disciplina?: ('victimologia' | 'criminologia' | 'derecho_penal' | 'derecho_victimal' | 'psicologia_forense') | null;
+  terminos_relacionados?: (number | FichasGlosario)[] | null;
+  autores_referencia?: (number | Autore)[] | null;
+  articulos_relacionados?: (number | Articulo)[] | null;
+  equivalente_ingles?: string | null;
+  equivalente_frances?: string | null;
+  /**
+   * Notas para el agente traductor. Ej.: "Derecho victimal no es victim law, es concepto acuñado por Lima Malvido. Mantener en español con gloss."
+   */
+  nota_traduccion?: string | null;
+  estado: 'borrador' | 'en_revision' | 'pendiente_autor' | 'publicado' | 'archivado';
+  /**
+   * Origen del contenido. Crítico para auditoría futura.
+   */
+  fuente: 'humano' | 'agente_ai' | 'migracion_wp' | 'migracion_usina';
+  /**
+   * Modelo, versión del prompt, timestamp y costo del agente que generó el contenido. Solo aplica si el origen es "Agente IA".
+   */
+  agente_metadata?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Usuario humano que aprobó el contenido. Vacío hasta que pase a publicado.
+   */
+  revisado_por?: (number | null) | User;
+  traduccion_estado?: ('pendiente' | 'automatica' | 'revisada_humano' | 'publicada') | null;
+  /**
+   * Marcar para artículos firmados por autores externos. Bloquea la publicación automática de la traducción.
+   */
+  requiere_revision_autor?: boolean | null;
+  /**
+   * Fecha de publicación pública. Puede diferir de la fecha de creación.
+   */
+  publicado_en?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  nombre?: string | null;
+  rol: 'admin' | 'editor' | 'autor' | 'institucion';
+  /**
+   * Perfil público asociado. Solo si el rol es "Autor".
+   */
+  autor_perfil?: (number | null) | Autore;
+  /**
+   * Solo si el rol es "Institución".
+   */
+  institucion_representada?: (number | null) | Institucione;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'users';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "instituciones".
+ */
+export interface Institucione {
+  id: number;
+  nombre_oficial: string;
+  slug: string;
+  nombre_corto?: string | null;
+  tipo?:
+    | (
+        | 'universidad'
+        | 'instituto_investigacion'
+        | 'oficina_asistencia'
+        | 'colegio_profesional'
+        | 'organismo_publico'
+        | 'organizacion_civil'
+      )
+    | null;
+  pais: string;
+  ciudad?: string | null;
+  sitio_web?: string | null;
+  logo?: (number | null) | Media;
+  descripcion?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  fecha_adhesion?: string | null;
+  referente?: {
+    nombre?: string | null;
+    email?: string | null;
+    cargo?: string | null;
+  };
+  /**
+   * Activar si tiene convenio activo con cupones 100% u otras condiciones.
+   */
+  convenio_especifico?: boolean | null;
+  tipo_relacion?: ('miembro_red' | 'convenio_formativo' | 'colaboracion') | null;
+  estado: 'borrador' | 'en_revision' | 'pendiente_autor' | 'publicado' | 'archivado';
+  /**
+   * Origen del contenido. Crítico para auditoría futura.
+   */
+  fuente: 'humano' | 'agente_ai' | 'migracion_wp' | 'migracion_usina';
+  /**
+   * Modelo, versión del prompt, timestamp y costo del agente que generó el contenido. Solo aplica si el origen es "Agente IA".
+   */
+  agente_metadata?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Usuario humano que aprobó el contenido. Vacío hasta que pase a publicado.
+   */
+  revisado_por?: (number | null) | User;
+  traduccion_estado?: ('pendiente' | 'automatica' | 'revisada_humano' | 'publicada') | null;
+  /**
+   * Marcar para artículos firmados por autores externos. Bloquea la publicación automática de la traducción.
+   */
+  requiere_revision_autor?: boolean | null;
+  /**
+   * Fecha de publicación pública. Puede diferir de la fecha de creación.
+   */
+  publicado_en?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ciclos".
+ */
+export interface Ciclo {
+  id: number;
+  titulo: string;
+  slug: string;
+  /**
+   * Ej.: "Usina Debate", "Jornadas CPACF".
+   */
+  nombre_ciclo?: string | null;
+  resumen: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  fecha: string;
+  oradores?: (number | Autore)[] | null;
+  sede?: {
+    institucion?: string | null;
+    ciudad?: string | null;
+  };
+  video_url?: string | null;
+  dossier_relacionado?: (number | null) | Dossier;
+  materiales_adjuntos?:
+    | {
+        titulo?: string | null;
+        archivo?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  estado: 'borrador' | 'en_revision' | 'pendiente_autor' | 'publicado' | 'archivado';
+  /**
+   * Origen del contenido. Crítico para auditoría futura.
+   */
+  fuente: 'humano' | 'agente_ai' | 'migracion_wp' | 'migracion_usina';
+  /**
+   * Modelo, versión del prompt, timestamp y costo del agente que generó el contenido. Solo aplica si el origen es "Agente IA".
+   */
+  agente_metadata?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Usuario humano que aprobó el contenido. Vacío hasta que pase a publicado.
+   */
+  revisado_por?: (number | null) | User;
+  traduccion_estado?: ('pendiente' | 'automatica' | 'revisada_humano' | 'publicada') | null;
+  /**
+   * Marcar para artículos firmados por autores externos. Bloquea la publicación automática de la traducción.
+   */
+  requiere_revision_autor?: boolean | null;
+  /**
+   * Fecha de publicación pública. Puede diferir de la fecha de creación.
+   */
+  publicado_en?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "dossiers".
+ */
+export interface Dossier {
+  id: number;
+  titulo: string;
+  slug: string;
+  tema?: string | null;
+  resumen: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Solo si el dossier tiene versión web además del PDF.
+   */
+  contenido?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  pdf: number | Media;
+  portada?: (number | null) | Media;
+  autores?: (number | Autore)[] | null;
+  fecha_publicacion: string;
+  estado: 'borrador' | 'en_revision' | 'pendiente_autor' | 'publicado' | 'archivado';
+  /**
+   * Origen del contenido. Crítico para auditoría futura.
+   */
+  fuente: 'humano' | 'agente_ai' | 'migracion_wp' | 'migracion_usina';
+  /**
+   * Modelo, versión del prompt, timestamp y costo del agente que generó el contenido. Solo aplica si el origen es "Agente IA".
+   */
+  agente_metadata?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Usuario humano que aprobó el contenido. Vacío hasta que pase a publicado.
+   */
+  revisado_por?: (number | null) | User;
+  traduccion_estado?: ('pendiente' | 'automatica' | 'revisada_humano' | 'publicada') | null;
+  /**
+   * Marcar para artículos firmados por autores externos. Bloquea la publicación automática de la traducción.
+   */
+  requiere_revision_autor?: boolean | null;
+  /**
+   * Fecha de publicación pública. Puede diferir de la fecha de creación.
+   */
+  publicado_en?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "declaraciones".
+ */
+export interface Declaracione {
+  id: number;
+  titulo: string;
+  slug: string;
+  fecha: string;
+  simposio_origen?: (number | null) | Simposio;
+  texto_completo: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  firmantes?: (number | Autore)[] | null;
+  firmantes_institucionales?: (number | Institucione)[] | null;
+  pdf?: (number | null) | Media;
+  estado: 'borrador' | 'en_revision' | 'pendiente_autor' | 'publicado' | 'archivado';
+  /**
+   * Origen del contenido. Crítico para auditoría futura.
+   */
+  fuente: 'humano' | 'agente_ai' | 'migracion_wp' | 'migracion_usina';
+  /**
+   * Modelo, versión del prompt, timestamp y costo del agente que generó el contenido. Solo aplica si el origen es "Agente IA".
+   */
+  agente_metadata?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Usuario humano que aprobó el contenido. Vacío hasta que pase a publicado.
+   */
+  revisado_por?: (number | null) | User;
+  traduccion_estado?: ('pendiente' | 'automatica' | 'revisada_humano' | 'publicada') | null;
+  /**
+   * Marcar para artículos firmados por autores externos. Bloquea la publicación automática de la traducción.
+   */
+  requiere_revision_autor?: boolean | null;
+  /**
+   * Fecha de publicación pública. Puede diferir de la fecha de creación.
+   */
+  publicado_en?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "simposios".
+ */
+export interface Simposio {
+  id: number;
+  titulo: string;
+  slug: string;
+  /**
+   * 1, 2, 3...
+   */
+  numero_edicion: number;
+  anio: number;
+  fecha_inicio: string;
+  fecha_fin: string;
+  sede?: {
+    institucion_organizadora?: string | null;
+    ciudad?: string | null;
+    pais?: string | null;
+    direccion?: string | null;
+  };
+  resumen: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  temario?:
+    | {
+        titulo?: string | null;
+        descripcion?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  oradores?: (number | Autore)[] | null;
+  instituciones_convocantes?: (number | Institucione)[] | null;
+  programa_pdf?: (number | null) | Media;
+  /**
+   * Ej.: simposiousinadejusticia.org.ar para la edición 2026.
+   */
+  sitio_externo?: string | null;
+  /**
+   * Ej.: Declaración de Buenos Aires.
+   */
+  declaracion_final?: (number | null) | Declaracione;
+  /**
+   * Premios Oficina de Justicia y similares. Modelado como bloque opcional dentro del simposio (sin sección /premios/ propia).
+   */
+  premios_entregados?:
+    | {
+        categoria?: string | null;
+        ganador_nombre?: string | null;
+        ganador_relacionado?: (number | null) | Autore;
+        fundamentacion?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  galeria?:
+    | {
+        imagen: number | Media;
+        epigrafe?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  videos?:
+    | {
+        titulo?: string | null;
+        url_youtube: string;
+        descripcion?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  estado: 'borrador' | 'en_revision' | 'pendiente_autor' | 'publicado' | 'archivado';
+  /**
+   * Origen del contenido. Crítico para auditoría futura.
+   */
+  fuente: 'humano' | 'agente_ai' | 'migracion_wp' | 'migracion_usina';
+  /**
+   * Modelo, versión del prompt, timestamp y costo del agente que generó el contenido. Solo aplica si el origen es "Agente IA".
+   */
+  agente_metadata?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Usuario humano que aprobó el contenido. Vacío hasta que pase a publicado.
+   */
+  revisado_por?: (number | null) | User;
+  traduccion_estado?: ('pendiente' | 'automatica' | 'revisada_humano' | 'publicada') | null;
+  /**
+   * Marcar para artículos firmados por autores externos. Bloquea la publicación automática de la traducción.
+   */
+  requiere_revision_autor?: boolean | null;
+  /**
+   * Fecha de publicación pública. Puede diferir de la fecha de creación.
+   */
+  publicado_en?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "indice-legislativo-entradas".
+ */
+export interface IndiceLegislativoEntrada {
+  id: number;
+  titulo: string;
+  slug: string;
+  tipo_norma?: ('ley_nacional' | 'ley_provincial' | 'decreto' | 'proyecto_ley' | 'fallo_judicial') | null;
+  numero_norma?: string | null;
+  jurisdiccion?: string | null;
+  fecha_sancion?: string | null;
+  /**
+   * Escala a definir junto con la metodología pública.
+   */
+  puntaje?: number | null;
+  dimensiones_evaluadas?:
+    | {
+        dimension?: string | null;
+        puntaje_dimension?: number | null;
+        fundamentacion?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  analisis_completo: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  autores_analisis?: (number | Autore)[] | null;
+  estado: 'borrador' | 'en_revision' | 'pendiente_autor' | 'publicado' | 'archivado';
+  /**
+   * Origen del contenido. Crítico para auditoría futura.
+   */
+  fuente: 'humano' | 'agente_ai' | 'migracion_wp' | 'migracion_usina';
+  /**
+   * Modelo, versión del prompt, timestamp y costo del agente que generó el contenido. Solo aplica si el origen es "Agente IA".
+   */
+  agente_metadata?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Usuario humano que aprobó el contenido. Vacío hasta que pase a publicado.
+   */
+  revisado_por?: (number | null) | User;
+  traduccion_estado?: ('pendiente' | 'automatica' | 'revisada_humano' | 'publicada') | null;
+  /**
+   * Marcar para artículos firmados por autores externos. Bloquea la publicación automática de la traducción.
+   */
+  requiere_revision_autor?: boolean | null;
+  /**
+   * Fecha de publicación pública. Puede diferir de la fecha de creación.
+   */
+  publicado_en?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "paginas-estaticas".
+ */
+export interface PaginasEstatica {
+  id: number;
+  titulo: string;
+  slug: string;
+  contenido: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  publicada?: boolean | null;
+  estado: 'borrador' | 'en_revision' | 'pendiente_autor' | 'publicado' | 'archivado';
+  /**
+   * Origen del contenido. Crítico para auditoría futura.
+   */
+  fuente: 'humano' | 'agente_ai' | 'migracion_wp' | 'migracion_usina';
+  /**
+   * Modelo, versión del prompt, timestamp y costo del agente que generó el contenido. Solo aplica si el origen es "Agente IA".
+   */
+  agente_metadata?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Usuario humano que aprobó el contenido. Vacío hasta que pase a publicado.
+   */
+  revisado_por?: (number | null) | User;
+  traduccion_estado?: ('pendiente' | 'automatica' | 'revisada_humano' | 'publicada') | null;
+  /**
+   * Marcar para artículos firmados por autores externos. Bloquea la publicación automática de la traducción.
+   */
+  requiere_revision_autor?: boolean | null;
+  /**
+   * Fecha de publicación pública. Puede diferir de la fecha de creación.
+   */
+  publicado_en?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "publicaciones".
+ */
+export interface Publicacione {
+  id: number;
+  titulo: string;
+  subtitulo?: string | null;
+  slug: string;
+  tipo: 'libro' | 'coedicion' | 'capitulo_libro' | 'articulo_cientifico' | 'dossier';
+  /**
+   * Usar cuando los autores no estén todos en la colección Autores (publicaciones externas, traducciones, etc.).
+   */
+  autores_texto?: string | null;
+  autores_relacionados?: (number | Autore)[] | null;
+  coeditores?: (number | Institucione)[] | null;
+  editorial?: string | null;
+  anio_publicacion?: number | null;
+  isbn?: string | null;
+  doi?: string | null;
+  resumen: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  portada?: (number | null) | Media;
+  /**
+   * Subir solo si los derechos de autor lo permiten.
+   */
+  pdf_completo?: (number | null) | Media;
+  /**
+   * Vista previa o capítulo de muestra.
+   */
+  pdf_fragmento?: (number | null) | Media;
+  enlaces_compra?:
+    | {
+        libreria?: string | null;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  presentaciones?:
+    | {
+        fecha?: string | null;
+        lugar?: string | null;
+        oradores?: (number | Autore)[] | null;
+        id?: string | null;
+      }[]
+    | null;
+  estado: 'borrador' | 'en_revision' | 'pendiente_autor' | 'publicado' | 'archivado';
+  /**
+   * Origen del contenido. Crítico para auditoría futura.
+   */
+  fuente: 'humano' | 'agente_ai' | 'migracion_wp' | 'migracion_usina';
+  /**
+   * Modelo, versión del prompt, timestamp y costo del agente que generó el contenido. Solo aplica si el origen es "Agente IA".
+   */
+  agente_metadata?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Usuario humano que aprobó el contenido. Vacío hasta que pase a publicado.
+   */
+  revisado_por?: (number | null) | User;
+  traduccion_estado?: ('pendiente' | 'automatica' | 'revisada_humano' | 'publicada') | null;
+  /**
+   * Marcar para artículos firmados por autores externos. Bloquea la publicación automática de la traducción.
+   */
+  requiere_revision_autor?: boolean | null;
+  /**
+   * Fecha de publicación pública. Puede diferir de la fecha de creación.
+   */
+  publicado_en?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -192,12 +1070,56 @@ export interface PayloadLockedDocument {
   id: number;
   document?:
     | ({
-        relationTo: 'users';
-        value: number | User;
+        relationTo: 'articulos';
+        value: number | Articulo;
+      } | null)
+    | ({
+        relationTo: 'autores';
+        value: number | Autore;
+      } | null)
+    | ({
+        relationTo: 'ciclos';
+        value: number | Ciclo;
+      } | null)
+    | ({
+        relationTo: 'declaraciones';
+        value: number | Declaracione;
+      } | null)
+    | ({
+        relationTo: 'dossiers';
+        value: number | Dossier;
+      } | null)
+    | ({
+        relationTo: 'fichas-glosario';
+        value: number | FichasGlosario;
+      } | null)
+    | ({
+        relationTo: 'indice-legislativo-entradas';
+        value: number | IndiceLegislativoEntrada;
+      } | null)
+    | ({
+        relationTo: 'instituciones';
+        value: number | Institucione;
       } | null)
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'paginas-estaticas';
+        value: number | PaginasEstatica;
+      } | null)
+    | ({
+        relationTo: 'publicaciones';
+        value: number | Publicacione;
+      } | null)
+    | ({
+        relationTo: 'simposios';
+        value: number | Simposio;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: number | User;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -243,27 +1165,254 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users_select".
+ * via the `definition` "articulos_select".
  */
-export interface UsersSelect<T extends boolean = true> {
-  nombre?: T;
-  rol?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
-  sessions?:
+export interface ArticulosSelect<T extends boolean = true> {
+  titulo?: T;
+  slug?: T;
+  bajada?: T;
+  contenido?: T;
+  autor?: T;
+  tipo?: T;
+  tags?:
     | T
     | {
+        tag?: T;
         id?: T;
-        createdAt?: T;
-        expiresAt?: T;
       };
+  imagen_destacada?: T;
+  tiempo_lectura_min?: T;
+  citas_bibliograficas?:
+    | T
+    | {
+        referencia_apa?: T;
+        url?: T;
+        id?: T;
+      };
+  fichas_relacionadas?: T;
+  articulos_relacionados?: T;
+  estado?: T;
+  fuente?: T;
+  agente_metadata?: T;
+  revisado_por?: T;
+  traduccion_estado?: T;
+  requiere_revision_autor?: T;
+  publicado_en?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "autores_select".
+ */
+export interface AutoresSelect<T extends boolean = true> {
+  nombre_completo?: T;
+  slug?: T;
+  titulo_academico?: T;
+  afiliacion_institucional?: T;
+  pais?: T;
+  bio_corta?: T;
+  bio_completa?: T;
+  foto?: T;
+  rol_ivujus?: T;
+  cargo?: T;
+  enlaces_academicos?:
+    | T
+    | {
+        google_scholar?: T;
+        orcid?: T;
+        researchgate?: T;
+        academia_edu?: T;
+        wikipedia?: T;
+        wikidata_id?: T;
+        sitio_personal?: T;
+      };
+  orden?: T;
+  activo?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ciclos_select".
+ */
+export interface CiclosSelect<T extends boolean = true> {
+  titulo?: T;
+  slug?: T;
+  nombre_ciclo?: T;
+  resumen?: T;
+  fecha?: T;
+  oradores?: T;
+  sede?:
+    | T
+    | {
+        institucion?: T;
+        ciudad?: T;
+      };
+  video_url?: T;
+  dossier_relacionado?: T;
+  materiales_adjuntos?:
+    | T
+    | {
+        titulo?: T;
+        archivo?: T;
+        id?: T;
+      };
+  estado?: T;
+  fuente?: T;
+  agente_metadata?: T;
+  revisado_por?: T;
+  traduccion_estado?: T;
+  requiere_revision_autor?: T;
+  publicado_en?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "declaraciones_select".
+ */
+export interface DeclaracionesSelect<T extends boolean = true> {
+  titulo?: T;
+  slug?: T;
+  fecha?: T;
+  simposio_origen?: T;
+  texto_completo?: T;
+  firmantes?: T;
+  firmantes_institucionales?: T;
+  pdf?: T;
+  estado?: T;
+  fuente?: T;
+  agente_metadata?: T;
+  revisado_por?: T;
+  traduccion_estado?: T;
+  requiere_revision_autor?: T;
+  publicado_en?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "dossiers_select".
+ */
+export interface DossiersSelect<T extends boolean = true> {
+  titulo?: T;
+  slug?: T;
+  tema?: T;
+  resumen?: T;
+  contenido?: T;
+  pdf?: T;
+  portada?: T;
+  autores?: T;
+  fecha_publicacion?: T;
+  estado?: T;
+  fuente?: T;
+  agente_metadata?: T;
+  revisado_por?: T;
+  traduccion_estado?: T;
+  requiere_revision_autor?: T;
+  publicado_en?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "fichas-glosario_select".
+ */
+export interface FichasGlosarioSelect<T extends boolean = true> {
+  termino?: T;
+  slug?: T;
+  definicion_canonica?: T;
+  contenido_extendido?: T;
+  disciplina?: T;
+  terminos_relacionados?: T;
+  autores_referencia?: T;
+  articulos_relacionados?: T;
+  equivalente_ingles?: T;
+  equivalente_frances?: T;
+  nota_traduccion?: T;
+  estado?: T;
+  fuente?: T;
+  agente_metadata?: T;
+  revisado_por?: T;
+  traduccion_estado?: T;
+  requiere_revision_autor?: T;
+  publicado_en?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "indice-legislativo-entradas_select".
+ */
+export interface IndiceLegislativoEntradasSelect<T extends boolean = true> {
+  titulo?: T;
+  slug?: T;
+  tipo_norma?: T;
+  numero_norma?: T;
+  jurisdiccion?: T;
+  fecha_sancion?: T;
+  puntaje?: T;
+  dimensiones_evaluadas?:
+    | T
+    | {
+        dimension?: T;
+        puntaje_dimension?: T;
+        fundamentacion?: T;
+        id?: T;
+      };
+  analisis_completo?: T;
+  autores_analisis?: T;
+  estado?: T;
+  fuente?: T;
+  agente_metadata?: T;
+  revisado_por?: T;
+  traduccion_estado?: T;
+  requiere_revision_autor?: T;
+  publicado_en?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "instituciones_select".
+ */
+export interface InstitucionesSelect<T extends boolean = true> {
+  nombre_oficial?: T;
+  slug?: T;
+  nombre_corto?: T;
+  tipo?: T;
+  pais?: T;
+  ciudad?: T;
+  sitio_web?: T;
+  logo?: T;
+  descripcion?: T;
+  fecha_adhesion?: T;
+  referente?:
+    | T
+    | {
+        nombre?: T;
+        email?: T;
+        cargo?: T;
+      };
+  convenio_especifico?: T;
+  tipo_relacion?: T;
+  estado?: T;
+  fuente?: T;
+  agente_metadata?: T;
+  revisado_por?: T;
+  traduccion_estado?: T;
+  requiere_revision_autor?: T;
+  publicado_en?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -283,6 +1432,165 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "paginas-estaticas_select".
+ */
+export interface PaginasEstaticasSelect<T extends boolean = true> {
+  titulo?: T;
+  slug?: T;
+  contenido?: T;
+  publicada?: T;
+  estado?: T;
+  fuente?: T;
+  agente_metadata?: T;
+  revisado_por?: T;
+  traduccion_estado?: T;
+  requiere_revision_autor?: T;
+  publicado_en?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "publicaciones_select".
+ */
+export interface PublicacionesSelect<T extends boolean = true> {
+  titulo?: T;
+  subtitulo?: T;
+  slug?: T;
+  tipo?: T;
+  autores_texto?: T;
+  autores_relacionados?: T;
+  coeditores?: T;
+  editorial?: T;
+  anio_publicacion?: T;
+  isbn?: T;
+  doi?: T;
+  resumen?: T;
+  portada?: T;
+  pdf_completo?: T;
+  pdf_fragmento?: T;
+  enlaces_compra?:
+    | T
+    | {
+        libreria?: T;
+        url?: T;
+        id?: T;
+      };
+  presentaciones?:
+    | T
+    | {
+        fecha?: T;
+        lugar?: T;
+        oradores?: T;
+        id?: T;
+      };
+  estado?: T;
+  fuente?: T;
+  agente_metadata?: T;
+  revisado_por?: T;
+  traduccion_estado?: T;
+  requiere_revision_autor?: T;
+  publicado_en?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "simposios_select".
+ */
+export interface SimposiosSelect<T extends boolean = true> {
+  titulo?: T;
+  slug?: T;
+  numero_edicion?: T;
+  anio?: T;
+  fecha_inicio?: T;
+  fecha_fin?: T;
+  sede?:
+    | T
+    | {
+        institucion_organizadora?: T;
+        ciudad?: T;
+        pais?: T;
+        direccion?: T;
+      };
+  resumen?: T;
+  temario?:
+    | T
+    | {
+        titulo?: T;
+        descripcion?: T;
+        id?: T;
+      };
+  oradores?: T;
+  instituciones_convocantes?: T;
+  programa_pdf?: T;
+  sitio_externo?: T;
+  declaracion_final?: T;
+  premios_entregados?:
+    | T
+    | {
+        categoria?: T;
+        ganador_nombre?: T;
+        ganador_relacionado?: T;
+        fundamentacion?: T;
+        id?: T;
+      };
+  galeria?:
+    | T
+    | {
+        imagen?: T;
+        epigrafe?: T;
+        id?: T;
+      };
+  videos?:
+    | T
+    | {
+        titulo?: T;
+        url_youtube?: T;
+        descripcion?: T;
+        id?: T;
+      };
+  estado?: T;
+  fuente?: T;
+  agente_metadata?: T;
+  revisado_por?: T;
+  traduccion_estado?: T;
+  requiere_revision_autor?: T;
+  publicado_en?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  nombre?: T;
+  rol?: T;
+  autor_perfil?: T;
+  institucion_representada?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
