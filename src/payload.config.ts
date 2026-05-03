@@ -27,6 +27,9 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
     },
+    // In bootstrap we need Payload to create the initial tables in Neon;
+    // otherwise /admin fails before the first user can be created.
+    push: true,
   }),
   localization: {
     locales: [
