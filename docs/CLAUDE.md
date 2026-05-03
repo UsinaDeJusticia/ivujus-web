@@ -45,6 +45,24 @@ Cada fase del brief tiene criterios de aceptación cerrados. No avanzar a la
 siguiente sin que la actual esté 100%. Si un criterio no puede cumplirse por
 razones externas (credencial faltante, decisión pendiente), escalar a Jair.
 
+## Pendientes técnicos a resolver antes del lanzamiento
+
+### Reemplazar `db.push: true` por migraciones (Fase 7)
+
+El adapter de Postgres en `src/payload.config.ts` tiene `push: true`. Eso
+hace que Drizzle sincronice el schema contra Neon en cada arranque. Es
+práctico durante Fases 1–6 (el schema cambia mucho), pero **antes del
+lanzamiento de producción** hay que:
+
+1. Quitar `push: true` (o ponerlo detrás de un guard tipo
+   `process.env.NODE_ENV !== 'production'`).
+2. Generar migraciones reales con `bun run payload migrate:create`.
+3. Agregar `payload migrate &&` al `build` script de `package.json` para
+   que cada deploy de Vercel aplique las migraciones pendientes.
+
+Este paso queda anotado como acción explícita en la Fase 7 (QA y
+lanzamiento).
+
 ## Qué NO hacer
 
 Sección 15.2 del brief. Resumen:
