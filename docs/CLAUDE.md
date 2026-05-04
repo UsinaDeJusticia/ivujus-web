@@ -45,6 +45,67 @@ Cada fase del brief tiene criterios de aceptación cerrados. No avanzar a la
 siguiente sin que la actual esté 100%. Si un criterio no puede cumplirse por
 razones externas (credencial faltante, decisión pendiente), escalar a Jair.
 
+## Fase 3: traducción automática
+
+### Alcance v1
+
+- **Solo ES → EN.** FR queda soportado por schema y localization, pero **no**
+  se traduce automáticamente. Decisión motivada por costo de Claude API y
+  porque el brief solo exige ES + EN al lanzamiento.
+- Hook `afterChange` (`src/hooks/translateContent.ts`) cableado a las 10
+  colecciones publicables. **No** está en `Autores`, `Users` ni `Media`.
+- Proveedor: Claude API, modelo `claude-haiku-4-5` con structured outputs
+  (`output_config.format: json_schema`). Cliente en `src/lib/translate.ts`.
+
+### Reglas de gating (en orden)
+
+1. `req.context.skipTranslation === true` → salir. Lo usa el propio update
+   interno del hook para evitar loops, y los seeds/scripts deberían pasarlo.
+2. `req.locale && req.locale !== 'es'` → salir. Solo traducimos desde ES.
+3. `doc.requiere_revision_autor === true` → marcar
+   `traduccion_estado = 'pendiente'` y salir. Contenido firmado no se
+   autotraduce; espera revisión humana.
+4. Si ningún campo localizado ES cambió respecto a `previousDoc` → salir.
+5. Despachar el trabajo pesado a `after()` de `next/server` para que el
+   guardado del admin no se bloquee. Si `after()` no está disponible
+   (Local API fuera de App Router), se loguea y se saltea.
+
+### Cómo se evita el loop
+
+El hook no se autollama porque cada update interno (sea de traducción o de
+gating) pasa `context: { skipTranslation: true }`. La primera línea del hook
+chequea esa flag. Igual: si alguna vez se removiera ese flag por error, el
+gating de cambios (paso 4) cortaría el loop a los pocos hops porque las
+traducciones ya quedaron guardadas y no detectaría nuevos cambios ES.
+
+### Estados de `traduccion_estado`
+
+- `pendiente`: requiere revisión autor, falló traducción, o todavía no se
+  procesó.
+- `automatica`: traducción EN generada por el pipeline, sin revisión
+  humana. Lista para uso pero no auditada.
+- `revisada_humano`: reservado para flujo editorial manual posterior. El
+  pipeline automático **no** marca este valor.
+- `publicada`: reservado para cuando exista lógica explícita de publicación
+  de traducción. El pipeline automático **no** lo marca.
+
+### Diferido a Fase 3.1
+
+- **Arrays con subcampos localizados** (Publicaciones, IndiceLegislativo,
+  Simposios). El walker actual recorre top-level + groups. Para arrays se
+  requiere recorrer cada item; quedó fuera para no expandir alcance ahora.
+- **Blocks con subcampos localizados** (no se usan todavía en el schema
+  v1, pero anotado por completitud).
+- **Traducción FR**: estructura ya soportada; no hay pipeline.
+- **Cola/cron/batch nocturno** explícitamente excluido del v1.
+
+### Costo y observabilidad
+
+`@anthropic-ai/sdk` está pinneado con `^0.92.0`. Cada save dispara entre 1 y
+N llamadas a la API según campos cambiados. Si el budget se vuelve un
+problema, próximo paso natural: agrupar más leaves por llamada o pasar a
+batches.
+
 ## Pendientes técnicos a resolver antes del lanzamiento
 
 ### Reemplazar `db.push: true` por migraciones (Fase 7)

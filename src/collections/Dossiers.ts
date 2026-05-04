@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload';
 import { commonFields } from './fields/commonFields';
 import { generateSlug } from '../hooks/generateSlug';
 import { revalidateOnChange, revalidateOnDelete } from '../hooks/revalidateRoutes';
+import { translateContent } from '../hooks/translateContent';
 
 export const Dossiers: CollectionConfig = {
   slug: 'dossiers',
@@ -15,7 +16,7 @@ export const Dossiers: CollectionConfig = {
   versions: { drafts: true },
   hooks: {
     beforeChange: [generateSlug('titulo')],
-    afterChange: [revalidateOnChange],
+    afterChange: [translateContent, revalidateOnChange],
     afterDelete: [revalidateOnDelete],
   },
   fields: [
