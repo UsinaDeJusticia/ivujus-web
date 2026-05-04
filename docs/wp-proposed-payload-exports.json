@@ -1,0 +1,333 @@
+{
+  "generatedAt": "2026-05-04T04:25:46.828Z",
+  "collections": {
+    "paginasEstaticas": [
+      {
+        "source_wp_id": 19975,
+        "source_wp_url": "https://ivujus.org.ar/contacto/",
+        "titulo": "contacto",
+        "slug": "contacto",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Rehacer como pagina limpia con formulario nuevo. Exportar como pagina estatica limpia sin markup WordPress."
+      },
+      {
+        "source_wp_id": 18848,
+        "source_wp_url": "https://ivujus.org.ar/terms-privacy/",
+        "titulo": "Políticas de privacidad",
+        "slug": "terms-privacy",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Reescribir o limpiar markup WordPress. Exportar como pagina estatica limpia sin markup WordPress."
+      }
+    ],
+    "ciclos": [
+      {
+        "source_wp_id": 21399,
+        "source_wp_url": "https://ivujus.org.ar/capacitacion-y-actividades/",
+        "titulo": "Ciclo Usina Debate - Ley de Salud Mental",
+        "slug": "usina-debate-ley-de-salud-mental",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Crear entrada de Ciclos desde la pagina agrupadora de WordPress. Extraer resumen, dos videos y dossier asociado.",
+        "extra": {
+          "nombre_ciclo": "Usina Debate",
+          "video_urls": [
+            "https://youtu.be/tr77UQi5Doc",
+            "https://youtu.be/A5F0XAFFIzE"
+          ],
+          "materiales_urls": [
+            "https://ivujus.org.ar/wp-content/uploads/2023/07/Dossier-Salud-Mental.pdf"
+          ]
+        }
+      },
+      {
+        "source_wp_id": 21399,
+        "source_wp_url": "https://ivujus.org.ar/capacitacion-y-actividades/",
+        "titulo": "Ciclo Usina Debate - Juicio por Jurados",
+        "slug": "usina-debate-juicio-por-jurados",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Crear entrada de Ciclos desde la pagina agrupadora de WordPress. Extraer resumen, video y publicacion asociada.",
+        "extra": {
+          "nombre_ciclo": "Usina Debate",
+          "video_urls": [
+            "https://youtu.be/2MlqecC0tv8"
+          ],
+          "materiales_urls": [
+            "https://ivujus.org.ar/wp-content/uploads/2023/07/prision-perpetua.pdf"
+          ]
+        }
+      },
+      {
+        "source_wp_id": 19637,
+        "source_wp_url": "https://ivujus.org.ar/entrevistas-en-la-radio/",
+        "titulo": "Entrevistas en radios",
+        "slug": "entrevistas-en-radios",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Archivo audiovisual secundario. Migrar solo si se decide preservar entrevistas como parte de formacion o archivo institucional.",
+        "extra": {
+          "nombre_ciclo": "Archivo audiovisual",
+          "video_urls": [
+            "https://youtu.be/3S0naw77slk",
+            "https://www.youtube.com/watch?v=s4c-S2EAVAo",
+            "https://youtu.be/_jvPJ9cZ8nY"
+          ]
+        }
+      }
+    ],
+    "declaraciones": [
+      {
+        "source_wp_id": 24632,
+        "source_wp_url": "https://ivujus.org.ar/simposio-2026/",
+        "titulo": "Declaracion de Buenos Aires",
+        "slug": "declaracion-de-buenos-aires",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Crear Declaracion vinculada al simposio 2026. Extraer texto completo desde la page o desde el PDF oficial.",
+        "extra": {
+          "fecha": "2026-04-10",
+          "simposio_slug_referencia": "2026-buenos-aires",
+          "pdf_url": "https://ivujus.org.ar/wp-content/uploads/2026/04/Declaracion-de-Buenos-Aires-Traduccion-al-Ingles-Frances-y-Portugues.pdf"
+        }
+      }
+    ],
+    "novedades": [
+      {
+        "source_wp_id": 9,
+        "source_wp_url": "https://ivujus.org.ar/blog/",
+        "titulo": "Blog",
+        "slug": "blog",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Importa el listado de posts, no la page de WordPress.",
+        "extra": {
+          "tipo": "institucional"
+        }
+      },
+      {
+        "source_wp_id": 24625,
+        "source_wp_url": "https://ivujus.org.ar/hito-en-la-justicia-argentina-sera-sede-del-primer-simposio-americano-y-europeo-de-victimologia-penal/",
+        "titulo": "Hito en la Justicia: Argentina será sede del Primer Simposio Americano y Europeo de Victimología Penal",
+        "slug": "hito-en-la-justicia-argentina-sera-sede-del-primer-simposio-americano-y-europeo-de-victimologia-penal",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Vincular con la ficha del simposio 2026.",
+        "extra": {
+          "tipo": "evento",
+          "simposio_slug_referencia": "2026-buenos-aires"
+        }
+      },
+      {
+        "source_wp_id": 24591,
+        "source_wp_url": "https://ivujus.org.ar/el-ivujus-presente-en-el-ciclo-de-formacion-2026/",
+        "titulo": "El IVUJUS presente en el Ciclo de Formación 2026",
+        "slug": "el-ivujus-presente-en-el-ciclo-de-formacion-2026",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Noticia institucional de agenda y presencia publica.",
+        "extra": {
+          "tipo": "difusion"
+        }
+      },
+      {
+        "source_wp_id": 24544,
+        "source_wp_url": "https://ivujus.org.ar/reconocimiento-a-marcelo-aebi/",
+        "titulo": "Reconocimiento a Marcelo Aebi",
+        "slug": "reconocimiento-a-marcelo-aebi",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Aporta autoridad academica para perfil de Marcelo Aebi.",
+        "extra": {
+          "tipo": "reconocimiento"
+        }
+      },
+      {
+        "source_wp_id": 24526,
+        "source_wp_url": "https://ivujus.org.ar/%e2%9a%96%ef%b8%8f%f0%9f%92%bb-asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf/",
+        "titulo": "⚖️💻 ¡Así vivimos la jornada \"Hacia un Derecho Científico\" en el CPACF!",
+        "slug": "%e2%9a%96%ef%b8%8f%f0%9f%92%bb-asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Cronica del evento de presentacion del indice. No es un ciclo autonomo.",
+        "extra": {
+          "tipo": "institucional"
+        }
+      },
+      {
+        "source_wp_id": 24517,
+        "source_wp_url": "https://ivujus.org.ar/encuentro-empresarial-argentina-israel-2025/",
+        "titulo": "Encuentro Empresarial Argentina-Israel 2025",
+        "slug": "encuentro-empresarial-argentina-israel-2025",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Confirmar relevancia institucional al redactar version final.",
+        "extra": {
+          "tipo": "institucional"
+        }
+      },
+      {
+        "source_wp_id": 24513,
+        "source_wp_url": "https://ivujus.org.ar/jornada-en-el-cpacf-derecho-y-algoritmos-%e2%9a%96%ef%b8%8f%f0%9f%92%bb/",
+        "titulo": "Jornada en el CPACF: Derecho y Algoritmos ⚖️💻",
+        "slug": "jornada-en-el-cpacf-derecho-y-algoritmos-%e2%9a%96%ef%b8%8f%f0%9f%92%bb",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Limpiar slug y titulo al migrar.",
+        "extra": {
+          "tipo": "difusion"
+        }
+      },
+      {
+        "source_wp_id": 24504,
+        "source_wp_url": "https://ivujus.org.ar/la-esc-difundio-las-proximas-presentaciones-de-usina-de-justicia/",
+        "titulo": "La ESC difundió las próximas presentaciones de Usina de Justicia",
+        "slug": "la-esc-difundio-las-proximas-presentaciones-de-usina-de-justicia",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Noticia institucional convencional.",
+        "extra": {
+          "tipo": "institucional"
+        }
+      }
+    ],
+    "publicaciones": [
+      {
+        "source_wp_id": 24509,
+        "source_wp_url": "https://ivujus.org.ar/usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal/",
+        "titulo": "Nuevos Paradigmas para la Justicia Penal",
+        "slug": "nuevos-paradigmas-para-la-justicia-penal",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Consolidar ambos posts alrededor de un unico objeto editorial de tipo libro. Resolver autores, presentacion y assets asociados.",
+        "extra": {
+          "tipo": "libro",
+          "source_posts_relacionados": [
+            24509,
+            24540
+          ]
+        }
+      }
+    ]
+  },
+  "backlog": {
+    "home": [
+      {
+        "source_wp_id": 6,
+        "source_wp_url": "https://ivujus.org.ar/",
+        "titulo": "inicio",
+        "slug": "el-nuevo-umoma-abre-sus-puertas-2",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "No copiar literal. Solo usar como referencia de contenido y jerarquia."
+      }
+    ],
+    "indiceLegislativoSinEntradaCanonica": [
+      {
+        "source_wp_id": 24523,
+        "source_wp_url": "https://ivujus.org.ar/usina-de-justicia-lanza-el-primer-indice-de-calidad-legislativa-enfocado-en-victimas/",
+        "titulo": "Usina de Justicia lanza el primer Índice de Calidad Legislativa enfocado en víctimas",
+        "slug": "usina-de-justicia-lanza-el-primer-indice-de-calidad-legislativa-enfocado-en-victimas",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Relacionar con la futura seccion del indice legislativo. Todavia no representa una entrada canonica de norma individual."
+      },
+      {
+        "source_wp_id": 24526,
+        "source_wp_url": "https://ivujus.org.ar/%e2%9a%96%ef%b8%8f%f0%9f%92%bb-asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf/",
+        "titulo": "⚖️💻 ¡Así vivimos la jornada \"Hacia un Derecho Científico\" en el CPACF!",
+        "slug": "%e2%9a%96%ef%b8%8f%f0%9f%92%bb-asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Relacionar con la futura seccion del indice legislativo. Todavia no representa una entrada canonica de norma individual."
+      },
+      {
+        "source_wp_id": 24493,
+        "source_wp_url": "https://ivujus.org.ar/en-el-marco-de-la-presentacion-del-indice-legislativo-de-usina-de-justicia-marcelo-aebi-miembro-de-nuestro-comite-cientifico-nos-invita-a-reflexionar-sobre-el-derecho-cientifico/",
+        "titulo": "En el marco de la presentación del Índice Legislativo de Usina de Justicia, Marcelo Aebi, miembro de nuestro Comité Científico, nos invita a reflexionar sobre el derecho científico",
+        "slug": "en-el-marco-de-la-presentacion-del-indice-legislativo-de-usina-de-justicia-marcelo-aebi-miembro-de-nuestro-comite-cientifico-nos-invita-a-reflexionar-sobre-el-derecho-cientifico",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Relacionar con la futura seccion del indice legislativo. Todavia no representa una entrada canonica de norma individual."
+      }
+    ],
+    "institutoDesagregado": [
+      {
+        "source_wp_id": 24152,
+        "source_wp_url": "https://ivujus.org.ar/nosotros/",
+        "titulo": "Nosotros",
+        "slug": "nosotros",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Contenido de pagina monolitica o agrupadora que debe desarmarse en multiples piezas antes de importarlo."
+      },
+      {
+        "source_wp_id": 24231,
+        "source_wp_url": "https://ivujus.org.ar/comite-cientifico/",
+        "titulo": "Comite Científico",
+        "slug": "comite-cientifico",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Contenido de pagina monolitica o agrupadora que debe desarmarse en multiples piezas antes de importarlo."
+      },
+      {
+        "source_wp_id": 24055,
+        "source_wp_url": "https://ivujus.org.ar/campus-virtual/",
+        "titulo": "Campus Virtual",
+        "slug": "campus-virtual",
+        "estado": "borrador",
+        "fuente": "migracion_wp",
+        "traduccion_estado": "pendiente",
+        "requiere_revision_manual": true,
+        "notas_migracion": "Contenido de pagina monolitica o agrupadora que debe desarmarse en multiples piezas antes de importarlo."
+      }
+    ]
+  },
+  "gaps": [
+    "La seccion indice-legislativo todavia no tiene una entrada canonica de norma individual para estos posts; son anuncios y piezas derivadas.",
+    "La page nosotros debe desarmarse en entidades separadas antes de importarse a Payload."
+  ]
+}

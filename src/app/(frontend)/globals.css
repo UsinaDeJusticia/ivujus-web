@@ -2,14 +2,27 @@
 
 @theme {
   --color-usina-navy: #0b1f3a;
+  --color-usina-ink: #16253a;
+  --color-usina-paper: #f5f1e8;
+  --color-usina-line: #d8d0c2;
+  --color-usina-accent: #9d5b3d;
 }
 
 html {
   color-scheme: light;
+  background: var(--color-usina-paper);
 }
 
 body {
-  background: #ffffff;
-  color: var(--color-usina-navy);
+  background: var(--color-usina-paper);
+  color: var(--color-usina-ink);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-usina-accent) 26%, white);
 }

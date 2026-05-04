@@ -17,6 +17,8 @@
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "import:simposio:2026": "bun scripts/import-simposio-2026.ts",
+    "migrate:wp:report": "bun scripts/migrate-from-wp.ts",
     "seed:autores": "bun scripts/seed-autores.ts"
   },
   "dependencies": {

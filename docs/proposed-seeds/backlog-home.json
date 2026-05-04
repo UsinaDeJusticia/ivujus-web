@@ -1,0 +1,13 @@
+[
+  {
+    "source_wp_id": 6,
+    "source_wp_url": "https://ivujus.org.ar/",
+    "titulo": "inicio",
+    "slug": "el-nuevo-umoma-abre-sus-puertas-2",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "No copiar literal. Solo usar como referencia de contenido y jerarquia."
+  }
+]

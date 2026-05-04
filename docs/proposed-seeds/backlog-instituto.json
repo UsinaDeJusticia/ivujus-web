@@ -1,0 +1,35 @@
+[
+  {
+    "source_wp_id": 24152,
+    "source_wp_url": "https://ivujus.org.ar/nosotros/",
+    "titulo": "Nosotros",
+    "slug": "nosotros",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Contenido de pagina monolitica o agrupadora que debe desarmarse en multiples piezas antes de importarlo."
+  },
+  {
+    "source_wp_id": 24231,
+    "source_wp_url": "https://ivujus.org.ar/comite-cientifico/",
+    "titulo": "Comite Científico",
+    "slug": "comite-cientifico",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Contenido de pagina monolitica o agrupadora que debe desarmarse en multiples piezas antes de importarlo."
+  },
+  {
+    "source_wp_id": 24055,
+    "source_wp_url": "https://ivujus.org.ar/campus-virtual/",
+    "titulo": "Campus Virtual",
+    "slug": "campus-virtual",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Contenido de pagina monolitica o agrupadora que debe desarmarse en multiples piezas antes de importarlo."
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "source_wp_id": 24632,
+    "source_wp_url": "https://ivujus.org.ar/simposio-2026/",
+    "titulo": "Declaracion de Buenos Aires",
+    "slug": "declaracion-de-buenos-aires",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Crear Declaracion vinculada al simposio 2026. Extraer texto completo desde la page o desde el PDF oficial.",
+    "extra": {
+      "fecha": "2026-04-10",
+      "simposio_slug_referencia": "2026-buenos-aires",
+      "pdf_url": "https://ivujus.org.ar/wp-content/uploads/2026/04/Declaracion-de-Buenos-Aires-Traduccion-al-Ingles-Frances-y-Portugues.pdf"
+    }
+  }
+]

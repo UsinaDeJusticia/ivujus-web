@@ -1,0 +1,655 @@
+[
+  {
+    "source_wp_id": 9,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/blog/",
+    "slug": "blog",
+    "title": "Blog",
+    "excerpt": "",
+    "modified_at": "2021-02-04T17:30:01",
+    "migration_status": "migrar",
+    "destination": "novedades",
+    "priority": "alta",
+    "migration_notes": "Importa el listado de posts, no la page de WordPress.",
+    "inventory_status": "discovered",
+    "editorial_status": "discarded",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "La pagina blog no se importa; solo importa el listado de posts."
+    ]
+  },
+  {
+    "source_wp_id": 24055,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/campus-virtual/",
+    "slug": "campus-virtual",
+    "title": "Campus Virtual",
+    "excerpt": "SI TE INSCRIBISTE AL \"PRIMER SIMPOSIO AMERICANO Y EUROPEO DE VICTIMOLOGÍA PENAL\", PEDÍ EL CUPÓN DE 20% DE DESCUENTO A INFO@USINA DE JUSTICIA.ORG.AR. TENÉS TIEMPO HASTA EL 30 DE JUNIO DE 2026. Diplomatura en Victimología y leyes de víctimas (MOOC) Tienda Programa Diplomatura en Victimología y leyes de víctimas Entrevistas en Radios Preguntas frecuentes Inscripciones...",
+    "modified_at": "2026-04-24T11:09:06",
+    "migration_status": "migrar",
+    "destination": "formacion/diplomatura",
+    "priority": "alta",
+    "migration_notes": "Solo landing institucional. Excluir tienda, login y operacion LMS.",
+    "inventory_status": "discovered",
+    "editorial_status": "manual_split_required",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "El contenido origen debe desarmarse en multiples piezas antes de importar."
+    ]
+  },
+  {
+    "source_wp_id": 21399,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/capacitacion-y-actividades/",
+    "slug": "capacitacion-y-actividades",
+    "title": "Capacitación y actividades",
+    "excerpt": "Ciclo Usina Debate - Ley de Salud MentalEl desmantelamiento de la protección ciudadana Ver charla Expositores:Marcela Dal VermeRicardo RissoAndrés Mega Ver charla Expositores:André S. BlakeGabriela Casas Dossier de Salud Mental Dossier-Salud-Mental Link de descarga Ciclo Usina Debate - Juicio por Jurados Ver charla Expositores:Luis CevascoAndrés HarfuchFrancisco Pascua Publicación académica de la Asociación Civil Usina de...",
+    "modified_at": "2025-08-24T18:33:00",
+    "migration_status": "migrar",
+    "destination": "formacion/ciclos + Ciclos + Dossiers/Publicaciones",
+    "priority": "alta",
+    "migration_notes": "Desarmar por actividad, video y PDF.",
+    "inventory_status": "discovered",
+    "editorial_status": "manual_split_required",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "El contenido origen debe desarmarse en multiples piezas antes de importar."
+    ]
+  },
+  {
+    "source_wp_id": 19900,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/carrito/",
+    "slug": "carrito",
+    "title": "Carrito",
+    "excerpt": "",
+    "modified_at": "2023-06-24T19:38:35",
+    "migration_status": "no_migrar",
+    "destination": "fuera de alcance",
+    "priority": "alta",
+    "migration_notes": "Carrito de WooCommerce.",
+    "inventory_status": "discovered",
+    "editorial_status": "discarded",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "Descartado para import al nuevo sitio."
+    ]
+  },
+  {
+    "source_wp_id": 24231,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/comite-cientifico/",
+    "slug": "comite-cientifico",
+    "title": "Comite Científico",
+    "excerpt": "Comité Científico",
+    "modified_at": "2025-09-23T18:04:53",
+    "migration_status": "no_migrar",
+    "destination": "absorber en instituto/comite-cientifico",
+    "priority": "media",
+    "migration_notes": "Duplica contenido de nosotros con menos detalle.",
+    "inventory_status": "discovered",
+    "editorial_status": "discarded",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "Descartado para import al nuevo sitio."
+    ]
+  },
+  {
+    "source_wp_id": 19975,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/contacto/",
+    "slug": "contacto",
+    "title": "contacto",
+    "excerpt": "",
+    "modified_at": "2025-08-23T09:23:46",
+    "migration_status": "migrar",
+    "destination": "contacto",
+    "priority": "media",
+    "migration_notes": "Rehacer como pagina limpia con formulario nuevo.",
+    "inventory_status": "discovered",
+    "editorial_status": "proposed_seed_only",
+    "approved_for_import": false,
+    "target_collection": "paginasEstaticas",
+    "import_blockers": [
+      "Hace falta limpiar o reescribir el contenido antes del import."
+    ]
+  },
+  {
+    "source_wp_id": 6,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/",
+    "slug": "el-nuevo-umoma-abre-sus-puertas-2",
+    "title": "inicio",
+    "excerpt": "IVUJUS El Instituto de Victimología de Usina de Justicia (IVUJUS) se fundó en marzo del año 2025 con el objeto de englobar las actividades de la Asociación Civil Usina de Justicia. Con una mirada puesta en la Victimología como una ciencia nueva y en constante formación, este Instituto tiene la finalidad de poner en escena...",
+    "modified_at": "2026-04-17T12:50:07",
+    "migration_status": "migrar",
+    "destination": "home",
+    "priority": "alta",
+    "migration_notes": "No copiar literal. Solo usar como referencia de contenido y jerarquia.",
+    "inventory_status": "discovered",
+    "editorial_status": "manual_split_required",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "El contenido origen debe desarmarse en multiples piezas antes de importar."
+    ]
+  },
+  {
+    "source_wp_id": 21874,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/encuesta-de-calidad-de-servicio/",
+    "slug": "encuesta-de-calidad-de-servicio",
+    "title": "Encuesta de calidad de servicio",
+    "excerpt": "encuesta",
+    "modified_at": "2023-07-12T08:53:41",
+    "migration_status": "no_migrar",
+    "destination": "fuera de alcance",
+    "priority": "baja",
+    "migration_notes": "Pieza operativa del campus.",
+    "inventory_status": "discovered",
+    "editorial_status": "discarded",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "Descartado para import al nuevo sitio."
+    ]
+  },
+  {
+    "source_wp_id": 19637,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/entrevistas-en-la-radio/",
+    "slug": "entrevistas-en-la-radio",
+    "title": "ENTREVISTAS EN LA RADIO",
+    "excerpt": "Entrevistas en radios https://youtu.be/3S0naw77slkhttps://www.youtube.com/watch?v=s4c-S2EAVAohttps://youtu.be/_jvPJ9cZ8nY",
+    "modified_at": "2025-08-22T14:25:50",
+    "migration_status": "migrar",
+    "destination": "formacion/ciclos o archivo audiovisual secundario",
+    "priority": "baja",
+    "migration_notes": "Tiene videos reales; migrar solo si aporta valor al archivo institucional.",
+    "inventory_status": "discovered",
+    "editorial_status": "proposed_seed_only",
+    "approved_for_import": false,
+    "target_collection": "ciclos",
+    "import_blockers": [
+      "Archivo secundario; confirmar si realmente entra al sitio nuevo."
+    ]
+  },
+  {
+    "source_wp_id": 19896,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/finalizar-compra-2/",
+    "slug": "finalizar-compra-2",
+    "title": "Finalizar compra",
+    "excerpt": "comprar curso",
+    "modified_at": "2023-07-13T18:39:33",
+    "migration_status": "no_migrar",
+    "destination": "fuera de alcance",
+    "priority": "alta",
+    "migration_notes": "Checkout de WooCommerce.",
+    "inventory_status": "discovered",
+    "editorial_status": "discarded",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "Descartado para import al nuevo sitio."
+    ]
+  },
+  {
+    "source_wp_id": 20157,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/gracias/",
+    "slug": "gracias",
+    "title": "gracias",
+    "excerpt": "Ya puede iniciar el curso",
+    "modified_at": "2023-07-11T08:15:35",
+    "migration_status": "no_migrar",
+    "destination": "fuera de alcance",
+    "priority": "baja",
+    "migration_notes": "Flujo auxiliar del sistema actual.",
+    "inventory_status": "discovered",
+    "editorial_status": "discarded",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "Descartado para import al nuevo sitio."
+    ]
+  },
+  {
+    "source_wp_id": 21422,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/guia-rapida/",
+    "slug": "guia-rapida",
+    "title": "Guía rapida",
+    "excerpt": "Guía rápida Sobre el curso El curso aparece en su cuenta al pié de p ¿Cómo se crea una cuenta? La cuenta se crea automáticamente cuando se realiza el pedido. ¿Cómo compro un curso? Ingrese a CURSOS en el menú principal, o en el sector CURSOS de la página de inicio. Allí seleccione el curso...",
+    "modified_at": "2023-06-30T16:23:41",
+    "migration_status": "no_migrar",
+    "destination": "fuera del frontend principal",
+    "priority": "baja",
+    "migration_notes": "Guia rapida del campus; soporte operativo del LMS.",
+    "inventory_status": "discovered",
+    "editorial_status": "discarded",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "Descartado para import al nuevo sitio."
+    ]
+  },
+  {
+    "source_wp_id": 19897,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/mi-cuenta-2/",
+    "slug": "mi-cuenta-2",
+    "title": "Mi cuenta",
+    "excerpt": "Mi cuenta Ingrese a la Diplomatura Políticas de privacidad del sitio",
+    "modified_at": "2025-10-21T12:06:49",
+    "migration_status": "no_migrar",
+    "destination": "fuera de alcance",
+    "priority": "alta",
+    "migration_notes": "Login del campus / WordPress.",
+    "inventory_status": "discovered",
+    "editorial_status": "discarded",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "Descartado para import al nuevo sitio."
+    ]
+  },
+  {
+    "source_wp_id": 24152,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/nosotros/",
+    "slug": "nosotros",
+    "title": "Nosotros",
+    "excerpt": "Nuestras Finalidades Estudios e Investigación Impulsar los estudios relacionados con la Victimología, el derecho victimal, la criminalidad y la prevención del delito. Capacitación y Cursos Desarrollar cursos de perfeccionamiento y capacitación para organismos públicos y privados. Eventos y Congresos Organizar y gestionar convenios, congresos, reuniones nacionales e internacionales y seminarios. Premios Científicos Incentivar premios científicos,...",
+    "modified_at": "2026-02-05T21:02:42",
+    "migration_status": "migrar",
+    "destination": "instituto | instituto/estatuto | instituto/consejo-directivo | instituto/comite-cientifico",
+    "priority": "muy_alta",
+    "migration_notes": "Fuente canonica para finalidades, consejo, estatuto y comite cientifico.",
+    "inventory_status": "discovered",
+    "editorial_status": "manual_split_required",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "El contenido origen debe desarmarse en multiples piezas antes de importar."
+    ]
+  },
+  {
+    "source_wp_id": 21312,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/preguntas-frecuentes/",
+    "slug": "preguntas-frecuentes",
+    "title": "Preguntas frecuentes",
+    "excerpt": "Preguntas frecuentes ¿Qué cursos están disponibles? Para visualizar los cursos disponibles ingrese a CURSOS en el menú principal, o en el sector CURSOS de la página de inicio. ¿Cómo se crea una cuenta? La cuenta se crea automáticamente cuando se realiza el pedido. Me olvidé la contraseña CAMBIO. DE CONTRASEÑA2 ¿Cómo compro un curso? Ingrese...",
+    "modified_at": "2025-08-23T10:05:53",
+    "migration_status": "no_migrar",
+    "destination": "fuera del frontend principal",
+    "priority": "media",
+    "migration_notes": "FAQ operativa del LMS, pagos, usuarios y certificados.",
+    "inventory_status": "discovered",
+    "editorial_status": "discarded",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "Descartado para import al nuevo sitio."
+    ]
+  },
+  {
+    "source_wp_id": 23174,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/servicio/",
+    "slug": "servicio",
+    "title": "servicio",
+    "excerpt": "Por cuestiones técnicas externas a nosotros la página está fuera de servicio. La fecha de finalización del curso se extenderá por el tiempo que el mismo se encuentre inactivo",
+    "modified_at": "2023-09-01T12:35:01",
+    "migration_status": "no_migrar",
+    "destination": "fuera del frontend principal",
+    "priority": "baja",
+    "migration_notes": "Pagina contingente de caida tecnica del campus.",
+    "inventory_status": "discovered",
+    "editorial_status": "discarded",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "Descartado para import al nuevo sitio."
+    ]
+  },
+  {
+    "source_wp_id": 24632,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/simposio-2026/",
+    "slug": "simposio-2026",
+    "title": "Simposio 2026",
+    "excerpt": "Actividades Simposio 2026 - Usina de Justicia Primer Simposio Americano y Europeo de Victimología Penal Las víctimas de homicidio en contexto de inseguridad 9 y 10 de Abril, 2026 | Ciudad Autónoma de Buenos Aires Declaración de Buenos Aires Documento oficial firmado por académicos, profesionales y operadores del sistema de justicia al cierre del simposio,...",
+    "modified_at": "2026-04-22T14:03:34",
+    "migration_status": "migrar",
+    "destination": "simposios/2026-buenos-aires + publicaciones/declaraciones",
+    "priority": "muy_alta",
+    "migration_notes": "Pieza central para simposio, declaracion y cobertura relacionada.",
+    "inventory_status": "discovered",
+    "editorial_status": "manual_split_required",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "El contenido origen debe desarmarse en multiples piezas antes de importar."
+    ]
+  },
+  {
+    "source_wp_id": 22720,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/suscripcion/",
+    "slug": "suscripcion",
+    "title": "Suscripción",
+    "excerpt": "Suscripción",
+    "modified_at": "2023-07-23T11:15:04",
+    "migration_status": "no_migrar",
+    "destination": "CTA o proxy a Perfit",
+    "priority": "baja",
+    "migration_notes": "Perfit se mantiene; no hace falta clonar la pagina completa.",
+    "inventory_status": "discovered",
+    "editorial_status": "discarded",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "Descartado para import al nuevo sitio."
+    ]
+  },
+  {
+    "source_wp_id": 18848,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/terms-privacy/",
+    "slug": "terms-privacy",
+    "title": "Políticas de privacidad",
+    "excerpt": "Política de privacidad de USINA DE JUSTICIA - ARGENTINA ASOCIACION CIVIL Esta Política de privacidad describe cómo se recopila, utiliza y comparte su información personal cuando visita o hace una compra en www.ivujus.org.ar (denominado en lo sucesivo el “Sitio”). INFORMACIÓN PERSONAL QUE RECOPILAMOS Cuando visita el Sitio, recopilamos automáticamente cierta información sobre su dispositivo, incluida...",
+    "modified_at": "2025-10-02T18:56:16",
+    "migration_status": "migrar",
+    "destination": "terms-privacy",
+    "priority": "media",
+    "migration_notes": "Reescribir o limpiar markup WordPress.",
+    "inventory_status": "discovered",
+    "editorial_status": "proposed_seed_only",
+    "approved_for_import": false,
+    "target_collection": "paginasEstaticas",
+    "import_blockers": [
+      "Hace falta limpiar o reescribir el contenido antes del import."
+    ]
+  },
+  {
+    "source_wp_id": 19075,
+    "source_wp_type": "page",
+    "source_wp_url": "https://ivujus.org.ar/tienda/",
+    "slug": "tienda",
+    "title": "Tienda",
+    "excerpt": "Lorem fistrum por la gloria de mi madre esse jarl aliqua llevame al sircoo. De la prad ACA PRUEBO",
+    "modified_at": "2025-08-24T08:17:15",
+    "migration_status": "no_migrar",
+    "destination": "fuera de alcance",
+    "priority": "alta",
+    "migration_notes": "WooCommerce y pagos. Excluido por brief.",
+    "inventory_status": "discovered",
+    "editorial_status": "discarded",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "Descartado para import al nuevo sitio."
+    ]
+  },
+  {
+    "source_wp_id": 24625,
+    "source_wp_type": "post",
+    "source_wp_url": "https://ivujus.org.ar/hito-en-la-justicia-argentina-sera-sede-del-primer-simposio-americano-y-europeo-de-victimologia-penal/",
+    "slug": "hito-en-la-justicia-argentina-sera-sede-del-primer-simposio-americano-y-europeo-de-victimologia-penal",
+    "title": "Hito en la Justicia: Argentina será sede del Primer Simposio Americano y Europeo de Victimología Penal",
+    "excerpt": "En un avance sin precedentes para el sistema judicial de nuestro país y la región, el Instituto de Victimología de Usina de Justicia (IVUJUS), en conjunto con el Colegio Público de la Abogacía de la Capital Federal (CPACF), anuncian la realización del Primer Simposio Americano y Europeo de Victimología Penal. Este evento, que tendrá lugar...",
+    "categories": [
+      "difusion"
+    ],
+    "modified_at": "2026-04-06T13:16:49",
+    "migration_status": "migrar",
+    "destination": "novedades relacionado a simposios",
+    "priority": "alta",
+    "migration_notes": "Vincular con la ficha del simposio 2026.",
+    "inventory_status": "discovered",
+    "editorial_status": "proposed_seed_only",
+    "approved_for_import": false,
+    "target_collection": "novedades",
+    "import_blockers": [
+      "La pieza sigue necesitando limpieza editorial antes del import."
+    ]
+  },
+  {
+    "source_wp_id": 24591,
+    "source_wp_type": "post",
+    "source_wp_url": "https://ivujus.org.ar/el-ivujus-presente-en-el-ciclo-de-formacion-2026/",
+    "slug": "el-ivujus-presente-en-el-ciclo-de-formacion-2026",
+    "title": "El IVUJUS presente en el Ciclo de Formación 2026",
+    "excerpt": "Desde el Instituto de Victimología de Usina de Justicia (IVUJUS), nos complace invitar a las jornadas sobre \"Edad de Imputabilidad\" organizadas por el Grupo Diálogo y Debate Jurídico Penal. Contaremos con la destacada participación de nuestros miembros de Usina de Justicia: la Dra. Jimena Molina, el Dr. Roberto Picozzi y el Mgter. Francisco Javier Pascua....",
+    "categories": [
+      "difusion"
+    ],
+    "modified_at": "2026-02-06T14:54:50",
+    "migration_status": "migrar",
+    "destination": "novedades",
+    "priority": "media",
+    "migration_notes": "Noticia institucional de agenda y presencia publica.",
+    "inventory_status": "discovered",
+    "editorial_status": "proposed_seed_only",
+    "approved_for_import": false,
+    "target_collection": "novedades",
+    "import_blockers": [
+      "La pieza sigue necesitando limpieza editorial antes del import."
+    ]
+  },
+  {
+    "source_wp_id": 24544,
+    "source_wp_type": "post",
+    "source_wp_url": "https://ivujus.org.ar/reconocimiento-a-marcelo-aebi/",
+    "slug": "reconocimiento-a-marcelo-aebi",
+    "title": "Reconocimiento a Marcelo Aebi",
+    "excerpt": "Marcelo Aebi, miembro del Comité Científico del IVUJUS, ha sido galardonado con el premio Freda Adler 2025. Este prestigioso reconocimiento le fue entregado en Washington D.C. por la American Society of Criminology (Sociedad Americana de Criminología) en honor a su destacada labor.",
+    "categories": [
+      "reconocimiento"
+    ],
+    "modified_at": "2025-11-14T06:55:53",
+    "migration_status": "migrar",
+    "destination": "novedades + relacion con perfil del comite cientifico",
+    "priority": "media",
+    "migration_notes": "Aporta autoridad academica para perfil de Marcelo Aebi.",
+    "inventory_status": "discovered",
+    "editorial_status": "proposed_seed_only",
+    "approved_for_import": false,
+    "target_collection": "novedades",
+    "import_blockers": [
+      "La pieza sigue necesitando limpieza editorial antes del import."
+    ]
+  },
+  {
+    "source_wp_id": 24540,
+    "source_wp_type": "post",
+    "source_wp_url": "https://ivujus.org.ar/%f0%9f%93%96-resumen-de-la-presentacion-nuevos-paradigmas-para-la-justicia-penal/",
+    "slug": "%f0%9f%93%96-resumen-de-la-presentacion-nuevos-paradigmas-para-la-justicia-penal",
+    "title": "📖 Resumen de la presentación: \"Nuevos paradigmas para la Justicia Penal\"",
+    "excerpt": "Les compartimos un resumen de lo que fue la presentación del libro \"Nuevos paradigmas para la Justicia Penal\", compilado por Diana Cohen Agrest y María Jimena Molina. ¿Por qué es una obra necesaria? Las voces del video lo resumen: Silvia Fesquet (Jefa de Redacción de Clarín): Resaltó que el gran mérito del libro y de...",
+    "categories": [
+      "entrevistas"
+    ],
+    "modified_at": "2025-11-14T06:52:45",
+    "migration_status": "migrar",
+    "destination": "publicaciones/libros relacionado + novedades",
+    "priority": "alta",
+    "migration_notes": "Pieza satelite del libro Nuevos Paradigmas con video resumen.",
+    "inventory_status": "discovered",
+    "editorial_status": "editorial_review_required",
+    "approved_for_import": false,
+    "target_collection": "publicaciones",
+    "import_blockers": [
+      "Antes de importar hay que consolidar ambos posts en un unico objeto editorial del libro."
+    ]
+  },
+  {
+    "source_wp_id": 24526,
+    "source_wp_type": "post",
+    "source_wp_url": "https://ivujus.org.ar/%e2%9a%96%ef%b8%8f%f0%9f%92%bb-asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf/",
+    "slug": "%e2%9a%96%ef%b8%8f%f0%9f%92%bb-asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf",
+    "title": "⚖️💻 ¡Así vivimos la jornada \"Hacia un Derecho Científico\" en el CPACF!",
+    "excerpt": "El Salón Auditorio del Colegio Público de la Abogacía (CPACF) fue el escenario del debate \"Hacia un Derecho Científico: Medición Cualitativa en la Era del Algoritmo\". Durante la jornada, organizada por el Instituto de Victimología de Usina de Justicia (IVUJUS), se presentó formalmente el primer índice del país que utiliza Inteligencia Artificial para evaluar la...",
+    "categories": [
+      "debate"
+    ],
+    "modified_at": "2025-11-13T08:12:40",
+    "migration_status": "migrar",
+    "destination": "indice-legislativo + novedades",
+    "priority": "alta",
+    "migration_notes": "Cronica del evento de presentacion del indice. No es un ciclo autonomo.",
+    "inventory_status": "discovered",
+    "editorial_status": "editorial_review_required",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "Todavia no existe una entrada canonica del indice legislativo para vincular esta pieza."
+    ]
+  },
+  {
+    "source_wp_id": 24523,
+    "source_wp_type": "post",
+    "source_wp_url": "https://ivujus.org.ar/usina-de-justicia-lanza-el-primer-indice-de-calidad-legislativa-enfocado-en-victimas/",
+    "slug": "usina-de-justicia-lanza-el-primer-indice-de-calidad-legislativa-enfocado-en-victimas",
+    "title": "Usina de Justicia lanza el primer Índice de Calidad Legislativa enfocado en víctimas",
+    "excerpt": "La Asociación Civil Usina de Justicia ha creado una herramienta inédita en Argentina: el primer índice de calidad legislativa que utiliza Inteligencia Artificial para medir el impacto real de las leyes en las víctimas de delitos graves. El objetivo es introducir un método científico para calificar y comparar normas. El índice evalúa tres dimensiones clave:...",
+    "categories": [
+      "entrevistas"
+    ],
+    "modified_at": "2025-11-10T14:40:11",
+    "migration_status": "migrar",
+    "destination": "indice-legislativo",
+    "priority": "muy_alta",
+    "migration_notes": "Debe reforzar la seccion del indice legislativo, no quedar como post generico.",
+    "inventory_status": "discovered",
+    "editorial_status": "editorial_review_required",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "Todavia no existe una entrada canonica del indice legislativo para vincular esta pieza."
+    ]
+  },
+  {
+    "source_wp_id": 24517,
+    "source_wp_type": "post",
+    "source_wp_url": "https://ivujus.org.ar/encuentro-empresarial-argentina-israel-2025/",
+    "slug": "encuentro-empresarial-argentina-israel-2025",
+    "title": "Encuentro Empresarial Argentina-Israel 2025",
+    "excerpt": "Nuestra presidente, Diana Cohen Agrest, y nuestra directora del Instituto de Victimología, María Jimena Molina, estuvieron presentes en el Encuentro Empresarial Argentina-Israel 2025",
+    "categories": [
+      "difusion"
+    ],
+    "modified_at": "2025-11-10T14:30:39",
+    "migration_status": "migrar",
+    "destination": "novedades",
+    "priority": "baja",
+    "migration_notes": "Confirmar relevancia institucional al redactar version final.",
+    "inventory_status": "discovered",
+    "editorial_status": "proposed_seed_only",
+    "approved_for_import": false,
+    "target_collection": "novedades",
+    "import_blockers": [
+      "La pieza sigue necesitando limpieza editorial antes del import."
+    ]
+  },
+  {
+    "source_wp_id": 24513,
+    "source_wp_type": "post",
+    "source_wp_url": "https://ivujus.org.ar/jornada-en-el-cpacf-derecho-y-algoritmos-%e2%9a%96%ef%b8%8f%f0%9f%92%bb/",
+    "slug": "jornada-en-el-cpacf-derecho-y-algoritmos-%e2%9a%96%ef%b8%8f%f0%9f%92%bb",
+    "title": "Jornada en el CPACF: Derecho y Algoritmos ⚖️💻",
+    "excerpt": "¡Imperdible! El @CPACF (Colegio Público de la Abogacía) invita a la jornada presencial: \"Hacia un Derecho Científico: Medición Cualitativa en la Era del Algoritmo\". 🗓️ Cuándo: Miércoles 12 de noviembre, de 15:00 a 17:00 hs. 📍 Lugar: Salón Auditorio (Corrientes 1441, 1° piso). ✉️ Inscripción: Requiere inscripción previa enviando un correo a infoacademicas@cpacf.org.ar",
+    "categories": [
+      "difusion"
+    ],
+    "modified_at": "2025-11-10T07:31:42",
+    "migration_status": "migrar",
+    "destination": "novedades",
+    "priority": "media",
+    "migration_notes": "Limpiar slug y titulo al migrar.",
+    "inventory_status": "discovered",
+    "editorial_status": "proposed_seed_only",
+    "approved_for_import": false,
+    "target_collection": "novedades",
+    "import_blockers": [
+      "La pieza sigue necesitando limpieza editorial antes del import."
+    ]
+  },
+  {
+    "source_wp_id": 24509,
+    "source_wp_type": "post",
+    "source_wp_url": "https://ivujus.org.ar/usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal/",
+    "slug": "usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal",
+    "title": "Usina de Justicia presenta el libro \"Nuevos Paradigmas para la Justicia Penal\"",
+    "excerpt": "La asociación civil Usina de Justicia, fundada y presidida por Diana Cohen Agrest, anunció la presentación de su nuevo libro: \"Nuevos Paradigmas para la Justicia Penal. Hacia una era con perspectiva de víctima\". El libro, escrito por Cohen Agrest y María Jimena Molina, propone una profunda transformación del sistema judicial argentino. El eje central de...",
+    "categories": [
+      "entrevistas"
+    ],
+    "modified_at": "2025-11-04T14:51:04",
+    "migration_status": "migrar",
+    "destination": "publicaciones/libros relacionado + novedades",
+    "priority": "muy_alta",
+    "migration_notes": "Anuncio del libro. Debe conectarse al objeto editorial principal.",
+    "inventory_status": "discovered",
+    "editorial_status": "editorial_review_required",
+    "approved_for_import": false,
+    "target_collection": "publicaciones",
+    "import_blockers": [
+      "Antes de importar hay que consolidar ambos posts en un unico objeto editorial del libro."
+    ]
+  },
+  {
+    "source_wp_id": 24504,
+    "source_wp_type": "post",
+    "source_wp_url": "https://ivujus.org.ar/la-esc-difundio-las-proximas-presentaciones-de-usina-de-justicia/",
+    "slug": "la-esc-difundio-las-proximas-presentaciones-de-usina-de-justicia",
+    "title": "La ESC difundió las próximas presentaciones de Usina de Justicia",
+    "excerpt": "La Sociedad Europea de Criminología difundió las próximas presentaciones del Índice Legislativo de Usina de Justicia y de nuestro libro \" Nuevos paradigmas para la justicia penal. Hacia una era con perspectiva de víctima\" Puede leer el articulo completo aqui:",
+    "categories": [
+      "difusion"
+    ],
+    "modified_at": "2025-10-30T13:50:32",
+    "migration_status": "migrar",
+    "destination": "novedades",
+    "priority": "baja",
+    "migration_notes": "Noticia institucional convencional.",
+    "inventory_status": "discovered",
+    "editorial_status": "proposed_seed_only",
+    "approved_for_import": false,
+    "target_collection": "novedades",
+    "import_blockers": [
+      "La pieza sigue necesitando limpieza editorial antes del import."
+    ]
+  },
+  {
+    "source_wp_id": 24493,
+    "source_wp_type": "post",
+    "source_wp_url": "https://ivujus.org.ar/en-el-marco-de-la-presentacion-del-indice-legislativo-de-usina-de-justicia-marcelo-aebi-miembro-de-nuestro-comite-cientifico-nos-invita-a-reflexionar-sobre-el-derecho-cientifico/",
+    "slug": "en-el-marco-de-la-presentacion-del-indice-legislativo-de-usina-de-justicia-marcelo-aebi-miembro-de-nuestro-comite-cientifico-nos-invita-a-reflexionar-sobre-el-derecho-cientifico",
+    "title": "En el marco de la presentación del Índice Legislativo de Usina de Justicia, Marcelo Aebi, miembro de nuestro Comité Científico, nos invita a reflexionar sobre el derecho científico",
+    "excerpt": "",
+    "categories": [
+      "entrevistas"
+    ],
+    "modified_at": "2025-10-29T17:53:44",
+    "migration_status": "migrar",
+    "destination": "indice-legislativo relacionado + perfil de Marcelo Aebi",
+    "priority": "alta",
+    "migration_notes": "Video corto que cruza indice legislativo y autoridad academica del comite.",
+    "inventory_status": "discovered",
+    "editorial_status": "editorial_review_required",
+    "approved_for_import": false,
+    "target_collection": null,
+    "import_blockers": [
+      "Todavia no existe una entrada canonica del indice legislativo para vincular esta pieza."
+    ]
+  }
+]

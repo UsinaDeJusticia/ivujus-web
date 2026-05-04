@@ -16,6 +16,7 @@ import { FichasGlosario } from './collections/FichasGlosario';
 import { IndiceLegislativoEntradas } from './collections/IndiceLegislativoEntradas';
 import { Instituciones } from './collections/Instituciones';
 import { Media } from './collections/Media';
+import { Novedades } from './collections/Novedades';
 import { PaginasEstaticas } from './collections/PaginasEstaticas';
 import { Publicaciones } from './collections/Publicaciones';
 import { Simposios } from './collections/Simposios';
@@ -40,6 +41,7 @@ export default buildConfig({
     IndiceLegislativoEntradas,
     Instituciones,
     Media,
+    Novedades,
     PaginasEstaticas,
     Publicaciones,
     Simposios,
