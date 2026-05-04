@@ -14,6 +14,24 @@ interface LocalizedLeaf {
   value: unknown;
 }
 
+function hasUnsupportedLocalizedStructures(fields: Field[] | undefined): boolean {
+  if (!fields) return false;
+  for (const f of fields) {
+    if (f.type === 'array') {
+      return true;
+    }
+    if (
+      f.type === 'group' &&
+      'fields' in f &&
+      Array.isArray(f.fields) &&
+      hasUnsupportedLocalizedStructures(f.fields as Field[])
+    ) {
+      return true;
+    }
+  }
+  return false;
+}
+
 // Recorre el árbol de fields + data en paralelo y junta los leaves localizados
 // de tipos textuales. Soporta top-level y group; arrays/blocks quedan diferidos
 // (ver docs/CLAUDE.md, sección "Fase 3: traducción automática").
@@ -114,6 +132,7 @@ function applyTextNodes(
 
 export const translateContent: CollectionAfterChangeHook = async (args) => {
   const { doc, previousDoc, collection, req, operation } = args;
+  const hasPartialTranslationRisk = hasUnsupportedLocalizedStructures(collection.fields as Field[]);
 
   // 1. Loop guard: si el update vino del propio traductor, salir.
   if (req?.context?.skipTranslation) return doc;
@@ -204,7 +223,7 @@ export const translateContent: CollectionAfterChangeHook = async (args) => {
             setAt(enData, leaf.path, sliceTr[0] ?? '');
           }
         }
-        enData.traduccion_estado = 'automatica';
+        enData.traduccion_estado = hasPartialTranslationRisk ? 'pendiente' : 'automatica';
 
         await req.payload.update({
           collection: collectionSlug,
@@ -235,12 +254,23 @@ export const translateContent: CollectionAfterChangeHook = async (args) => {
     });
   } catch (err) {
     // after() falla fuera de App Router (seeds, scripts). En ese caso saltamos
-    // la traducción automática; el caller debería pasar skipTranslation: true
-    // para hacerlo explícito.
+    // la traducción automática y dejamos el documento en pendiente para no
+    // fingir que el EN quedó sincronizado.
     console.warn(
       '[translateContent] after() no disponible; salteo traducción:',
       err instanceof Error ? err.message : err,
     );
+    try {
+      await req.payload.update({
+        collection: collection.slug,
+        id: docId,
+        data: { traduccion_estado: 'pendiente' },
+        context: { skipTranslation: true },
+        overrideAccess: true,
+      });
+    } catch (updateErr) {
+      console.warn('[translateContent] no se pudo marcar pendiente sin after():', updateErr);
+    }
   }
 
   return doc;
