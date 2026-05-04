@@ -1,0 +1,35 @@
+[
+  {
+    "source_wp_id": 24523,
+    "source_wp_url": "https://ivujus.org.ar/usina-de-justicia-lanza-el-primer-indice-de-calidad-legislativa-enfocado-en-victimas/",
+    "titulo": "Usina de Justicia lanza el primer Índice de Calidad Legislativa enfocado en víctimas",
+    "slug": "usina-de-justicia-lanza-el-primer-indice-de-calidad-legislativa-enfocado-en-victimas",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Relacionar con la futura seccion del indice legislativo. Todavia no representa una entrada canonica de norma individual."
+  },
+  {
+    "source_wp_id": 24526,
+    "source_wp_url": "https://ivujus.org.ar/%e2%9a%96%ef%b8%8f%f0%9f%92%bb-asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf/",
+    "titulo": "⚖️💻 ¡Así vivimos la jornada \"Hacia un Derecho Científico\" en el CPACF!",
+    "slug": "%e2%9a%96%ef%b8%8f%f0%9f%92%bb-asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Relacionar con la futura seccion del indice legislativo. Todavia no representa una entrada canonica de norma individual."
+  },
+  {
+    "source_wp_id": 24493,
+    "source_wp_url": "https://ivujus.org.ar/en-el-marco-de-la-presentacion-del-indice-legislativo-de-usina-de-justicia-marcelo-aebi-miembro-de-nuestro-comite-cientifico-nos-invita-a-reflexionar-sobre-el-derecho-cientifico/",
+    "titulo": "En el marco de la presentación del Índice Legislativo de Usina de Justicia, Marcelo Aebi, miembro de nuestro Comité Científico, nos invita a reflexionar sobre el derecho científico",
+    "slug": "en-el-marco-de-la-presentacion-del-indice-legislativo-de-usina-de-justicia-marcelo-aebi-miembro-de-nuestro-comite-cientifico-nos-invita-a-reflexionar-sobre-el-derecho-cientifico",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Relacionar con la futura seccion del indice legislativo. Todavia no representa una entrada canonica de norma individual."
+  }
+]

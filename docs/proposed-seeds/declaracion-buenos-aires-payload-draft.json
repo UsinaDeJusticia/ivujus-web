@@ -1,0 +1,33 @@
+{
+  "kind": "payload-draft",
+  "collection": "declaraciones",
+  "approved_for_import": false,
+  "notes": [
+    "Draft persistible alineado a la colección Declaraciones.",
+    "Antes de importar hay que convertir texto_completo_resumen y puntos a richText de Payload.",
+    "La lista completa de firmantes institucionales o personas no esta cerrada en este draft."
+  ],
+  "source": {
+    "human_curated": true,
+    "source_html": "C:\\Users\\Emanuel\\Desktop\\simposio2026.html"
+  },
+  "data": {
+    "titulo": "Declaración de Buenos Aires",
+    "slug": "declaracion-de-buenos-aires",
+    "fecha": "2026-04-10",
+    "simposio_origen_slug_referencia": "2026-buenos-aires",
+    "texto_completo_resumen": "Documento oficial firmado al cierre del Primer Simposio Americano y Europeo de Victimología Penal, orientado a fijar bases para una victimología científica y una justicia penal con perspectiva de víctima.",
+    "texto_completo_puntos": [
+      "Artículo 1: Reivindicación de la Declaración de la ONU de 1985 como estándar mínimo e irrenunciable.",
+      "Artículo 2: Nuevo paradigma del sistema penal enfocado en una era con perspectiva de víctima.",
+      "Artículo 3: Transición hacia un Derecho Penal y Procesal Científico basado en evidencias.",
+      "Artículo 4: Exhortación a la OEA para sancionar una Convención Interamericana inspirada en la Directiva 2012/29/UE.",
+      "Artículo 5: Compromiso académico e institucional para financiar y desarrollar el paradigma de la victimología científica."
+    ],
+    "pdf_url": "https://ivujus.org.ar/wp-content/uploads/2026/04/Declaracion-de-Buenos-Aires-Traduccion-al-Ingles-Frances-y-Portugues.pdf",
+    "estado": "borrador",
+    "fuente": "humano",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_autor": false
+  }
+}

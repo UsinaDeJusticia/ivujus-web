@@ -1,0 +1,115 @@
+[
+  {
+    "source_wp_id": 9,
+    "source_wp_url": "https://ivujus.org.ar/blog/",
+    "titulo": "Blog",
+    "slug": "blog",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Importa el listado de posts, no la page de WordPress.",
+    "extra": {
+      "tipo": "institucional"
+    }
+  },
+  {
+    "source_wp_id": 24625,
+    "source_wp_url": "https://ivujus.org.ar/hito-en-la-justicia-argentina-sera-sede-del-primer-simposio-americano-y-europeo-de-victimologia-penal/",
+    "titulo": "Hito en la Justicia: Argentina será sede del Primer Simposio Americano y Europeo de Victimología Penal",
+    "slug": "hito-en-la-justicia-argentina-sera-sede-del-primer-simposio-americano-y-europeo-de-victimologia-penal",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Vincular con la ficha del simposio 2026.",
+    "extra": {
+      "tipo": "evento",
+      "simposio_slug_referencia": "2026-buenos-aires"
+    }
+  },
+  {
+    "source_wp_id": 24591,
+    "source_wp_url": "https://ivujus.org.ar/el-ivujus-presente-en-el-ciclo-de-formacion-2026/",
+    "titulo": "El IVUJUS presente en el Ciclo de Formación 2026",
+    "slug": "el-ivujus-presente-en-el-ciclo-de-formacion-2026",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Noticia institucional de agenda y presencia publica.",
+    "extra": {
+      "tipo": "difusion"
+    }
+  },
+  {
+    "source_wp_id": 24544,
+    "source_wp_url": "https://ivujus.org.ar/reconocimiento-a-marcelo-aebi/",
+    "titulo": "Reconocimiento a Marcelo Aebi",
+    "slug": "reconocimiento-a-marcelo-aebi",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Aporta autoridad academica para perfil de Marcelo Aebi.",
+    "extra": {
+      "tipo": "reconocimiento"
+    }
+  },
+  {
+    "source_wp_id": 24526,
+    "source_wp_url": "https://ivujus.org.ar/%e2%9a%96%ef%b8%8f%f0%9f%92%bb-asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf/",
+    "titulo": "⚖️💻 ¡Así vivimos la jornada \"Hacia un Derecho Científico\" en el CPACF!",
+    "slug": "%e2%9a%96%ef%b8%8f%f0%9f%92%bb-asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Cronica del evento de presentacion del indice. No es un ciclo autonomo.",
+    "extra": {
+      "tipo": "institucional"
+    }
+  },
+  {
+    "source_wp_id": 24517,
+    "source_wp_url": "https://ivujus.org.ar/encuentro-empresarial-argentina-israel-2025/",
+    "titulo": "Encuentro Empresarial Argentina-Israel 2025",
+    "slug": "encuentro-empresarial-argentina-israel-2025",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Confirmar relevancia institucional al redactar version final.",
+    "extra": {
+      "tipo": "institucional"
+    }
+  },
+  {
+    "source_wp_id": 24513,
+    "source_wp_url": "https://ivujus.org.ar/jornada-en-el-cpacf-derecho-y-algoritmos-%e2%9a%96%ef%b8%8f%f0%9f%92%bb/",
+    "titulo": "Jornada en el CPACF: Derecho y Algoritmos ⚖️💻",
+    "slug": "jornada-en-el-cpacf-derecho-y-algoritmos-%e2%9a%96%ef%b8%8f%f0%9f%92%bb",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Limpiar slug y titulo al migrar.",
+    "extra": {
+      "tipo": "difusion"
+    }
+  },
+  {
+    "source_wp_id": 24504,
+    "source_wp_url": "https://ivujus.org.ar/la-esc-difundio-las-proximas-presentaciones-de-usina-de-justicia/",
+    "titulo": "La ESC difundió las próximas presentaciones de Usina de Justicia",
+    "slug": "la-esc-difundio-las-proximas-presentaciones-de-usina-de-justicia",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Noticia institucional convencional.",
+    "extra": {
+      "tipo": "institucional"
+    }
+  }
+]

@@ -1,0 +1,248 @@
+{
+  "generatedAt": "2026-05-04T04:25:46.827Z",
+  "destinations": {
+    "novedades": [
+      {
+        "source_wp_id": 9,
+        "source_wp_type": "page",
+        "title": "Blog",
+        "slug": "blog",
+        "url": "https://ivujus.org.ar/blog/",
+        "priority": "alta",
+        "note": "Importa el listado de posts, no la page de WordPress."
+      },
+      {
+        "source_wp_id": 24591,
+        "source_wp_type": "post",
+        "title": "El IVUJUS presente en el Ciclo de Formación 2026",
+        "slug": "el-ivujus-presente-en-el-ciclo-de-formacion-2026",
+        "url": "https://ivujus.org.ar/el-ivujus-presente-en-el-ciclo-de-formacion-2026/",
+        "categories": [
+          "difusion"
+        ],
+        "priority": "media",
+        "note": "Noticia institucional de agenda y presencia publica."
+      },
+      {
+        "source_wp_id": 24517,
+        "source_wp_type": "post",
+        "title": "Encuentro Empresarial Argentina-Israel 2025",
+        "slug": "encuentro-empresarial-argentina-israel-2025",
+        "url": "https://ivujus.org.ar/encuentro-empresarial-argentina-israel-2025/",
+        "categories": [
+          "difusion"
+        ],
+        "priority": "baja",
+        "note": "Confirmar relevancia institucional al redactar version final."
+      },
+      {
+        "source_wp_id": 24513,
+        "source_wp_type": "post",
+        "title": "Jornada en el CPACF: Derecho y Algoritmos ⚖️💻",
+        "slug": "jornada-en-el-cpacf-derecho-y-algoritmos-%e2%9a%96%ef%b8%8f%f0%9f%92%bb",
+        "url": "https://ivujus.org.ar/jornada-en-el-cpacf-derecho-y-algoritmos-%e2%9a%96%ef%b8%8f%f0%9f%92%bb/",
+        "categories": [
+          "difusion"
+        ],
+        "priority": "media",
+        "note": "Limpiar slug y titulo al migrar."
+      },
+      {
+        "source_wp_id": 24504,
+        "source_wp_type": "post",
+        "title": "La ESC difundió las próximas presentaciones de Usina de Justicia",
+        "slug": "la-esc-difundio-las-proximas-presentaciones-de-usina-de-justicia",
+        "url": "https://ivujus.org.ar/la-esc-difundio-las-proximas-presentaciones-de-usina-de-justicia/",
+        "categories": [
+          "difusion"
+        ],
+        "priority": "baja",
+        "note": "Noticia institucional convencional."
+      }
+    ],
+    "formacion/diplomatura": [
+      {
+        "source_wp_id": 24055,
+        "source_wp_type": "page",
+        "title": "Campus Virtual",
+        "slug": "campus-virtual",
+        "url": "https://ivujus.org.ar/campus-virtual/",
+        "priority": "alta",
+        "note": "Solo landing institucional. Excluir tienda, login y operacion LMS."
+      }
+    ],
+    "formacion/ciclos-y-ciclos-y-dossiers/publicaciones": [
+      {
+        "source_wp_id": 21399,
+        "source_wp_type": "page",
+        "title": "Capacitación y actividades",
+        "slug": "capacitacion-y-actividades",
+        "url": "https://ivujus.org.ar/capacitacion-y-actividades/",
+        "priority": "alta",
+        "note": "Desarmar por actividad, video y PDF."
+      }
+    ],
+    "contacto": [
+      {
+        "source_wp_id": 19975,
+        "source_wp_type": "page",
+        "title": "contacto",
+        "slug": "contacto",
+        "url": "https://ivujus.org.ar/contacto/",
+        "priority": "media",
+        "note": "Rehacer como pagina limpia con formulario nuevo."
+      }
+    ],
+    "home": [
+      {
+        "source_wp_id": 6,
+        "source_wp_type": "page",
+        "title": "inicio",
+        "slug": "el-nuevo-umoma-abre-sus-puertas-2",
+        "url": "https://ivujus.org.ar/",
+        "priority": "alta",
+        "note": "No copiar literal. Solo usar como referencia de contenido y jerarquia."
+      }
+    ],
+    "formacion/ciclos-o-archivo-audiovisual-secundario": [
+      {
+        "source_wp_id": 19637,
+        "source_wp_type": "page",
+        "title": "ENTREVISTAS EN LA RADIO",
+        "slug": "entrevistas-en-la-radio",
+        "url": "https://ivujus.org.ar/entrevistas-en-la-radio/",
+        "priority": "baja",
+        "note": "Tiene videos reales; migrar solo si aporta valor al archivo institucional."
+      }
+    ],
+    "instituto-o-instituto/estatuto-o-instituto/consejo-directivo-o-instituto/comite-cientifico": [
+      {
+        "source_wp_id": 24152,
+        "source_wp_type": "page",
+        "title": "Nosotros",
+        "slug": "nosotros",
+        "url": "https://ivujus.org.ar/nosotros/",
+        "priority": "muy_alta",
+        "note": "Fuente canonica para finalidades, consejo, estatuto y comite cientifico."
+      }
+    ],
+    "simposios/2026-buenos-aires-y-publicaciones/declaraciones": [
+      {
+        "source_wp_id": 24632,
+        "source_wp_type": "page",
+        "title": "Simposio 2026",
+        "slug": "simposio-2026",
+        "url": "https://ivujus.org.ar/simposio-2026/",
+        "priority": "muy_alta",
+        "note": "Pieza central para simposio, declaracion y cobertura relacionada."
+      }
+    ],
+    "terms-privacy": [
+      {
+        "source_wp_id": 18848,
+        "source_wp_type": "page",
+        "title": "Políticas de privacidad",
+        "slug": "terms-privacy",
+        "url": "https://ivujus.org.ar/terms-privacy/",
+        "priority": "media",
+        "note": "Reescribir o limpiar markup WordPress."
+      }
+    ],
+    "novedades-relacionado-a-simposios": [
+      {
+        "source_wp_id": 24625,
+        "source_wp_type": "post",
+        "title": "Hito en la Justicia: Argentina será sede del Primer Simposio Americano y Europeo de Victimología Penal",
+        "slug": "hito-en-la-justicia-argentina-sera-sede-del-primer-simposio-americano-y-europeo-de-victimologia-penal",
+        "url": "https://ivujus.org.ar/hito-en-la-justicia-argentina-sera-sede-del-primer-simposio-americano-y-europeo-de-victimologia-penal/",
+        "categories": [
+          "difusion"
+        ],
+        "priority": "alta",
+        "note": "Vincular con la ficha del simposio 2026."
+      }
+    ],
+    "novedades-y-relacion-con-perfil-del-comite-cientifico": [
+      {
+        "source_wp_id": 24544,
+        "source_wp_type": "post",
+        "title": "Reconocimiento a Marcelo Aebi",
+        "slug": "reconocimiento-a-marcelo-aebi",
+        "url": "https://ivujus.org.ar/reconocimiento-a-marcelo-aebi/",
+        "categories": [
+          "reconocimiento"
+        ],
+        "priority": "media",
+        "note": "Aporta autoridad academica para perfil de Marcelo Aebi."
+      }
+    ],
+    "publicaciones/libros-relacionado-y-novedades": [
+      {
+        "source_wp_id": 24540,
+        "source_wp_type": "post",
+        "title": "📖 Resumen de la presentación: \"Nuevos paradigmas para la Justicia Penal\"",
+        "slug": "%f0%9f%93%96-resumen-de-la-presentacion-nuevos-paradigmas-para-la-justicia-penal",
+        "url": "https://ivujus.org.ar/%f0%9f%93%96-resumen-de-la-presentacion-nuevos-paradigmas-para-la-justicia-penal/",
+        "categories": [
+          "entrevistas"
+        ],
+        "priority": "alta",
+        "note": "Pieza satelite del libro Nuevos Paradigmas con video resumen."
+      },
+      {
+        "source_wp_id": 24509,
+        "source_wp_type": "post",
+        "title": "Usina de Justicia presenta el libro \"Nuevos Paradigmas para la Justicia Penal\"",
+        "slug": "usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal",
+        "url": "https://ivujus.org.ar/usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal/",
+        "categories": [
+          "entrevistas"
+        ],
+        "priority": "muy_alta",
+        "note": "Anuncio del libro. Debe conectarse al objeto editorial principal."
+      }
+    ],
+    "indice-legislativo-y-novedades": [
+      {
+        "source_wp_id": 24526,
+        "source_wp_type": "post",
+        "title": "⚖️💻 ¡Así vivimos la jornada \"Hacia un Derecho Científico\" en el CPACF!",
+        "slug": "%e2%9a%96%ef%b8%8f%f0%9f%92%bb-asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf",
+        "url": "https://ivujus.org.ar/%e2%9a%96%ef%b8%8f%f0%9f%92%bb-asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf/",
+        "categories": [
+          "debate"
+        ],
+        "priority": "alta",
+        "note": "Cronica del evento de presentacion del indice. No es un ciclo autonomo."
+      }
+    ],
+    "indice-legislativo": [
+      {
+        "source_wp_id": 24523,
+        "source_wp_type": "post",
+        "title": "Usina de Justicia lanza el primer Índice de Calidad Legislativa enfocado en víctimas",
+        "slug": "usina-de-justicia-lanza-el-primer-indice-de-calidad-legislativa-enfocado-en-victimas",
+        "url": "https://ivujus.org.ar/usina-de-justicia-lanza-el-primer-indice-de-calidad-legislativa-enfocado-en-victimas/",
+        "categories": [
+          "entrevistas"
+        ],
+        "priority": "muy_alta",
+        "note": "Debe reforzar la seccion del indice legislativo, no quedar como post generico."
+      }
+    ],
+    "indice-legislativo-relacionado-y-perfil-de-marcelo-aebi": [
+      {
+        "source_wp_id": 24493,
+        "source_wp_type": "post",
+        "title": "En el marco de la presentación del Índice Legislativo de Usina de Justicia, Marcelo Aebi, miembro de nuestro Comité Científico, nos invita a reflexionar sobre el derecho científico",
+        "slug": "en-el-marco-de-la-presentacion-del-indice-legislativo-de-usina-de-justicia-marcelo-aebi-miembro-de-nuestro-comite-cientifico-nos-invita-a-reflexionar-sobre-el-derecho-cientifico",
+        "url": "https://ivujus.org.ar/en-el-marco-de-la-presentacion-del-indice-legislativo-de-usina-de-justicia-marcelo-aebi-miembro-de-nuestro-comite-cientifico-nos-invita-a-reflexionar-sobre-el-derecho-cientifico/",
+        "categories": [
+          "entrevistas"
+        ],
+        "priority": "alta",
+        "note": "Video corto que cruza indice legislativo y autoridad academica del comite."
+      }
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "source_wp_id": 21399,
+    "source_wp_url": "https://ivujus.org.ar/capacitacion-y-actividades/",
+    "titulo": "Ciclo Usina Debate - Ley de Salud Mental",
+    "slug": "usina-debate-ley-de-salud-mental",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Crear entrada de Ciclos desde la pagina agrupadora de WordPress. Extraer resumen, dos videos y dossier asociado.",
+    "extra": {
+      "nombre_ciclo": "Usina Debate",
+      "video_urls": [
+        "https://youtu.be/tr77UQi5Doc",
+        "https://youtu.be/A5F0XAFFIzE"
+      ],
+      "materiales_urls": [
+        "https://ivujus.org.ar/wp-content/uploads/2023/07/Dossier-Salud-Mental.pdf"
+      ]
+    }
+  },
+  {
+    "source_wp_id": 21399,
+    "source_wp_url": "https://ivujus.org.ar/capacitacion-y-actividades/",
+    "titulo": "Ciclo Usina Debate - Juicio por Jurados",
+    "slug": "usina-debate-juicio-por-jurados",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Crear entrada de Ciclos desde la pagina agrupadora de WordPress. Extraer resumen, video y publicacion asociada.",
+    "extra": {
+      "nombre_ciclo": "Usina Debate",
+      "video_urls": [
+        "https://youtu.be/2MlqecC0tv8"
+      ],
+      "materiales_urls": [
+        "https://ivujus.org.ar/wp-content/uploads/2023/07/prision-perpetua.pdf"
+      ]
+    }
+  },
+  {
+    "source_wp_id": 19637,
+    "source_wp_url": "https://ivujus.org.ar/entrevistas-en-la-radio/",
+    "titulo": "Entrevistas en radios",
+    "slug": "entrevistas-en-radios",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Archivo audiovisual secundario. Migrar solo si se decide preservar entrevistas como parte de formacion o archivo institucional.",
+    "extra": {
+      "nombre_ciclo": "Archivo audiovisual",
+      "video_urls": [
+        "https://youtu.be/3S0naw77slk",
+        "https://www.youtube.com/watch?v=s4c-S2EAVAo",
+        "https://youtu.be/_jvPJ9cZ8nY"
+      ]
+    }
+  }
+]

@@ -1,0 +1,173 @@
+{
+  "kind": "payload-draft",
+  "collection": "simposios",
+  "approved_for_import": false,
+  "notes": [
+    "Draft persistible alineado a la colección Simposios.",
+    "Antes de importar hay que convertir resumen a richText de Payload.",
+    "Oradores, galería, PDF y relaciones siguen requiriendo resolución o carga manual."
+  ],
+  "source": {
+    "human_curated": true,
+    "source_html": "C:\\Users\\Emanuel\\Desktop\\simposio2026.html"
+  },
+  "data": {
+    "titulo": "Primer Simposio Americano y Europeo de Victimología Penal",
+    "slug": "2026-buenos-aires",
+    "numero_edicion": 1,
+    "anio": 2026,
+    "fecha_inicio": "2026-04-09",
+    "fecha_fin": "2026-04-10",
+    "sede": {
+      "institucion_organizadora": {
+        "es": "Usina de Justicia y CPACF"
+      },
+      "ciudad": "Buenos Aires",
+      "pais": "Argentina",
+      "direccion": ""
+    },
+    "resumen_plaintext": "Encuentro academico e institucional que reunio referentes de America y Europa para discutir derechos de las victimas, victimologia cientifica y nuevas bases para un derecho penal con perspectiva de victima.",
+    "temario": [
+      {
+        "titulo": {
+          "es": "Derechos de las victimas y justicia penal"
+        },
+        "descripcion": {
+          "es": "Bloques dedicados a politicas publicas de atencion, derecho penal, etapa de ejecucion y defensa de victimas."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Victimologia cientifica y evidencia"
+        },
+        "descripcion": {
+          "es": "Paneles sobre ciencia, medicion cualitativa, analisis basado en evidencia y datos geneticos."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Debates contemporaneos"
+        },
+        "descripcion": {
+          "es": "Abolicionismo penal, juicio en ausencia, politica criminal y nuevas perspectivas para America y Europa."
+        }
+      }
+    ],
+    "sitio_externo": "https://simposiousinadejusticia.org.ar",
+    "videos": [
+      {
+        "titulo": {
+          "es": "Panel I: Politicas publicas en la atencion y en la asistencia a las victimas"
+        },
+        "url_youtube": "https://www.youtube.com/watch?v=Adi-yBGunbw",
+        "descripcion": {
+          "es": "Expositora: Maria de la Luz Lima Malvido."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Panel II: La victima y el derecho penal"
+        },
+        "url_youtube": "https://www.youtube.com/watch?v=LFcAFOmdHas",
+        "descripcion": {
+          "es": "Expositores: Francisco Castex y Jose Console."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Panel III: La victima y la ciencia"
+        },
+        "url_youtube": "https://www.youtube.com/watch?v=3mv5NoXD6pQ",
+        "descripcion": {
+          "es": "Expositores: Daniel Roggero y Noelia Marelyn Juarez."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Panel IV: Trabajo de campo y Ley de Datos Geneticos"
+        },
+        "url_youtube": "https://www.youtube.com/watch?v=9Arb38RS-6U",
+        "descripcion": {
+          "es": "Testimonios de familiares y analisis de la Ley 27.759. Expositores: Raquel Slotolow y Guillermo Bargna."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Panel V: La figura del defensor de victima (Panama)"
+        },
+        "url_youtube": "https://www.youtube.com/watch?v=Ozv_7gJu5t8",
+        "descripcion": {
+          "es": "Expositor: Dario Solis."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Panel I: Los derechos de las victimas"
+        },
+        "url_youtube": "https://www.youtube.com/watch?v=dpYH04fdXew",
+        "descripcion": {
+          "es": "Ponencia central. Expositora: Maria Jimena Molina."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Panel II: La victima, el Ministerio Publico y la politica criminal"
+        },
+        "url_youtube": "https://www.youtube.com/watch?v=hQqwZlV_mcs",
+        "descripcion": {
+          "es": "Expositores: German Garavano y Martin Casares."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Panel III: El juicio en ausencia y el abolicionismo penal"
+        },
+        "url_youtube": "https://www.youtube.com/watch?v=Zfeha2pQOiM",
+        "descripcion": {
+          "es": "Expositores: Diana Cohen Agrest y Franco Fiumara."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Participacion en video de Franco Fiumara"
+        },
+        "url_youtube": "https://www.youtube.com/watch?v=nBpQHVXIOr0",
+        "descripcion": {
+          "es": "Intervencion complementaria sobre juicio en ausencia desde el enfoque victimologico."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Panel IV: La victima en la etapa de ejecucion"
+        },
+        "url_youtube": "https://www.youtube.com/watch?v=t8K0Z0vCH-s",
+        "descripcion": {
+          "es": "Expositor: Marcelo Peluzzi."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Panel VI: Criticas a la criminologia critica"
+        },
+        "url_youtube": "https://www.youtube.com/watch?v=PgRiWq_X0D8",
+        "descripcion": {
+          "es": "Expositor: Marcelo Aebi."
+        }
+      },
+      {
+        "titulo": {
+          "es": "Lectura y firma de la Declaracion de Buenos Aires"
+        },
+        "url_youtube": "https://www.youtube.com/watch?v=nnGiCHyhgzw",
+        "descripcion": {
+          "es": "Cierre oficial del simposio y firma de la declaracion."
+        }
+      }
+    ],
+    "declaracion_final_slug_referencia": "declaracion-de-buenos-aires",
+    "estado": "borrador",
+    "fuente": "humano",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_autor": false
+  }
+}

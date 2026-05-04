@@ -1,0 +1,24 @@
+[
+  {
+    "source_wp_id": 19975,
+    "source_wp_url": "https://ivujus.org.ar/contacto/",
+    "titulo": "contacto",
+    "slug": "contacto",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Rehacer como pagina limpia con formulario nuevo. Exportar como pagina estatica limpia sin markup WordPress."
+  },
+  {
+    "source_wp_id": 18848,
+    "source_wp_url": "https://ivujus.org.ar/terms-privacy/",
+    "titulo": "Políticas de privacidad",
+    "slug": "terms-privacy",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Reescribir o limpiar markup WordPress. Exportar como pagina estatica limpia sin markup WordPress."
+  }
+]

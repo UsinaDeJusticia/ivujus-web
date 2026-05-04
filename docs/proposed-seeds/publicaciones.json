@@ -1,0 +1,20 @@
+[
+  {
+    "source_wp_id": 24509,
+    "source_wp_url": "https://ivujus.org.ar/usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal/",
+    "titulo": "Nuevos Paradigmas para la Justicia Penal",
+    "slug": "nuevos-paradigmas-para-la-justicia-penal",
+    "estado": "borrador",
+    "fuente": "migracion_wp",
+    "traduccion_estado": "pendiente",
+    "requiere_revision_manual": true,
+    "notas_migracion": "Consolidar ambos posts alrededor de un unico objeto editorial de tipo libro. Resolver autores, presentacion y assets asociados.",
+    "extra": {
+      "tipo": "libro",
+      "source_posts_relacionados": [
+        24509,
+        24540
+      ]
+    }
+  }
+]
