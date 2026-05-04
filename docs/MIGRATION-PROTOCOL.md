@@ -148,6 +148,8 @@ Al momento de este documento:
 - existe clasificacion editorial inicial
 - existen proposed seeds por coleccion
 - la capa `import-ready` debe mantenerse conservadora hasta nueva aprobacion explicita
+- existe una primera capa global SEO/GEO curada (`robots`, `llms.txt`, `sitemap`),
+  pero todavia no es una version fully CMS-driven.
 
 ## Proximo uso esperado
 

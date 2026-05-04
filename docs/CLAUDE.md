@@ -63,6 +63,14 @@ razones externas (credencial faltante, decisión pendiente), escalar a Jair.
   persistible o su reemplazo por contenido de Payload.
 - La coleccion `Novedades` ya existe en el schema de Payload y cubre el hueco
   entre el brief y la arquitectura del CMS.
+- Ya existe una primera capa global SEO/GEO implementada en:
+  - `src/app/robots.ts`
+  - `src/app/llms-txt/route.ts`
+  - `src/app/sitemap.ts`
+  - `src/lib/seo.ts`
+- La URL publica esperada para agentes y crawlers es `/llms.txt`, pero
+  tecnicamente se sirve mediante un rewrite de Next hacia `/llms-txt` definido
+  en `next.config.ts`. No eliminar ese rewrite sin reemplazo equivalente.
 - Antes de tocar migracion, leer `docs/MIGRATION-PROTOCOL.md`. Los archivos en
   `docs/proposed-seeds/` son para revision humana; no son import final.
 - El importador `scripts/import-simposio-2026.ts` existe, pero corre en
