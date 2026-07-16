@@ -69,6 +69,20 @@ razones externas (credencial faltante, decisión pendiente), escalar a Jair.
   `dry-run` por defecto. Solo debe escribir con aprobacion explicita y usando
   flags de escritura.
 
+## Contenido y diseño reservado del lado de Usina
+
+Antes de tocar migración desde `usinadejusticia.org.ar` o cualquier componente
+de UI nuevo, leer [`docs/USINA-CONTENIDO-RESERVADO.md`](./USINA-CONTENIDO-RESERVADO.md).
+Contiene: (1) una discrepancia real entre lo que `ARQUITECTURA.md` §2.3
+asumía sobre qué categorías de Usina migrarían acá vs. lo que Usina decidió
+ejecutar en julio 2026 (menos contenido disponible del previsto), (2) el
+contenido real y completo de los 19 posts + 3 páginas que sí están
+reservados, con las URLs de redirect ya en producción del lado de Usina, y
+(3) componentes de diseño (bordeaux/ochre) generados para IVUJUS en la misma
+sesión de Claude Design que el sistema de Usina, nunca portados a
+`src/components/` — paleta que probablemente debería reemplazar la actual de
+`globals.css`, pendiente de confirmación de Jair.
+
 ## Fase 3: traducción automática
 
 ### Alcance v1
