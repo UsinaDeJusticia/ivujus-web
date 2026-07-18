@@ -112,6 +112,100 @@
   --easing-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* -------------------------------------------------------------------------
+   Fase 1 · Ola 3: escalas de espaciado, radios, tipografía y contenedores.
+   Fuente: colors_and_type.css (secciones "Espaciado", "Escala tipográfica",
+   "Radios" y "Contenedores").
+
+   Decisión: se declaran como variables planas de :root, NO dentro de
+   @theme, aunque varios de estos nombres correspondan 1:1 a namespaces de
+   utilidades de Tailwind v4 (--text-*, --leading-*, --tracking-*,
+   --radius-*). El motivo es que varios de esos nombres YA existen en el
+   theme por defecto de Tailwind con valores DISTINTOS a los del manual
+   (ej.: nuestro --text-lg = 22px vs. el `text-lg` nativo de Tailwind =
+   18px; --radius-lg = 10px vs. el `rounded-lg` nativo = 8px;
+   --leading-tight = 1.15 vs. el nativo 1.25). Registrarlos en @theme
+   pisaría esas utilidades por defecto y re-skinearía en silencio las 7
+   rutas ya publicadas del sitio — algo explícitamente prohibido en esta
+   ola ("no tocar páginas existentes"). Se referencian entonces con
+   sintaxis arbitraria donde se necesite fidelidad exacta al manual, p.
+   ej. `text-[length:var(--text-lg)]`, `tracking-[var(--tracking-wide)]`,
+   `rounded-[var(--radius-lg)]`.
+
+   Únicas excepciones sin conflicto:
+     · La escala de espaciado (--space-1..32) coincide en valor exacto con
+       la escala por defecto de Tailwind (p-1..p-32), así que las
+       utilidades "bare" (`p-6`, `gap-8`) ya cumplen el manual sin
+       necesidad de tokens propios; se listan de todos modos para
+       nombrarlas según el manual y para usos fuera de Tailwind.
+     · --radius-xs (2px), --radius-sm (4px) y --radius-md (6px) también
+       coinciden con los nativos `rounded-xs/sm/md` — se puede usar la
+       utilidad bare.
+     · El radio "pill" (999px) ya está cubierto por la utilidad nativa
+       `rounded-full` (9999px, mismo efecto visual); no hace falta un
+       token nuevo para eso.
+   ------------------------------------------------------------------------- */
+:root {
+  /* Espaciado (escala 4px) — coincide con la escala nativa de Tailwind */
+  --space-0: 0;
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+  --space-20: 5rem; /* 80px */
+  --space-24: 6rem; /* 96px */
+  --space-32: 8rem; /* 128px */
+
+  /* Contenedores */
+  --container-prose: 68ch;
+  --container-narrow: 880px;
+  --container-default: 1180px;
+  --container-wide: 1320px;
+
+  /* Radios — conservadores, "papel oficial" */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-pill: 999px; /* usar utilidad nativa `rounded-full` en Tailwind */
+
+  /* Escala tipográfica (modular 1.25, base 16) */
+  --text-3xs: 0.625rem; /* 10px — micro labels */
+  --text-2xs: 0.6875rem; /* 11px — eyebrows */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px — cuerpo */
+  --text-md: 1.125rem; /* 18px — cuerpo grande */
+  --text-lg: 1.375rem; /* 22px */
+  --text-xl: 1.75rem; /* 28px */
+  --text-2xl: 2.25rem; /* 36px */
+  --text-3xl: 2.875rem; /* 46px */
+  --text-4xl: 3.75rem; /* 60px */
+  --text-5xl: 4.75rem; /* 76px — hero */
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.3;
+  --leading-normal: 1.55;
+  --leading-relaxed: 1.7;
+
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.06em; /* Cinzel default — caps respirado */
+  --tracking-wider: 0.14em; /* eyebrows / section kickers */
+  --tracking-widest: 0.22em; /* botones / nav superior */
+
+  /* Chrome de layout */
+  --header-height: 88px;
+  --header-height-scrolled: 64px;
+  --footer-bg: var(--color-azul-900);
+}
+
 /* --- Baseline de elementos ---------------------------------------------- */
 html {
   background: var(--bg-base);
