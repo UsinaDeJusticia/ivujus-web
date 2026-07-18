@@ -1,0 +1,29 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Inputs" subtitle="Text, email (focus), select" viewport="700x230" -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Inputs</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="card.css">
+</head>
+<body><div class="card">
+<div class="col" style="gap: 14px;">
+  <div class="col" style="gap: 6px;">
+    <label class="label" for="i1">Nombre completo</label>
+    <input id="i1" type="text" placeholder="Ej. María Jimena Molina" style="font-family: var(--font-body); font-size: 14px; padding: 12px 14px; border: 1px solid var(--border-default); border-radius: 4px; background: #fff; color: var(--azul-900);">
+  </div>
+  <div class="row" style="gap: 14px;">
+    <div class="col" style="flex: 1; gap: 6px;">
+      <label class="label" for="i2">Correo electrónico</label>
+      <input id="i2" type="email" value="info@ivujus.org.ar" style="font-family: var(--font-body); font-size: 14px; padding: 12px 14px; border: 1px solid var(--azul-700); border-radius: 4px; background: #fff; color: var(--azul-900); box-shadow: 0 0 0 3px rgba(201,164,106,0.40);">
+    </div>
+    <div class="col" style="flex: 1; gap: 6px;">
+      <label class="label" for="i3">Profesión</label>
+      <select id="i3" style="font-family: var(--font-body); font-size: 14px; padding: 12px 14px; border: 1px solid var(--border-default); border-radius: 4px; background: #fff; color: var(--azul-900);">
+        <option>Abogacía</option><option>Psicología</option><option>Otro</option>
+      </select>
+    </div>
+  </div>
+</div>
+</div></body></html>

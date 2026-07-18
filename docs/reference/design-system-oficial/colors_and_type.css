@@ -1,0 +1,449 @@
+/* =====================================================================
+   IVUJUS — Instituto de Victimología de Usina de Justicia
+   Base design tokens: color, typography, spacing, elevation, motion
+   ---------------------------------------------------------------------
+   Brand voice in CSS:
+     · Sobria, académica, institucional, elegante, respirada.
+     · Sin gradientes fuertes, sin sombras exageradas, sin animaciones
+       excesivas. La marca habla en azul institucional con un acento
+       dorado discreto.
+   ===================================================================== */
+
+/* --- Fuentes (Google Fonts) ----------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* Las fuentes Cinzel + Montserrat también están copiadas en /fonts
+   para uso offline. Ver fonts/fonts.css para @font-face locales.       */
+
+:root {
+  /* === Paleta institucional ======================================== */
+  --color-azul-institucional: #0D3B66;   /* AZUL INSTITUCIONAL */
+  --color-dorado-acento:      #C9A46A;   /* DORADO ACENTO */
+  --color-gris-apoyo:         #6B7280;   /* GRIS APOYO */
+  --color-blanco:             #FFFFFF;   /* BLANCO */
+
+  /* Escala azul (derivada del institucional, oklch armónico) */
+  --azul-950: #06203C;
+  --azul-900: #0A2E50;
+  --azul-800: #0D3B66;   /* = institucional */
+  --azul-700: #1B4F7E;
+  --azul-600: #2F6493;
+  --azul-500: #4D7DA8;
+  --azul-400: #7A9DBE;
+  --azul-300: #A8BFD3;
+  --azul-200: #D2DDE8;
+  --azul-100: #E8EEF4;
+  --azul-50:  #F4F7FA;
+
+  /* Escala dorada (acento, usar con moderación) */
+  --dorado-900: #7A5F36;
+  --dorado-800: #9C7C49;
+  --dorado-700: #B5905C;
+  --dorado-600: #C9A46A;   /* = acento */
+  --dorado-500: #D4B485;
+  --dorado-400: #DFC5A2;
+  --dorado-300: #EAD8C0;
+  --dorado-200: #F2E6D5;
+  --dorado-100: #F8F1E7;
+
+  /* Escala gris (apoyo + neutros) */
+  --gris-950: #1F2328;
+  --gris-900: #2A2F36;
+  --gris-800: #3B4149;
+  --gris-700: #4E545D;
+  --gris-600: #6B7280;   /* = apoyo */
+  --gris-500: #8A919B;
+  --gris-400: #A8AEB7;
+  --gris-300: #C8CCD2;
+  --gris-200: #E2E5E9;
+  --gris-100: #F1F2F4;
+  --gris-50:  #F8F9FA;
+
+  /* === Tokens semánticos =========================================== */
+  /* Fondos */
+  --bg-base:       var(--color-blanco);
+  --bg-subtle:     var(--gris-50);
+  --bg-muted:      var(--azul-50);
+  --bg-inverted:   var(--azul-800);
+  --bg-dark:       var(--azul-900);
+
+  /* Tintas */
+  --fg-1:          var(--azul-900);     /* titulares, énfasis máximo */
+  --fg-2:          var(--gris-900);     /* cuerpo principal */
+  --fg-3:          var(--gris-700);     /* secundario, metas */
+  --fg-4:          var(--gris-600);     /* terciario, captions */
+  --fg-muted:      var(--gris-500);     /* placeholder, disabled */
+  --fg-on-dark:    var(--color-blanco);
+  --fg-on-dark-2:  var(--azul-200);
+  --fg-link:       var(--azul-700);
+  --fg-link-hover: var(--azul-800);
+  --fg-accent:     var(--dorado-700);   /* acento dorado para tipografía */
+
+  /* Bordes y separadores */
+  --border-subtle: var(--gris-200);
+  --border-default:var(--gris-300);
+  --border-strong: var(--gris-700);
+  --border-accent: var(--dorado-600);
+  --rule-accent:   var(--dorado-600);   /* línea decorativa dorada (3–4ch) */
+
+  /* Estados de feedback (calmados, no chillones) */
+  --feedback-info:    #2F6493;
+  --feedback-success: #3F7A5A;
+  --feedback-warning: #B5905C;
+  --feedback-danger:  #9B3A3A;
+
+  /* === Tipografía ================================================== */
+  --font-display: 'Cinzel', 'Trajan Pro', 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:    ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+
+  /* Escala tipográfica (modular 1.25, base 16) */
+  --text-3xs: 0.625rem;   /* 10px — micro labels */
+  --text-2xs: 0.6875rem;  /* 11px — eyebrows */
+  --text-xs:  0.75rem;    /* 12px */
+  --text-sm:  0.875rem;   /* 14px */
+  --text-base:1rem;       /* 16px — cuerpo */
+  --text-md:  1.125rem;   /* 18px — cuerpo grande */
+  --text-lg:  1.375rem;   /* 22px */
+  --text-xl:  1.75rem;    /* 28px */
+  --text-2xl: 2.25rem;    /* 36px */
+  --text-3xl: 2.875rem;   /* 46px */
+  --text-4xl: 3.75rem;    /* 60px */
+  --text-5xl: 4.75rem;    /* 76px — hero */
+
+  --leading-tight:   1.15;
+  --leading-snug:    1.3;
+  --leading-normal:  1.55;
+  --leading-relaxed: 1.7;
+
+  --tracking-tight:  -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.06em;   /* Cinzel default — caps respirado */
+  --tracking-wider:  0.14em;   /* eyebrows / SECTION KICKERS */
+  --tracking-widest: 0.22em;   /* botones / nav superior */
+
+  /* === Espaciado (modular 4px) ===================================== */
+  --space-0:  0;
+  --space-1:  0.25rem;    /* 4 */
+  --space-2:  0.5rem;     /* 8 */
+  --space-3:  0.75rem;    /* 12 */
+  --space-4:  1rem;       /* 16 */
+  --space-5:  1.25rem;    /* 20 */
+  --space-6:  1.5rem;     /* 24 */
+  --space-8:  2rem;       /* 32 */
+  --space-10: 2.5rem;     /* 40 */
+  --space-12: 3rem;       /* 48 */
+  --space-16: 4rem;       /* 64 */
+  --space-20: 5rem;       /* 80 */
+  --space-24: 6rem;       /* 96 */
+  --space-32: 8rem;       /* 128 */
+
+  /* Contenedores */
+  --container-prose: 68ch;
+  --container-narrow: 880px;
+  --container-default: 1180px;
+  --container-wide: 1320px;
+
+  /* === Radios — conservadores, "papel oficial" ==================== */
+  --radius-none: 0;
+  --radius-xs:  2px;
+  --radius-sm:  4px;
+  --radius-md:  6px;     /* default cards / inputs */
+  --radius-lg:  10px;
+  --radius-pill: 999px;  /* sólo chips y badges */
+
+  /* === Elevación — discreta. NUNCA sombras exageradas ============== */
+  --shadow-0: none;
+  --shadow-1: 0 1px 2px rgba(13, 59, 102, 0.06);
+  --shadow-2: 0 2px 8px rgba(13, 59, 102, 0.08);
+  --shadow-3: 0 8px 24px rgba(13, 59, 102, 0.10);
+  --shadow-focus: 0 0 0 3px rgba(201, 164, 106, 0.40);   /* anillo dorado */
+  --shadow-focus-blue: 0 0 0 3px rgba(13, 59, 102, 0.25);
+
+  /* === Movimiento — sutil, "respirado" ============================= */
+  --motion-fast:  120ms;
+  --motion-base:  200ms;
+  --motion-slow:  320ms;
+  --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-out:      cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* === Layout chrome =============================================== */
+  --header-height: 88px;
+  --header-height-scrolled: 64px;
+  --footer-bg: var(--azul-900);
+}
+
+/* =====================================================================
+   Reglas base y elementos semánticos
+   ===================================================================== */
+
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--fg-2);
+  background: var(--bg-base);
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+}
+
+/* --- Display & headings: Cinzel, MAYÚSCULAS, tracking respirado ---- */
+h1, h2, h3, .display, .eyebrow, .section-kicker {
+  font-family: var(--font-display);
+  color: var(--fg-1);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  line-height: var(--leading-tight);
+  text-wrap: balance;
+}
+
+h1, .h1 {
+  font-size: clamp(var(--text-2xl), 4.5vw, var(--text-4xl));
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  margin: 0 0 var(--space-6);
+}
+
+h2, .h2 {
+  font-size: clamp(var(--text-xl), 3.5vw, var(--text-2xl));
+  font-weight: 600;
+  margin: 0 0 var(--space-5);
+}
+
+h3, .h3 {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  margin: 0 0 var(--space-3);
+}
+
+/* h4–h6 usan Montserrat para evitar Cinzel a tamaños muy chicos */
+h4, .h4 {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: var(--fg-1);
+  margin: 0 0 var(--space-2);
+  letter-spacing: var(--tracking-normal);
+  text-transform: none;
+}
+
+h5, .h5 {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--fg-1);
+  margin: 0 0 var(--space-2);
+}
+
+h6, .h6 {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--fg-3);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  margin: 0 0 var(--space-2);
+}
+
+/* "Eyebrow" — Montserrat micro caps con tracking ancho.
+   Suele acompañarse de la línea dorada decorativa. */
+.eyebrow, .section-kicker {
+  font-family: var(--font-body);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-widest);
+  color: var(--fg-accent);
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: var(--rule-accent);
+}
+
+/* --- Cuerpo, prosa, listas ----------------------------------------- */
+p, .body {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--fg-2);
+  margin: 0 0 var(--space-4);
+  text-wrap: pretty;
+}
+
+.lead {
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--fg-2);
+  font-weight: 400;
+}
+
+small, .caption {
+  font-size: var(--text-xs);
+  color: var(--fg-4);
+  line-height: var(--leading-snug);
+}
+
+strong, b { font-weight: 600; color: var(--fg-1); }
+em, i    { font-style: italic; }
+
+a {
+  color: var(--fg-link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--dorado-600);
+  transition: color var(--motion-fast) var(--easing-standard);
+}
+a:hover { color: var(--fg-link-hover); text-decoration-color: var(--dorado-700); }
+a:focus-visible { outline: none; box-shadow: var(--shadow-focus); border-radius: var(--radius-xs); }
+
+blockquote {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: var(--text-md);
+  color: var(--fg-1);
+  line-height: var(--leading-relaxed);
+  border-left: 2px solid var(--dorado-600);
+  padding: var(--space-2) var(--space-6);
+  margin: var(--space-8) 0;
+}
+blockquote cite {
+  display: block;
+  margin-top: var(--space-3);
+  font-style: normal;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  color: var(--fg-3);
+  text-transform: uppercase;
+}
+
+code, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: var(--gris-100);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-xs);
+  color: var(--azul-900);
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--border-subtle);
+  margin: var(--space-12) 0;
+}
+hr.accent {
+  background: var(--dorado-600);
+  width: 48px;
+  height: 2px;
+  margin-left: 0;
+}
+
+/* =====================================================================
+   Temas (cuidado de la vista)
+   ---------------------------------------------------------------------
+   Tres temas oficiales:
+     · Claro  (default)   — fondo blanco, ink azul-900, brand puro.
+     · Sepia ("lectura")  — fondo crema cálido (#F4ECD8), ink café oscuro.
+                            Reduce el contraste duro del blanco para
+                            sesiones largas de lectura.
+     · Oscuro              — fondo azul institucional muy oscuro,
+                            ink claro azulado. El brand-blue se vuelve
+                            casi negro, así que para titulares y CTAs
+                            invertimos a blanco/dorado.
+   Los azules y dorados del brand NO cambian — sólo cambian los
+   tokens de chrome/UI. Las superficies "marca" (EventBanner, Footer)
+   quedan siempre azul-900 en cualquier tema.
+   ===================================================================== */
+
+:root,
+[data-theme="light"] {
+  --ui-bg-page:     #FFFFFF;
+  --ui-bg-surface:  #FFFFFF;
+  --ui-bg-muted:    var(--azul-50);
+  --ui-bg-subtle:   var(--gris-50);
+  --ui-border:      var(--gris-200);
+  --ui-border-strong: var(--gris-300);
+  --ui-ink-1:       var(--azul-900);      /* display + max énfasis */
+  --ui-ink-2:       var(--gris-900);      /* cuerpo */
+  --ui-ink-3:       var(--gris-700);      /* secundario */
+  --ui-ink-4:       var(--gris-600);      /* terciario */
+  --ui-display-ink: var(--azul-900);      /* titulares Cinzel */
+  --ui-accent-ink:  var(--dorado-700);    /* eyebrows */
+  --ui-link:        var(--azul-700);
+  --ui-link-hover:  var(--azul-800);
+  --ui-shadow-1:    0 1px 2px rgba(13,59,102,0.06);
+  --ui-shadow-2:    0 2px 8px rgba(13,59,102,0.08);
+  --ui-shadow-3:    0 8px 24px rgba(13,59,102,0.10);
+  --ui-hero-gradient: linear-gradient(180deg, #fff 0%, var(--azul-50) 100%);
+  --ui-blog-bg:     var(--azul-50);
+}
+
+[data-theme="sepia"] {
+  --ui-bg-page:     #F4ECD8;    /* papel crema cálido */
+  --ui-bg-surface:  #FAF3DC;    /* card */
+  --ui-bg-muted:    #EFE4C9;
+  --ui-bg-subtle:   #ECDFBF;
+  --ui-border:      #DBC9A0;
+  --ui-border-strong: #C5AE7E;
+  --ui-ink-1:       #2B1F12;
+  --ui-ink-2:       #3D2E1E;
+  --ui-ink-3:       #5A4630;
+  --ui-ink-4:       #7A6647;
+  --ui-display-ink: var(--azul-900);  /* navy on cream lee espectacular */
+  --ui-accent-ink:  #8C6B2F;
+  --ui-link:        var(--azul-800);
+  --ui-link-hover:  var(--azul-900);
+  --ui-shadow-1:    0 1px 2px rgba(60,40,20,0.08);
+  --ui-shadow-2:    0 2px 8px rgba(60,40,20,0.10);
+  --ui-shadow-3:    0 8px 24px rgba(60,40,20,0.14);
+  --ui-hero-gradient: linear-gradient(180deg, #F4ECD8 0%, #EFE4C9 100%);
+  --ui-blog-bg:     #EFE4C9;
+}
+
+[data-theme="dark"] {
+  --ui-bg-page:     #06203C;             /* azul-950 */
+  --ui-bg-surface:  #0A2E50;             /* azul-900 */
+  --ui-bg-muted:    #0D3B66;             /* azul-800 */
+  --ui-bg-subtle:   #0A2E50;
+  --ui-border:      rgba(255,255,255,0.10);
+  --ui-border-strong: rgba(255,255,255,0.18);
+  --ui-ink-1:       #FFFFFF;
+  --ui-ink-2:       #D2DDE8;             /* azul-200 */
+  --ui-ink-3:       #A8BFD3;             /* azul-300 */
+  --ui-ink-4:       #7A9DBE;             /* azul-400 */
+  --ui-display-ink: #FFFFFF;             /* navy ilegible sobre navy → blanco */
+  --ui-accent-ink:  var(--dorado-400);
+  --ui-link:        var(--dorado-300);
+  --ui-link-hover:  var(--dorado-200);
+  --ui-shadow-1:    0 1px 2px rgba(0,0,0,0.25);
+  --ui-shadow-2:    0 2px 12px rgba(0,0,0,0.35);
+  --ui-shadow-3:    0 8px 32px rgba(0,0,0,0.50);
+  --ui-hero-gradient: linear-gradient(180deg, #06203C 0%, #0A2E50 100%);
+  --ui-blog-bg:     #0A2E50;
+}
+
+body {
+  background: var(--ui-bg-page);
+  color: var(--ui-ink-2);
+  transition: background 300ms var(--easing-standard), color 300ms var(--easing-standard);
+}
+
+/* --- Selección ----------------------------------------------------- */
+::selection { background: var(--dorado-200); color: var(--azul-900); }
+
+/* --- Foco visible globalmente -------------------------------------- */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-xs);
+}

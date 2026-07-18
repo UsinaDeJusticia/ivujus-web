@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- @dsCard group="UI Kit — Ivujus Site" name="Sitio IVUJUS — landing institucional" subtitle="Header + hero + diplomaturas + simposio + blog + footer (clicable)" viewport="1280x1200" -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IVUJUS · Instituto de Victimología de Usina de Justicia</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; }
+  body { font-family: var(--font-body); }
+  * { box-sizing: border-box; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--gris-50); }
+  ::-webkit-scrollbar-thumb { background: var(--gris-300); border-radius: 999px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gris-500); }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" fill="#0D3B66"/>
+    <g transform="translate(100 110)">
+      <path d="M -50 -30 L -50 30 L 0 24 L 0 -36 Z M 50 -30 L 50 30 L 0 24 L 0 -36 Z" fill="#FFFFFF"/>
+      <text x="-26" y="6" font-family="serif" font-size="16" font-weight="600" fill="#0D3B66">IVU</text>
+      <text x="6" y="6" font-family="serif" font-size="16" font-weight="600" fill="#0D3B66">JUS</text>
+      <g stroke="#C9A46A" stroke-width="2" stroke-linecap="round">
+        <line x1="0" y1="-44" x2="0" y2="-58"/>
+        <line x1="-14" y1="-42" x2="-22" y2="-54"/>
+        <line x1="14" y1="-42" x2="22" y2="-54"/>
+        <line x1="-24" y1="-38" x2="-36" y2="-46"/>
+        <line x1="24" y1="-38" x2="36" y2="-46"/>
+      </g>
+    </g>
+  </svg>
+</template>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="Buttons.jsx"></script>
+<script type="text/babel" src="SectionHeader.jsx"></script>
+<script type="text/babel" src="i18n.jsx"></script>
+<script type="text/babel" src="Theme.jsx"></script>
+<script type="text/babel" src="AccessibilityBar.jsx"></script>
+<script type="text/babel" src="Header.jsx"></script>
+<script type="text/babel" src="HeroSection.jsx"></script>
+<script type="text/babel" src="CoursesGrid.jsx"></script>
+<script type="text/babel" src="EventBanner.jsx"></script>
+<script type="text/babel" src="BlogList.jsx"></script>
+<script type="text/babel" src="NewsletterStrip.jsx"></script>
+<script type="text/babel" src="Footer.jsx"></script>
+<script type="text/babel" src="Modals.jsx"></script>
+<script type="text/babel" src="App.jsx"></script>
+</body>
+</html>

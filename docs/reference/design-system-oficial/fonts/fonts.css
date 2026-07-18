@@ -1,0 +1,49 @@
+/* IVUJUS — local font face declarations.
+   The brand uses Cinzel (titles) and Montserrat (body).
+   For runtime, colors_and_type.css imports both from Google Fonts
+   (woff2 served directly by fonts.googleapis.com), which is the
+   simplest and fastest path for a non-airgapped deploy.
+
+   If you need fully offline assets, download woff2 files from
+   https://fonts.google.com/specimen/Cinzel and
+   https://fonts.google.com/specimen/Montserrat and drop them in
+   this folder, then enable the @font-face blocks below.
+*/
+
+/*
+@font-face {
+  font-family: 'Cinzel';
+  src: url('Cinzel-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Cinzel';
+  src: url('Cinzel-SemiBold.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Cinzel';
+  src: url('Cinzel-Bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('Montserrat-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('Montserrat-Medium.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('Montserrat-SemiBold.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('Montserrat-Bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+*/

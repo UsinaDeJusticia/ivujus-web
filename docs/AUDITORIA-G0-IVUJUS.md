@@ -132,3 +132,33 @@ La lección de Usina no era "usá WordPress headless"; era **"no cambies el fluj
 5. Política de novedades en EN para v1 (ES-only vs. traducción selectiva).
 
 Con la decisión tomada se redacta el plan maestro por fases (TAREA 2) en `docs/ESTADO.md`.
+
+---
+
+## 9. Addendum 18-jul-2026 — gate respondido, re-inventario vivo y design system oficial
+
+### 9.1. Respuesta de Emanuel al gate
+
+Emanuel definió la dirección: **WordPress sigue siendo el CMS para agregar contenido, como se hace en Usina hoy** — y el diseño del sitio nuevo es el del design system oficial que entregó (zip `IVUJUS_Design_System`). Las páginas que él armó "a puro HTML por apuro" se adaptan al diseño nuevo **manteniendo su contenido**. En términos de este documento: la opción elegida es la familia (a)/(c) — WP como fuente editorial viva vía REST API, con el desarme único de páginas institucionales hacia el frontend nuevo (el matiz entre (a) y (c) queda resuelto en la práctica: los posts se consumen por API; las páginas se reconstruyen con el contenido real).
+
+### 9.2. Re-inventario vivo del WP (18-jul-2026, allowlist ya activo)
+
+Poco movimiento desde mayo — el relevamiento de mayo sigue siendo válido, con estos deltas:
+
+- **+2 posts** (jun-2026) en **categoría nueva `oea`**: alianza IVUJUS–INDODPRO (Rep. Dominicana) y texto del proyecto de **Convención Interamericana sobre Derechos de las Víctimas** (con PDF). Línea editorial internacional nueva, no contemplada en el ledger — hay que decidir su destino (¿`novedades`? ¿sección propia de proyección internacional?).
+- **+1 página** `victimasconderechos` (ID 24760): stub vacío con **redirect 302 (plugin Redirection) a `https://victimas-derechos-app.vercel.app`** — una app externa en Vercel, huérfana de navegación, no inspeccionable aún (dominio fuera del allowlist). Preguntar a Emanuel qué es y si se coordina con este proyecto.
+- **Las páginas "HTML puro" de Emanuel NO aparecen vía REST API**: las páginas clave del WP siguen siendo todas Elementor (verificado en `simposio-2026`, `nosotros`, `campus-virtual`, `capacitacion-y-actividades`, `contacto`; `terms-privacy` es Gutenberg simple). Pendiente: URLs exactas de esas páginas artesanales (candidato probable: la app de Vercel de arriba).
+- Media 317→320; home/nav sin cambios (WordPress 7.0.2 + Elementor 4.1.5 + WooCommerce); Simposio 2026 intacto; nav actual linkea "Publicaciones" hacia Usina (categoría que Usina decidió retener — ese link quedará roto conceptualmente tras el cutover de Usina; anotado para el mapa de redirects).
+
+### 9.3. Design system oficial (supersede la cuestión de paleta)
+
+El zip entregado es un manual de identidad completo + tokens listos, versionado en `docs/reference/design-system-oficial/`:
+
+- **Identidad**: logo nuevo (libro abierto con rayos dorados, "IVU|JUS") en 5 versiones; paleta oficial **azul institucional `#0D3B66` + dorado acento `#C9A46A` + gris apoyo `#6B7280` + blanco**; tipografía **Cinzel** (titulares, versales) + **Montserrat** (cuerpo); reglas de uso estrictas (no deformar, no recolorear, área de seguridad).
+- **Tokens CSS** (`colors_and_type.css`, 449 líneas): escalas 50-950, tokens semánticos, espaciado 4px, radios conservadores, sombras azules tenues, motion sutil, y **3 temas** (claro/sepia/oscuro).
+- **UI kit React de referencia** (Header sticky, Hero, CoursesGrid, EventBanner, BlogList, NewsletterStrip, Footer, modales) con **i18n ES/EN/FR** — son JSX sin tipos: se portan a TypeScript estricto, no se copian.
+- **Guía de voz y tono** (español rioplatense, tercera persona institucional, sin emojis en web, CTAs sobrios) — útil también para el pipeline editorial.
+- ⚠️ El propio kit se declara "recreación inferida, no verbatim": su copy NO es fuente de contenido (ej.: dice "desde 2017"; el IVUJUS se fundó en marzo 2025). El contenido sale del WP real y de `docs/reference/usina-source-content/` — regla "nunca inventar contenido" intacta.
+- Dato a confirmar: el kit dice que el campus vive en `usinadejusticiacampus.org.ar` (el brief planeaba `campus.ivujus.org.ar`).
+
+**Consecuencia:** la decisión pendiente de paleta (navy actual vs. bordeaux/ochre de julio) queda **superseded** — la identidad oficial es azul/dorado. El design system bordeaux de `docs/reference/design-system-ivujus/` pasa a ser material histórico.
