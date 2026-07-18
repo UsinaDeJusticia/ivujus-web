@@ -2,7 +2,7 @@
 
 > Cualquier sesión nueva de Claude Code retoma desde acá. Actualizar al cierre de cada sesión: qué se hizo, decisiones, pendientes, próximo paso exacto.
 
-**Última actualización:** 18 de julio de 2026 (sesión 2 — gate G0 resuelto, design system oficial recibido, plan maestro propuesto)
+**Última actualización:** 18 de julio de 2026 (sesión 2 — gate G0 resuelto, design system oficial recibido, plan maestro propuesto, páginas artesanales identificadas y auditadas contra los datasets)
 **Rama de trabajo:** `claude/ivujus-rebuild-planning-gvcf25`
 **Etapa:** ✅ G0-IVUJUS decidido → **Fase 1 (fundación de diseño) lista para arrancar** tras confirmación del plan por Emanuel.
 
@@ -38,14 +38,28 @@
 - **Fase 4 — SEO/GEO y optimización (gate G4):** JSON-LD por tipo, sitemap+hreflang, llms.txt, robots, OG images, redirects internos (`/nosotros`→`/instituto`, etc.) + archivo de redirects para Usina con rutas finales (coordinar con Jair las 22 reglas). **Criterio:** Lighthouse ≥90 en todas las métricas.
 - **Fase 5 — Cutover (gate G5):** DNS `ivujus.org.ar`→Vercel · WP actual queda como origen headless (mudanza del LMS: decisión independiente) · Search Console/Bing · monitoreo. **Criterio:** sitio live, redirects verdes, Jimena publica normalmente.
 
+## Páginas artesanales de Emanuel (aclarado 18-jul)
+
+Emanuel confirmó: sus páginas "HTML puro" son **`/nosotros/` y `/simposio-2026/`** (un único widget HTML de Elementor con HTML+CSS+JS artesanal adentro). `/campus-virtual/` no es suya, se tocará más adelante — **omitida por ahora**. Son fuente canónica de contenido: se adaptan al diseño nuevo manteniendo contenido.
+
+**Auditoría de fidelidad contra los datasets del repo (18-jul):** `src/lib/instituto.ts` y `src/lib/simposio2026.ts` cubren casi todo. Hallazgos y estado:
+
+- ✅ **Corregido** (commit de esta sesión): bio de Irvin Waller estaba truncada (faltaba la oración final sobre su obra); Art. 3 del estatuto estaba parafraseado — restaurado verbatim con sus 6 incisos.
+- ⚠️ **Galería de 14 fotos del evento en `/simposio-2026/`** (widget `media-carousel` separado del HTML artesanal, `wp-content/uploads/2026/04/`: slotolow, pascua, molina, garavano, console, casares, bargna, aebi + 6 WhatsApp-Image): NO está en el dataset ni en la ruta. **Decisión pendiente de Emanuel**: ¿migrar completa, curada o descartar?
+- ⚠️ Alt-text de la nota de Infobae menciona "Distinción Fundación TAEDA" — dato no presente en ningún otro lado; verificar con la fuente antes de usar o descartar.
+- Menores: la página viva rotula a Aebi solo "Argentina" (el repo usa "Argentina-Suiza", más preciso — mantener repo salvo indicación); `organizingInstitution: 'Usina de Justicia y CPACF'` del dataset no está declarado en la página viva (confirmar); los resúmenes de jornada son paráfrasis editorial aceptable.
+- 🔧 **Deuda sistémica detectada**: los datasets y páginas del repo eliminan TODAS las tildes/ñ ("Emerito", "Declaracion") — el sitio renderiza español sin acentos. El design system oficial exige "Tildes: siempre". **Restaurar ortografía completa es ítem obligatorio de Fase 1/2.**
+- 🔧 Las 15 fotos de perfiles + galería + PDF de la Declaración siguen hosteadas en `ivujus.org.ar/wp-content/` (y las 6 imágenes de prensa en dominios de medios): plan de re-alojamiento de assets propio va en Fase 2.
+
 ## Pendientes de Emanuel (no bloquean Fase 1)
 
 1. **Confirmar el plan de fases** de arriba (o ajustarlo) — con eso arranca Fase 1.
-2. **URLs exactas de las páginas "HTML puro"** que hiciste a mano: no aparecen vía REST API (las páginas del WP son todas Elementor). ¿Es una de ellas la app `victimas-derechos-app.vercel.app` (descubierta como redirect desde `/victimasconderechos/`)? ¿Qué es esa app y se coordina con este proyecto? Si hay que inspeccionarla: agregar su dominio al allowlist.
-3. **Destino editorial de la categoría `oea`** (Convención Interamericana / INDODPRO): ¿novedades o sección propia de proyección internacional?
-4. **Dominio real del campus**: el design system dice `usinadejusticiacampus.org.ar`; el brief planeaba `campus.ivujus.org.ar`. ¿Cuál es el CTA correcto?
-5. **Parkear código Payload** en rama `payload-v2-parked` (recomendado) ¿ok?
-6. **Novedades en inglés v1**: ¿ES-only o traducción selectiva?
+2. **Galería del Simposio**: ¿se migra completa, versión curada, o se descarta? (ver sección anterior).
+3. **App `victimas-derechos-app.vercel.app`** (redirect desde `/victimasconderechos/`): ¿qué es y se coordina con este proyecto? Si hay que inspeccionarla: agregar su dominio al allowlist.
+4. **Destino editorial de la categoría `oea`** (Convención Interamericana / INDODPRO): ¿novedades o sección propia de proyección internacional?
+5. **Dominio real del campus**: el design system dice `usinadejusticiacampus.org.ar`; el brief planeaba `campus.ivujus.org.ar`. ¿Cuál es el CTA correcto?
+6. **Parkear código Payload** en rama `payload-v2-parked` (recomendado) ¿ok?
+7. **Novedades en inglés v1**: ¿ES-only o traducción selectiva?
 
 ## Próximo paso exacto (sesión siguiente)
 

@@ -108,7 +108,7 @@ export const institutoData = {
       role: 'Canada',
       country: 'Canada',
       summary: 'Profesor Emerito de Criminologia y autor intelectual de la Declaracion de la ONU de 1985 sobre justicia para las victimas.',
-      bio: 'Profesor Emerito de Criminologia en la Universidad de Ottawa. Con un Ph.D. de la Universidad de Cambridge, es mundialmente reconocido como el autor de la Declaracion sobre los principios fundamentales de justicia para las victimas de delitos (ONU, 1985). Fue director ejecutivo fundador del Centro Internacional para la Prevencion del Delito (CIPC) y ayudo a fundar la Sociedad Mundial de Victimologia. Ha asesorado a mas de 50 gobiernos, incluyendo a Nelson Mandela en Sudafrica.',
+      bio: 'Profesor Emerito de Criminologia en la Universidad de Ottawa. Con un Ph.D. de la Universidad de Cambridge, es mundialmente reconocido como el autor de la Declaracion sobre los principios fundamentales de justicia para las victimas de delitos (ONU, 1985). Fue director ejecutivo fundador del Centro Internacional para la Prevencion del Delito (CIPC) y ayudo a fundar la Sociedad Mundial de Victimologia. Ha asesorado a mas de 50 gobiernos, incluyendo a Nelson Mandela en Sudafrica. Autor de obras fundamentales como "Ciencia y Secretos para Acabar con los Delitos Violentos", su trabajo ha transformado la seguridad publica y los derechos victimales a nivel global.',
       image: 'https://ivujus.org.ar/wp-content/uploads/2026/02/Irvin-Waller_HD.jpeg',
     },
     {
@@ -180,7 +180,7 @@ export const institutoData = {
     articles: [
       'Art. 1. Se constituye el Instituto de Victimologia de Usina de Justicia (en adelante IVUJUS), cuya sede es la misma de la Asociacion Civil Usina de Justicia.',
       'Art. 2. El Instituto, al igual que la Asociacion no poseen fines politicos ni sindicales.',
-      'Art. 3. El Instituto posee finalidades academicas, formativas, editoriales y de cooperacion cientifica vinculadas a la victimologia y los derechos de las victimas.',
+      'Art. 3. El Instituto posee las siguientes finalidades: 1) Impulsar los estudios relacionados con la Victimologia, el derecho victimal, la criminalidad y la prevencion del delito. 2) Desarrollar cursos de perfeccionamiento y capacitacion para ser brindados en organismos publicos y privados, nacionales e internacionales relacionados con el campo de estudio del Instituto. 3) Organizar y gestionar convenios, congresos, reuniones nacionales e internacionales, conferencias, debates y seminarios sobre la problematica cientifica atinente a la disciplina. 4) Incentivar premios cientificos, segun aprobacion de la Comision Directiva de la Asociacion y de los integrantes del Instituto. 5) Fomentar la publicacion de articulos cientificos, libros, estadisticas y estudios comparativos sobre la disciplina. 6) Facilitar la colaboracion e intercambio cientifico con sociedades de victimologia y criminologia nacionales e internacionales, grupos de estudio y entidades abocadas a la tematica.',
       'Art. 4. El Instituto dispone de un sitio web propio integrado en el ecosistema digital de Usina de Justicia.',
       'Art. 5. El Instituto esta conformado por un Consejo Directivo que vela por el cumplimiento de los objetivos institucionales.',
       'Art. 6. El Instituto cuenta con un Comite Cientifico integrado por expertos internacionales de renombre para garantizar la excelencia academica.',
