@@ -84,7 +84,7 @@ Fue una **campaña camino a la OEA**, nada más. Su app (`victimas-derechos-app.
 
 ## Pendientes de Emanuel (no bloquean, se cablean cuando lleguen)
 
-1. **Reconectar la integración GitHub↔Vercel** (ver arriba) y luego **gate G1**: aprobar el look del preview de la rama (o pedir ajustes).
+1. **Gate G1**: aprobar el look del preview de Vercel de la rama (o pedir ajustes). (Repo hecho público y Vercel reconectado por Emanuel el 18-jul ✅)
 3. **Destino editorial de la categoría `oea`** (Convención Interamericana / INDODPRO): ¿novedades o sección propia? (necesario en Fase 3).
 4. **Dominio real del campus** (`usinadejusticiacampus.org.ar` vs `campus.ivujus.org.ar`) → habilita el CTA "Acceder al Campus" del Header (prop ya lista).
 5. **Redes sociales oficiales** (URLs confirmadas) → habilita `socialLinks` del Footer (prop ya lista).
