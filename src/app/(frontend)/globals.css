@@ -1,28 +1,171 @@
 @import "tailwindcss";
 
+/* =====================================================================
+   IVUJUS — identidad oficial
+   Fuente de verdad: docs/reference/design-system-oficial/colors_and_type.css
+   Fase 1 · Ola 1: fundación de tokens. Solo tema claro — sepia y oscuro
+   del design system de referencia quedan fuera del v1.
+   Fuentes (Cinzel/Montserrat) se cargan via next/font en
+   src/app/(frontend)/[locale]/layout.tsx, que expone --font-display y
+   --font-body como custom properties en <html>.
+   ===================================================================== */
+
 @theme {
-  --color-usina-navy: #0b1f3a;
-  --color-usina-ink: #16253a;
-  --color-usina-paper: #f5f1e8;
-  --color-usina-line: #d8d0c2;
-  --color-usina-accent: #9d5b3d;
+  /* --- Paleta institucional -------------------------------------------- */
+  --color-azul-institucional: #0d3b66;
+  --color-dorado-acento: #c9a46a;
+  --color-gris-apoyo: #6b7280;
+  --color-blanco: #ffffff;
+
+  /* --- Escala azul (derivada del institucional) ------------------------- */
+  --color-azul-950: #06203c;
+  --color-azul-900: #0a2e50;
+  --color-azul-800: #0d3b66; /* = institucional */
+  --color-azul-700: #1b4f7e;
+  --color-azul-600: #2f6493;
+  --color-azul-500: #4d7da8;
+  --color-azul-400: #7a9dbe;
+  --color-azul-300: #a8bfd3;
+  --color-azul-200: #d2dde8;
+  --color-azul-100: #e8eef4;
+  --color-azul-50: #f4f7fa;
+
+  /* --- Escala dorada (acento — usar con moderación) --------------------- */
+  --color-dorado-900: #7a5f36;
+  --color-dorado-800: #9c7c49;
+  --color-dorado-700: #b5905c;
+  --color-dorado-600: #c9a46a; /* = acento */
+  --color-dorado-500: #d4b485;
+  --color-dorado-400: #dfc5a2;
+  --color-dorado-300: #ead8c0;
+  --color-dorado-200: #f2e6d5;
+  --color-dorado-100: #f8f1e7;
+
+  /* --- Escala gris (apoyo + neutros) ------------------------------------ */
+  --color-gris-950: #1f2328;
+  --color-gris-900: #2a2f36;
+  --color-gris-800: #3b4149;
+  --color-gris-700: #4e545d;
+  --color-gris-600: #6b7280; /* = apoyo */
+  --color-gris-500: #8a919b;
+  --color-gris-400: #a8aeb7;
+  --color-gris-300: #c8ccd2;
+  --color-gris-200: #e2e5e9;
+  --color-gris-100: #f1f2f4;
+  --color-gris-50: #f8f9fa;
+
+  /* --- Alias de compatibilidad temporal ---------------------------------
+     Las 7 rutas existentes (home, instituto/*, simposios/*) referencian
+     estas 5 clases vía var(--color-usina-*). Se retiran recién en la
+     Ola 4 (re-skin). Mapeo verificado contra los usos reales:
+       navy   -> azul institucional (headings, botones, fondos oscuros)
+       ink    -> gris-900 (texto de cuerpo, siempre atenuado con color-mix)
+       paper  -> blanco (siempre usado como fondo de página/sección, nunca
+                 como el "papel crema" que tenía antes; no hay usos que
+                 pidan azul-50 en las páginas actuales)
+       line   -> gris-200 (bordes y separadores finos)
+       accent -> dorado acento (eyebrows, hovers, CTAs secundarios)
+     ------------------------------------------------------------------- */
+  --color-usina-navy: #0d3b66;
+  --color-usina-ink: #2a2f36;
+  --color-usina-paper: #ffffff;
+  --color-usina-line: #e2e5e9;
+  --color-usina-accent: #c9a46a;
 }
 
-html {
+/* --- Tokens semánticos: variables CSS normales, no @theme -------------- */
+:root {
   color-scheme: light;
-  background: var(--color-usina-paper);
+
+  /* Fondos */
+  --bg-base: var(--color-blanco);
+  --bg-subtle: var(--color-gris-50);
+  --bg-muted: var(--color-azul-50);
+  --bg-inverted: var(--color-azul-800);
+
+  /* Tintas */
+  --fg-1: var(--color-azul-900); /* titulares, énfasis máximo */
+  --fg-2: var(--color-gris-900); /* cuerpo principal */
+  --fg-3: var(--color-gris-700); /* secundario, metas */
+  --fg-4: var(--color-gris-600); /* terciario, captions */
+  --fg-on-dark: var(--color-blanco);
+  --fg-link: var(--color-azul-700);
+  --fg-link-hover: var(--color-azul-800);
+  --fg-accent: var(--color-dorado-700); /* acento dorado para tipografía */
+
+  /* Bordes */
+  --border-subtle: var(--color-gris-200);
+  --border-default: var(--color-gris-300);
+  --border-accent: var(--color-dorado-600);
+
+  /* Elevación — discreta, siempre azul translúcido, nunca negro puro */
+  --shadow-1: 0 1px 2px rgba(13, 59, 102, 0.06);
+  --shadow-2: 0 2px 8px rgba(13, 59, 102, 0.08);
+  --shadow-3: 0 8px 24px rgba(13, 59, 102, 0.1);
+  --shadow-focus: 0 0 0 3px rgba(201, 164, 106, 0.4); /* anillo dorado */
+
+  /* Movimiento — sutil, "respirado" */
+  --motion-fast: 120ms;
+  --motion-base: 200ms;
+  --motion-slow: 320ms;
+  --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- Baseline de elementos ---------------------------------------------- */
+html {
+  background: var(--bg-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--color-usina-paper);
-  color: var(--color-usina-ink);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-body);
+  color: var(--fg-2);
+  background: var(--bg-base);
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  color: var(--fg-1);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+}
+
+h4,
+h5,
+h6 {
+  font-family: var(--font-body);
+  color: var(--fg-1);
+  font-weight: 600;
 }
 
 a {
-  color: inherit;
+  color: var(--fg-link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-dorado-600);
+  transition: color var(--motion-fast) var(--easing-standard);
+}
+
+a:hover {
+  color: var(--fg-link-hover);
+  text-decoration-color: var(--color-dorado-700);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: 2px;
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--color-usina-accent) 26%, white);
+  background: var(--color-dorado-200);
+  color: var(--fg-1);
 }
