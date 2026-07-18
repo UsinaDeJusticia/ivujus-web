@@ -53,24 +53,6 @@
   --color-gris-200: #e2e5e9;
   --color-gris-100: #f1f2f4;
   --color-gris-50: #f8f9fa;
-
-  /* --- Alias de compatibilidad temporal ---------------------------------
-     Las 7 rutas existentes (home, instituto/*, simposios/*) referencian
-     estas 5 clases vía var(--color-usina-*). Se retiran recién en la
-     Ola 4 (re-skin). Mapeo verificado contra los usos reales:
-       navy   -> azul institucional (headings, botones, fondos oscuros)
-       ink    -> gris-900 (texto de cuerpo, siempre atenuado con color-mix)
-       paper  -> blanco (siempre usado como fondo de página/sección, nunca
-                 como el "papel crema" que tenía antes; no hay usos que
-                 pidan azul-50 en las páginas actuales)
-       line   -> gris-200 (bordes y separadores finos)
-       accent -> dorado acento (eyebrows, hovers, CTAs secundarios)
-     ------------------------------------------------------------------- */
-  --color-usina-navy: #0d3b66;
-  --color-usina-ink: #2a2f36;
-  --color-usina-paper: #ffffff;
-  --color-usina-line: #e2e5e9;
-  --color-usina-accent: #c9a46a;
 }
 
 /* --- Tokens semánticos: variables CSS normales, no @theme -------------- */

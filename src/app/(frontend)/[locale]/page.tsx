@@ -1,287 +1,225 @@
+import Image from 'next/image';
+
+import { simposio2026 } from '@/lib/simposio2026';
+import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
+import { ButtonPrincipal, ButtonSecundario } from '@/components/ui/Buttons';
+import { ContentCard } from '@/components/cards/ContentCard';
+
 type Locale = 'es' | 'en' | 'fr';
 
-type HomeCard = {
+type GridCard = {
   title: string;
   body: string;
   href: string;
 };
 
 type HomeCopy = {
-  localeLabel: string;
-  eyebrow: string;
-  title: string;
-  intro: string;
-  primaryCta: string;
-  secondaryCta: string;
-  quickLinks: Array<{ label: string; href: string }>;
-  pillarsLabel: string;
-  pillars: Array<{ title: string; body: string }>;
-  mapLabel: string;
-  mapTitle: string;
-  mapIntro: string;
-  cards: HomeCard[];
-  featuredLabel: string;
-  featuredTitle: string;
-  featuredBody: string;
-  featuredItems: string[];
-  accessTitle: string;
-  accessBody: string;
-  accessLinks: Array<{ label: string; href: string }>;
-  adminLabel: string;
+  hero: {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    tagline: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+  };
+  event: {
+    eyebrow: string;
+    labelFechas: string;
+    labelSede: string;
+    labelOrganiza: string;
+    cta: string;
+  };
+  grid: {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    cards: GridCard[];
+  };
+  newsletter: {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    cta: string;
+  };
 };
 
+// Endpoint real de alta a la lista de novedades de Usina de Justicia en
+// Perfit (docs/ARQUITECTURA.md §2.1 y §4.2). El formulario propio con POST
+// al proxy interno (`/api/perfit-subscribe`) llega en Fase 3; por ahora este
+// es un link externo directo al alta pública.
+const PERFIT_SUBSCRIBE_URL = 'https://optin.myperfit.com/subscribe/usinadejusticia/RUknaImy';
+
+// Los 5 accesos institucionales apuntan únicamente a rutas que ya existen
+// (ver docs/CLAUDE.md, "Estado actual de frontend y migracion"). Los cuerpos
+// en español son copia verbatim de `institutoData.intro` / `institutoData.
+// sections` (src/lib/instituto.ts) y del card "Simposios" que ya traía el
+// diccionario anterior de esta página; EN/FR son traducción fiel de esos
+// mismos textos, no contenido nuevo.
 const copy: Record<Locale, HomeCopy> = {
   es: {
-    localeLabel: 'Español',
-    eyebrow: 'Instituto de Victimología de Usina de Justicia',
-    title: 'Un portal académico para formación, investigación y derecho victimal.',
-    intro:
-      'IVUJUS se está construyendo como el nodo digital de una red académica internacional: una plataforma para presentar la institución, ordenar la producción editorial y conectar simposios, formación y agenda pública.',
-    primaryCta: 'Explorar el instituto',
-    secondaryCta: 'Ingresar al campus',
-    quickLinks: [
-      { label: 'Instituto', href: '/instituto' },
-      { label: 'Formación', href: '/formacion' },
-      { label: 'Publicaciones', href: '/publicaciones' },
-      { label: 'Simposios', href: '/simposios' },
-    ],
-    pillarsLabel: 'Finalidades',
-    pillars: [
-      {
-        title: 'Estudios e investigación',
-        body: 'Impulsar la victimología, el derecho victimal, la criminalidad y la prevención del delito desde una base académica legible y pública.',
-      },
-      {
-        title: 'Capacitación y cursos',
-        body: 'Articular diplomaturas, ciclos y convenios sin mezclar el campus con el sitio institucional.',
-      },
-      {
-        title: 'Eventos y publicaciones',
-        body: 'Sostener congresos, debates, libros, dossiers y declaraciones con un tratamiento editorial consistente.',
-      },
-    ],
-    mapLabel: 'Mapa del sitio',
-    mapTitle: 'Las secciones necesarias ya están claras.',
-    mapIntro:
-      'El brief, el sitio actual y el trabajo del repo convergen en una arquitectura pública precisa. La home debe anticipar ese recorrido y hacerlo entendible desde el primer scroll.',
-    cards: [
-      {
-        title: 'Instituto',
-        body: 'Estatuto, consejo directivo, comité científico y la presentación institucional del IVUJUS.',
-        href: '/instituto',
-      },
-      {
-        title: 'Red',
-        body: 'La futura Red Americano-Europea y su estructura flexible para instituciones, reglamento y adhesión.',
-        href: '/red',
-      },
-      {
-        title: 'Simposios',
-        body: 'Archivo de ediciones, programa, medios, premios y la Declaración de Buenos Aires.',
-        href: '/simposios',
-      },
-      {
-        title: 'Formación',
-        body: 'Diplomatura, ciclos Usina Debate, convenios y actividades de capacitación.',
-        href: '/formacion',
-      },
-      {
-        title: 'Publicaciones',
-        body: 'Artículos, libros, dossiers, declaraciones y glosario especializado.',
-        href: '/publicaciones',
-      },
-      {
-        title: 'Índice legislativo',
-        body: 'Análisis de normas y metodología del primer índice argentino enfocado en víctimas.',
-        href: '/indice-legislativo',
-      },
-    ],
-    featuredLabel: 'Simposio 2026',
-    featuredTitle: 'Buenos Aires como punto de encuentro para la victimología penal.',
-    featuredBody:
-      'El Primer Simposio Americano y Europeo de Victimología Penal no es una nota lateral: organiza parte del relato público del sitio y conecta producción académica, agenda institucional y proyección internacional.',
-    featuredItems: [
-      'Declaración de Buenos Aires',
-      'Programa y archivo de jornadas',
-      'Cobertura en medios y producción derivada',
-    ],
-    accessTitle: 'Novedades, contacto y administración',
-    accessBody:
-      'Además del mapa principal, la portada necesita dejar visibles los accesos operativos: novedades editoriales, contacto institucional y gestión interna del contenido.',
-    accessLinks: [
-      { label: 'Novedades', href: '/novedades' },
-      { label: 'Contacto', href: '/contacto' },
-      { label: 'Políticas de privacidad', href: '/terms-privacy' },
-    ],
-    adminLabel: 'Acceso de administración',
+    hero: {
+      eyebrow: 'Instituto de Victimología de Usina de Justicia',
+      title: 'Un portal académico para formación, investigación y derecho victimal.',
+      lead: 'IVUJUS se está construyendo como el nodo digital de una red académica internacional: una plataforma para presentar la institución, ordenar la producción editorial y conectar simposios, formación y agenda pública.',
+      tagline: 'Conocimiento que ilumina, formación que transforma.',
+      ctaPrimary: 'Explorar el instituto',
+      ctaSecondary: 'Conocer el Simposio 2026',
+    },
+    event: {
+      eyebrow: 'Simposio 2026',
+      labelFechas: 'Fechas',
+      labelSede: 'Sede',
+      labelOrganiza: 'Organiza',
+      cta: 'Ver simposio 2026',
+    },
+    grid: {
+      eyebrow: 'Institucional',
+      title: 'Recorrer el Instituto y sus instancias de gobierno.',
+      lead: 'Estatuto, consejo directivo, comité científico y el archivo de simposios en un mismo lugar.',
+      cards: [
+        {
+          title: 'Instituto',
+          body: 'El IVUJUS articula investigación, formación, producción editorial y cooperación internacional en torno a la victimología, el derecho victimal y los derechos de las víctimas.',
+          href: '/instituto',
+        },
+        {
+          title: 'Consejo directivo',
+          body: 'Perfiles, cargos y trazabilidad institucional de la conducción del IVUJUS.',
+          href: '/instituto/consejo-directivo',
+        },
+        {
+          title: 'Comité científico',
+          body: 'Referentes internacionales y autoridad académica para la legitimidad comparada del instituto.',
+          href: '/instituto/comite-cientifico',
+        },
+        {
+          title: 'Estatuto',
+          body: 'Base institucional, definiciones fundacionales y objetivos del instituto.',
+          href: '/instituto/estatuto',
+        },
+        {
+          title: 'Simposios',
+          body: 'Archivo de ediciones, programa, medios, premios y la Declaración de Buenos Aires.',
+          href: '/simposios',
+        },
+      ],
+    },
+    newsletter: {
+      eyebrow: 'Novedades',
+      title: 'Recibir las novedades del Instituto',
+      lead: 'Suscripción por correo electrónico a la agenda pública y la producción editorial del IVUJUS, a través del sistema de novedades de Usina de Justicia.',
+      cta: 'Suscribirse a las novedades',
+    },
   },
   en: {
-    localeLabel: 'English',
-    eyebrow: 'Victimology Institute of Usina de Justicia',
-    title: 'An academic platform for training, research, and victims rights.',
-    intro:
-      'IVUJUS is being shaped as the digital node of an international academic network: a platform to present the institute, organize editorial production, and connect symposiums, training, and public work.',
-    primaryCta: 'Explore the institute',
-    secondaryCta: 'Go to campus',
-    quickLinks: [
-      { label: 'Institute', href: '/instituto' },
-      { label: 'Training', href: '/formacion' },
-      { label: 'Publications', href: '/publicaciones' },
-      { label: 'Symposiums', href: '/simposios' },
-    ],
-    pillarsLabel: 'Mission',
-    pillars: [
-      {
-        title: 'Research',
-        body: 'Advance victimology, victims rights, criminality, and crime prevention through a public academic platform.',
-      },
-      {
-        title: 'Training',
-        body: 'Connect diplomas, cycles, and agreements without mixing the LMS with the institutional website.',
-      },
-      {
-        title: 'Events and publications',
-        body: 'Sustain symposiums, debates, books, dossiers, and declarations through a coherent editorial language.',
-      },
-    ],
-    mapLabel: 'Site map',
-    mapTitle: 'The public sections are already defined.',
-    mapIntro:
-      'The brief, the current website, and the repository point to the same structure. The homepage should make that architecture visible from the beginning.',
-    cards: [
-      {
-        title: 'Institute',
-        body: 'Statute, board, scientific committee, and the institutional presentation of IVUJUS.',
-        href: '/instituto',
-      },
-      {
-        title: 'Network',
-        body: 'The future American-European Network and its flexible structure for institutions and affiliation.',
-        href: '/red',
-      },
-      {
-        title: 'Symposiums',
-        body: 'Archive of editions, programs, media coverage, awards, and the Buenos Aires Declaration.',
-        href: '/simposios',
-      },
-      {
-        title: 'Training',
-        body: 'Diploma program, debate cycles, agreements, and training activities.',
-        href: '/formacion',
-      },
-      {
-        title: 'Publications',
-        body: 'Papers, books, dossiers, declarations, and the specialist glossary.',
-        href: '/publicaciones',
-      },
-      {
-        title: 'Legislative index',
-        body: 'Analysis of laws and the methodology behind the first Argentine index focused on victims.',
-        href: '/indice-legislativo',
-      },
-    ],
-    featuredLabel: 'Symposium 2026',
-    featuredTitle: 'Buenos Aires as a meeting point for criminal victimology.',
-    featuredBody:
-      'The First American and European Symposium on Criminal Victimology is not a side note. It shapes part of the site narrative and links academic output, institutional agenda, and international projection.',
-    featuredItems: [
-      'Buenos Aires Declaration',
-      'Program and archive',
-      'Media coverage and related output',
-    ],
-    accessTitle: 'Updates, contact, and administration',
-    accessBody:
-      'Alongside the main map, the homepage should keep operational entry points visible: editorial updates, institutional contact, and internal content management.',
-    accessLinks: [
-      { label: 'Updates', href: '/novedades' },
-      { label: 'Contact', href: '/contacto' },
-      { label: 'Privacy policy', href: '/terms-privacy' },
-    ],
-    adminLabel: 'Administration access',
+    hero: {
+      eyebrow: 'Victimology Institute of Usina de Justicia',
+      title: 'An academic platform for training, research, and victims rights.',
+      lead: 'IVUJUS is being shaped as the digital node of an international academic network: a platform to present the institute, organize editorial production, and connect symposiums, training, and public work.',
+      tagline: 'Conocimiento que ilumina, formación que transforma.',
+      ctaPrimary: 'Explore the institute',
+      ctaSecondary: 'Discover Symposium 2026',
+    },
+    event: {
+      eyebrow: 'Symposium 2026',
+      labelFechas: 'Dates',
+      labelSede: 'Venue',
+      labelOrganiza: 'Organized by',
+      cta: 'View Symposium 2026',
+    },
+    grid: {
+      eyebrow: 'Institutional',
+      title: 'Explore the Institute and its governing bodies.',
+      lead: 'Statute, governing board, scientific committee, and the symposium archive in one place.',
+      cards: [
+        {
+          title: 'Institute',
+          body: "IVUJUS brings together research, training, editorial production, and international cooperation around victimology, victims' law, and victims' rights.",
+          href: '/instituto',
+        },
+        {
+          title: 'Governing board',
+          body: "Profiles, roles, and institutional record of the Institute's leadership.",
+          href: '/instituto/consejo-directivo',
+        },
+        {
+          title: 'Scientific committee',
+          body: "International references and academic authority behind the Institute's comparative standing.",
+          href: '/instituto/comite-cientifico',
+        },
+        {
+          title: 'Statute',
+          body: 'Institutional foundation, founding definitions, and objectives of the Institute.',
+          href: '/instituto/estatuto',
+        },
+        {
+          title: 'Symposiums',
+          body: 'Archive of editions, programs, media coverage, awards, and the Buenos Aires Declaration.',
+          href: '/simposios',
+        },
+      ],
+    },
+    newsletter: {
+      eyebrow: 'Updates',
+      title: 'Receive the Institute updates',
+      lead: "Email subscription to the public agenda and editorial output of IVUJUS, through Usina de Justicia's updates system.",
+      cta: 'Subscribe to updates',
+    },
   },
   fr: {
-    localeLabel: 'Francais',
-    eyebrow: 'Institut de victimologie de Usina de Justicia',
-    title: 'Une plateforme academique pour la formation, la recherche et les droits des victimes.',
-    intro:
-      'IVUJUS se construit comme le noeud numerique d un reseau academique international: une plateforme pour presenter l institut, ordonner la production editoriale et articuler symposiums, formation et travail public.',
-    primaryCta: 'Explorer l institut',
-    secondaryCta: 'Acceder au campus',
-    quickLinks: [
-      { label: 'Institut', href: '/instituto' },
-      { label: 'Formation', href: '/formacion' },
-      { label: 'Publications', href: '/publicaciones' },
-      { label: 'Symposiums', href: '/simposios' },
-    ],
-    pillarsLabel: 'Finalites',
-    pillars: [
-      {
-        title: 'Recherche',
-        body: 'Developper la victimologie, les droits des victimes, la criminalite et la prevention du crime depuis une base academique publique.',
-      },
-      {
-        title: 'Formation',
-        body: 'Relier diplomes, cycles et accords sans melanger le LMS avec le site institutionnel.',
-      },
-      {
-        title: 'Evenements et publications',
-        body: 'Soutenir symposiums, debats, livres, dossiers et declarations avec une ligne editoriale coherente.',
-      },
-    ],
-    mapLabel: 'Carte du site',
-    mapTitle: 'Les sections publiques sont deja definies.',
-    mapIntro:
-      'Le brief, le site actuel et le depot de travail convergent vers la meme architecture. La page d accueil doit rendre cette structure visible des le premier scroll.',
-    cards: [
-      {
-        title: 'Institut',
-        body: 'Statut, conseil directeur, comite scientifique et presentation institutionnelle de IVUJUS.',
-        href: '/instituto',
-      },
-      {
-        title: 'Reseau',
-        body: 'La future Reseau Americain-Europeen et sa structure flexible pour institutions et adhesion.',
-        href: '/red',
-      },
-      {
-        title: 'Symposiums',
-        body: 'Archive des editions, programme, medias, distinctions et Declaration de Buenos Aires.',
-        href: '/simposios',
-      },
-      {
-        title: 'Formation',
-        body: 'Diplome, cycles de debat, accords et activites de formation.',
-        href: '/formacion',
-      },
-      {
-        title: 'Publications',
-        body: 'Articles, livres, dossiers, declarations et glossaire specialise.',
-        href: '/publicaciones',
-      },
-      {
-        title: 'Indice legislatif',
-        body: 'Analyse des normes et methodologie du premier indice argentin centre sur les victimes.',
-        href: '/indice-legislativo',
-      },
-    ],
-    featuredLabel: 'Symposium 2026',
-    featuredTitle: 'Buenos Aires comme point de rencontre pour la victimologie penale.',
-    featuredBody:
-      'Le Premier Symposium americain et europeen de victimologie penale n est pas un element secondaire. Il structure une partie du recit public du site et relie production academique, agenda institutionnel et projection internationale.',
-    featuredItems: [
-      'Declaration de Buenos Aires',
-      'Programme et archive',
-      'Couverture mediatique et production derivee',
-    ],
-    accessTitle: 'Actualites, contact et administration',
-    accessBody:
-      'En plus du parcours principal, la page d accueil doit laisser visibles les acces operationnels: actualites editoriales, contact institutionnel et gestion interne du contenu.',
-    accessLinks: [
-      { label: 'Actualites', href: '/novedades' },
-      { label: 'Contact', href: '/contacto' },
-      { label: 'Politique de confidentialite', href: '/terms-privacy' },
-    ],
-    adminLabel: 'Acces administration',
+    hero: {
+      eyebrow: 'Institut de victimologie de Usina de Justicia',
+      title: 'Une plateforme académique pour la formation, la recherche et les droits des victimes.',
+      lead: "IVUJUS se construit comme le nœud numérique d'un réseau académique international : une plateforme pour présenter l'institut, organiser la production éditoriale et relier symposiums, formation et agenda public.",
+      tagline: 'Conocimiento que ilumina, formación que transforma.',
+      ctaPrimary: "Explorer l'institut",
+      ctaSecondary: 'Découvrir le Symposium 2026',
+    },
+    event: {
+      eyebrow: 'Symposium 2026',
+      labelFechas: 'Dates',
+      labelSede: 'Lieu',
+      labelOrganiza: 'Organisé par',
+      cta: 'Voir le Symposium 2026',
+    },
+    grid: {
+      eyebrow: 'Institutionnel',
+      title: "Parcourir l'Institut et ses instances de gouvernance.",
+      lead: "Statuts, conseil directeur, comité scientifique et l'archive des symposiums réunis au même endroit.",
+      cards: [
+        {
+          title: 'Institut',
+          body: "L'IVUJUS articule recherche, formation, production éditoriale et coopération internationale autour de la victimologie, du droit victimal et des droits des victimes.",
+          href: '/instituto',
+        },
+        {
+          title: 'Conseil directeur',
+          body: "Profils, fonctions et traçabilité institutionnelle de la direction de l'IVUJUS.",
+          href: '/instituto/consejo-directivo',
+        },
+        {
+          title: 'Comité scientifique',
+          body: "Références internationales et autorité académique pour la légitimité comparée de l'institut.",
+          href: '/instituto/comite-cientifico',
+        },
+        {
+          title: 'Statuts',
+          body: "Base institutionnelle, définitions fondatrices et objectifs de l'institut.",
+          href: '/instituto/estatuto',
+        },
+        {
+          title: 'Symposiums',
+          body: 'Archive des éditions, programme, médias, distinctions et Déclaration de Buenos Aires.',
+          href: '/simposios',
+        },
+      ],
+    },
+    newsletter: {
+      eyebrow: 'Actualités',
+      title: "Recevoir les actualités de l'Institut",
+      lead: "Abonnement par courrier électronique à l'agenda public et à la production éditoriale de l'IVUJUS, via le système d'actualités de Usina de Justicia.",
+      cta: "S'abonner aux actualités",
+    },
   },
 };
 
@@ -294,184 +232,123 @@ export default async function HomePage({
   const content = copy[(locale as Locale) ?? 'es'] ?? copy.es;
 
   return (
-    <main className="min-h-screen bg-[var(--color-usina-paper)] text-[var(--color-usina-ink)]">
-      <section className="border-b border-[var(--color-usina-line)] px-6 py-8 text-xs uppercase tracking-[0.28em] text-[color:color-mix(in_srgb,var(--color-usina-navy)_72%,white)] sm:px-10">
-        IVUJUS / {content.localeLabel}
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-16 sm:px-10 lg:py-24">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(18rem,0.7fr)]">
-          <div className="space-y-8">
-            <p className="text-sm font-medium uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-              {content.eyebrow}
+    <main className="bg-white">
+      {/* Hero institucional — fondo blanco con gradiente sutilísimo hacia
+          azul-50, tal como pauta el manual (VISUAL FOUNDATIONS, Backgrounds). */}
+      <section className="bg-[linear-gradient(180deg,var(--color-blanco),var(--color-azul-50))]">
+        <div className="mx-auto grid max-w-[var(--container-default)] gap-16 px-6 py-24 sm:px-10 lg:grid-cols-[1.35fr_1fr] lg:items-center lg:py-28">
+          <div className="space-y-7">
+            <Eyebrow>{content.hero.eyebrow}</Eyebrow>
+            <h1 className="max-w-3xl text-balance text-[length:clamp(40px,5.2vw,64px)] leading-[1.08]">
+              {content.hero.title}
+            </h1>
+            <p className="max-w-[52ch] text-pretty text-lg leading-[1.7] text-gris-700">
+              {content.hero.lead}
             </p>
-            <div className="space-y-6">
-              <h1
-                className="max-w-5xl text-5xl leading-none tracking-tight text-[var(--color-usina-navy)] sm:text-6xl lg:text-7xl"
-                style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-              >
-                {content.title}
-              </h1>
-              <p className="max-w-3xl text-lg leading-8 text-[color:color-mix(in_srgb,var(--color-usina-ink)_78%,white)] sm:text-xl">
-                {content.intro}
-              </p>
-            </div>
-            <div className="flex flex-col gap-4 sm:flex-row">
-              <a
-                className="inline-flex items-center justify-center border border-[var(--color-usina-navy)] bg-[var(--color-usina-navy)] px-6 py-3 text-sm font-medium text-white transition hover:bg-[color:color-mix(in_srgb,var(--color-usina-navy)_88%,black)]"
-                href={`/${locale}/instituto`}
-              >
-                {content.primaryCta}
-              </a>
-              <a
-                className="inline-flex items-center justify-center border border-[var(--color-usina-line)] px-6 py-3 text-sm font-medium text-[var(--color-usina-navy)] transition hover:border-[var(--color-usina-accent)] hover:text-[var(--color-usina-accent)]"
-                href={`/${locale}/formacion/diplomatura`}
-              >
-                {content.secondaryCta}
-              </a>
+            <p className="max-w-[40ch] border-l-2 border-dorado-600 pl-4 text-sm italic leading-[1.6] text-azul-700">
+              {content.hero.tagline}
+            </p>
+            <div className="flex flex-wrap gap-4 pt-2">
+              <ButtonPrincipal href={`/${locale}/instituto`}>{content.hero.ctaPrimary}</ButtonPrincipal>
+              <ButtonSecundario href={`/${locale}/simposios/2026-buenos-aires`}>
+                {content.hero.ctaSecondary}
+              </ButtonSecundario>
             </div>
           </div>
 
-          <aside className="border border-[var(--color-usina-line)] bg-white/70 p-6 sm:p-8">
-            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-              Navegación rápida
-            </p>
-            <div className="mt-5 space-y-3">
-              {content.quickLinks.map((link) => (
-                <a
-                  key={link.href}
-                  className="flex items-center justify-between border-b border-[var(--color-usina-line)] py-3 text-sm text-[var(--color-usina-navy)] transition hover:text-[var(--color-usina-accent)]"
-                  href={`/${locale}${link.href}`}
-                >
-                  <span>{link.label}</span>
-                  <span aria-hidden="true">/</span>
-                </a>
-              ))}
-            </div>
-          </aside>
+          <div className="flex justify-center">
+            <Image
+              src="/logos/logo-ivujus-mark.png"
+              alt="IVUJUS"
+              width={360}
+              height={293}
+              priority
+              className="h-auto w-full max-w-[300px]"
+            />
+          </div>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-px border-y border-[var(--color-usina-line)] bg-[var(--color-usina-line)] px-6 sm:px-10 lg:grid-cols-3">
-        {content.pillars.map((pillar) => (
-          <article key={pillar.title} className="bg-[var(--color-usina-paper)] px-0 py-10 lg:px-8">
-            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-              {content.pillarsLabel}
-            </p>
-            <h2
-              className="mt-4 text-2xl text-[var(--color-usina-navy)]"
-              style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-            >
-              {pillar.title}
+      {/* Banda del Simposio 2026 — superficie de marca (azul-900 pleno,
+          siempre, no cambia con tema), datos reales de src/lib/simposio2026.ts. */}
+      <section className="bg-azul-900 text-white">
+        <div className="mx-auto grid max-w-[var(--container-default)] gap-16 px-6 py-24 sm:px-10 lg:grid-cols-[1.4fr_1fr] lg:items-center">
+          <div className="space-y-6">
+            <Eyebrow invert>{content.event.eyebrow}</Eyebrow>
+            <h2 className="max-w-2xl text-balance text-[length:clamp(30px,4vw,46px)] leading-[1.15] text-white">
+              {simposio2026.title}
             </h2>
-            <p className="mt-4 max-w-sm text-sm leading-7 text-[color:color-mix(in_srgb,var(--color-usina-ink)_78%,white)]">
-              {pillar.body}
+            <p className="max-w-[54ch] text-lg leading-[1.6] text-azul-200">{simposio2026.subtitle}</p>
+            <p className="max-w-[54ch] text-pretty text-base leading-[1.7] text-azul-200">
+              {simposio2026.summary}
             </p>
-          </article>
-        ))}
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-16 sm:px-10">
-        <div className="max-w-3xl space-y-4">
-          <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-            {content.mapLabel}
-          </p>
-          <h2
-            className="text-3xl leading-tight text-[var(--color-usina-navy)] sm:text-4xl"
-            style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-          >
-            {content.mapTitle}
-          </h2>
-          <p className="text-lg leading-8 text-[color:color-mix(in_srgb,var(--color-usina-ink)_80%,white)]">
-            {content.mapIntro}
-          </p>
-        </div>
-
-        <div className="mt-10 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
-          {content.cards.map((card) => (
-            <a
-              key={card.href}
-              className="group border border-[var(--color-usina-line)] bg-white/70 p-6 transition hover:border-[var(--color-usina-accent)]"
-              href={`/${locale}${card.href}`}
-            >
-              <h3
-                className="text-2xl text-[var(--color-usina-navy)] transition group-hover:text-[var(--color-usina-accent)]"
-                style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-              >
-                {card.title}
-              </h3>
-              <p className="mt-4 text-sm leading-7 text-[color:color-mix(in_srgb,var(--color-usina-ink)_78%,white)]">
-                {card.body}
-              </p>
-              <p className="mt-6 text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-                Abrir sección
-              </p>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto grid max-w-7xl gap-8 px-6 py-6 sm:px-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
-        <div className="border border-[var(--color-usina-line)] bg-white/70 p-6 sm:p-8">
-          <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-            {content.featuredLabel}
-          </p>
-          <h2
-            className="mt-4 max-w-3xl text-3xl leading-tight text-[var(--color-usina-navy)] sm:text-4xl"
-            style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-          >
-            {content.featuredTitle}
-          </h2>
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-[color:color-mix(in_srgb,var(--color-usina-ink)_80%,white)]">
-            {content.featuredBody}
-          </p>
-          <div className="mt-8 grid gap-px border border-[var(--color-usina-line)] bg-[var(--color-usina-line)] sm:grid-cols-3">
-            {content.featuredItems.map((item) => (
-              <div key={item} className="bg-[var(--color-usina-paper)] px-4 py-5 text-sm leading-6 text-[var(--color-usina-navy)]">
-                {item}
-              </div>
-            ))}
+            <div className="flex flex-wrap gap-4 pt-2">
+              <ButtonSecundario href={`/${locale}/simposios/2026-buenos-aires`}>
+                {content.event.cta}
+              </ButtonSecundario>
+            </div>
           </div>
-          <a
-            className="mt-6 inline-flex items-center justify-center border border-[var(--color-usina-navy)] px-5 py-3 text-sm font-medium text-[var(--color-usina-navy)] transition hover:border-[var(--color-usina-accent)] hover:text-[var(--color-usina-accent)]"
-            href={`/${locale}/simposios/2026-buenos-aires`}
-          >
-            Ver simposio 2026
-          </a>
-        </div>
 
-        <div className="border border-[var(--color-usina-line)] bg-[var(--color-usina-navy)] p-6 text-white sm:p-8">
-          <p className="text-xs uppercase tracking-[0.24em] text-[color:color-mix(in_srgb,var(--color-usina-paper)_84%,white)]">
-            {content.adminLabel}
-          </p>
-          <a className="mt-4 inline-block text-2xl" href="/admin" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
-            /admin
-          </a>
+          <dl className="space-y-6 rounded-md border border-dorado-600/30 bg-white/[0.04] p-8">
+            <div>
+              <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-dorado-400">
+                {content.event.labelFechas}
+              </dt>
+              <dd className="mt-1 text-sm leading-[1.5] text-white">{simposio2026.dates}</dd>
+            </div>
+            <div>
+              <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-dorado-400">
+                {content.event.labelSede}
+              </dt>
+              <dd className="mt-1 text-sm leading-[1.5] text-white">{simposio2026.location}</dd>
+            </div>
+            <div>
+              <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-dorado-400">
+                {content.event.labelOrganiza}
+              </dt>
+              <dd className="mt-1 text-sm leading-[1.5] text-white">
+                {simposio2026.organizingInstitution}
+              </dd>
+            </div>
+          </dl>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-8 px-6 py-16 sm:px-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start">
-        <div className="space-y-4">
-          <h2
-            className="text-3xl leading-tight text-[var(--color-usina-navy)] sm:text-4xl"
-            style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-          >
-            {content.accessTitle}
-          </h2>
-          <p className="max-w-3xl text-lg leading-8 text-[color:color-mix(in_srgb,var(--color-usina-ink)_80%,white)]">
-            {content.accessBody}
-          </p>
-        </div>
-        <div className="border border-[var(--color-usina-line)] bg-white/70 p-6">
-          {content.accessLinks.map((link, index) => (
-            <a
-              key={link.href}
-              className={`block py-3 text-sm text-[var(--color-usina-navy)] transition hover:text-[var(--color-usina-accent)] ${index > 0 ? 'border-t border-[var(--color-usina-line)]' : ''}`}
-              href={`/${locale}${link.href}`}
-            >
-              {link.label}
-            </a>
+      {/* Grilla de acceso institucional — solo rutas navegables hoy. */}
+      <section className="mx-auto max-w-[var(--container-default)] px-6 py-24 sm:px-10">
+        <SectionHeader
+          eyebrow={content.grid.eyebrow}
+          title={content.grid.title}
+          lead={content.grid.lead}
+        />
+
+        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {content.grid.cards.map((card) => (
+            <ContentCard
+              key={card.href}
+              href={`/${locale}${card.href}`}
+              title={card.title}
+              description={card.body}
+            />
           ))}
+        </div>
+      </section>
+
+      {/* Franja newsletter — suscripción real vía Perfit. El form propio con
+          POST al proxy interno llega en Fase 3; por ahora, CTA como link
+          externo directo al alta pública (ver constante PERFIT_SUBSCRIBE_URL). */}
+      <section className="bg-azul-50 py-24">
+        <div className="mx-auto flex max-w-[var(--container-narrow)] flex-col items-center gap-6 px-6 text-center sm:px-10">
+          <Eyebrow>{content.newsletter.eyebrow}</Eyebrow>
+          <h2 className="max-w-[20ch] text-balance text-[length:clamp(28px,3.4vw,38px)]">
+            {content.newsletter.title}
+          </h2>
+          <p className="max-w-[54ch] text-pretty text-[15px] leading-[1.7] text-gris-700">
+            {content.newsletter.lead}
+          </p>
+          <ButtonPrincipal href={PERFIT_SUBSCRIBE_URL} target="_blank" rel="noreferrer noopener">
+            {content.newsletter.cta}
+          </ButtonPrincipal>
         </div>
       </section>
     </main>
