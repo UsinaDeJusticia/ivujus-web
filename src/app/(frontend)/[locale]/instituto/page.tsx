@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 
 import { institutoData } from '@/lib/instituto';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
+import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
+import { ContentCard } from '@/components/cards/ContentCard';
 
 export async function generateMetadata({
   params,
@@ -35,33 +37,22 @@ function PersonCard({
   country?: string;
 }) {
   return (
-    <details className="group border border-[var(--color-usina-line)] bg-white/70 p-5 open:bg-white">
+    <details className="group rounded-md border border-gris-200 bg-white p-5 shadow-[var(--shadow-1)] transition-shadow duration-[var(--motion-base)] ease-[var(--easing-standard)] open:shadow-[var(--shadow-2)]">
       <summary className="cursor-pointer list-none">
         <div className="flex gap-4">
           <img src={image} alt={name} className="h-20 w-20 rounded-full object-cover" />
           <div className="space-y-1">
-            <h3
-              className="text-xl leading-tight text-[var(--color-usina-navy)]"
-              style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-            >
-              {name}
-            </h3>
-            <p className="text-sm font-medium text-[var(--color-usina-accent)]">{role}</p>
+            <h3 className="text-[19px] leading-[1.25] tracking-[0.02em]">{name}</h3>
+            <p className="text-sm font-semibold text-dorado-700">{role}</p>
             {country ? (
-              <p className="text-xs uppercase tracking-[0.24em] text-[color:color-mix(in_srgb,var(--color-usina-navy)_70%,white)]">
-                {country}
-              </p>
+              <p className="text-[11px] uppercase tracking-[0.18em] text-gris-600">{country}</p>
             ) : null}
-            <p className="pt-1 text-sm leading-6 text-[color:color-mix(in_srgb,var(--color-usina-ink)_76%,white)]">
-              {summary}
-            </p>
+            <p className="pt-1 text-sm leading-6 text-gris-700">{summary}</p>
           </div>
         </div>
       </summary>
 
-      <p className="mt-5 text-sm leading-7 text-[color:color-mix(in_srgb,var(--color-usina-ink)_82%,white)]">
-        {bio}
-      </p>
+      <p className="mt-5 border-t border-gris-200 pt-4 text-sm leading-7 text-gris-700">{bio}</p>
     </details>
   );
 }
@@ -82,88 +73,54 @@ export default function InstitutePage() {
   };
 
   return (
-    <main className="min-h-screen bg-[var(--color-usina-paper)] px-6 py-10 text-[var(--color-usina-ink)] sm:px-10">
+    <main className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={buildJsonLdScript(jsonLd)} />
-      <div className="mx-auto max-w-6xl space-y-14">
-        <header className="border-b border-[var(--color-usina-line)] pb-10">
-          <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-            Instituto
+      <div className="mx-auto max-w-[var(--container-default)] space-y-24 px-6 py-16 sm:px-10">
+        <header className="max-w-4xl space-y-5 border-b border-gris-200 pb-14">
+          <Eyebrow>Instituto</Eyebrow>
+          <h1 className="max-w-4xl text-balance text-[length:clamp(34px,5vw,60px)]">
+            {institutoData.title}
+          </h1>
+          <p className="max-w-3xl text-pretty text-lg leading-[1.7] text-gris-700">
+            {institutoData.intro}
           </p>
-          <div className="mt-5 max-w-5xl space-y-4">
-            <h1
-              className="text-4xl leading-tight text-[var(--color-usina-navy)] sm:text-6xl"
-              style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-            >
-              {institutoData.title}
-            </h1>
-            <p className="max-w-4xl text-lg leading-8 text-[color:color-mix(in_srgb,var(--color-usina-ink)_80%,white)]">
-              {institutoData.intro}
-            </p>
-          </div>
         </header>
 
         <section className="grid gap-6 md:grid-cols-3">
           {institutoData.sections.map((section) => (
-            <a
+            <ContentCard
               key={section.href}
               href={section.href}
-              className="border border-[var(--color-usina-line)] bg-white/70 p-6 transition hover:border-[var(--color-usina-accent)]"
-            >
-              <h2
-                className="text-2xl leading-tight text-[var(--color-usina-navy)]"
-                style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-              >
-                {section.title}
-              </h2>
-              <p className="mt-4 text-sm leading-7 text-[color:color-mix(in_srgb,var(--color-usina-ink)_78%,white)]">
-                {section.body}
-              </p>
-            </a>
+              title={section.title}
+              description={section.body}
+            />
           ))}
         </section>
 
-        <section className="space-y-8">
-          <div className="max-w-3xl space-y-4">
-            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-              Finalidades
-            </p>
-            <h2
-              className="text-3xl leading-tight text-[var(--color-usina-navy)] sm:text-4xl"
-              style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-            >
-              Un instituto pensado para producir doctrina, formar operadores y sostener una red académica.
-            </h2>
-          </div>
+        <section className="space-y-10">
+          <SectionHeader
+            eyebrow="Finalidades"
+            title="Un instituto pensado para producir doctrina, formar operadores y sostener una red académica."
+          />
 
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {institutoData.purposes.map((purpose) => (
-              <article key={purpose.title} className="border border-[var(--color-usina-line)] bg-white/70 p-6">
-                <h3
-                  className="text-2xl leading-tight text-[var(--color-usina-navy)]"
-                  style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-                >
-                  {purpose.title}
-                </h3>
-                <p className="mt-4 text-sm leading-7 text-[color:color-mix(in_srgb,var(--color-usina-ink)_78%,white)]">
-                  {purpose.body}
-                </p>
+              <article
+                key={purpose.title}
+                className="rounded-md border border-gris-200 bg-white p-6 shadow-[var(--shadow-1)]"
+              >
+                <h3 className="text-[19px] leading-[1.25] tracking-[0.02em]">{purpose.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-gris-700">{purpose.body}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="space-y-8">
-          <div className="max-w-3xl space-y-4">
-            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-              Consejo directivo
-            </p>
-            <h2
-              className="text-3xl leading-tight text-[var(--color-usina-navy)] sm:text-4xl"
-              style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-            >
-              Dirección institucional, jurídica, académica y tecnológica.
-            </h2>
-          </div>
+        <section className="space-y-10">
+          <SectionHeader
+            eyebrow="Consejo directivo"
+            title="Dirección institucional, jurídica, académica y tecnológica."
+          />
 
           <div className="grid gap-6 lg:grid-cols-2">
             {institutoData.consejoDirectivo.map((person) => (
@@ -174,23 +131,15 @@ export default function InstitutePage() {
 
         <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
           <div className="space-y-8">
-            <div className="max-w-3xl space-y-4">
-              <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-                Estatuto
-              </p>
-              <h2
-                className="text-3xl leading-tight text-[var(--color-usina-navy)] sm:text-4xl"
-                style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-              >
-                Base institucional y objetivos del instituto.
-              </h2>
-            </div>
+            <SectionHeader eyebrow="Estatuto" title="Base institucional y objetivos del instituto." />
 
-            <div className="border border-[var(--color-usina-line)] bg-white/70 p-6 sm:p-8">
-              <h3 className="text-lg font-medium text-[var(--color-usina-navy)]">{institutoData.estatuto.heading}</h3>
+            <div className="rounded-md border border-gris-200 bg-white p-6 shadow-[var(--shadow-1)] sm:p-8">
+              <h3 className="text-[length:var(--text-lg)] font-semibold uppercase tracking-[var(--tracking-wide)] text-azul-900">
+                {institutoData.estatuto.heading}
+              </h3>
               <div className="mt-5 space-y-4">
                 {institutoData.estatuto.articles.map((article) => (
-                  <p key={article} className="text-sm leading-7 text-[color:color-mix(in_srgb,var(--color-usina-ink)_82%,white)]">
+                  <p key={article} className="text-sm leading-7 text-gris-700">
                     {article}
                   </p>
                 ))}
@@ -198,11 +147,9 @@ export default function InstitutePage() {
             </div>
           </div>
 
-          <aside className="border border-[var(--color-usina-line)] bg-[var(--color-usina-navy)] p-6 text-white sm:p-8">
-            <p className="text-xs uppercase tracking-[0.24em] text-[color:color-mix(in_srgb,var(--color-usina-paper)_84%,white)]">
-              Estructura
-            </p>
-            <div className="mt-5 space-y-4 text-sm leading-7 text-[color:color-mix(in_srgb,white_88%,var(--color-usina-paper))]">
+          <aside className="rounded-md border border-white/10 bg-azul-900 p-6 text-white shadow-[var(--shadow-2)] sm:p-8">
+            <Eyebrow invert>Estructura</Eyebrow>
+            <div className="mt-5 space-y-4 text-sm leading-7 text-azul-200">
               <p>Consejo directivo con perfiles individuales y roles institucionales.</p>
               <p>Comité científico internacional como soporte de autoridad académica.</p>
               <p>Estatuto y finalidades como base para SEO, GEO y legitimidad institucional.</p>
@@ -210,18 +157,11 @@ export default function InstitutePage() {
           </aside>
         </section>
 
-        <section className="space-y-8">
-          <div className="max-w-3xl space-y-4">
-            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-              Comité científico
-            </p>
-            <h2
-              className="text-3xl leading-tight text-[var(--color-usina-navy)] sm:text-4xl"
-              style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-            >
-              Referentes internacionales para sostener excelencia académica y legitimidad comparada.
-            </h2>
-          </div>
+        <section className="space-y-10">
+          <SectionHeader
+            eyebrow="Comité científico"
+            title="Referentes internacionales para sostener excelencia académica y legitimidad comparada."
+          />
 
           <div className="grid gap-6 lg:grid-cols-2">
             {institutoData.comiteCientifico.map((person) => (

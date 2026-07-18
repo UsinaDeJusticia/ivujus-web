@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 
 import { simposio2026 } from '@/lib/simposio2026';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
+import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
+import { ButtonPrincipal } from '@/components/ui/Buttons';
 
 export async function generateMetadata({
   params,
@@ -21,7 +24,7 @@ export async function generateMetadata({
 
 function VideoFrame({ src, title }: { src: string; title: string }) {
   return (
-    <div className="relative aspect-video overflow-hidden rounded border border-[var(--color-usina-line)] bg-black shadow-sm">
+    <div className="relative aspect-video overflow-hidden rounded-md border border-gris-200 bg-azul-950 shadow-[var(--shadow-1)]">
       <iframe
         src={src}
         title={title}
@@ -30,6 +33,16 @@ function VideoFrame({ src, title }: { src: string; title: string }) {
         allowFullScreen
       />
     </div>
+  );
+}
+
+// Micro-label liviano para metadatos repetidos (hora de sesión, jornada) —
+// sin la regla dorada de 32px de <Eyebrow>, para no saturar visualmente
+// listas densas de una docena de sesiones. <Eyebrow> queda reservado a
+// encabezados de sección.
+function MetaLabel({ children }: { children: ReactNode }) {
+  return (
+    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-dorado-700">{children}</p>
   );
 }
 
@@ -61,35 +74,29 @@ export default function Symposium2026Page() {
   };
 
   return (
-    <main className="min-h-screen bg-[var(--color-usina-paper)] px-6 py-10 text-[var(--color-usina-ink)] sm:px-10">
+    <main className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={buildJsonLdScript(jsonLd)} />
-      <div className="mx-auto max-w-6xl space-y-14">
-        <header className="border-b border-[var(--color-usina-line)] pb-10">
-          <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-            Simposios / {simposio2026.location}
+      <div className="mx-auto max-w-[var(--container-default)] space-y-24 px-6 py-16 sm:px-10">
+        <header className="max-w-5xl space-y-4 border-b border-gris-200 pb-14">
+          <Eyebrow>{`Simposios / ${simposio2026.location}`}</Eyebrow>
+          <h1 className="max-w-5xl text-balance text-[length:clamp(34px,5vw,60px)]">
+            {simposio2026.title}
+          </h1>
+          <p className="text-pretty text-xl leading-[1.7] text-gris-700">{simposio2026.subtitle}</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-azul-700">
+            {simposio2026.dates} / {simposio2026.location}
           </p>
-          <div className="mt-5 max-w-5xl space-y-4">
-            <h1
-              className="text-4xl leading-tight text-[var(--color-usina-navy)] sm:text-6xl"
-              style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-            >
-              {simposio2026.title}
-            </h1>
-            <p className="text-xl leading-8 text-[color:color-mix(in_srgb,var(--color-usina-ink)_82%,white)]">
-              {simposio2026.subtitle}
-            </p>
-            <p className="text-sm uppercase tracking-[0.24em] text-[color:color-mix(in_srgb,var(--color-usina-navy)_72%,white)]">
-              {simposio2026.dates} / {simposio2026.location}
-            </p>
-            <p className="max-w-4xl text-lg leading-8 text-[color:color-mix(in_srgb,var(--color-usina-ink)_80%,white)]">
-              {simposio2026.summary}
-            </p>
-          </div>
+          <p className="max-w-4xl text-pretty text-lg leading-[1.7] text-gris-700">
+            {simposio2026.summary}
+          </p>
         </header>
 
-        <section className="grid gap-px border border-[var(--color-usina-line)] bg-[var(--color-usina-line)] md:grid-cols-3">
+        <section className="grid gap-6 md:grid-cols-3">
           {simposio2026.highlights.map((item) => (
-            <div key={item} className="bg-white/70 px-5 py-4 text-sm leading-6 text-[var(--color-usina-navy)]">
+            <div
+              key={item}
+              className="rounded-md border border-gris-200 bg-azul-50 px-5 py-6 text-sm leading-6 text-azul-900"
+            >
               {item}
             </div>
           ))}
@@ -97,132 +104,96 @@ export default function Symposium2026Page() {
 
         <section className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_20rem]">
           <div className="space-y-6">
-            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-              {simposio2026.declaration.title}
-            </p>
-            <h2
-              className="text-3xl leading-tight text-[var(--color-usina-navy)] sm:text-4xl"
-              style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-            >
-              Una pieza doctrinaria y política para la victimología científica.
-            </h2>
-            <p className="text-lg leading-8 text-[color:color-mix(in_srgb,var(--color-usina-ink)_80%,white)]">
-              {simposio2026.declaration.intro}
-            </p>
+            <SectionHeader
+              eyebrow={simposio2026.declaration.title}
+              title="Una pieza doctrinaria y política para la victimología científica."
+              lead={simposio2026.declaration.intro}
+            />
             <div className="space-y-4">
               {simposio2026.declaration.standards.map((standard) => (
-                <div key={standard} className="flex gap-3 border-l-2 border-[var(--color-usina-accent)] pl-4">
-                  <p className="text-sm leading-7 text-[color:color-mix(in_srgb,var(--color-usina-ink)_82%,white)]">
-                    {standard}
-                  </p>
+                <div key={standard} className="flex gap-3 border-l-2 border-dorado-600 pl-4">
+                  <p className="text-sm leading-7 text-gris-700">{standard}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <aside className="border border-[var(--color-usina-line)] bg-white/70 p-6">
-            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-              Documento oficial
+          <aside className="h-fit rounded-md border border-gris-200 bg-white p-6 shadow-[var(--shadow-1)]">
+            <Eyebrow>Documento oficial</Eyebrow>
+            <p className="mt-4 text-sm leading-7 text-gris-700">
+              Cierre doctrinario del encuentro y pieza central para la proyección internacional de la red
+              académica que IVUJUS busca consolidar.
             </p>
-            <p className="mt-4 text-sm leading-7 text-[color:color-mix(in_srgb,var(--color-usina-ink)_76%,white)]">
-              Cierre doctrinario del encuentro y pieza central para la proyección internacional de
-              la red académica que IVUJUS busca consolidar.
-            </p>
-            <a
-              className="mt-4 inline-flex w-full items-center justify-center border border-[var(--color-usina-navy)] bg-[var(--color-usina-navy)] px-4 py-3 text-sm font-medium text-white transition hover:bg-[color:color-mix(in_srgb,var(--color-usina-navy)_88%,black)]"
+            <ButtonPrincipal
               href={simposio2026.declaration.pdfUrl}
               target="_blank"
               rel="noreferrer"
+              className="mt-5 w-full justify-center"
             >
               Descargar declaración
-            </a>
-            <p className="mt-3 text-sm leading-6 text-[color:color-mix(in_srgb,var(--color-usina-ink)_74%,white)]">
-              {simposio2026.declaration.pdfNote}
-            </p>
-            <div className="mt-6 border-t border-[var(--color-usina-line)] pt-4 text-sm leading-7 text-[color:color-mix(in_srgb,var(--color-usina-ink)_74%,white)]">
+            </ButtonPrincipal>
+            <p className="mt-3 text-sm leading-6 text-gris-600">{simposio2026.declaration.pdfNote}</p>
+            <div className="mt-6 space-y-2 border-t border-gris-200 pt-4 text-sm leading-7 text-gris-700">
               <p>
-                <strong>Organización:</strong> {simposio2026.organizingInstitution}
+                <strong className="text-azul-900">Organización:</strong> {simposio2026.organizingInstitution}
               </p>
               <p>
-                <strong>Sede:</strong> {simposio2026.location}
+                <strong className="text-azul-900">Sede:</strong> {simposio2026.location}
               </p>
             </div>
           </aside>
         </section>
 
-        <section className="space-y-8">
-          <div className="max-w-3xl space-y-4">
-            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-              Programa
-            </p>
-            <h2
-              className="text-3xl leading-tight text-[var(--color-usina-navy)] sm:text-4xl"
-              style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-            >
-              Dos jornadas, doce momentos de debate y una agenda de archivo.
-            </h2>
-          </div>
+        <section className="space-y-10">
+          <SectionHeader
+            eyebrow="Programa"
+            title="Dos jornadas, doce momentos de debate y una agenda de archivo."
+          />
 
           <div className="space-y-10">
             {simposio2026.days.map((day) => (
-              <section key={day.id} className="border border-[var(--color-usina-line)] bg-white/70 p-6 sm:p-8">
-                <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <section
+                key={day.id}
+                className="rounded-md border border-gris-200 bg-white p-6 shadow-[var(--shadow-1)] sm:p-8"
+              >
+                <div className="mb-8 flex flex-col gap-3 border-b border-gris-200 pb-6 sm:flex-row sm:items-end sm:justify-between">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-                      {day.shortLabel}
-                    </p>
-                    <h3
-                      className="mt-2 text-2xl text-[var(--color-usina-navy)] sm:text-3xl"
-                      style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-                    >
-                      {day.title}
-                    </h3>
+                    <MetaLabel>{day.shortLabel}</MetaLabel>
+                    <h3 className="mt-2 text-[length:clamp(22px,2.6vw,30px)]">{day.title}</h3>
                   </div>
-                  <p className="max-w-2xl text-sm leading-7 text-[color:color-mix(in_srgb,var(--color-usina-ink)_76%,white)]">
-                    {day.summary}
-                  </p>
+                  <p className="max-w-2xl text-sm leading-7 text-gris-700">{day.summary}</p>
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-4">
                   {day.sessions.map((session) => (
-                    <details key={`${day.id}-${session.time}-${session.title}`} className="group border border-[var(--color-usina-line)] bg-[var(--color-usina-paper)] p-4 open:bg-white">
+                    <details
+                      key={`${day.id}-${session.time}-${session.title}`}
+                      className="group rounded-sm border border-gris-200 bg-azul-50 p-4 open:bg-white"
+                    >
                       <summary className="cursor-pointer list-none">
                         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                           <div className="space-y-1">
-                            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-                              {session.time}
-                            </p>
-                            <h4
-                              className="text-xl leading-tight text-[var(--color-usina-navy)]"
-                              style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-                            >
-                              {session.title}
-                            </h4>
+                            <MetaLabel>{session.time}</MetaLabel>
+                            <h4 className="text-[19px] leading-[1.3] text-azul-900">{session.title}</h4>
                             {session.speakers ? (
-                              <p className="text-sm leading-6 text-[color:color-mix(in_srgb,var(--color-usina-ink)_78%,white)]">
-                                <strong>Expositores:</strong> {session.speakers}
+                              <p className="text-sm leading-6 text-gris-700">
+                                <strong className="text-azul-900">Expositores:</strong> {session.speakers}
                               </p>
                             ) : null}
                           </div>
-                          <span className="text-xs uppercase tracking-[0.24em] text-[color:color-mix(in_srgb,var(--color-usina-navy)_72%,white)] group-open:text-[var(--color-usina-accent)]">
+                          <span className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.18em] text-gris-600 group-open:text-dorado-700">
                             Ver detalle
                           </span>
                         </div>
                       </summary>
 
-                      <div className="mt-5 space-y-4">
+                      <div className="mt-5 space-y-4 border-t border-gris-200 pt-4">
                         {session.summary ? (
-                          <p className="text-sm leading-7 text-[color:color-mix(in_srgb,var(--color-usina-ink)_80%,white)]">
-                            {session.summary}
-                          </p>
+                          <p className="text-sm leading-7 text-gris-700">{session.summary}</p>
                         ) : null}
-                        {session.youtubeUrl ? (
-                          <VideoFrame src={session.youtubeUrl} title={session.title} />
-                        ) : null}
+                        {session.youtubeUrl ? <VideoFrame src={session.youtubeUrl} title={session.title} /> : null}
                         {session.notes ? (
-                          <p className="text-sm leading-7 text-[color:color-mix(in_srgb,var(--color-usina-ink)_72%,white)]">
-                            {session.notes}
-                          </p>
+                          <p className="text-sm leading-7 text-gris-600">{session.notes}</p>
                         ) : null}
                       </div>
                     </details>
@@ -233,18 +204,8 @@ export default function Symposium2026Page() {
           </div>
         </section>
 
-        <section className="space-y-8">
-          <div className="max-w-3xl space-y-4">
-            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-              Cobertura
-            </p>
-            <h2
-              className="text-3xl leading-tight text-[var(--color-usina-navy)] sm:text-4xl"
-              style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-            >
-              El simposio en los medios.
-            </h2>
-          </div>
+        <section className="space-y-10">
+          <SectionHeader eyebrow="Cobertura" title="El simposio en los medios." />
 
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {simposio2026.press.map((article) => (
@@ -253,20 +214,20 @@ export default function Symposium2026Page() {
                 href={article.href}
                 target="_blank"
                 rel="noreferrer"
-                className="group overflow-hidden border border-[var(--color-usina-line)] bg-white/70 transition hover:border-[var(--color-usina-accent)]"
+                className="group overflow-hidden rounded-md border border-gris-200 bg-white shadow-[var(--shadow-1)] transition-shadow duration-[var(--motion-base)] ease-[var(--easing-standard)] hover:shadow-[var(--shadow-3)]"
               >
-                <div className="h-48 overflow-hidden bg-[var(--color-usina-line)]">
+                <div className="h-48 overflow-hidden bg-gris-100">
                   <img
                     src={article.image}
                     alt={article.alt}
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="space-y-2 p-4">
-                  <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-dorado-700">
                     {article.outlet}
                   </p>
-                  <h3 className="text-base leading-6 text-[var(--color-usina-navy)]">
+                  <h3 className="text-base leading-6 transition-colors duration-[var(--motion-fast)] group-hover:text-azul-700">
                     {article.title}
                   </h3>
                 </div>
