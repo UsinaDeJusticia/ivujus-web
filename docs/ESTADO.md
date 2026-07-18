@@ -2,9 +2,21 @@
 
 > Cualquier sesión nueva de Claude Code retoma desde acá. Actualizar al cierre de cada sesión: qué se hizo, decisiones, pendientes, próximo paso exacto.
 
-**Última actualización:** 18 de julio de 2026 (sesión 2 — gate G0 resuelto, design system oficial recibido, plan maestro propuesto, páginas artesanales identificadas y auditadas contra los datasets)
+**Última actualización:** 18 de julio de 2026 (sesión 2, cierre — Fase 1 ejecutada completa en 5 olas)
 **Rama de trabajo:** `claude/ivujus-rebuild-planning-gvcf25`
-**Etapa:** ✅ G0-IVUJUS decidido → **Fase 1 (fundación de diseño) lista para arrancar** tras confirmación del plan por Emanuel.
+**Etapa:** ✅ G0 decidido · ✅ plan aprobado por Emanuel · ✅ **Fase 1 ejecutada (olas 1-5)** → ⏸️ **esperando gate G1** (aprobación visual de Emanuel sobre el preview de Vercel de la rama).
+
+## Fase 1 ejecutada (18-jul, olas atómicas por Sonnet, verificadas por el orquestador)
+
+| Ola | Commit | Contenido |
+|---|---|---|
+| 1 | `a8e5020` | Tokens oficiales azul/dorado en `globals.css` (@theme Tailwind v4), Cinzel/Montserrat vía next/font (autohospedadas), 7 logos en `public/logos/` |
+| 2 | `fee39f5` | Ortografía española completa restaurada en datasets y todo el copy (verificada contra las páginas vivas; slugs/URLs intactos) |
+| 3 | `225077f` | Componentes base TS estricto: `Header` sticky, `Footer`, `Buttons` (3 variantes + LinkArrow), `SectionHeader`/`Eyebrow`, `ContentCard` + tokens de espaciado/tipo/radios (en `:root` para no pisar utilidades Tailwind) |
+| 4 | `ab2c05d` | Re-skin de las 6 rutas instituto/simposios + layout compartido con Header/Footer. Contenido intacto. Nav solo con rutas existentes |
+| 5 | `ffadba3` | Home nueva: hero + banda Simposio (datos reales) + grilla de acceso (5 rutas reales) + newsletter con endpoint Perfit real. Alias `usina-*` eliminados. Cero contenido inventado del kit |
+
+Decisiones de ejecución documentadas en los commits: sin CTA de campus ni redes sociales (URLs no confirmadas — props opcionales listas); tema claro único (sepia/oscuro difieren a v2); los links de la home vieja a rutas inexistentes (`/formacion`, `/publicaciones`, `/novedades`, `/red`, `/indice-legislativo`, `/contacto`, `/terms-privacy`) se retiraron y se restauran cuando esas rutas existan (Fases 2-3); FR de la home tenía acentos rotos y se corrigió.
 
 ---
 
@@ -51,20 +63,28 @@ Emanuel confirmó: sus páginas "HTML puro" son **`/nosotros/` y `/simposio-2026
 - 🔧 **Deuda sistémica detectada**: los datasets y páginas del repo eliminan TODAS las tildes/ñ ("Emerito", "Declaracion") — el sitio renderiza español sin acentos. El design system oficial exige "Tildes: siempre". **Restaurar ortografía completa es ítem obligatorio de Fase 1/2.**
 - 🔧 Las 15 fotos de perfiles + galería + PDF de la Declaración siguen hosteadas en `ivujus.org.ar/wp-content/` (y las 6 imágenes de prensa en dominios de medios): plan de re-alojamiento de assets propio va en Fase 2.
 
-## Pendientes de Emanuel (no bloquean Fase 1)
+## Decisiones de Emanuel del 18-jul (registradas)
 
-1. **Confirmar el plan de fases** de arriba (o ajustarlo) — con eso arranca Fase 1.
-2. **Galería del Simposio**: ¿se migra completa, versión curada, o se descarta? (ver sección anterior).
-3. **App `victimas-derechos-app.vercel.app`** (redirect desde `/victimasconderechos/`): ¿qué es y se coordina con este proyecto? Si hay que inspeccionarla: agregar su dominio al allowlist.
-4. **Destino editorial de la categoría `oea`** (Convención Interamericana / INDODPRO): ¿novedades o sección propia de proyección internacional?
-5. **Dominio real del campus**: el design system dice `usinadejusticiacampus.org.ar`; el brief planeaba `campus.ivujus.org.ar`. ¿Cuál es el CTA correcto?
+- Plan de fases: **aprobado**. Ejecución con modelo económico (Sonnet), orquestación y verificación con Fable; escalar solo ante problemas.
+- Galería del Simposio: **versión curada** (a ejecutar en Fase 2).
+- Deuda de tildes: **obligatoria** → ✅ cumplida (ola 2).
+- Dato "Distinción Fundación TAEDA": verificar antes de usar → pendiente (infobae.com bloqueado por el proxy; pedir allowlist o el texto de la nota).
+
+## Pendientes de Emanuel (no bloquean, se cablean cuando lleguen)
+
+1. **Gate G1**: aprobar el look en el preview de Vercel de la rama (o pedir ajustes).
+2. **App `victimas-derechos-app.vercel.app`** (redirect desde `/victimasconderechos/`): ¿qué es y se coordina con este proyecto? Si hay que inspeccionarla: allowlist de su dominio.
+3. **Destino editorial de la categoría `oea`** (Convención Interamericana / INDODPRO): ¿novedades o sección propia? (necesario en Fase 3).
+4. **Dominio real del campus** (`usinadejusticiacampus.org.ar` vs `campus.ivujus.org.ar`) → habilita el CTA "Acceder al Campus" del Header (prop ya lista).
+5. **Redes sociales oficiales** (URLs confirmadas) → habilita `socialLinks` del Footer (prop ya lista).
 6. **Parkear código Payload** en rama `payload-v2-parked` (recomendado) ¿ok?
-7. **Novedades en inglés v1**: ¿ES-only o traducción selectiva?
+7. **Novedades en inglés v1**: ¿ES-only o traducción selectiva? (necesario en Fase 3).
 
 ## Próximo paso exacto (sesión siguiente)
 
-1. Con el plan confirmado → **Fase 1 en olas atómicas delegadas a Sonnet**: (1ª ola) tokens+fuentes+logos, (2ª) componentes base TS, (3ª) re-skin de rutas existentes, (4ª) home nueva. Un commit por ola, build verde antes de cada commit, push → preview Vercel → gate G1.
-2. Incorporar las respuestas de los pendientes 2-6 donde correspondan.
+1. Si G1 aprobado → **Fase 2 (contenido institucional completo)** en olas: (a) desarme de `capacitacion-y-actividades` → `/formacion/ciclos` y `campus-virtual` → `/formacion/diplomatura` (contenido real de las páginas vivas, ya relevado en `docs/MIGRATION-MATRIX.md`); (b) `contacto` y `terms-privacy`; (c) los 19 posts + 3 páginas de Usina (`docs/reference/usina-source-content/`) a sus rutas; (d) **galería curada del Simposio** (14 fotos en `wp-content/uploads/2026/04/`, decisión: curada); (e) restaurar en la home los accesos a las rutas nuevas a medida que existan.
+2. Si G1 pide ajustes → iterarlos antes de Fase 2.
+3. Cablear pendientes 2-7 cuando Emanuel responda.
 
 ## Hechos de referencia rápida
 
