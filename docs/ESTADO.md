@@ -70,10 +70,21 @@ Emanuel confirmó: sus páginas "HTML puro" son **`/nosotros/` y `/simposio-2026
 - Deuda de tildes: **obligatoria** → ✅ cumplida (ola 2).
 - Dato "Distinción Fundación TAEDA": verificar antes de usar → pendiente (infobae.com bloqueado por el proxy; pedir allowlist o el texto de la nota).
 
+## Vercel: integración GitHub desconectada (diagnosticado 18-jul)
+
+Ningún push dispara deploys desde el 4 de mayo (ni siquiera los merges de Emanuel de julio). Se probó el truco de mayo (commit vacío `00e402a` con identidad git válida): **no disparó nada** → no es el filtro de autoría, la integración GitHub↔Vercel del proyecto está caída/desvinculada. **Solo Emanuel puede reconectarla**: vercel.com → proyecto `ivujus-web` → Settings → Git → reconectar `UsinaDeJusticia/ivujus-web` (o en GitHub: Settings → GitHub Apps → Vercel → dar acceso al repo). Reconectada, cualquier push regenera previews; para el gate G1 alcanza con "Create Deployment"/Redeploy de la rama `claude/ivujus-rebuild-planning-gvcf25` desde el dashboard.
+
+## Víctimas con Derechos (aclarado por Emanuel 18-jul)
+
+Fue una **campaña camino a la OEA**, nada más. Su app (`victimas-derechos-app.vercel.app`, proyecto propio de la cuenta de Vercel de Emanuel) rompe la estética del sitio. **Propuesta de ordenamiento (a confirmar en el gate de Fase 3):**
+- Los 2 posts de la categoría `oea` se mapean a **`novedades`** (cobertura de campaña; sin sección propia — la campaña no es una línea editorial permanente).
+- La app queda como **microsite externo archivado** (mismo estatus que el sitio del Simposio): no se integra ni se re-estiliza en v1.
+- Al lanzar el sitio nuevo, la URL `/victimasconderechos` se preserva con un redirect en `next.config` hacia la app de Vercel (hoy lo hace el plugin Redirection del WP) — histórico de campaña no se rompe.
+- Si el trabajo OEA se vuelve línea permanente (Convención Interamericana avanza), en v2 se evalúa sección de proyección internacional.
+
 ## Pendientes de Emanuel (no bloquean, se cablean cuando lleguen)
 
-1. **Gate G1**: aprobar el look en el preview de Vercel de la rama (o pedir ajustes).
-2. **App `victimas-derechos-app.vercel.app`** (redirect desde `/victimasconderechos/`): ¿qué es y se coordina con este proyecto? Si hay que inspeccionarla: allowlist de su dominio.
+1. **Reconectar la integración GitHub↔Vercel** (ver arriba) y luego **gate G1**: aprobar el look del preview de la rama (o pedir ajustes).
 3. **Destino editorial de la categoría `oea`** (Convención Interamericana / INDODPRO): ¿novedades o sección propia? (necesario en Fase 3).
 4. **Dominio real del campus** (`usinadejusticiacampus.org.ar` vs `campus.ivujus.org.ar`) → habilita el CTA "Acceder al Campus" del Header (prop ya lista).
 5. **Redes sociales oficiales** (URLs confirmadas) → habilita `socialLinks` del Footer (prop ya lista).
