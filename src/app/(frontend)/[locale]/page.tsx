@@ -32,27 +32,27 @@ type HomeCopy = {
 
 const copy: Record<Locale, HomeCopy> = {
   es: {
-    localeLabel: 'Espanol',
-    eyebrow: 'Instituto de Victimologia de Usina de Justicia',
-    title: 'Un portal academico para formacion, investigacion y derecho victimal.',
+    localeLabel: 'Español',
+    eyebrow: 'Instituto de Victimología de Usina de Justicia',
+    title: 'Un portal académico para formación, investigación y derecho victimal.',
     intro:
-      'IVUJUS se esta construyendo como el nodo digital de una red academica internacional: una plataforma para presentar la institucion, ordenar la produccion editorial y conectar simposios, formacion y agenda publica.',
+      'IVUJUS se está construyendo como el nodo digital de una red académica internacional: una plataforma para presentar la institución, ordenar la producción editorial y conectar simposios, formación y agenda pública.',
     primaryCta: 'Explorar el instituto',
     secondaryCta: 'Ingresar al campus',
     quickLinks: [
       { label: 'Instituto', href: '/instituto' },
-      { label: 'Formacion', href: '/formacion' },
+      { label: 'Formación', href: '/formacion' },
       { label: 'Publicaciones', href: '/publicaciones' },
       { label: 'Simposios', href: '/simposios' },
     ],
     pillarsLabel: 'Finalidades',
     pillars: [
       {
-        title: 'Estudios e investigacion',
-        body: 'Impulsar la victimologia, el derecho victimal, la criminalidad y la prevencion del delito desde una base academica legible y publica.',
+        title: 'Estudios e investigación',
+        body: 'Impulsar la victimología, el derecho victimal, la criminalidad y la prevención del delito desde una base académica legible y pública.',
       },
       {
-        title: 'Capacitacion y cursos',
+        title: 'Capacitación y cursos',
         body: 'Articular diplomaturas, ciclos y convenios sin mezclar el campus con el sitio institucional.',
       },
       {
@@ -61,59 +61,59 @@ const copy: Record<Locale, HomeCopy> = {
       },
     ],
     mapLabel: 'Mapa del sitio',
-    mapTitle: 'Las secciones necesarias ya estan claras.',
+    mapTitle: 'Las secciones necesarias ya están claras.',
     mapIntro:
-      'El brief, el sitio actual y el trabajo del repo convergen en una arquitectura publica precisa. La home debe anticipar ese recorrido y hacerlo entendible desde el primer scroll.',
+      'El brief, el sitio actual y el trabajo del repo convergen en una arquitectura pública precisa. La home debe anticipar ese recorrido y hacerlo entendible desde el primer scroll.',
     cards: [
       {
         title: 'Instituto',
-        body: 'Estatuto, consejo directivo, comite cientifico y la presentacion institucional del IVUJUS.',
+        body: 'Estatuto, consejo directivo, comité científico y la presentación institucional del IVUJUS.',
         href: '/instituto',
       },
       {
         title: 'Red',
-        body: 'La futura Red Americano-Europea y su estructura flexible para instituciones, reglamento y adhesion.',
+        body: 'La futura Red Americano-Europea y su estructura flexible para instituciones, reglamento y adhesión.',
         href: '/red',
       },
       {
         title: 'Simposios',
-        body: 'Archivo de ediciones, programa, medios, premios y la Declaracion de Buenos Aires.',
+        body: 'Archivo de ediciones, programa, medios, premios y la Declaración de Buenos Aires.',
         href: '/simposios',
       },
       {
-        title: 'Formacion',
-        body: 'Diplomatura, ciclos Usina Debate, convenios y actividades de capacitacion.',
+        title: 'Formación',
+        body: 'Diplomatura, ciclos Usina Debate, convenios y actividades de capacitación.',
         href: '/formacion',
       },
       {
         title: 'Publicaciones',
-        body: 'Articulos, libros, dossiers, declaraciones y glosario especializado.',
+        body: 'Artículos, libros, dossiers, declaraciones y glosario especializado.',
         href: '/publicaciones',
       },
       {
-        title: 'Indice legislativo',
-        body: 'Analisis de normas y metodologia del primer indice argentino enfocado en victimas.',
+        title: 'Índice legislativo',
+        body: 'Análisis de normas y metodología del primer índice argentino enfocado en víctimas.',
         href: '/indice-legislativo',
       },
     ],
     featuredLabel: 'Simposio 2026',
-    featuredTitle: 'Buenos Aires como punto de encuentro para la victimologia penal.',
+    featuredTitle: 'Buenos Aires como punto de encuentro para la victimología penal.',
     featuredBody:
-      'El Primer Simposio Americano y Europeo de Victimologia Penal no es una nota lateral: organiza parte del relato publico del sitio y conecta produccion academica, agenda institucional y proyeccion internacional.',
+      'El Primer Simposio Americano y Europeo de Victimología Penal no es una nota lateral: organiza parte del relato público del sitio y conecta producción académica, agenda institucional y proyección internacional.',
     featuredItems: [
-      'Declaracion de Buenos Aires',
+      'Declaración de Buenos Aires',
       'Programa y archivo de jornadas',
-      'Cobertura en medios y produccion derivada',
+      'Cobertura en medios y producción derivada',
     ],
-    accessTitle: 'Novedades, contacto y administracion',
+    accessTitle: 'Novedades, contacto y administración',
     accessBody:
-      'Ademas del mapa principal, la portada necesita dejar visibles los accesos operativos: novedades editoriales, contacto institucional y gestion interna del contenido.',
+      'Además del mapa principal, la portada necesita dejar visibles los accesos operativos: novedades editoriales, contacto institucional y gestión interna del contenido.',
     accessLinks: [
       { label: 'Novedades', href: '/novedades' },
       { label: 'Contacto', href: '/contacto' },
-      { label: 'Politicas de privacidad', href: '/terms-privacy' },
+      { label: 'Políticas de privacidad', href: '/terms-privacy' },
     ],
-    adminLabel: 'Acceso de administracion',
+    adminLabel: 'Acceso de administración',
   },
   en: {
     localeLabel: 'English',
@@ -334,7 +334,7 @@ export default async function HomePage({
 
           <aside className="border border-[var(--color-usina-line)] bg-white/70 p-6 sm:p-8">
             <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-              Navegacion rapida
+              Navegación rápida
             </p>
             <div className="mt-5 space-y-3">
               {content.quickLinks.map((link) => (
@@ -404,7 +404,7 @@ export default async function HomePage({
                 {card.body}
               </p>
               <p className="mt-6 text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-                Abrir seccion
+                Abrir sección
               </p>
             </a>
           ))}

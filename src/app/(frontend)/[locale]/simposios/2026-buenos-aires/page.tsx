@@ -104,7 +104,7 @@ export default function Symposium2026Page() {
               className="text-3xl leading-tight text-[var(--color-usina-navy)] sm:text-4xl"
               style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
             >
-              Una pieza doctrinaria y politica para la victimologia cientifica.
+              Una pieza doctrinaria y política para la victimología científica.
             </h2>
             <p className="text-lg leading-8 text-[color:color-mix(in_srgb,var(--color-usina-ink)_80%,white)]">
               {simposio2026.declaration.intro}
@@ -125,8 +125,8 @@ export default function Symposium2026Page() {
               Documento oficial
             </p>
             <p className="mt-4 text-sm leading-7 text-[color:color-mix(in_srgb,var(--color-usina-ink)_76%,white)]">
-              Cierre doctrinario del encuentro y pieza central para la proyeccion internacional de
-              la red academica que IVUJUS busca consolidar.
+              Cierre doctrinario del encuentro y pieza central para la proyección internacional de
+              la red académica que IVUJUS busca consolidar.
             </p>
             <a
               className="mt-4 inline-flex w-full items-center justify-center border border-[var(--color-usina-navy)] bg-[var(--color-usina-navy)] px-4 py-3 text-sm font-medium text-white transition hover:bg-[color:color-mix(in_srgb,var(--color-usina-navy)_88%,black)]"
@@ -134,14 +134,14 @@ export default function Symposium2026Page() {
               target="_blank"
               rel="noreferrer"
             >
-              Descargar declaracion
+              Descargar declaración
             </a>
             <p className="mt-3 text-sm leading-6 text-[color:color-mix(in_srgb,var(--color-usina-ink)_74%,white)]">
               {simposio2026.declaration.pdfNote}
             </p>
             <div className="mt-6 border-t border-[var(--color-usina-line)] pt-4 text-sm leading-7 text-[color:color-mix(in_srgb,var(--color-usina-ink)_74%,white)]">
               <p>
-                <strong>Organizacion:</strong> {simposio2026.organizingInstitution}
+                <strong>Organización:</strong> {simposio2026.organizingInstitution}
               </p>
               <p>
                 <strong>Sede:</strong> {simposio2026.location}

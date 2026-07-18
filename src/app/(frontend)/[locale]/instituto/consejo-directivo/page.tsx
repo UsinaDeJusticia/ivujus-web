@@ -51,10 +51,10 @@ export default function InstituteBoardPage() {
             className="mt-4 text-4xl leading-tight text-[var(--color-usina-navy)] sm:text-5xl"
             style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
           >
-            Conduccion institucional del IVUJUS.
+            Conducción institucional del IVUJUS.
           </h1>
           <p className="mt-4 max-w-3xl text-lg leading-8 text-[color:color-mix(in_srgb,var(--color-usina-ink)_80%,white)]">
-            Perfiles de la direccion, la coordinacion academica y las areas institucionales que sostienen el instituto.
+            Perfiles de la dirección, la coordinación académica y las áreas institucionales que sostienen el instituto.
           </p>
         </header>
 

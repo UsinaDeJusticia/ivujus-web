@@ -131,7 +131,7 @@ export default function InstitutePage() {
               className="text-3xl leading-tight text-[var(--color-usina-navy)] sm:text-4xl"
               style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
             >
-              Un instituto pensado para producir doctrina, formar operadores y sostener una red academica.
+              Un instituto pensado para producir doctrina, formar operadores y sostener una red académica.
             </h2>
           </div>
 
@@ -161,7 +161,7 @@ export default function InstitutePage() {
               className="text-3xl leading-tight text-[var(--color-usina-navy)] sm:text-4xl"
               style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
             >
-              Direccion institucional, juridica, academica y tecnologica.
+              Dirección institucional, jurídica, académica y tecnológica.
             </h2>
           </div>
 
@@ -204,7 +204,7 @@ export default function InstitutePage() {
             </p>
             <div className="mt-5 space-y-4 text-sm leading-7 text-[color:color-mix(in_srgb,white_88%,var(--color-usina-paper))]">
               <p>Consejo directivo con perfiles individuales y roles institucionales.</p>
-              <p>Comite cientifico internacional como soporte de autoridad academica.</p>
+              <p>Comité científico internacional como soporte de autoridad académica.</p>
               <p>Estatuto y finalidades como base para SEO, GEO y legitimidad institucional.</p>
             </div>
           </aside>
@@ -213,13 +213,13 @@ export default function InstitutePage() {
         <section className="space-y-8">
           <div className="max-w-3xl space-y-4">
             <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-              Comite cientifico
+              Comité científico
             </p>
             <h2
               className="text-3xl leading-tight text-[var(--color-usina-navy)] sm:text-4xl"
               style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
             >
-              Referentes internacionales para sostener excelencia academica y legitimidad comparada.
+              Referentes internacionales para sostener excelencia académica y legitimidad comparada.
             </h2>
           </div>
 

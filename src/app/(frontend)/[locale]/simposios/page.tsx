@@ -31,10 +31,10 @@ export default function SymposiumIndexPage() {
             className="text-4xl leading-tight text-[var(--color-usina-navy)] sm:text-5xl"
             style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
           >
-            Archivo de encuentros, declaraciones y produccion derivada.
+            Archivo de encuentros, declaraciones y producción derivada.
           </h1>
           <p className="text-lg leading-8 text-[color:color-mix(in_srgb,var(--color-usina-ink)_80%,white)]">
-            El Simposio 2026 es hoy la pieza mas desarrollada del archivo publico del IVUJUS y
+            El Simposio 2026 es hoy la pieza más desarrollada del archivo público del IVUJUS y
             funciona como punto de partida para la arquitectura internacional del sitio.
           </p>
         </header>
@@ -54,7 +54,7 @@ export default function SymposiumIndexPage() {
               {simposio2026.title}
             </h2>
             <p className="mt-3 max-w-3xl text-base leading-7 text-[color:color-mix(in_srgb,var(--color-usina-ink)_78%,white)]">
-              {simposio2026.subtitle}. Declaracion de Buenos Aires, programa por jornadas,
+              {simposio2026.subtitle}. Declaración de Buenos Aires, programa por jornadas,
               videos y cobertura en medios nacionales.
             </p>
           </a>

@@ -45,16 +45,16 @@ export default function InstituteScientificCommitteePage() {
       <div className="mx-auto max-w-6xl space-y-10">
         <header className="border-b border-[var(--color-usina-line)] pb-8">
           <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-usina-accent)]">
-            Instituto / Comite cientifico
+            Instituto / Comité científico
           </p>
           <h1
             className="mt-4 text-4xl leading-tight text-[var(--color-usina-navy)] sm:text-5xl"
             style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
           >
-            Referentes internacionales para la autoridad academica del instituto.
+            Referentes internacionales para la autoridad académica del instituto.
           </h1>
           <p className="mt-4 max-w-3xl text-lg leading-8 text-[color:color-mix(in_srgb,var(--color-usina-ink)_80%,white)]">
-            El comite cientifico aporta legitimidad comparada, investigacion especializada y articulacion con redes de victimologia y criminologia en distintos paises.
+            El comité científico aporta legitimidad comparada, investigación especializada y articulación con redes de victimología y criminología en distintos países.
           </p>
         </header>
 
