@@ -80,10 +80,22 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={`${cinzel.variable} ${montserrat.variable}`}>
+      <head>
+        {/* Anti-flash de tema: aplica el tema guardado antes del primer
+            paint, para que sepia/oscuro no parpadeen desde claro. Debe ser
+            inline y síncrono; corre antes de que React hidrate. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var t=localStorage.getItem('ivujus-theme');if(t==='sepia'||t==='dark'||t==='light'){document.documentElement.dataset.theme=t;}}catch(e){}})();",
+          }}
+        />
+      </head>
       <body>
         <Header
           homeHref={homeHref}
           items={navItems}
+          locale={locale}
           // Sin CTA de "Acceder al Campus": la URL del campus virtual
           // (usinadejusticiacampus.org.ar según el design system, pero no
           // confirmada por Jair para este sitio) todavía no está aprobada.

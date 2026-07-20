@@ -10,6 +10,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { ButtonSecundario } from '@/components/ui/Buttons'
+import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher'
+import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
 
 export interface HeaderNavItem {
   label: string
@@ -30,12 +32,14 @@ export interface HeaderProps {
   /** href del item activo, para resaltar la navegación (borde inferior dorado). */
   activeHref?: string
   cta?: HeaderCta
+  /** Locale activo. Habilita los selectores de idioma y tema en la barra derecha. */
+  locale?: string
 }
 
 // Umbral de scroll (px) a partir del cual el header pasa a su estado compacto.
 const SCROLL_THRESHOLD = 24
 
-export function Header({ homeHref = '/', subtitle, items, activeHref, cta }: HeaderProps) {
+export function Header({ homeHref = '/', subtitle, items, activeHref, cta, locale }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -51,7 +55,7 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta }: Hea
 
   return (
     <header
-      className="sticky top-0 z-50 border-b border-gris-200 bg-[rgba(255,255,255,0.92)] backdrop-blur-[8px]"
+      className="sticky top-0 z-50 border-b border-[color:var(--ui-border)] bg-[var(--ui-header-bg)] backdrop-blur-[8px]"
       // El header sticky en sí no anima; lo que compacta es el padding/alto
       // interno (ver contenedor de abajo), tal como en el manual.
     >
@@ -63,6 +67,10 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta }: Hea
         ].join(' ')}
       >
         <Link href={homeHref} className="flex items-center gap-3.5 no-underline">
+          {/* Doble logo: el isotipo azul se ve bien sobre claro/sepia; en
+              tema oscuro el azul es casi invisible sobre el fondo azul-950,
+              así que se cambia por la versión blanca. El toggle es por CSS
+              (reglas .logo-theme-* en globals.css) para no depender de JS. */}
           <Image
             src="/logos/logo-ivujus-mark.png"
             alt="IVUJUS"
@@ -70,7 +78,19 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta }: Hea
             height={140}
             priority
             className={[
-              'w-auto',
+              'logo-theme-light w-auto',
+              'transition-[height] duration-[var(--motion-base)] ease-[var(--easing-standard)] motion-reduce:transition-none',
+              scrolled ? 'h-9' : 'h-11',
+            ].join(' ')}
+          />
+          <Image
+            src="/logos/logo-ivujus-mark-white.png"
+            alt="IVUJUS"
+            width={172}
+            height={140}
+            priority
+            className={[
+              'logo-theme-dark w-auto',
               'transition-[height] duration-[var(--motion-base)] ease-[var(--easing-standard)] motion-reduce:transition-none',
               scrolled ? 'h-9' : 'h-11',
             ].join(' ')}
@@ -78,7 +98,7 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta }: Hea
           {subtitle ? (
             <span
               className={[
-                'flex-col justify-center text-[9.5px] uppercase leading-tight tracking-[0.14em] text-gris-700',
+                'flex-col justify-center text-[9.5px] uppercase leading-tight tracking-[0.14em] text-[color:var(--ui-ink-3)]',
                 scrolled ? 'hidden' : 'flex',
               ].join(' ')}
             >
@@ -99,8 +119,8 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta }: Hea
                     'border-b-2 pb-1 text-[11px] font-semibold uppercase tracking-[0.18em] no-underline',
                     'transition-colors duration-[var(--motion-fast)] ease-[var(--easing-standard)]',
                     isActive
-                      ? 'border-dorado-600 text-azul-900'
-                      : 'border-transparent text-gris-700 hover:text-azul-800',
+                      ? 'border-dorado-600 text-[color:var(--ui-display-ink)]'
+                      : 'border-transparent text-[color:var(--ui-ink-3)] hover:text-[color:var(--ui-ink-1)]',
                   ].join(' ')}
                 >
                   {item.label}
@@ -110,11 +130,21 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta }: Hea
           </nav>
         ) : null}
 
-        {cta ? (
-          <ButtonSecundario href={cta.href} size="sm" className={items.length > 0 ? '' : 'ml-auto'}>
-            {cta.label}
-          </ButtonSecundario>
-        ) : null}
+        {/* Barra de controles: idioma + tema de lectura. Se agrupan a la
+            derecha; toman `ml-auto` si no hubo nav que ya lo empujara. */}
+        <div className={['flex items-center gap-4', items.length > 0 ? '' : 'ml-auto'].join(' ')}>
+          {cta ? (
+            <ButtonSecundario href={cta.href} size="sm">
+              {cta.label}
+            </ButtonSecundario>
+          ) : null}
+          {locale ? (
+            <>
+              <LanguageSwitcher locale={locale} />
+              <ThemeSwitcher locale={locale} />
+            </>
+          ) : null}
+        </div>
       </div>
     </header>
   )

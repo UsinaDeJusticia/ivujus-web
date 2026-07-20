@@ -59,7 +59,7 @@ export function SectionHeader({
       <h2
         className={[
           'm-0 max-w-[22ch] text-balance text-[length:clamp(28px,3.6vw,40px)]',
-          invert ? 'text-white' : 'text-azul-900',
+          invert ? 'text-white' : 'text-[color:var(--ui-display-ink)]',
         ].join(' ')}
       >
         {title}
@@ -68,7 +68,7 @@ export function SectionHeader({
         <p
           className={[
             'm-0 max-w-[60ch] text-pretty text-[17px] leading-[1.7]',
-            invert ? 'text-azul-200' : 'text-gris-700',
+            invert ? 'text-azul-200' : 'text-[color:var(--ui-ink-3)]',
           ].join(' ')}
         >
           {lead}

@@ -25,7 +25,7 @@ export function ContentCard({ title, description, href, meta, eyebrow, className
     <Link
       href={href}
       className={[
-        'group relative flex flex-col gap-3.5 overflow-hidden rounded-md border border-gris-200 bg-white p-7 no-underline',
+        'group relative flex flex-col gap-3.5 overflow-hidden rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-7 no-underline',
         'shadow-[var(--shadow-1)] transition-shadow duration-[var(--motion-base)] ease-[var(--easing-standard)] hover:shadow-[var(--shadow-3)]',
         className,
       ]
@@ -39,19 +39,19 @@ export function ContentCard({ title, description, href, meta, eyebrow, className
       />
 
       {eyebrow ? (
-        <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-dorado-700">{eyebrow}</span>
+        <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[color:var(--ui-accent-ink)]">{eyebrow}</span>
       ) : null}
 
-      <h3 className="m-0 text-[19px] leading-[1.25] tracking-[0.04em] transition-colors duration-[var(--motion-fast)] group-hover:text-azul-700">
+      <h3 className="m-0 text-[19px] leading-[1.25] tracking-[0.04em] text-[color:var(--ui-display-ink)] transition-colors duration-[var(--motion-fast)] group-hover:text-[color:var(--ui-link)]">
         {title}
       </h3>
 
       {description ? (
-        <p className="m-0 flex-1 text-sm leading-[1.6] text-gris-700">{description}</p>
+        <p className="m-0 flex-1 text-sm leading-[1.6] text-[color:var(--ui-ink-3)]">{description}</p>
       ) : null}
 
       {meta ? (
-        <div className="flex items-center gap-2 border-t border-gris-200 pt-2 text-[11px] text-gris-600">
+        <div className="flex items-center gap-2 border-t border-[color:var(--ui-border)] pt-2 text-[11px] text-[color:var(--ui-ink-4)]">
           {meta}
         </div>
       ) : null}

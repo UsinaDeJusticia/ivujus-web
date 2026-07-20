@@ -3,8 +3,11 @@
 /* =====================================================================
    IVUJUS — identidad oficial
    Fuente de verdad: docs/reference/design-system-oficial/colors_and_type.css
-   Fase 1 · Ola 1: fundación de tokens. Solo tema claro — sepia y oscuro
-   del design system de referencia quedan fuera del v1.
+   Fase 1 · Ola 1: fundación de tokens.
+   Fase 1 · Ola 6: tres temas de lectura (claro/sepia/oscuro) vía
+   `[data-theme]` en <html> — ver bloque "Temas (cuidado de la vista)" más
+   abajo. Los colores de MARCA (azul institucional, dorado) no cambian
+   entre temas; solo cambia el chrome de UI (--ui-*).
    Fuentes (Cinzel/Montserrat) se cargan via next/font en
    src/app/(frontend)/[locale]/layout.tsx, que expone --font-display y
    --font-body como custom properties en <html>.
@@ -56,35 +59,29 @@
 }
 
 /* --- Tokens semánticos: variables CSS normales, no @theme -------------- */
+/* Nota Ola 6: los tokens de fondo/tinta/borde por tema viven en el bloque
+   "Temas (cuidado de la vista)", más abajo (`--ui-*`, con default `:root` =
+   claro y overrides en `[data-theme="sepia"|"dark"]`). Los `--fg-*`,
+   `--bg-*` y `--border-subtle/default/accent` que existían acá antes de
+   esta ola quedan reemplazados por esos `--ui-*` — no tenían otros
+   consumidores fuera de este archivo (verificado por grep), así que no
+   hace falta mantenerlos como alias. `--shadow-1/2/3` si pasan a ser
+   `--ui-shadow-1/2/3` (tematizados: la elevación cambia de tinte azul a
+   tinte café en sepia y a negro profundo en oscuro); `--shadow-focus`
+   queda fijo (el anillo dorado de foco se ve bien sobre los 3 fondos). */
 :root {
   color-scheme: light;
 
-  /* Fondos */
-  --bg-base: var(--color-blanco);
-  --bg-subtle: var(--color-gris-50);
-  --bg-muted: var(--color-azul-50);
-  --bg-inverted: var(--color-azul-800);
+  --shadow-focus: 0 0 0 3px rgba(201, 164, 106, 0.4); /* anillo dorado, no tematizado */
 
-  /* Tintas */
-  --fg-1: var(--color-azul-900); /* titulares, énfasis máximo */
-  --fg-2: var(--color-gris-900); /* cuerpo principal */
-  --fg-3: var(--color-gris-700); /* secundario, metas */
-  --fg-4: var(--color-gris-600); /* terciario, captions */
-  --fg-on-dark: var(--color-blanco);
-  --fg-link: var(--color-azul-700);
-  --fg-link-hover: var(--color-azul-800);
-  --fg-accent: var(--color-dorado-700); /* acento dorado para tipografía */
-
-  /* Bordes */
-  --border-subtle: var(--color-gris-200);
-  --border-default: var(--color-gris-300);
-  --border-accent: var(--color-dorado-600);
-
-  /* Elevación — discreta, siempre azul translúcido, nunca negro puro */
-  --shadow-1: 0 1px 2px rgba(13, 59, 102, 0.06);
-  --shadow-2: 0 2px 8px rgba(13, 59, 102, 0.08);
-  --shadow-3: 0 8px 24px rgba(13, 59, 102, 0.1);
-  --shadow-focus: 0 0 0 3px rgba(201, 164, 106, 0.4); /* anillo dorado */
+  /* Alias de sombras: los tokens pasaron a ser `--ui-shadow-*` (tematizados)
+     en esta ola, pero páginas y componentes ya publicados consumen
+     `var(--shadow-1|2|3)`. El alias resuelve al `--ui-shadow-*` activo del
+     tema en el punto de uso (substitución perezosa de custom properties),
+     así que estos consumidores quedan tematizados sin reescribirlos. */
+  --shadow-1: var(--ui-shadow-1);
+  --shadow-2: var(--ui-shadow-2);
+  --shadow-3: var(--ui-shadow-3);
 
   /* Movimiento — sutil, "respirado" */
   --motion-fast: 120ms;
@@ -188,25 +185,116 @@
   --footer-bg: var(--color-azul-900);
 }
 
+/* =====================================================================
+   Temas (cuidado de la vista)
+   ---------------------------------------------------------------------
+   Tres temas oficiales, seleccionables desde <ThemeSwitcher> (Header):
+     · Claro  (default, sin atributo) — fondo blanco, ink azul-900.
+     · Sepia ("lectura")  — fondo crema cálido (#F4ECD8), ink café oscuro.
+                            Reduce el contraste duro del blanco para
+                            sesiones largas de lectura.
+     · Oscuro              — fondo azul institucional muy oscuro (azul-950
+                            /900), ink claro azulado. Titulares y acentos
+                            se invierten a blanco/dorado claro para
+                            mantener contraste sobre el navy oscuro.
+
+   Regla del manual: los azules y dorados de MARCA no cambian — solo
+   cambian estos tokens de chrome/UI (`--ui-*`). Las superficies "marca"
+   (banda del Simposio en la home, Footer, callouts azul-900 deliberados,
+   botones) quedan siempre azul-900/dorado sin importar el tema activo;
+   por eso esos componentes no consumen `--ui-*` en absoluto.
+   ===================================================================== */
+
+:root,
+[data-theme='light'] {
+  --ui-bg-page: #ffffff;
+  --ui-bg-surface: #ffffff;
+  --ui-bg-muted: var(--color-azul-50);
+  --ui-bg-subtle: var(--color-gris-50);
+  --ui-border: var(--color-gris-200);
+  --ui-border-strong: var(--color-gris-300);
+  --ui-ink-1: var(--color-azul-900); /* display + énfasis máximo */
+  --ui-ink-2: var(--color-gris-900); /* cuerpo */
+  --ui-ink-3: var(--color-gris-700); /* secundario */
+  --ui-ink-4: var(--color-gris-600); /* terciario */
+  --ui-display-ink: var(--color-azul-900); /* titulares Cinzel */
+  --ui-accent-ink: var(--color-dorado-700); /* eyebrows, roles, acentos */
+  --ui-link: var(--color-azul-700);
+  --ui-link-hover: var(--color-azul-800);
+  --ui-shadow-1: 0 1px 2px rgba(13, 59, 102, 0.06);
+  --ui-shadow-2: 0 2px 8px rgba(13, 59, 102, 0.08);
+  --ui-shadow-3: 0 8px 24px rgba(13, 59, 102, 0.1);
+  --ui-hero-gradient: linear-gradient(180deg, #fff 0%, var(--color-azul-50) 100%);
+  --ui-header-bg: rgba(255, 255, 255, 0.92);
+}
+
+[data-theme='sepia'] {
+  --ui-bg-page: #f4ecd8; /* papel crema cálido */
+  --ui-bg-surface: #faf3dc; /* card */
+  --ui-bg-muted: #efe4c9;
+  --ui-bg-subtle: #ecdfbf;
+  --ui-border: #dbc9a0;
+  --ui-border-strong: #c5ae7e;
+  --ui-ink-1: #2b1f12;
+  --ui-ink-2: #3d2e1e;
+  --ui-ink-3: #5a4630;
+  --ui-ink-4: #7a6647;
+  --ui-display-ink: var(--color-azul-900); /* navy sobre crema lee espectacular */
+  --ui-accent-ink: #8c6b2f;
+  --ui-link: var(--color-azul-800);
+  --ui-link-hover: var(--color-azul-900);
+  --ui-shadow-1: 0 1px 2px rgba(60, 40, 20, 0.08);
+  --ui-shadow-2: 0 2px 8px rgba(60, 40, 20, 0.1);
+  --ui-shadow-3: 0 8px 24px rgba(60, 40, 20, 0.14);
+  --ui-hero-gradient: linear-gradient(180deg, #f4ecd8 0%, #efe4c9 100%);
+  --ui-header-bg: rgba(244, 236, 216, 0.92);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --ui-bg-page: #06203c; /* azul-950 */
+  --ui-bg-surface: #0a2e50; /* azul-900 */
+  --ui-bg-muted: #0d3b66; /* azul-800 */
+  --ui-bg-subtle: #0a2e50;
+  --ui-border: rgba(255, 255, 255, 0.1);
+  --ui-border-strong: rgba(255, 255, 255, 0.18);
+  --ui-ink-1: #ffffff;
+  --ui-ink-2: #d2dde8; /* azul-200 */
+  --ui-ink-3: #a8bfd3; /* azul-300 */
+  --ui-ink-4: #7a9dbe; /* azul-400 */
+  --ui-display-ink: #ffffff; /* navy ilegible sobre navy → blanco */
+  --ui-accent-ink: var(--color-dorado-400);
+  --ui-link: var(--color-dorado-300);
+  --ui-link-hover: var(--color-dorado-200);
+  --ui-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --ui-shadow-2: 0 2px 12px rgba(0, 0, 0, 0.35);
+  --ui-shadow-3: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --ui-hero-gradient: linear-gradient(180deg, #06203c 0%, #0a2e50 100%);
+  --ui-header-bg: rgba(10, 46, 80, 0.85);
+}
+
 /* --- Baseline de elementos ---------------------------------------------- */
 html {
-  background: var(--bg-base);
+  background: var(--ui-bg-page);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   font-family: var(--font-body);
-  color: var(--fg-2);
-  background: var(--bg-base);
+  color: var(--ui-ink-2);
+  background: var(--ui-bg-page);
   font-weight: 400;
+  transition:
+    background var(--motion-slow) var(--easing-standard),
+    color var(--motion-slow) var(--easing-standard);
 }
 
 h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  color: var(--fg-1);
+  color: var(--ui-display-ink);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -217,12 +305,12 @@ h4,
 h5,
 h6 {
   font-family: var(--font-body);
-  color: var(--fg-1);
+  color: var(--ui-ink-1);
   font-weight: 600;
 }
 
 a {
-  color: var(--fg-link);
+  color: var(--ui-link);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
@@ -231,7 +319,7 @@ a {
 }
 
 a:hover {
-  color: var(--fg-link-hover);
+  color: var(--ui-link-hover);
   text-decoration-color: var(--color-dorado-700);
 }
 
@@ -242,6 +330,34 @@ a:hover {
 }
 
 ::selection {
+  /* Fijo en los 3 temas: el resaltado dorado claro siempre necesita tinta
+     azul-900 encima, sea cual sea el tema activo (no usa --ui-ink-1
+     porque en oscuro ese token es blanco — ilegible sobre dorado claro). */
   background: var(--color-dorado-200);
-  color: var(--fg-1);
+  color: var(--color-azul-900);
+}
+
+/* --- Movimiento reducido -------------------------------------------------
+   `prefers-reduced-motion` desactiva la transición de color/fondo del
+   cambio de tema (y cualquier otra transición decorativa de esta hoja),
+   sin afectar la funcionalidad. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* --- Swap de logo por tema (Ola 6) --------------------------------------
+   El isotipo azul (`logo-theme-light`) se usa en claro y sepia; en oscuro
+   el azul es casi invisible sobre el fondo azul-950, así que se muestra la
+   versión blanca (`logo-theme-dark`). Toggle por CSS, sin JS. */
+.logo-theme-dark {
+  display: none;
+}
+[data-theme='dark'] .logo-theme-light {
+  display: none;
+}
+[data-theme='dark'] .logo-theme-dark {
+  display: inline-block;
 }

@@ -124,7 +124,7 @@ export function ButtonTerciario({ inverted = false, ...props }: ButtonTerciarioP
       variantClassName={
         inverted
           ? 'border-white/70 bg-transparent text-white hover:bg-white/10'
-          : 'border-azul-800 bg-transparent text-azul-800 hover:bg-azul-50'
+          : 'border-[color:var(--ui-display-ink)] bg-transparent text-[color:var(--ui-display-ink)] hover:bg-[color:var(--ui-bg-muted)]'
       }
     />
   )
@@ -143,7 +143,7 @@ export interface LinkArrowProps {
 export function LinkArrow({ children, href, onClick, className, invert = false }: LinkArrowProps) {
   const classes = joinClasses(
     'group inline-flex items-center gap-2.5 border-b border-dorado-600 pb-[3px] text-[11px] font-semibold uppercase tracking-[0.22em] no-underline outline-none transition-colors duration-[var(--motion-base)] hover:border-dorado-700 focus-visible:shadow-[var(--shadow-focus)]',
-    invert ? 'text-dorado-400' : 'text-azul-800',
+    invert ? 'text-dorado-400' : 'text-[color:var(--ui-link)]',
     className,
   )
 
