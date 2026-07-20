@@ -2,9 +2,18 @@
 
 > Cualquier sesión nueva de Claude Code retoma desde acá. Actualizar al cierre de cada sesión: qué se hizo, decisiones, pendientes, próximo paso exacto.
 
-**Última actualización:** 18 de julio de 2026 (sesión 2, cierre — Fase 1 ejecutada completa en 5 olas)
+**Última actualización:** 18 de julio de 2026 (sesión 2 — Fase 1 + iteración G1 con feedback de Emanuel)
 **Rama de trabajo:** `claude/ivujus-rebuild-planning-gvcf25`
-**Etapa:** ✅ G0 decidido · ✅ plan aprobado por Emanuel · ✅ **Fase 1 ejecutada (olas 1-5)** → ⏸️ **esperando gate G1** (aprobación visual de Emanuel sobre el preview de Vercel de la rama).
+**Etapa:** ✅ G0 decidido · ✅ plan aprobado · ✅ Fase 1 (olas 1-5) · ✅ **iteración G1 (olas 6-7)** aplicando el feedback de Emanuel → ⏸️ **re-revisión de gate G1** sobre el preview.
+
+## Iteración G1 (18-jul) — feedback de Emanuel sobre el primer preview
+
+Emanuel pidió 4 cosas; las 4 resueltas y verificadas con Chromium:
+- **Ola 6 — temas de lectura + cambio de idioma** (commits 692709a, 2a82bdd, 224c448): 3 temas (claro/sepia/oscuro) con tokens `--ui-*`, selectores de idioma (ES·EN·FR) y tema en el Header, script anti-flash. Superficies de marca (banda Simposio, footer, botones) fijas. **Bug sistémico corregido**: el baseline de elementos estaba sin `@layer` y pisaba las utilidades de Tailwind → todo enlace/botón tomaba color de link + subrayado (texto de botones invisible, peor en sepia). Movido a `@layer base`; verificado por estilos computados en los 3 temas.
+- **Ola 7 — responsive + imágenes** (commit c5a2b3a): Header con menú móvil accesible (hamburguesa, aria-expanded/controls, Esc, cierre al navegar, inert cuando cerrado) < 768px; a 768px+ intacto. Overflow horizontal eliminado — verificado scrollWidth == viewport a 360px y 414px en las 4 rutas (antes ~467). `<img>` → `next/image` con aspect-ratio + object-cover; `remotePatterns` sumados (ivujus.org.ar, infobae, defonline, revistaquorum). Fix extra en home: `min-w-0` en grid items + `break-words` en el h1.
+
+Nota menor pendiente de criterio de Emanuel: a 360px el h1 del hero parte "INVESTIGACIÓN" a mitad de palabra (tradeoff del display grande sin overflow) — se puede refinar con clamp responsivo si molesta.
+Sandbox: las imágenes hotlinkeadas dan 403 (red bloquea esos hosts); el `next/image` es correcto y cargará en producción, con fondo de token mientras tanto.
 
 ## Fase 1 ejecutada (18-jul, olas atómicas por Sonnet, verificadas por el orquestador)
 
