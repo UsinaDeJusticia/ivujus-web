@@ -273,7 +273,15 @@
   --ui-header-bg: rgba(10, 46, 80, 0.85);
 }
 
-/* --- Baseline de elementos ---------------------------------------------- */
+/* --- Baseline de elementos ----------------------------------------------
+   En @layer base para que las utilidades de Tailwind (capa `utilities`,
+   posterior) ganen sobre estos defaults de elemento. Sin la capa, reglas
+   como `a { color }` — al estar sin encapar — pisaban en la cascada a
+   clases como `text-white`/`no-underline`, dejando el texto de los botones
+   (que son <a>) invisible, sobre todo en sepia. Los bloques de tokens
+   (:root, [data-theme]) y las reglas que DEBEN ganar (swap de logo,
+   prefers-reduced-motion) quedan fuera de la capa a propósito. */
+@layer base {
 html {
   background: var(--ui-bg-page);
   -webkit-font-smoothing: antialiased;
@@ -336,6 +344,7 @@ a:hover {
   background: var(--color-dorado-200);
   color: var(--color-azul-900);
 }
+} /* fin @layer base */
 
 /* --- Movimiento reducido -------------------------------------------------
    `prefers-reduced-motion` desactiva la transición de color/fondo del
