@@ -21,6 +21,9 @@ export interface HeaderNavItem {
 export interface HeaderCta {
   label: string
   href: string
+  /** Ej.: '_blank' para el CTA "Acceder al Campus", que apunta a un dominio externo. */
+  target?: string
+  rel?: string
 }
 
 export interface HeaderProps {
@@ -181,7 +184,7 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta, local
           ].join(' ')}
         >
           {cta ? (
-            <ButtonSecundario href={cta.href} size="sm">
+            <ButtonSecundario href={cta.href} target={cta.target} rel={cta.rel} size="sm">
               {cta.label}
             </ButtonSecundario>
           ) : null}
@@ -258,6 +261,8 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta, local
             {cta ? (
               <ButtonSecundario
                 href={cta.href}
+                target={cta.target}
+                rel={cta.rel}
                 size="sm"
                 className="self-start"
                 onClick={() => setMobileOpen(false)}

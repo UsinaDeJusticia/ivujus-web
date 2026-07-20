@@ -49,12 +49,15 @@ type HomeCopy = {
 // es un link externo directo al alta pública.
 const PERFIT_SUBSCRIBE_URL = 'https://optin.myperfit.com/subscribe/usinadejusticia/RUknaImy';
 
-// Los 5 accesos institucionales apuntan únicamente a rutas que ya existen
+// Los 6 accesos institucionales apuntan únicamente a rutas que ya existen
 // (ver docs/CLAUDE.md, "Estado actual de frontend y migracion"). Los cuerpos
 // en español son copia verbatim de `institutoData.intro` / `institutoData.
-// sections` (src/lib/instituto.ts) y del card "Simposios" que ya traía el
-// diccionario anterior de esta página; EN/FR son traducción fiel de esos
-// mismos textos, no contenido nuevo.
+// sections` (src/lib/instituto.ts), de `formacionHubData` (src/lib/
+// formacion.ts) y del card "Simposios" que ya traía el diccionario anterior
+// de esta página; EN/FR son traducción fiel de esos mismos textos, no
+// contenido nuevo. La card "Formación" se había quitado en una ola previa
+// porque la ruta todavía no existía; se restaura ahora que
+// /formacion está implementada.
 const copy: Record<Locale, HomeCopy> = {
   es: {
     hero: {
@@ -81,6 +84,11 @@ const copy: Record<Locale, HomeCopy> = {
           title: 'Instituto',
           body: 'El IVUJUS articula investigación, formación, producción editorial y cooperación internacional en torno a la victimología, el derecho victimal y los derechos de las víctimas.',
           href: '/instituto',
+        },
+        {
+          title: 'Formación',
+          body: 'Diplomatura en Victimología y leyes de víctimas, y archivo de ciclos, jornadas y capacitaciones del Instituto.',
+          href: '/formacion',
         },
         {
           title: 'Consejo directivo',
@@ -138,6 +146,11 @@ const copy: Record<Locale, HomeCopy> = {
           href: '/instituto',
         },
         {
+          title: 'Training',
+          body: "Victimology and victims'-law diploma program, plus the archive of the Institute's training cycles, academic days, and workshops.",
+          href: '/formacion',
+        },
+        {
           title: 'Governing board',
           body: "Profiles, roles, and institutional record of the Institute's leadership.",
           href: '/instituto/consejo-directivo',
@@ -191,6 +204,11 @@ const copy: Record<Locale, HomeCopy> = {
           title: 'Institut',
           body: "L'IVUJUS articule recherche, formation, production éditoriale et coopération internationale autour de la victimologie, du droit victimal et des droits des victimes.",
           href: '/instituto',
+        },
+        {
+          title: 'Formation',
+          body: "Diplôme en victimologie et droit des victimes, et archive des cycles, journées et formations de l'Institut.",
+          href: '/formacion',
         },
         {
           title: 'Conseil directeur',

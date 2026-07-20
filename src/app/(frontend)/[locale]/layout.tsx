@@ -4,22 +4,45 @@ import { Cinzel, Montserrat } from 'next/font/google';
 
 import { Header, type HeaderNavItem } from '@/components/layout/Header';
 import { Footer, type FooterColumn } from '@/components/layout/Footer';
+import { CAMPUS_VIRTUAL_URL } from '@/lib/formacion';
 
 const LOCALES = ['es', 'en', 'fr'] as const;
 type Locale = (typeof LOCALES)[number];
 
 // Labels de navegación verificados contra el diccionario `copy` de
 // [locale]/page.tsx (quickLinks/cards), para no introducir una segunda
-// traducción divergente de las mismas dos palabras. Solo Instituto y
-// Simposios: son las únicas dos ramas con rutas reales navegables (ver
-// docs/CLAUDE.md, "Estado actual de frontend y migracion"). Enlaces a
-// /formacion, /publicaciones, /novedades, /red, /indice-legislativo, etc.
-// existen en el diccionario de la home pero no tienen ruta implementada
-// todavía — no se agregan acá para no romper la navegación.
-const NAV_COPY: Record<Locale, { instituto: string; simposios: string; navegacion: string }> = {
-  es: { instituto: 'Instituto', simposios: 'Simposios', navegacion: 'Navegación' },
-  en: { instituto: 'Institute', simposios: 'Symposiums', navegacion: 'Navigation' },
-  fr: { instituto: 'Institut', simposios: 'Symposiums', navegacion: 'Navigation' },
+// traducción divergente de las mismas palabras. Instituto, Formación y
+// Simposios: las tres ramas con rutas reales navegables (ver
+// docs/CLAUDE.md, "Estado actual de frontend y migracion", actualizado en
+// la ola Formación con las rutas de src/lib/formacion.ts). Enlaces a
+// /publicaciones, /novedades, /red, /indice-legislativo, etc. existen en el
+// diccionario de la home pero no tienen ruta implementada todavía — no se
+// agregan acá para no romper la navegación.
+const NAV_COPY: Record<
+  Locale,
+  { instituto: string; formacion: string; simposios: string; navegacion: string; accederCampus: string }
+> = {
+  es: {
+    instituto: 'Instituto',
+    formacion: 'Formación',
+    simposios: 'Simposios',
+    navegacion: 'Navegación',
+    accederCampus: 'Acceder al Campus',
+  },
+  en: {
+    instituto: 'Institute',
+    formacion: 'Training',
+    simposios: 'Symposiums',
+    navegacion: 'Navigation',
+    accederCampus: 'Access the Campus',
+  },
+  fr: {
+    instituto: 'Institut',
+    formacion: 'Formation',
+    simposios: 'Symposiums',
+    navegacion: 'Navigation',
+    accederCampus: 'Accéder au Campus',
+  },
 };
 
 // Tagline y nombre institucional del footer: tomados verbatim del manual
@@ -68,6 +91,7 @@ export default async function LocaleLayout({
 
   const navItems: HeaderNavItem[] = [
     { label: nav.instituto, href: `${homeHref}/instituto` },
+    { label: nav.formacion, href: `${homeHref}/formacion` },
     { label: nav.simposios, href: `${homeHref}/simposios` },
   ];
 
@@ -96,10 +120,13 @@ export default async function LocaleLayout({
           homeHref={homeHref}
           items={navItems}
           locale={locale}
-          // Sin CTA de "Acceder al Campus": la URL del campus virtual
-          // (usinadejusticiacampus.org.ar según el design system, pero no
-          // confirmada por Jair para este sitio) todavía no está aprobada.
-          // Agregar `cta` acá en cuanto se confirme el link real.
+          // CTA "Acceder al Campus": URL tomada de
+          // docs/reference/design-system-oficial/README.md ("Superficies del
+          // producto"), la misma que usa src/lib/formacion.ts para el CTA de
+          // /formacion/diplomatura. Confirmable con Jair antes de darla por
+          // definitiva para prensa/redes; no bloquea mostrarla en el sitio
+          // porque ya es la fuente oficial disponible.
+          cta={{ label: nav.accederCampus, href: CAMPUS_VIRTUAL_URL, target: '_blank', rel: 'noreferrer' }}
         />
         {children}
         <Footer
