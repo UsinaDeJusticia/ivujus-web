@@ -68,12 +68,16 @@ export const diplomaturaData: Diplomatura = {
   // material institucional del IVUJUS.
   descripcion:
     'Nuestra propuesta de capacitación profesional se orienta a que el cursante adquiera un exhaustivo conocimiento acerca de las leyes de víctimas vigentes hasta el momento en el país, así como también la legislación internacional que protege los derechos humanos de las víctimas, en el contexto de la Victimología, una disciplina científica en constante evolución.',
-  // Contadores en vivo de la página `campus-virtual` (widgets de Elementor),
-  // consultados el 2026-07-20. Se muestran tal cual, sin interpretar por qué
-  // "Certificados" figura en 0.
+  // Contadores. `inscriptos` (500) y `valoracion` (9,7 de 10) provienen de
+  // los widgets en vivo de la página `campus-virtual` (Elementor), consultados
+  // el 2026-07-20.
+  // EXCEPCIÓN EDITORIAL: `certificados` se fija en 500 por decisión de Emanuel
+  // (20-jul), a revisar con el equipo. ANULA de forma deliberada el valor real
+  // de la fuente viva, que es 0. Se documenta explícitamente para no disfrazar
+  // el override como dato de fuente (regla "nunca inventar contenido").
   metricas: {
     inscriptos: 500,
-    certificados: 0,
+    certificados: 500,
     valoracion: '9,7 de 10',
   },
   // Testimonios anónimos reales extraídos del widget de reseñas de la misma
