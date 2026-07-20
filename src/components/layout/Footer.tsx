@@ -64,11 +64,14 @@ export function Footer({
         >
           <div className="flex flex-col gap-[18px]">
             <Link href={homeHref} className="self-start">
+              {/* Arte blanco transparente (única versión sin fondo opaco):
+                  se ve limpio sobre el navy del footer, sin recuadro.
+                  `negativo.png` traía su propio recuadro blanco opaco. */}
               <Image
-                src="/logos/logo-ivujus-negativo.png"
+                src="/logos/logo-ivujus-mark-white.png"
                 alt="IVUJUS"
                 width={270}
-                height={180}
+                height={220}
                 className="h-24 w-auto"
               />
             </Link>

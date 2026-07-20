@@ -357,12 +357,25 @@ a:hover {
   }
 }
 
-/* --- Swap de logo por tema (Ola 6) --------------------------------------
-   El isotipo azul (`logo-theme-light`) se usa en claro y sepia; en oscuro
-   el azul es casi invisible sobre el fondo azul-950, así que se muestra la
-   versión blanca (`logo-theme-dark`). Toggle por CSS, sin JS. */
+/* --- Swap de logo por tema --------------------------------------
+   El isotipo a color (`logo-theme-light`) se usa en claro y sepia; en
+   oscuro el azul es casi invisible sobre el fondo azul-950, así que se
+   muestra la versión blanca transparente (`logo-theme-dark`).
+
+   Los assets a color (mark.png, etc.) tienen FONDO BLANCO OPACO — no
+   transparente. Sin tratamiento, ese blanco se ve como un recuadro sobre
+   crema (sepia) u oscuro. Solución del brand book (UI kit de referencia,
+   HeroSection/Header con `mixBlendMode:'multiply'`): `mix-blend-mode:
+   multiply` funde el blanco del logo contra cualquier superficie clara
+   (blanco o crema), dejando solo el arte navy + rayos dorados, sin
+   recuadro. En oscuro no aplica multiply: se usa el arte blanco
+   transparente. */
+.logo-theme-light {
+  mix-blend-mode: multiply;
+}
 .logo-theme-dark {
   display: none;
+  mix-blend-mode: normal;
 }
 [data-theme='dark'] .logo-theme-light {
   display: none;

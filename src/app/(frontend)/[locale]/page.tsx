@@ -269,6 +269,10 @@ export default async function HomePage({
             </div>
           </div>
 
+          {/* Logo focal con swap por tema (mismo patrón que el Header): en
+              claro/sepia el arte a color con mix-blend-mode:multiply (funde
+              el fondo blanco opaco del asset contra la superficie clara); en
+              oscuro la versión blanca transparente. Ver globals.css. */}
           <div className="flex justify-center">
             <Image
               src="/logos/logo-ivujus-mark.png"
@@ -276,7 +280,15 @@ export default async function HomePage({
               width={360}
               height={293}
               priority
-              className="h-auto w-full max-w-[300px]"
+              className="logo-theme-light h-auto w-full max-w-[300px]"
+            />
+            <Image
+              src="/logos/logo-ivujus-mark-white.png"
+              alt="IVUJUS"
+              width={360}
+              height={293}
+              priority
+              className="logo-theme-dark h-auto w-full max-w-[300px]"
             />
           </div>
         </div>
