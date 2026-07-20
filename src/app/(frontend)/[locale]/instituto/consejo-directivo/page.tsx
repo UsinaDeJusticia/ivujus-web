@@ -41,15 +41,15 @@ export default function InstituteBoardPage() {
   };
 
   return (
-    <main className="bg-white">
+    <main className="bg-[color:var(--ui-bg-page)]">
       <script type="application/ld+json" dangerouslySetInnerHTML={buildJsonLdScript(jsonLd)} />
       <div className="mx-auto max-w-[var(--container-default)] space-y-10 px-6 py-16 sm:px-10">
-        <header className="max-w-3xl space-y-4 border-b border-gris-200 pb-8">
+        <header className="max-w-3xl space-y-4 border-b border-[color:var(--ui-border)] pb-8">
           <Eyebrow>Instituto / Consejo directivo</Eyebrow>
           <h1 className="text-balance text-[length:clamp(30px,4.5vw,48px)]">
             Conducción institucional del IVUJUS.
           </h1>
-          <p className="text-pretty text-lg leading-[1.7] text-gris-700">
+          <p className="text-pretty text-lg leading-[1.7] text-[color:var(--ui-ink-3)]">
             Perfiles de la dirección, la coordinación académica y las áreas institucionales que sostienen el
             instituto.
           </p>
@@ -59,7 +59,7 @@ export default function InstituteBoardPage() {
           {institutoData.consejoDirectivo.map((person) => (
             <article
               key={person.slug}
-              className="rounded-md border border-gris-200 bg-white p-6 shadow-[var(--shadow-1)]"
+              className="rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-6 shadow-[var(--shadow-1)]"
             >
               <div className="flex gap-4">
                 <img src={person.image} alt={person.name} className="h-20 w-20 rounded-full object-cover" />
@@ -67,11 +67,11 @@ export default function InstituteBoardPage() {
                   <h2 className="text-[length:var(--text-lg)] leading-[1.25] tracking-[0.02em]">
                     {person.name}
                   </h2>
-                  <p className="text-sm font-semibold text-dorado-700">{person.role}</p>
-                  <p className="text-sm leading-6 text-gris-700">{person.summary}</p>
+                  <p className="text-sm font-semibold text-[color:var(--ui-accent-ink)]">{person.role}</p>
+                  <p className="text-sm leading-6 text-[color:var(--ui-ink-3)]">{person.summary}</p>
                 </div>
               </div>
-              <p className="mt-5 border-t border-gris-200 pt-4 text-sm leading-7 text-gris-700">
+              <p className="mt-5 border-t border-[color:var(--ui-border)] pt-4 text-sm leading-7 text-[color:var(--ui-ink-3)]">
                 {person.bio}
               </p>
             </article>

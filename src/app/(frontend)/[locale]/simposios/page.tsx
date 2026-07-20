@@ -22,7 +22,7 @@ export async function generateMetadata({
 
 export default function SymposiumIndexPage() {
   return (
-    <main className="bg-white">
+    <main className="bg-[color:var(--ui-bg-page)]">
       <div className="mx-auto max-w-[var(--container-default)] space-y-14 px-6 py-16 sm:px-10">
         <SectionHeader
           eyebrow="Simposios"
@@ -31,7 +31,7 @@ export default function SymposiumIndexPage() {
         />
 
         <a
-          className="group relative grid gap-8 overflow-hidden rounded-md border border-gris-200 bg-white p-8 shadow-[var(--shadow-1)] transition-shadow duration-[var(--motion-base)] ease-[var(--easing-standard)] hover:shadow-[var(--shadow-3)] lg:grid-cols-[minmax(0,1fr)_18rem]"
+          className="group relative grid gap-8 overflow-hidden rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-8 shadow-[var(--shadow-1)] transition-shadow duration-[var(--motion-base)] ease-[var(--easing-standard)] hover:shadow-[var(--shadow-3)] lg:grid-cols-[minmax(0,1fr)_18rem]"
           href="./simposios/2026-buenos-aires"
         >
           <span
@@ -41,20 +41,20 @@ export default function SymposiumIndexPage() {
 
           <div>
             <Eyebrow>{simposio2026.dates}</Eyebrow>
-            <h2 className="mt-4 max-w-2xl text-balance text-[length:clamp(26px,3.2vw,36px)] transition-colors duration-[var(--motion-fast)] group-hover:text-azul-700">
+            <h2 className="mt-4 max-w-2xl text-balance text-[length:clamp(26px,3.2vw,36px)] transition-colors duration-[var(--motion-fast)] group-hover:text-[color:var(--ui-link)]">
               {simposio2026.title}
             </h2>
-            <p className="mt-3 max-w-3xl text-base leading-7 text-gris-700">
+            <p className="mt-3 max-w-3xl text-base leading-7 text-[color:var(--ui-ink-3)]">
               {simposio2026.subtitle}. Declaración de Buenos Aires, programa por jornadas, videos y cobertura
               en medios nacionales.
             </p>
           </div>
 
-          <div className="space-y-3 border-t border-gris-200 pt-4 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
+          <div className="space-y-3 border-t border-[color:var(--ui-border)] pt-4 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
             {simposio2026.highlights.map((item) => (
               <div
                 key={item}
-                className="border-b border-gris-200 pb-3 text-sm leading-6 text-azul-900 last:border-b-0"
+                className="border-b border-[color:var(--ui-border)] pb-3 text-sm leading-6 text-[color:var(--ui-display-ink)] last:border-b-0"
               >
                 {item}
               </div>

@@ -37,22 +37,22 @@ function PersonCard({
   country?: string;
 }) {
   return (
-    <details className="group rounded-md border border-gris-200 bg-white p-5 shadow-[var(--shadow-1)] transition-shadow duration-[var(--motion-base)] ease-[var(--easing-standard)] open:shadow-[var(--shadow-2)]">
+    <details className="group rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-5 shadow-[var(--shadow-1)] transition-shadow duration-[var(--motion-base)] ease-[var(--easing-standard)] open:shadow-[var(--shadow-2)]">
       <summary className="cursor-pointer list-none">
         <div className="flex gap-4">
           <img src={image} alt={name} className="h-20 w-20 rounded-full object-cover" />
           <div className="space-y-1">
             <h3 className="text-[19px] leading-[1.25] tracking-[0.02em]">{name}</h3>
-            <p className="text-sm font-semibold text-dorado-700">{role}</p>
+            <p className="text-sm font-semibold text-[color:var(--ui-accent-ink)]">{role}</p>
             {country ? (
-              <p className="text-[11px] uppercase tracking-[0.18em] text-gris-600">{country}</p>
+              <p className="text-[11px] uppercase tracking-[0.18em] text-[color:var(--ui-ink-4)]">{country}</p>
             ) : null}
-            <p className="pt-1 text-sm leading-6 text-gris-700">{summary}</p>
+            <p className="pt-1 text-sm leading-6 text-[color:var(--ui-ink-3)]">{summary}</p>
           </div>
         </div>
       </summary>
 
-      <p className="mt-5 border-t border-gris-200 pt-4 text-sm leading-7 text-gris-700">{bio}</p>
+      <p className="mt-5 border-t border-[color:var(--ui-border)] pt-4 text-sm leading-7 text-[color:var(--ui-ink-3)]">{bio}</p>
     </details>
   );
 }
@@ -73,15 +73,15 @@ export default function InstitutePage() {
   };
 
   return (
-    <main className="bg-white">
+    <main className="bg-[color:var(--ui-bg-page)]">
       <script type="application/ld+json" dangerouslySetInnerHTML={buildJsonLdScript(jsonLd)} />
       <div className="mx-auto max-w-[var(--container-default)] space-y-24 px-6 py-16 sm:px-10">
-        <header className="max-w-4xl space-y-5 border-b border-gris-200 pb-14">
+        <header className="max-w-4xl space-y-5 border-b border-[color:var(--ui-border)] pb-14">
           <Eyebrow>Instituto</Eyebrow>
           <h1 className="max-w-4xl text-balance text-[length:clamp(34px,5vw,60px)]">
             {institutoData.title}
           </h1>
-          <p className="max-w-3xl text-pretty text-lg leading-[1.7] text-gris-700">
+          <p className="max-w-3xl text-pretty text-lg leading-[1.7] text-[color:var(--ui-ink-3)]">
             {institutoData.intro}
           </p>
         </header>
@@ -107,10 +107,10 @@ export default function InstitutePage() {
             {institutoData.purposes.map((purpose) => (
               <article
                 key={purpose.title}
-                className="rounded-md border border-gris-200 bg-white p-6 shadow-[var(--shadow-1)]"
+                className="rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-6 shadow-[var(--shadow-1)]"
               >
                 <h3 className="text-[19px] leading-[1.25] tracking-[0.02em]">{purpose.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-gris-700">{purpose.body}</p>
+                <p className="mt-4 text-sm leading-7 text-[color:var(--ui-ink-3)]">{purpose.body}</p>
               </article>
             ))}
           </div>
@@ -133,13 +133,13 @@ export default function InstitutePage() {
           <div className="space-y-8">
             <SectionHeader eyebrow="Estatuto" title="Base institucional y objetivos del instituto." />
 
-            <div className="rounded-md border border-gris-200 bg-white p-6 shadow-[var(--shadow-1)] sm:p-8">
-              <h3 className="text-[length:var(--text-lg)] font-semibold uppercase tracking-[var(--tracking-wide)] text-azul-900">
+            <div className="rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-6 shadow-[var(--shadow-1)] sm:p-8">
+              <h3 className="text-[length:var(--text-lg)] font-semibold uppercase tracking-[var(--tracking-wide)] text-[color:var(--ui-display-ink)]">
                 {institutoData.estatuto.heading}
               </h3>
               <div className="mt-5 space-y-4">
                 {institutoData.estatuto.articles.map((article) => (
-                  <p key={article} className="text-sm leading-7 text-gris-700">
+                  <p key={article} className="text-sm leading-7 text-[color:var(--ui-ink-3)]">
                     {article}
                   </p>
                 ))}

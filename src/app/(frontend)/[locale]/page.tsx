@@ -232,20 +232,21 @@ export default async function HomePage({
   const content = copy[(locale as Locale) ?? 'es'] ?? copy.es;
 
   return (
-    <main className="bg-white">
-      {/* Hero institucional — fondo blanco con gradiente sutilísimo hacia
-          azul-50, tal como pauta el manual (VISUAL FOUNDATIONS, Backgrounds). */}
-      <section className="bg-[linear-gradient(180deg,var(--color-blanco),var(--color-azul-50))]">
+    <main className="bg-[color:var(--ui-bg-page)]">
+      {/* Hero institucional — fondo con gradiente sutilísimo, tematizado por
+          Ola 6 vía --ui-hero-gradient (cambia de blanco→azul-50 en claro a
+          navy oscuro en oscuro; ver globals.css). */}
+      <section className="bg-[image:var(--ui-hero-gradient)]">
         <div className="mx-auto grid max-w-[var(--container-default)] gap-16 px-6 py-24 sm:px-10 lg:grid-cols-[1.35fr_1fr] lg:items-center lg:py-28">
           <div className="space-y-7">
             <Eyebrow>{content.hero.eyebrow}</Eyebrow>
             <h1 className="max-w-3xl text-balance text-[length:clamp(40px,5.2vw,64px)] leading-[1.08]">
               {content.hero.title}
             </h1>
-            <p className="max-w-[52ch] text-pretty text-lg leading-[1.7] text-gris-700">
+            <p className="max-w-[52ch] text-pretty text-lg leading-[1.7] text-[color:var(--ui-ink-3)]">
               {content.hero.lead}
             </p>
-            <p className="max-w-[40ch] border-l-2 border-dorado-600 pl-4 text-sm italic leading-[1.6] text-azul-700">
+            <p className="max-w-[40ch] border-l-2 border-dorado-600 pl-4 text-sm italic leading-[1.6] text-[color:var(--ui-link)]">
               {content.hero.tagline}
             </p>
             <div className="flex flex-wrap gap-4 pt-2">
@@ -337,13 +338,13 @@ export default async function HomePage({
       {/* Franja newsletter — suscripción real vía Perfit. El form propio con
           POST al proxy interno llega en Fase 3; por ahora, CTA como link
           externo directo al alta pública (ver constante PERFIT_SUBSCRIBE_URL). */}
-      <section className="bg-azul-50 py-24">
+      <section className="bg-[color:var(--ui-bg-muted)] py-24">
         <div className="mx-auto flex max-w-[var(--container-narrow)] flex-col items-center gap-6 px-6 text-center sm:px-10">
           <Eyebrow>{content.newsletter.eyebrow}</Eyebrow>
           <h2 className="max-w-[20ch] text-balance text-[length:clamp(28px,3.4vw,38px)]">
             {content.newsletter.title}
           </h2>
-          <p className="max-w-[54ch] text-pretty text-[15px] leading-[1.7] text-gris-700">
+          <p className="max-w-[54ch] text-pretty text-[15px] leading-[1.7] text-[color:var(--ui-ink-3)]">
             {content.newsletter.lead}
           </p>
           <ButtonPrincipal href={PERFIT_SUBSCRIBE_URL} target="_blank" rel="noreferrer noopener">
