@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 import { institutoData } from '@/lib/instituto';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
@@ -40,7 +41,15 @@ function PersonCard({
     <details className="group rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-5 shadow-[var(--shadow-1)] transition-shadow duration-[var(--motion-base)] ease-[var(--easing-standard)] open:shadow-[var(--shadow-2)]">
       <summary className="cursor-pointer list-none">
         <div className="flex gap-4">
-          <img src={image} alt={name} className="h-20 w-20 rounded-full object-cover" />
+          <div className="relative aspect-square h-20 w-20 shrink-0 overflow-hidden rounded-full bg-[color:var(--ui-bg-muted)]">
+            <Image
+              src={image}
+              alt={`Retrato de ${name}`}
+              fill
+              sizes="80px"
+              className="object-cover"
+            />
+          </div>
           <div className="space-y-1">
             <h3 className="text-[19px] leading-[1.25] tracking-[0.02em]">{name}</h3>
             <p className="text-sm font-semibold text-[color:var(--ui-accent-ink)]">{role}</p>

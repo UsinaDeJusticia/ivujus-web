@@ -238,9 +238,21 @@ export default async function HomePage({
           navy oscuro en oscuro; ver globals.css). */}
       <section className="bg-[image:var(--ui-hero-gradient)]">
         <div className="mx-auto grid max-w-[var(--container-default)] gap-16 px-6 py-24 sm:px-10 lg:grid-cols-[1.35fr_1fr] lg:items-center lg:py-28">
-          <div className="space-y-7">
+          {/* min-w-0: sin esto, el `inline-flex` (nowrap) de <Eyebrow> con el
+              texto largo del subtítulo institucional fuerza el ancho
+              intrínseco (max-content) de la columna única del grid en
+              mobile, desbordando el viewport — bug detectado en la
+              verificación de scroll horizontal de la Ola 7. */}
+          <div className="min-w-0 space-y-7">
             <Eyebrow>{content.hero.eyebrow}</Eyebrow>
-            <h1 className="max-w-3xl text-balance text-[length:clamp(40px,5.2vw,64px)] leading-[1.08]">
+            {/* break-words: a 360px el piso de la clamp (40px) más una
+                palabra larga en español ("investigación,") no entran en el
+                ancho de columna (312px) sin permitir el corte dentro de la
+                palabra — sin esto el h1 desborda el documento aunque su
+                propia caja (getBoundingClientRect) mida bien, porque el
+                overflow por defecto es visible. Detectado en la
+                verificación de scroll horizontal de la Ola 7. */}
+            <h1 className="max-w-3xl text-balance break-words text-[length:clamp(40px,5.2vw,64px)] leading-[1.08]">
               {content.hero.title}
             </h1>
             <p className="max-w-[52ch] text-pretty text-lg leading-[1.7] text-[color:var(--ui-ink-3)]">
@@ -274,7 +286,10 @@ export default async function HomePage({
           siempre, no cambia con tema), datos reales de src/lib/simposio2026.ts. */}
       <section className="bg-azul-900 text-white">
         <div className="mx-auto grid max-w-[var(--container-default)] gap-16 px-6 py-24 sm:px-10 lg:grid-cols-[1.4fr_1fr] lg:items-center">
-          <div className="space-y-6">
+          {/* min-w-0 por la misma razón que en el hero de arriba (ver
+              comentario ahí): protege este grid item de que un futuro
+              eyebrow largo repita el desborde en mobile. */}
+          <div className="min-w-0 space-y-6">
             <Eyebrow invert>{content.event.eyebrow}</Eyebrow>
             <h2 className="max-w-2xl text-balance text-[length:clamp(30px,4vw,46px)] leading-[1.15] text-white">
               {simposio2026.title}

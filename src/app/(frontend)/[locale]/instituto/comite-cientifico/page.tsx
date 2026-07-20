@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 import { institutoData } from '@/lib/instituto';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
@@ -62,7 +63,15 @@ export default function InstituteScientificCommitteePage() {
               className="rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-6 shadow-[var(--shadow-1)]"
             >
               <div className="flex gap-4">
-                <img src={person.image} alt={person.name} className="h-20 w-20 rounded-full object-cover" />
+                <div className="relative aspect-square h-20 w-20 shrink-0 overflow-hidden rounded-full bg-[color:var(--ui-bg-muted)]">
+                  <Image
+                    src={person.image}
+                    alt={`Retrato de ${person.name}`}
+                    fill
+                    sizes="80px"
+                    className="object-cover"
+                  />
+                </div>
                 <div className="space-y-1">
                   <h2 className="text-[length:var(--text-lg)] leading-[1.25] tracking-[0.02em]">
                     {person.name}

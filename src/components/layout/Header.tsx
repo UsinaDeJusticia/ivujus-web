@@ -39,8 +39,36 @@ export interface HeaderProps {
 // Umbral de scroll (px) a partir del cual el header pasa a su estado compacto.
 const SCROLL_THRESHOLD = 24
 
+// Copys del botón/menú móvil. Fuera del componente porque no dependen de
+// props que cambien entre renders; `locale` solo indexa este mapa.
+const MOBILE_MENU_LABELS: Record<string, { open: string; close: string; nav: string }> = {
+  es: { open: 'Abrir menú de navegación', close: 'Cerrar menú de navegación', nav: 'Menú' },
+  en: { open: 'Open navigation menu', close: 'Close navigation menu', nav: 'Menu' },
+  fr: { open: 'Ouvrir le menu de navigation', close: 'Fermer le menu de navigation', nav: 'Menu' },
+}
+
+const MOBILE_PANEL_ID = 'header-mobile-panel'
+
+function HamburgerIcon({ open }: { open: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      aria-hidden="true"
+    >
+      {open ? <path d="M5 5l14 14M19 5L5 19" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+    </svg>
+  )
+}
+
 export function Header({ homeHref = '/', subtitle, items, activeHref, cta, locale }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
     // La compactación en sí es funcional (no cosmética): se calcula siempre.
@@ -52,6 +80,19 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta, local
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    // Cierre con Esc: solo se registra mientras el panel está abierto.
+    if (!mobileOpen) return
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMobileOpen(false)
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [mobileOpen])
+
+  const menuLang = MOBILE_MENU_LABELS[locale ?? ''] ? (locale as string) : 'es'
+  const menuLabels = MOBILE_MENU_LABELS[menuLang]
 
   return (
     <header
@@ -108,7 +149,7 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta, local
         </Link>
 
         {items.length > 0 ? (
-          <nav aria-label="Principal" className="ml-auto flex items-center gap-7">
+          <nav aria-label="Principal" className="ml-auto hidden items-center gap-7 md:flex">
             {items.map((item) => {
               const isActive = item.href === activeHref
               return (
@@ -131,8 +172,14 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta, local
         ) : null}
 
         {/* Barra de controles: idioma + tema de lectura. Se agrupan a la
-            derecha; toman `ml-auto` si no hubo nav que ya lo empujara. */}
-        <div className={['flex items-center gap-4', items.length > 0 ? '' : 'ml-auto'].join(' ')}>
+            derecha; toman `ml-auto` si no hubo nav que ya lo empujara.
+            Debajo de `md` se ocultan acá y reaparecen en el panel móvil. */}
+        <div
+          className={[
+            'hidden items-center gap-4 md:flex',
+            items.length > 0 ? '' : 'md:ml-auto',
+          ].join(' ')}
+        >
           {cta ? (
             <ButtonSecundario href={cta.href} size="sm">
               {cta.label}
@@ -144,6 +191,88 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta, local
               <ThemeSwitcher locale={locale} />
             </>
           ) : null}
+        </div>
+
+        {/* Disparador del menú móvil: solo existe por debajo de `md`, donde
+            nav + controles de arriba quedan ocultos por falta de espacio
+            (ver diagnóstico Ola 7 — a 360px el header desbordaba ~467px). */}
+        {items.length > 0 || locale || cta ? (
+          <button
+            type="button"
+            className={[
+              'ml-auto flex h-9 w-9 items-center justify-center rounded-[var(--radius-sm)] md:hidden',
+              'text-[color:var(--ui-ink-2)] transition-colors duration-[var(--motion-fast)] ease-[var(--easing-standard)]',
+              'focus-visible:outline-none focus-visible:shadow-[var(--shadow-focus)]',
+            ].join(' ')}
+            aria-expanded={mobileOpen}
+            aria-controls={MOBILE_PANEL_ID}
+            aria-label={mobileOpen ? menuLabels.close : menuLabels.open}
+            onClick={() => setMobileOpen((open) => !open)}
+          >
+            <HamburgerIcon open={mobileOpen} />
+          </button>
+        ) : null}
+      </div>
+
+      {/* Panel móvil desplegable: vive dentro del <header> sticky y empuja
+          el contenido de la página hacia abajo al abrirse (no es un overlay
+          fijo), para que nunca tape contenido de forma inaccesible. Se
+          mantiene montado siempre y se anima con la técnica grid-rows
+          para poder tener transición + `inert` sin recalcular alturas. */}
+      <div
+        id={MOBILE_PANEL_ID}
+        aria-hidden={!mobileOpen}
+        inert={!mobileOpen}
+        className={[
+          'grid overflow-hidden border-[color:var(--ui-border)] md:hidden',
+          'transition-[grid-template-rows] duration-[var(--motion-base)] ease-[var(--easing-standard)] motion-reduce:transition-none',
+          mobileOpen ? 'grid-rows-[1fr] border-t' : 'grid-rows-[0fr]',
+        ].join(' ')}
+      >
+        <div className="min-h-0">
+          <div className="flex flex-col gap-6 px-8 py-6">
+            {items.length > 0 ? (
+              <nav aria-label={menuLabels.nav} className="flex flex-col gap-1">
+                {items.map((item) => {
+                  const isActive = item.href === activeHref
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={[
+                        'border-l-2 py-2 pl-4 text-[13px] font-semibold uppercase tracking-[0.18em] no-underline',
+                        'transition-colors duration-[var(--motion-fast)] ease-[var(--easing-standard)]',
+                        isActive
+                          ? 'border-dorado-600 text-[color:var(--ui-display-ink)]'
+                          : 'border-transparent text-[color:var(--ui-ink-3)] hover:text-[color:var(--ui-ink-1)]',
+                      ].join(' ')}
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                })}
+              </nav>
+            ) : null}
+
+            {cta ? (
+              <ButtonSecundario
+                href={cta.href}
+                size="sm"
+                className="self-start"
+                onClick={() => setMobileOpen(false)}
+              >
+                {cta.label}
+              </ButtonSecundario>
+            ) : null}
+
+            {locale ? (
+              <div className="flex flex-wrap items-center gap-4 border-t border-[color:var(--ui-border)] pt-5">
+                <LanguageSwitcher locale={locale} />
+                <ThemeSwitcher locale={locale} />
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
     </header>

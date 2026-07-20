@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import Image from 'next/image';
 
 import { simposio2026 } from '@/lib/simposio2026';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
@@ -219,11 +220,13 @@ export default function Symposium2026Page() {
                 rel="noreferrer"
                 className="group overflow-hidden rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] shadow-[var(--shadow-1)] transition-shadow duration-[var(--motion-base)] ease-[var(--easing-standard)] hover:shadow-[var(--shadow-3)]"
               >
-                <div className="h-48 overflow-hidden bg-[color:var(--ui-bg-subtle)]">
-                  <img
+                <div className="relative h-48 overflow-hidden bg-[color:var(--ui-bg-subtle)]">
+                  <Image
                     src={article.image}
                     alt={article.alt}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="space-y-2 p-4">
