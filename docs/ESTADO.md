@@ -109,12 +109,21 @@ Detalle completo en el plan de la sesión; resumen persistido acá:
 - **Fase 5 — Cutover (gate G5):** parkear Payload (sacar `withPayload`/`db.push` del build), DNS→Vercel, mudanza LMS, Search Console/Sentry, verificar 301.
 - **Diferido a v2 (sin contenido hoy):** `/red/*`, `/publicaciones/articulos`, glosario, análisis del índice legislativo, reactivación de Payload + pipeline de traducción.
 
-## Próximo paso exacto (sesión siguiente)
+## Fase 2 en curso
 
-⏸️ **Esperando gate G1** (visto bueno visual de Emanuel del preview con el fix del logo). Con ese OK:
-1. Arrancar **Fase 2** por la **ola de Formación** (mayor valor: recibe el contenido reservado de Usina y es destino de varios de los 22 redirects). Idealmente con el dominio del campus confirmado para el CTA.
-2. Si G1 pide ajustes → iterarlos antes de Fase 2.
-3. Cablear las 9 decisiones/insumos a medida que Emanuel los aporte (dominio campus, redes, `oea`, idioma novedades, parkeo Payload, proveedor email, texto legal, TAEDA, selección de galería).
+- ✅ **Gate G1 aprobado** por Emanuel (20-jul): "me gusta la vista del preview".
+- ✅ **Ola Formación** (commit `3bc3961`): rutas `/formacion`, `/formacion/diplomatura`, `/formacion/ciclos` (+ `[slug]`, 12 ciclos). Dataset `src/lib/formacion.ts`. CTA "Acceder al Campus" cableado a `usinadejusticiacampus.org.ar` (fuente: README del design system; confirmable con Jair). "Formación" sumado a nav/footer/home. Fidelidad auditada por el orquestador contra fuentes vivas: métricas (Inscriptos 500 / Certificados 0 / 9,7 de 10) y reseñas verbatim del WP `campus-virtual`; ciclos trazados a `posts-completos.md` con `source_wp_id`; faltantes marcados PENDIENTE (módulos de la diplomatura, mini-FAQ, un PDF histórico). Build/tsc verdes, responsive 360px OK, temas OK, logos sin recuadro.
+- ⚠️ **A criterio de Emanuel**: la métrica "Certificados 0" es real (está en la página viva) pero se muestra prominente; puede leerse como poco favorable. Mantener (fiel), ocultar o reemplazar por otra métrica — decisión pendiente.
+
+## Olas restantes de Fase 2 (próximo)
+1. **Novedades** (estructura `/novedades` + `[slug]`).
+2. **Publicaciones** mínimo v1: `/publicaciones/declaraciones/declaracion-de-buenos-aires` (texto en `simposio2026.ts`); evaluar `/publicaciones/libros` "Nuevos Paradigmas".
+3. **Contacto** (maqueta; envío real en Fase 3) y **Términos/Privacidad** (dep. texto legal).
+4. **Galería curada del Simposio** (dep. selección de fotos).
+5. **Bios individuales** `[slug]` (opcional).
+
+## Decisiones/insumos de Emanuel aún pendientes
+- Dominio campus (usado `usinadejusticiacampus.org.ar`, confirmar) · redes sociales (footer) · destino `oea` · idioma novedades v1 · parkeo Payload · proveedor email (Fase 3) · texto legal (contacto/terms) · TAEDA · selección galería · **métrica "Certificados 0"** (nueva, ver arriba).
 
 ## Hechos de referencia rápida
 
