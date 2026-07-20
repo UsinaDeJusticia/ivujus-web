@@ -100,11 +100,21 @@ Fue una **campaña camino a la OEA**, nada más. Su app (`victimas-derechos-app.
 6. **Parkear código Payload** en rama `payload-v2-parked` (recomendado) ¿ok?
 7. **Novedades en inglés v1**: ¿ES-only o traducción selectiva? (necesario en Fase 3).
 
+## Roadmap por fases hasta el lanzamiento v1 (aprobado por Emanuel 20-jul)
+
+Detalle completo en el plan de la sesión; resumen persistido acá:
+- **Fase 2 — Contenido v1 (gate G2):** rutas faltantes con contenido real. Olas: **Formación** (`/formacion`, `/formacion/diplomatura` [desarme de `campus-virtual` + páginas planas de Usina; CTA campus = dec. dominio], `/formacion/ciclos` + `[slug]` [~16 posts de Ciclos de Usina + `capacitacion-y-actividades`]; nuevo `src/lib/formacion.ts`); **Novedades** (estructura `/novedades` + `[slug]`); **Publicaciones** (`/publicaciones/declaraciones/declaracion-de-buenos-aires`, ya en `simposio2026.ts`; evaluar `/publicaciones/libros` "Nuevos Paradigmas"); **Contacto** y **Términos/Privacidad**; **galería curada del Simposio**; **cierre**: restaurar accesos en home/nav/footer. Opcional: bios `[slug]`.
+- **Fase 3 — WordPress headless + formularios (gate G3):** cliente REST del WP → `/novedades` con ISR; contacto (route handler + proveedor email); Perfit; fallback si el WP cae.
+- **Fase 4 — SEO/GEO + performance (gate G4):** robots/sitemap/llms.txt, builders JSON-LD tipados en `src/lib/seo.ts`, OG dinámicas, redirects internos + coordinar las 22 reglas de Usina con Jair; Lighthouse ≥90.
+- **Fase 5 — Cutover (gate G5):** parkear Payload (sacar `withPayload`/`db.push` del build), DNS→Vercel, mudanza LMS, Search Console/Sentry, verificar 301.
+- **Diferido a v2 (sin contenido hoy):** `/red/*`, `/publicaciones/articulos`, glosario, análisis del índice legislativo, reactivación de Payload + pipeline de traducción.
+
 ## Próximo paso exacto (sesión siguiente)
 
-1. Si G1 aprobado → **Fase 2 (contenido institucional completo)** en olas: (a) desarme de `capacitacion-y-actividades` → `/formacion/ciclos` y `campus-virtual` → `/formacion/diplomatura` (contenido real de las páginas vivas, ya relevado en `docs/MIGRATION-MATRIX.md`); (b) `contacto` y `terms-privacy`; (c) los 19 posts + 3 páginas de Usina (`docs/reference/usina-source-content/`) a sus rutas; (d) **galería curada del Simposio** (14 fotos en `wp-content/uploads/2026/04/`, decisión: curada); (e) restaurar en la home los accesos a las rutas nuevas a medida que existan.
+⏸️ **Esperando gate G1** (visto bueno visual de Emanuel del preview con el fix del logo). Con ese OK:
+1. Arrancar **Fase 2** por la **ola de Formación** (mayor valor: recibe el contenido reservado de Usina y es destino de varios de los 22 redirects). Idealmente con el dominio del campus confirmado para el CTA.
 2. Si G1 pide ajustes → iterarlos antes de Fase 2.
-3. Cablear pendientes 2-7 cuando Emanuel responda.
+3. Cablear las 9 decisiones/insumos a medida que Emanuel los aporte (dominio campus, redes, `oea`, idioma novedades, parkeo Payload, proveedor email, texto legal, TAEDA, selección de galería).
 
 ## Hechos de referencia rápida
 
