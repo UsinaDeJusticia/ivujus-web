@@ -121,12 +121,17 @@ Detalle completo en el plan de la sesión; resumen persistido acá:
 - **Mecanismo de lanzamiento aclarado** (corrige una respuesta previa imprecisa): desplegar código en Vercel SÍ se hace desde el entorno vía git (push a rama = preview; merge a `main` = producción pública). Lo único que NO puede hacer el agente: (a) ajustes de cuenta Vercel (protección, rama de producción, miembros) — dashboard de Emanuel; (b) el cutover DNS de `ivujus.org.ar` → Vercel, que es infra (Cloudflare/registrar), Fase 5. La rama de producción del proyecto es `main` (verificado: el push disparó `target:production`).
 - Flujo de trabajo: seguir desarrollando en `claude/ivujus-rebuild-planning-gvcf25`; re-mergear a `main` (ff) cuando haya avances para que el equipo los vea en `ivujus-web.vercel.app`.
 
-## Olas restantes de Fase 2 (próximo)
-1. **Novedades** (estructura `/novedades` + `[slug]`).
-2. **Publicaciones** mínimo v1: `/publicaciones/declaraciones/declaracion-de-buenos-aires` (texto en `simposio2026.ts`); evaluar `/publicaciones/libros` "Nuevos Paradigmas".
-3. **Contacto** (maqueta; envío real en Fase 3) y **Términos/Privacidad** (dep. texto legal).
-4. **Galería curada del Simposio** (dep. selección de fotos).
-5. **Bios individuales** `[slug]` (opcional).
+## Fase 2 — olas ejecutadas (todas en `main`, públicas en ivujus-web.vercel.app)
+- ✅ **Formación** (`3bc3961`): /formacion, /diplomatura, /ciclos +[slug].
+- ✅ **A · Novedades** (`f96ff84`): /novedades +[slug], 6 posts reales del WP (slugs limpios, imágenes destacadas).
+- ✅ **B · Contacto + Privacidad** (`56d5ae2`, worktree paralelo): /contacto (maqueta form, info@ivujus.org.ar; POST en Fase 3) + /terms-privacy (texto real del WP page 18848; EN/FR muestran ES con aviso, sin traducción jurídica).
+- ✅ **C · Publicaciones** (`c662c08`, worktree paralelo): /publicaciones hub + /declaraciones + declaracion-de-buenos-aires (de simposio2026.ts) + /libros "Nuevos Paradigmas" (posts WP 24509/24540, con fuente real).
+- ✅ **Integración** (`1eae1a2`): Publicaciones al nav; Contacto+Privacidad columna "Institucional" del footer; card Publicaciones en home (ES/EN/FR). Build+tsc verdes, 0 overflow 360px en las 6 rutas nuevas. B y C se hicieron en worktrees aislados en paralelo y se trajeron por cherry-pick (disjuntos, sin conflicto).
+
+## Olas restantes de Fase 2
+1. **E · Bios individuales** `[slug]` de consejo/comité (bajo esfuerzo; bios largas ya en instituto.ts) — en curso.
+2. **D · Galería curada del Simposio** — ⚠️ espera selección de fotos de Emanuel.
+Luego: gate G2.
 
 ## Decisiones/insumos de Emanuel aún pendientes
 - Dominio campus (usado `usinadejusticiacampus.org.ar`, confirmar) · redes sociales (footer) · destino `oea` · idioma novedades v1 · parkeo Payload · proveedor email (Fase 3) · texto legal (contacto/terms) · TAEDA · selección galería · **métrica "Certificados 0"** (nueva, ver arriba).
