@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { institutoData } from '@/lib/instituto';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
@@ -21,7 +22,13 @@ export async function generateMetadata({
   });
 }
 
-export default function InstituteBoardPage() {
+export default async function InstituteBoardPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -58,9 +65,10 @@ export default function InstituteBoardPage() {
 
         <div className="grid gap-6 lg:grid-cols-2">
           {institutoData.consejoDirectivo.map((person) => (
-            <article
+            <Link
               key={person.slug}
-              className="rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-6 shadow-[var(--shadow-1)]"
+              href={`/${locale}/instituto/consejo-directivo/${person.slug}`}
+              className="group block rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-6 no-underline shadow-[var(--shadow-1)] transition-shadow duration-[var(--motion-base)] ease-[var(--easing-standard)] hover:shadow-[var(--shadow-3)]"
             >
               <div className="flex gap-4">
                 <div className="relative aspect-square h-20 w-20 shrink-0 overflow-hidden rounded-full bg-[color:var(--ui-bg-muted)]">
@@ -73,7 +81,7 @@ export default function InstituteBoardPage() {
                   />
                 </div>
                 <div className="space-y-1">
-                  <h2 className="text-[length:var(--text-lg)] leading-[1.25] tracking-[0.02em]">
+                  <h2 className="text-[length:var(--text-lg)] leading-[1.25] tracking-[0.02em] transition-colors duration-[var(--motion-fast)] group-hover:text-[color:var(--ui-link)]">
                     {person.name}
                   </h2>
                   <p className="text-sm font-semibold text-[color:var(--ui-accent-ink)]">{person.role}</p>
@@ -83,7 +91,7 @@ export default function InstituteBoardPage() {
               <p className="mt-5 border-t border-[color:var(--ui-border)] pt-4 text-sm leading-7 text-[color:var(--ui-ink-3)]">
                 {person.bio}
               </p>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
