@@ -1,9 +1,13 @@
 import type { Metadata } from 'next';
 
 import { getNovedadesOrdenadas } from '@/lib/novedades';
-import { buildLocalizedMetadata } from '@/lib/seo';
-import { SectionHeader } from '@/components/ui/SectionHeader';
+import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
+import { Eyebrow } from '@/components/ui/SectionHeader';
 import { ContentCard } from '@/components/cards/ContentCard';
+
+// Sin builder dedicado en src/lib/seo.ts (no existe buildBreadcrumbJsonLd
+// todavía); mismo patrón manual + buildJsonLdScript que en publicaciones/.
+const HOME_LABEL: Record<string, string> = { es: 'Inicio', en: 'Home', fr: 'Accueil' };
 
 // Metadata en español fijo para las 3 rutas de locale, igual que
 // instituto/page.tsx y formacion/page.tsx: el cuerpo de esta sección no se
@@ -41,14 +45,37 @@ export default async function NovedadesPage({
   const { locale } = await params;
   const novedades = getNovedadesOrdenadas();
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: HOME_LABEL[locale] ?? HOME_LABEL.es,
+        item: `${getSiteUrl()}/${locale}`,
+      },
+      { '@type': 'ListItem', position: 2, name: 'Novedades', item: `${getSiteUrl()}/${locale}/novedades` },
+    ],
+  };
+
   return (
     <main className="bg-[color:var(--ui-bg-page)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={buildJsonLdScript(breadcrumbJsonLd)}
+      />
       <div className="mx-auto max-w-[var(--container-default)] space-y-14 px-6 py-16 sm:px-10">
-        <SectionHeader
-          eyebrow="Novedades"
-          title="Agenda pública y difusión institucional del IVUJUS."
-          lead="Noticias, encuentros institucionales y reconocimientos del Instituto de Victimología de Usina de Justicia y de Usina de Justicia."
-        />
+        <header className="max-w-4xl space-y-5 border-b border-[color:var(--ui-border)] pb-14">
+          <Eyebrow>Novedades</Eyebrow>
+          <h1 className="max-w-4xl text-balance text-[length:clamp(34px,5vw,60px)]">
+            Agenda pública y difusión institucional del IVUJUS.
+          </h1>
+          <p className="max-w-3xl text-pretty text-lg leading-[1.7] text-[color:var(--ui-ink-3)]">
+            Noticias, encuentros institucionales y reconocimientos del Instituto de Victimología de Usina de
+            Justicia y de Usina de Justicia.
+          </p>
+        </header>
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {novedades.map((novedad) => (

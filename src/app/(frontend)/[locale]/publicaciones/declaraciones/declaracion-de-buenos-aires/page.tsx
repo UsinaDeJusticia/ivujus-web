@@ -9,6 +9,11 @@ import { getPublicacionesLabels } from '@/lib/publicaciones';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
 import { ButtonPrincipal, LinkArrow } from '@/components/ui/Buttons';
 
+// Sin builder dedicado en src/lib/seo.ts (no existe buildBreadcrumbJsonLd
+// todavía); mismo patrón manual + buildJsonLdScript que en el resto de
+// subpáginas de publicaciones/.
+const HOME_LABEL: Record<string, string> = { es: 'Inicio', en: 'Home', fr: 'Accueil' };
+
 export async function generateMetadata({
   params,
 }: {
@@ -57,9 +62,44 @@ export default async function DeclaracionBuenosAiresPage({
     },
   };
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: HOME_LABEL[locale] ?? HOME_LABEL.es,
+        item: `${getSiteUrl()}/${locale}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: labels.publicaciones,
+        item: `${getSiteUrl()}/${locale}/publicaciones`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: labels.declaraciones,
+        item: `${getSiteUrl()}/${locale}/publicaciones/declaraciones`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 4,
+        name: declaration.title,
+        item: `${getSiteUrl()}/${locale}/publicaciones/declaraciones/declaracion-de-buenos-aires`,
+      },
+    ],
+  };
+
   return (
     <main className="bg-[color:var(--ui-bg-page)]">
       <script type="application/ld+json" dangerouslySetInnerHTML={buildJsonLdScript(jsonLd)} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={buildJsonLdScript(breadcrumbJsonLd)}
+      />
       <div className="mx-auto max-w-[var(--container-default)] space-y-16 px-6 py-16 sm:px-10">
         <header className="max-w-4xl space-y-5 border-b border-[color:var(--ui-border)] pb-14">
           <Eyebrow>{`${labels.publicaciones} / ${labels.declaraciones}`}</Eyebrow>

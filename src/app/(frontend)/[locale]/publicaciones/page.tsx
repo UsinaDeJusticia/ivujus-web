@@ -1,9 +1,15 @@
 import type { Metadata } from 'next';
 
-import { buildLocalizedMetadata } from '@/lib/seo';
+import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { getPublicacionesLabels } from '@/lib/publicaciones';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
 import { ContentCard } from '@/components/cards/ContentCard';
+
+// Sin builder dedicado en src/lib/seo.ts (no existe buildBreadcrumbJsonLd
+// todavía); se arma el objeto BreadcrumbList a mano, serializado con el
+// buildJsonLdScript existente, igual patrón que ya usan libros/page.tsx y
+// declaracion-de-buenos-aires/page.tsx para su JSON-LD.
+const HOME_LABEL: Record<string, string> = { es: 'Inicio', en: 'Home', fr: 'Accueil' };
 
 export async function generateMetadata({
   params,
@@ -33,8 +39,26 @@ export default async function PublicacionesHubPage({
   const { locale } = await params;
   const labels = getPublicacionesLabels(locale);
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: HOME_LABEL[locale] ?? HOME_LABEL.es, item: `${getSiteUrl()}/${locale}` },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: labels.publicaciones,
+        item: `${getSiteUrl()}/${locale}/publicaciones`,
+      },
+    ],
+  };
+
   return (
     <main className="bg-[color:var(--ui-bg-page)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={buildJsonLdScript(breadcrumbJsonLd)}
+      />
       <div className="mx-auto max-w-[var(--container-default)] space-y-16 px-6 py-16 sm:px-10">
         <header className="max-w-4xl space-y-5 border-b border-[color:var(--ui-border)] pb-14">
           <Eyebrow>{labels.publicaciones}</Eyebrow>

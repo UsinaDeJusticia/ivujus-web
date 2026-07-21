@@ -1,9 +1,15 @@
 import type { Metadata } from 'next';
 
 import { INSTITUTIONAL_EMAIL, contactoCopy, resolveContactoLocale } from '@/lib/contacto';
-import { buildLocalizedMetadata } from '@/lib/seo';
+import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
 import { ButtonPrincipal } from '@/components/ui/Buttons';
+
+// Sin builders dedicados en src/lib/seo.ts (no existen buildOrganizationJsonLd
+// ni buildBreadcrumbJsonLd todavía); JSON-LD armado a mano, serializado con
+// el buildJsonLdScript existente, mismo patrón que ya usan libros/page.tsx y
+// declaracion-de-buenos-aires/page.tsx.
+const HOME_LABEL: Record<string, string> = { es: 'Inicio', en: 'Home', fr: 'Accueil' };
 
 // Metadata en español fijo para las 3 rutas de locale, igual que
 // instituto/page.tsx, simposios/page.tsx y formacion/page.tsx: el cuerpo de
@@ -37,8 +43,40 @@ export default async function ContactoPage({
   const locale = resolveContactoLocale(rawLocale);
   const copy = contactoCopy[locale];
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: copy.title,
+    url: `${getSiteUrl()}/${locale}/contacto`,
+    about: {
+      '@type': 'Organization',
+      name: 'Instituto de Victimología de Usina de Justicia',
+      url: `${getSiteUrl()}/es/instituto`,
+      email: INSTITUTIONAL_EMAIL,
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: HOME_LABEL[locale] ?? HOME_LABEL.es,
+        item: `${getSiteUrl()}/${locale}`,
+      },
+      { '@type': 'ListItem', position: 2, name: copy.eyebrow, item: `${getSiteUrl()}/${locale}/contacto` },
+    ],
+  };
+
   return (
     <main className="bg-[color:var(--ui-bg-page)]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={buildJsonLdScript(jsonLd)} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={buildJsonLdScript(breadcrumbJsonLd)}
+      />
       <div className="mx-auto max-w-[var(--container-narrow)] space-y-14 px-6 py-16 sm:px-10">
         <header className="max-w-3xl space-y-5 border-b border-[color:var(--ui-border)] pb-10">
           <Eyebrow>{copy.eyebrow}</Eyebrow>
@@ -67,7 +105,10 @@ export default async function ContactoPage({
             Fase 3, agregar `action="/api/contact"` (o un `onSubmit` en un
             client component) y el manejo de éxito/error correspondiente.
           */}
-          <form className="grid gap-5 rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-6 shadow-[var(--shadow-1)] sm:p-8">
+          <form
+            aria-label={copy.formHeading}
+            className="grid gap-5 rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-6 shadow-[var(--shadow-1)] sm:p-8"
+          >
             <div className="grid gap-2">
               <label
                 htmlFor="contacto-nombre"
@@ -75,7 +116,15 @@ export default async function ContactoPage({
               >
                 {copy.labels.nombre}
               </label>
-              <input id="contacto-nombre" name="nombre" type="text" autoComplete="name" className={FIELD_CLASSES} />
+              <input
+                id="contacto-nombre"
+                name="nombre"
+                type="text"
+                autoComplete="name"
+                required
+                aria-required="true"
+                className={FIELD_CLASSES}
+              />
             </div>
 
             <div className="grid gap-2">
@@ -85,7 +134,15 @@ export default async function ContactoPage({
               >
                 {copy.labels.email}
               </label>
-              <input id="contacto-email" name="email" type="email" autoComplete="email" className={FIELD_CLASSES} />
+              <input
+                id="contacto-email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                aria-required="true"
+                className={FIELD_CLASSES}
+              />
             </div>
 
             <div className="grid gap-2">
@@ -95,7 +152,13 @@ export default async function ContactoPage({
               >
                 {copy.labels.asunto}
               </label>
-              <input id="contacto-asunto" name="asunto" type="text" className={FIELD_CLASSES} />
+              <input
+                id="contacto-asunto"
+                name="asunto"
+                type="text"
+                aria-required="false"
+                className={FIELD_CLASSES}
+              />
             </div>
 
             <div className="grid gap-2">
@@ -105,7 +168,14 @@ export default async function ContactoPage({
               >
                 {copy.labels.mensaje}
               </label>
-              <textarea id="contacto-mensaje" name="mensaje" rows={6} className={FIELD_CLASSES} />
+              <textarea
+                id="contacto-mensaje"
+                name="mensaje"
+                rows={6}
+                required
+                aria-required="true"
+                className={FIELD_CLASSES}
+              />
             </div>
 
             <div>

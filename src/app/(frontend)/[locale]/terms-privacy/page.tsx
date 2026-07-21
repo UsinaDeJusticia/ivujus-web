@@ -1,8 +1,14 @@
 import type { Metadata } from 'next';
 
 import { termsPrivacyData } from '@/lib/legal';
-import { buildLocalizedMetadata } from '@/lib/seo';
+import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow } from '@/components/ui/SectionHeader';
+
+// Sin builder dedicado en src/lib/seo.ts (no existe buildBreadcrumbJsonLd
+// todavía); JSON-LD armado a mano, serializado con el buildJsonLdScript
+// existente, mismo patrón que ya usan libros/page.tsx y
+// declaracion-de-buenos-aires/page.tsx.
+const HOME_LABEL: Record<string, string> = { es: 'Inicio', en: 'Home', fr: 'Accueil' };
 
 // Metadata en español fijo para las 3 rutas de locale, igual que
 // instituto/page.tsx, simposios/page.tsx y formacion/page.tsx: el cuerpo
@@ -36,8 +42,41 @@ export default async function TermsPrivacyPage({
   // en vez de traducir sin fuente ni revisión jurídica.
   const showUntranslatedNotice = locale !== 'es';
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: termsPrivacyData.documentTitle,
+    description: termsPrivacyData.subtitle,
+    url: `${getSiteUrl()}/${locale}/terms-privacy`,
+    inLanguage: 'es',
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: HOME_LABEL[locale] ?? HOME_LABEL.es,
+        item: `${getSiteUrl()}/${locale}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: termsPrivacyData.documentTitle,
+        item: `${getSiteUrl()}/${locale}/terms-privacy`,
+      },
+    ],
+  };
+
   return (
     <main className="bg-[color:var(--ui-bg-page)]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={buildJsonLdScript(jsonLd)} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={buildJsonLdScript(breadcrumbJsonLd)}
+      />
       <div className="mx-auto max-w-[var(--container-narrow)] space-y-10 px-6 py-16 sm:px-10">
         <header className="space-y-4 border-b border-[color:var(--ui-border)] pb-8">
           <Eyebrow>Legal</Eyebrow>
