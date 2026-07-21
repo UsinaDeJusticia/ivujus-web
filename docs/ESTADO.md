@@ -128,10 +128,15 @@ Detalle completo en el plan de la sesión; resumen persistido acá:
 - ✅ **C · Publicaciones** (`c662c08`, worktree paralelo): /publicaciones hub + /declaraciones + declaracion-de-buenos-aires (de simposio2026.ts) + /libros "Nuevos Paradigmas" (posts WP 24509/24540, con fuente real).
 - ✅ **Integración** (`1eae1a2`): Publicaciones al nav; Contacto+Privacidad columna "Institucional" del footer; card Publicaciones en home (ES/EN/FR). Build+tsc verdes, 0 overflow 360px en las 6 rutas nuevas. B y C se hicieron en worktrees aislados en paralelo y se trajeron por cherry-pick (disjuntos, sin conflicto).
 
+- ✅ **E · Bios individuales** (`d982895`): `/instituto/consejo-directivo/[slug]` (7) y `/comite-cientifico/[slug]` (8), desde instituto.ts, con JSON-LD Person y links desde los listados. En `main`.
+
 ## Olas restantes de Fase 2
-1. **E · Bios individuales** `[slug]` de consejo/comité (bajo esfuerzo; bios largas ya en instituto.ts) — en curso.
-2. **D · Galería curada del Simposio** — ⚠️ espera selección de fotos de Emanuel.
+1. **D · Galería curada del Simposio** — ⚠️ espera selección de fotos de Emanuel (o "usá tu criterio").
 Luego: gate G2.
+
+## Polish menor pendiente (no bloquea)
+- Bio de comité (`[slug]`): muestra el país dos veces ("Canadá" como rol dorado + "CANADÁ" como label), porque en comité `role == country`. Fix trivial: no repetir country cuando coincide con role. Anotado para pulido.
+- Imágenes hotlinked (retratos/prensa/portada libro) dan 403 en el sandbox de verificación (fetch server-side de Next sin proxy); cargan bien en producción. Día-2: evaluar re-alojar en Vercel Blob/R2.
 
 ## Decisiones/insumos de Emanuel aún pendientes
 - Dominio campus (usado `usinadejusticiacampus.org.ar`, confirmar) · redes sociales (footer) · destino `oea` · idioma novedades v1 · parkeo Payload · proveedor email (Fase 3) · texto legal (contacto/terms) · TAEDA · selección galería · **métrica "Certificados 0"** (nueva, ver arriba).
