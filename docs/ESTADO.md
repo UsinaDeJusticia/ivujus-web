@@ -2,9 +2,17 @@
 
 > Cualquier sesión nueva de Claude Code retoma desde acá. Actualizar al cierre de cada sesión: qué se hizo, decisiones, pendientes, próximo paso exacto.
 
-**Última actualización:** 18 de julio de 2026 (sesión 2 — Fase 1 + iteración G1 con feedback de Emanuel)
-**Rama de trabajo:** `claude/ivujus-rebuild-planning-gvcf25`
-**Etapa:** ✅ G0 decidido · ✅ plan aprobado · ✅ Fase 1 (olas 1-5) · ✅ **iteración G1 (olas 6-7)** aplicando el feedback de Emanuel → ⏸️ **re-revisión de gate G1** sobre el preview.
+**Última actualización:** 21 de julio de 2026 (sesión 2 — Fase 2 completa + plan de Fase 4 aprobado; checkpoint por límite de sesión)
+**Rama de trabajo:** `claude/ivujus-rebuild-planning-gvcf25` (todo pusheado; `main` sincronizado → `ivujus-web.vercel.app`)
+**Etapa:** ✅ G0 · ✅ Fase 1 · ✅ G1 · ✅ **Fase 2 completa (contenido v1)** · ✅ **plan Fase 4 aprobado** → ⏸️ **ejecución de Fase 4 en cola** (bloqueada por límite de sesión; resetea ~18:10 UTC / continuar en otra cuenta).
+
+## ▶️ RETOMAR ACÁ (próximo paso literal)
+Ejecutar el **plan de Fase 4 (Optimización: velocidad + SEO + GEO)** — Emanuel lo priorizó antes de Fase 3. Plan completo y aprobado (persistido abajo en "Plan Fase 4"). Delegar a agentes **Sonnet** en este orden (DAG):
+1. En paralelo (archivos disjuntos): **P1** (robots.ts + sitemap.ts + llms.txt), **P2** (builders JSON-LD en `src/lib/seo.ts` — bloquea P3), **P4** (OG images con `next/og`), **P5** (redirects en next.config + `docs/usina-redirects.md`).
+2. Tras P2, en worktrees aislados: **P3a** (home+instituto), **P3b** (formación+simposios), **P3c** (publicaciones+novedades+contacto+terms) — metadata+JSON-LD+perf de imágenes+semántica por sección.
+3. Orquestador mergea → **P6** (perf global + medir Lighthouse ≥90) → **P7** (docs SEO-GEO + tareas manuales humanas).
+Insumos de Emanuel para Fase 4: URLs de redes sociales (sameAs), OK Wikidata, decisión de re-alojar imágenes en Vercel Blob. Detalle íntegro en el plan de la sesión y en la sección "Plan Fase 4" (pendiente de volcar acá con capacidad).
+Después de Fase 4: **Fase 3** (WordPress headless: `/novedades` en vivo con ISR, formulario de contacto real, Perfit) — requiere destino `oea`, idioma novedades, proveedor de email.
 
 ## Iteración G1 (18-jul) — feedback de Emanuel sobre el primer preview
 
