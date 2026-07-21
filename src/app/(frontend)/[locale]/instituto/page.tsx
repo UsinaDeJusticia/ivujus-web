@@ -66,13 +66,19 @@ function PersonCard({
   );
 }
 
-export default function InstitutePage() {
+export default async function InstitutePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'NGO',
     name: institutoData.title,
     description: institutoData.intro,
-    url: `${getSiteUrl()}/es/instituto`,
+    url: `${getSiteUrl()}/${locale}/instituto`,
     sameAs: [
       'https://www.facebook.com/usinadejusticia',
       'https://twitter.com/UsinadeJusticia',
@@ -81,9 +87,27 @@ export default function InstitutePage() {
     ],
   };
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${getSiteUrl()}/${locale}` },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Instituto',
+        item: `${getSiteUrl()}/${locale}/instituto`,
+      },
+    ],
+  };
+
   return (
     <main className="bg-[color:var(--ui-bg-page)]">
       <script type="application/ld+json" dangerouslySetInnerHTML={buildJsonLdScript(jsonLd)} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={buildJsonLdScript(breadcrumbJsonLd)}
+      />
       <div className="mx-auto max-w-[var(--container-default)] space-y-24 px-6 py-16 sm:px-10">
         <header className="max-w-4xl space-y-5 border-b border-[color:var(--ui-border)] pb-14">
           <Eyebrow>Instituto</Eyebrow>

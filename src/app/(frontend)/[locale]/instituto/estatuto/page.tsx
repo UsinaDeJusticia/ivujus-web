@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import { institutoData } from '@/lib/instituto';
-import { buildLocalizedMetadata } from '@/lib/seo';
+import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow } from '@/components/ui/SectionHeader';
 
 export async function generateMetadata({
@@ -20,9 +20,39 @@ export async function generateMetadata({
   });
 }
 
-export default function InstituteStatutePage() {
+export default async function InstituteStatutePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${getSiteUrl()}/${locale}` },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Instituto',
+        item: `${getSiteUrl()}/${locale}/instituto`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Estatuto',
+        item: `${getSiteUrl()}/${locale}/instituto/estatuto`,
+      },
+    ],
+  };
+
   return (
     <main className="bg-[color:var(--ui-bg-page)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={buildJsonLdScript(breadcrumbJsonLd)}
+      />
       <div className="mx-auto max-w-[var(--container-narrow)] space-y-10 px-6 py-16 sm:px-10">
         <header className="space-y-4 border-b border-[color:var(--ui-border)] pb-8">
           <Eyebrow>Instituto / Estatuto</Eyebrow>

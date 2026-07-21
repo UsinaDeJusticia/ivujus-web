@@ -1,11 +1,30 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 
 import { simposio2026 } from '@/lib/simposio2026';
+import { institutoData } from '@/lib/instituto';
+import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
 import { ButtonPrincipal, ButtonSecundario, LinkArrow } from '@/components/ui/Buttons';
 import { ContentCard } from '@/components/cards/ContentCard';
 
 type Locale = 'es' | 'en' | 'fr';
+
+// Mismas cuentas oficiales que lista el JSON-LD `NGO` de
+// /instituto (src/app/(frontend)/[locale]/instituto/page.tsx) — la home
+// describe la misma organización, así que reutiliza el mismo `sameAs`.
+const ORGANIZATION_SAME_AS = [
+  'https://www.facebook.com/usinadejusticia',
+  'https://twitter.com/UsinadeJusticia',
+  'https://www.youtube.com/channel/UCZfY-nSSkiglbSGtN102Drg',
+  'https://www.instagram.com/usinadejusticia/?hl=es-la',
+];
+
+// Fecha de inicio del Simposio 2026 en ISO 8601, solo para el atributo
+// `dateTime` de <time> (ver simposio2026.dates = '9 y 10 de abril de
+// 2026'). No se reformatea el texto visible, que sigue viniendo tal cual
+// de src/lib/simposio2026.ts.
+const SIMPOSIO_2026_START_ISO = '2026-04-09';
 
 type GridCard = {
   title: string;
@@ -276,6 +295,22 @@ const copy: Record<Locale, HomeCopy> = {
   },
 };
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const content = copy[(locale as Locale) ?? 'es'] ?? copy.es;
+
+  return buildLocalizedMetadata({
+    locale,
+    path: '/',
+    title: content.hero.eyebrow,
+    description: content.hero.lead,
+  });
+}
+
 export default async function HomePage({
   params,
 }: {
@@ -284,8 +319,32 @@ export default async function HomePage({
   const { locale } = await params;
   const content = copy[(locale as Locale) ?? 'es'] ?? copy.es;
 
+  const organizationJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: institutoData.title,
+    alternateName: 'IVUJUS',
+    description: institutoData.intro,
+    url: getSiteUrl(),
+    logo: `${getSiteUrl()}/logos/logo-ivujus-mark.png`,
+    sameAs: ORGANIZATION_SAME_AS,
+  };
+
+  const websiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'IVUJUS',
+    url: getSiteUrl(),
+    inLanguage: locale,
+  };
+
   return (
     <main className="bg-[color:var(--ui-bg-page)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={buildJsonLdScript(organizationJsonLd)}
+      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={buildJsonLdScript(websiteJsonLd)} />
       {/* Hero institucional — fondo con gradiente sutilísimo, tematizado por
           Ola 6 vía --ui-hero-gradient (cambia de blanco→azul-50 en claro a
           navy oscuro en oscuro; ver globals.css). */}
@@ -329,18 +388,22 @@ export default async function HomePage({
           <div className="flex justify-center">
             <Image
               src="/logos/logo-ivujus-mark.png"
-              alt="IVUJUS"
+              alt="Isotipo de IVUJUS, Instituto de Victimología de Usina de Justicia"
               width={360}
               height={293}
               priority
+              quality={75}
+              sizes="(min-width: 1024px) 300px, 60vw"
               className="logo-theme-light h-auto w-full max-w-[300px]"
             />
             <Image
               src="/logos/logo-ivujus-mark-white.png"
-              alt="IVUJUS"
+              alt="Isotipo de IVUJUS, Instituto de Victimología de Usina de Justicia"
               width={360}
               height={293}
               priority
+              quality={75}
+              sizes="(min-width: 1024px) 300px, 60vw"
               className="logo-theme-dark h-auto w-full max-w-[300px]"
             />
           </div>
@@ -375,7 +438,9 @@ export default async function HomePage({
               <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-dorado-400">
                 {content.event.labelFechas}
               </dt>
-              <dd className="mt-1 text-sm leading-[1.5] text-white">{simposio2026.dates}</dd>
+              <dd className="mt-1 text-sm leading-[1.5] text-white">
+                <time dateTime={SIMPOSIO_2026_START_ISO}>{simposio2026.dates}</time>
+              </dd>
             </div>
             <div>
               <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-dorado-400">

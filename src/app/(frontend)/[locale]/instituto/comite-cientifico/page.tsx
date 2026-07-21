@@ -40,17 +40,42 @@ export default async function InstituteScientificCommitteePage({
       nationality: person.country,
       description: person.summary,
       image: person.image,
+      url: `${getSiteUrl()}/${locale}/instituto/comite-cientifico/${person.slug}`,
       affiliation: {
         '@type': 'NGO',
         name: institutoData.title,
-        url: `${getSiteUrl()}/es/instituto`,
+        url: `${getSiteUrl()}/${locale}/instituto`,
       },
     })),
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${getSiteUrl()}/${locale}` },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Instituto',
+        item: `${getSiteUrl()}/${locale}/instituto`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Comité científico',
+        item: `${getSiteUrl()}/${locale}/instituto/comite-cientifico`,
+      },
+    ],
   };
 
   return (
     <main className="bg-[color:var(--ui-bg-page)]">
       <script type="application/ld+json" dangerouslySetInnerHTML={buildJsonLdScript(jsonLd)} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={buildJsonLdScript(breadcrumbJsonLd)}
+      />
       <div className="mx-auto max-w-[var(--container-default)] space-y-10 px-6 py-16 sm:px-10">
         <header className="max-w-3xl space-y-4 border-b border-[color:var(--ui-border)] pb-8">
           <Eyebrow>Instituto / Comité científico</Eyebrow>

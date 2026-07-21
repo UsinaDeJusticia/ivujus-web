@@ -92,17 +92,47 @@ export default async function ConsejoDirectivoPersonPage({
     jobTitle: person.role,
     description: person.summary,
     image: person.image,
-    url: `${getSiteUrl()}/es/instituto/consejo-directivo/${person.slug}`,
+    url: `${getSiteUrl()}/${locale}/instituto/consejo-directivo/${person.slug}`,
     worksFor: {
       '@type': 'NGO',
       name: institutoData.title,
-      url: `${getSiteUrl()}/es/instituto`,
+      url: `${getSiteUrl()}/${locale}/instituto`,
     },
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${getSiteUrl()}/${locale}` },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Instituto',
+        item: `${getSiteUrl()}/${locale}/instituto`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Consejo directivo',
+        item: `${getSiteUrl()}/${locale}/instituto/consejo-directivo`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 4,
+        name: person.name,
+        item: `${getSiteUrl()}/${locale}/instituto/consejo-directivo/${person.slug}`,
+      },
+    ],
   };
 
   return (
     <main className="bg-[color:var(--ui-bg-page)]">
       <script type="application/ld+json" dangerouslySetInnerHTML={buildJsonLdScript(jsonLd)} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={buildJsonLdScript(breadcrumbJsonLd)}
+      />
       <div className="mx-auto max-w-[var(--container-narrow)] space-y-12 px-6 py-16 sm:px-10">
         <header className="space-y-8 border-b border-[color:var(--ui-border)] pb-10">
           <Eyebrow>{labels.eyebrow}</Eyebrow>
@@ -113,6 +143,8 @@ export default async function ConsejoDirectivoPersonPage({
                 alt={labels.portraitAlt(person.name)}
                 fill
                 sizes="(min-width: 640px) 160px, 128px"
+                quality={75}
+                priority
                 className="object-cover"
               />
             </div>
