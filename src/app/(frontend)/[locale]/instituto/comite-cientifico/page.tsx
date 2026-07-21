@@ -85,7 +85,7 @@ export default async function InstituteScientificCommitteePage({
                     {person.name}
                   </h2>
                   <p className="text-sm font-semibold text-[color:var(--ui-accent-ink)]">{person.role}</p>
-                  {person.country ? (
+                  {person.country && person.country !== person.role ? (
                     <p className="text-[11px] uppercase tracking-[0.18em] text-[color:var(--ui-ink-4)]">{person.country}</p>
                   ) : null}
                   <p className="text-sm leading-6 text-[color:var(--ui-ink-3)]">{person.summary}</p>

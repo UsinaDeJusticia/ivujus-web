@@ -121,7 +121,10 @@ export default async function ComiteCientificoPersonPage({
                 {person.name}
               </h1>
               <p className="text-sm font-semibold text-[color:var(--ui-accent-ink)]">{person.role}</p>
-              {person.country ? (
+              {/* País solo si aporta info nueva: en el Comité Científico `role`
+                  suele ser el país, así que mostrarlo de nuevo daría "Canadá /
+                  CANADÁ". Se omite cuando coincide con el rol. */}
+              {person.country && person.country !== person.role ? (
                 <p className="text-[11px] uppercase tracking-[0.18em] text-[color:var(--ui-ink-4)]">
                   {person.country}
                 </p>
