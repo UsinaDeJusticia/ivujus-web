@@ -130,9 +130,14 @@ Detalle completo en el plan de la sesión; resumen persistido acá:
 
 - ✅ **E · Bios individuales** (`d982895`): `/instituto/consejo-directivo/[slug]` (7) y `/comite-cientifico/[slug]` (8), desde instituto.ts, con JSON-LD Person y links desde los listados. En `main`.
 
-## Olas restantes de Fase 2
-1. **D · Galería curada del Simposio** — ⚠️ espera selección de fotos de Emanuel (o "usá tu criterio").
-Luego: gate G2.
+- ✅ **D · Galería del Simposio** (`573a016` + fix `3e048e3`): 11 fotos reales curadas ("usá tu criterio" de Emanuel) en `/simposios/2026-buenos-aires`, grid responsivo. Epígrafes corregidos por el orquestador: solo nombre + "expositor/a" (se quitó la atribución de panel/fecha que la fuente no establece). En `main`.
+- ✅ **Fix "Canadá"** (`c4fdf18`): país no se repite en Comité (listado + bio).
+
+## ✅ FASE 2 COMPLETA — gate G2 pendiente (revisión de Emanuel)
+Todo el contenido v1 está en `main` → `ivujus-web.vercel.app`. Rutas: home, instituto (+estatuto, +consejo/[slug], +comité/[slug]), formación (+diplomatura, +ciclos/[slug]), simposios (+2026 con galería), publicaciones (+declaraciones/declaracion-de-buenos-aires, +libros si aplica), novedades (+[slug]), contacto, terms-privacy. Nav/footer/home integrados.
+
+## Próximo (post-G2): Fase 3 — WordPress headless + formularios
+`/novedades` desde REST API en vivo con ISR (reemplaza el dataset sembrado) + mapeo categoría `oea` + idioma EN/FR de novedades; formulario de contacto real (route handler + proveedor email); Perfit. Requiere de Emanuel: destino `oea`, idioma novedades v1, proveedor de email + credencial.
 
 ## Polish menor pendiente (no bloquea)
 - Bio de comité (`[slug]`): muestra el país dos veces ("Canadá" como rol dorado + "CANADÁ" como label), porque en comité `role == country`. Fix trivial: no repetir country cuando coincide con role. Anotado para pulido.
