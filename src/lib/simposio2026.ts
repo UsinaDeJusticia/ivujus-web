@@ -23,6 +23,45 @@ export type PressArticle = {
   alt: string;
 };
 
+export type GaleriaImagen = {
+  imagen: string;
+  alt: string;
+  epigrafe?: string;
+};
+
+const GALERIA_LOCALES = ['es', 'en', 'fr'] as const;
+export type GaleriaLocale = (typeof GALERIA_LOCALES)[number];
+
+export type GaleriaCopy = {
+  eyebrow: string;
+  title: string;
+};
+
+// Solo copy/labels de UI (mismo patrón que contactoCopy en
+// src/lib/contacto.ts): las epígrafes de cada foto, en cambio, se
+// mantienen en español como el resto del contenido curado de este
+// dataset.
+export const galeriaCopy: Record<GaleriaLocale, GaleriaCopy> = {
+  es: {
+    eyebrow: 'Galería',
+    title: 'Imágenes del encuentro en el CPACF.',
+  },
+  en: {
+    eyebrow: 'Gallery',
+    title: 'Images from the gathering at CPACF.',
+  },
+  fr: {
+    eyebrow: 'Galerie',
+    title: 'Images de la rencontre au CPACF.',
+  },
+};
+
+export function resolveGaleriaLocale(locale: string): GaleriaLocale {
+  return (GALERIA_LOCALES as readonly string[]).includes(locale)
+    ? (locale as GaleriaLocale)
+    : 'es';
+}
+
 export type SimposioPayloadDraft = {
   titulo: string;
   slug: string;
@@ -237,6 +276,80 @@ export const simposio2026 = {
       alt: 'Cobertura de Revista Quórum sobre victimología penal',
     },
   ] satisfies PressArticle[],
+  // Curaduría manual del media-carousel de https://ivujus.org.ar/simposio-2026/
+  // (WordPress vivo, wp-content/uploads/2026/04/). Confirmado vía
+  // GET /wp-json/wp/v2/media?parent=24632 — 15 fotos totales, se
+  // descartaron 4 tomas de "entrega de distinciones" por duplicar el
+  // mismo momento (nos quedamos con la de mejor composición) y 1 toma de
+  // orador en atril sin nombre de archivo identificable (redundante con
+  // los 8 retratos de oradores ya atribuibles). Atribución de nombre
+  // solo cuando el nombre de archivo es un apellido inequívoco que
+  // coincide con un orador ya documentado en `days` más arriba; el resto
+  // queda con epígrafe genérico del evento.
+  galeria: [
+    {
+      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/aebi-1024x862.jpeg',
+      alt: 'Marcelo Aebi expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
+      epigrafe: 'Marcelo Aebi — Panel VI, "Críticas a la criminología crítica" (10 de abril).',
+    },
+    {
+      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/slotolow-1024x862.jpeg',
+      alt: 'Raquel Slotolow expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
+      epigrafe:
+        'Raquel Slotolow — Panel IV, "Trabajo de campo y Ley de Datos Genéticos" (9 de abril).',
+    },
+    {
+      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/pascua-1024x862.jpeg',
+      alt: 'Francisco Javier Pascua expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
+      epigrafe:
+        'Francisco Javier Pascua — Panel V, "Abolicionismo penal. En contra del dogma imperante" (10 de abril).',
+    },
+    {
+      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/molina-1024x862.jpeg',
+      alt: 'María Jimena Molina expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
+      epigrafe: 'María Jimena Molina, expositora en distintos paneles del simposio.',
+    },
+    {
+      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/garavano-1024x862.jpeg',
+      alt: 'Germán Garavano expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
+      epigrafe:
+        'Germán Garavano — Panel II, "La víctima, el Ministerio Público y la política criminal" (10 de abril).',
+    },
+    {
+      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/console-1024x862.jpeg',
+      alt: 'José Console expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
+      epigrafe: 'José Console, panelista en la jornada inaugural del simposio.',
+    },
+    {
+      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/casares-1024x862.jpeg',
+      alt: 'Martín Casares expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
+      epigrafe:
+        'Martín Casares — Panel II, "La víctima, el Ministerio Público y la política criminal" (10 de abril).',
+    },
+    {
+      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/bargna-1024x862.jpeg',
+      alt: 'Guillermo Bargna expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
+      epigrafe:
+        'Guillermo Bargna — Panel IV, "Trabajo de campo y Ley de Datos Genéticos" (9 de abril).',
+    },
+    {
+      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/1-1024x1024.jpeg',
+      alt: 'Fotografía grupal de cierre del Primer Simposio Americano y Europeo de Victimología Penal, CPACF, abril de 2026.',
+      epigrafe: 'Fotografía de cierre en el escenario del CPACF.',
+    },
+    {
+      imagen:
+        'https://ivujus.org.ar/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-14-at--1024x862.jpeg',
+      alt: 'Público en la sala durante el Primer Simposio Americano y Europeo de Victimología Penal, CPACF, abril de 2026.',
+      epigrafe: 'La sala del CPACF durante una de las jornadas.',
+    },
+    {
+      imagen:
+        'https://ivujus.org.ar/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-14-at-11.06.08-1024x576.jpeg',
+      alt: 'Entrega de distinciones durante el Primer Simposio Americano y Europeo de Victimología Penal, CPACF, abril de 2026.',
+      epigrafe: 'Entrega de distinciones al cierre de una de las jornadas.',
+    },
+  ] satisfies GaleriaImagen[],
 };
 
 export const simposio2026PayloadDraft: SimposioPayloadDraft = {

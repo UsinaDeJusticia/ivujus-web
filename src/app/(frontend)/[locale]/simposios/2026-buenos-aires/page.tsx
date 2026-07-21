@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import Image from 'next/image';
 
-import { simposio2026 } from '@/lib/simposio2026';
+import { galeriaCopy, resolveGaleriaLocale, simposio2026 } from '@/lib/simposio2026';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
 import { ButtonPrincipal } from '@/components/ui/Buttons';
@@ -50,7 +50,14 @@ function MetaLabel({ children }: { children: ReactNode }) {
   );
 }
 
-export default function Symposium2026Page() {
+export default async function Symposium2026Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale: rawLocale } = await params;
+  const galeriaLabels = galeriaCopy[resolveGaleriaLocale(rawLocale)];
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Event',
@@ -204,6 +211,29 @@ export default function Symposium2026Page() {
                   ))}
                 </div>
               </section>
+            ))}
+          </div>
+        </section>
+
+        <section className="space-y-10">
+          <SectionHeader eyebrow={galeriaLabels.eyebrow} title={galeriaLabels.title} />
+
+          <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+            {simposio2026.galeria.map((foto) => (
+              <figure key={foto.imagen} className="space-y-2">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-subtle)] shadow-[var(--shadow-1)]">
+                  <Image
+                    src={foto.imagen}
+                    alt={foto.alt}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                {foto.epigrafe ? (
+                  <figcaption className="text-sm leading-6 text-[color:var(--ui-ink-4)]">{foto.epigrafe}</figcaption>
+                ) : null}
+              </figure>
             ))}
           </div>
         </section>
