@@ -285,52 +285,49 @@ export const simposio2026 = {
   // los 8 retratos de oradores ya atribuibles). Atribución de nombre
   // solo cuando el nombre de archivo es un apellido inequívoco que
   // coincide con un orador ya documentado en `days` más arriba; el resto
-  // queda con epígrafe genérico del evento.
+  // queda con epígrafe genérico del evento. Los epígrafes NO afirman en
+  // qué panel/fecha se tomó cada foto (la fuente no lo establece): solo el
+  // nombre + su condición de expositor, que sí está documentada.
   galeria: [
     {
       imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/aebi-1024x862.jpeg',
       alt: 'Marcelo Aebi expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
-      epigrafe: 'Marcelo Aebi — Panel VI, "Críticas a la criminología crítica" (10 de abril).',
+      epigrafe: 'Marcelo Aebi, expositor en el simposio.',
     },
     {
       imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/slotolow-1024x862.jpeg',
       alt: 'Raquel Slotolow expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
-      epigrafe:
-        'Raquel Slotolow — Panel IV, "Trabajo de campo y Ley de Datos Genéticos" (9 de abril).',
+      epigrafe: 'Raquel Slotolow, expositora en el simposio.',
     },
     {
       imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/pascua-1024x862.jpeg',
       alt: 'Francisco Javier Pascua expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
-      epigrafe:
-        'Francisco Javier Pascua — Panel V, "Abolicionismo penal. En contra del dogma imperante" (10 de abril).',
+      epigrafe: 'Francisco Javier Pascua, expositor en el simposio.',
     },
     {
       imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/molina-1024x862.jpeg',
       alt: 'María Jimena Molina expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
-      epigrafe: 'María Jimena Molina, expositora en distintos paneles del simposio.',
+      epigrafe: 'María Jimena Molina, expositora en el simposio.',
     },
     {
       imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/garavano-1024x862.jpeg',
       alt: 'Germán Garavano expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
-      epigrafe:
-        'Germán Garavano — Panel II, "La víctima, el Ministerio Público y la política criminal" (10 de abril).',
+      epigrafe: 'Germán Garavano, expositor en el simposio.',
     },
     {
       imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/console-1024x862.jpeg',
       alt: 'José Console expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
-      epigrafe: 'José Console, panelista en la jornada inaugural del simposio.',
+      epigrafe: 'José Console, expositor en el simposio.',
     },
     {
       imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/casares-1024x862.jpeg',
       alt: 'Martín Casares expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
-      epigrafe:
-        'Martín Casares — Panel II, "La víctima, el Ministerio Público y la política criminal" (10 de abril).',
+      epigrafe: 'Martín Casares, expositor en el simposio.',
     },
     {
       imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/bargna-1024x862.jpeg',
       alt: 'Guillermo Bargna expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
-      epigrafe:
-        'Guillermo Bargna — Panel IV, "Trabajo de campo y Ley de Datos Genéticos" (9 de abril).',
+      epigrafe: 'Guillermo Bargna, expositor en el simposio.',
     },
     {
       imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/1-1024x1024.jpeg',
