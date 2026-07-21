@@ -11,21 +11,29 @@ type Locale = (typeof LOCALES)[number];
 
 // Labels de navegación verificados contra el diccionario `copy` de
 // [locale]/page.tsx (quickLinks/cards), para no introducir una segunda
-// traducción divergente de las mismas palabras. Instituto, Formación y
-// Simposios: las tres ramas con rutas reales navegables (ver
+// traducción divergente de las mismas palabras. Instituto, Formación,
+// Simposios y Novedades: las cuatro ramas con rutas reales navegables (ver
 // docs/CLAUDE.md, "Estado actual de frontend y migracion", actualizado en
-// la ola Formación con las rutas de src/lib/formacion.ts). Enlaces a
-// /publicaciones, /novedades, /red, /indice-legislativo, etc. existen en el
+// la ola Novedades con las rutas de src/lib/novedades.ts). Enlaces a
+// /publicaciones, /red, /indice-legislativo, etc. existen en el
 // diccionario de la home pero no tienen ruta implementada todavía — no se
 // agregan acá para no romper la navegación.
 const NAV_COPY: Record<
   Locale,
-  { instituto: string; formacion: string; simposios: string; navegacion: string; accederCampus: string }
+  {
+    instituto: string;
+    formacion: string;
+    simposios: string;
+    novedades: string;
+    navegacion: string;
+    accederCampus: string;
+  }
 > = {
   es: {
     instituto: 'Instituto',
     formacion: 'Formación',
     simposios: 'Simposios',
+    novedades: 'Novedades',
     navegacion: 'Navegación',
     accederCampus: 'Acceder al Campus',
   },
@@ -33,6 +41,7 @@ const NAV_COPY: Record<
     instituto: 'Institute',
     formacion: 'Training',
     simposios: 'Symposiums',
+    novedades: 'Updates',
     navegacion: 'Navigation',
     accederCampus: 'Access the Campus',
   },
@@ -40,6 +49,7 @@ const NAV_COPY: Record<
     instituto: 'Institut',
     formacion: 'Formation',
     simposios: 'Symposiums',
+    novedades: 'Actualités',
     navegacion: 'Navigation',
     accederCampus: 'Accéder au Campus',
   },
@@ -93,6 +103,7 @@ export default async function LocaleLayout({
     { label: nav.instituto, href: `${homeHref}/instituto` },
     { label: nav.formacion, href: `${homeHref}/formacion` },
     { label: nav.simposios, href: `${homeHref}/simposios` },
+    { label: nav.novedades, href: `${homeHref}/novedades` },
   ];
 
   const footerColumns: FooterColumn[] = [

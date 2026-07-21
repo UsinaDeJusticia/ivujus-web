@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import { simposio2026 } from '@/lib/simposio2026';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
-import { ButtonPrincipal, ButtonSecundario } from '@/components/ui/Buttons';
+import { ButtonPrincipal, ButtonSecundario, LinkArrow } from '@/components/ui/Buttons';
 import { ContentCard } from '@/components/cards/ContentCard';
 
 type Locale = 'es' | 'en' | 'fr';
@@ -40,6 +40,7 @@ type HomeCopy = {
     title: string;
     lead: string;
     cta: string;
+    verNovedades: string;
   };
 };
 
@@ -49,7 +50,7 @@ type HomeCopy = {
 // es un link externo directo al alta pública.
 const PERFIT_SUBSCRIBE_URL = 'https://optin.myperfit.com/subscribe/usinadejusticia/RUknaImy';
 
-// Los 6 accesos institucionales apuntan únicamente a rutas que ya existen
+// Los 7 accesos institucionales apuntan únicamente a rutas que ya existen
 // (ver docs/CLAUDE.md, "Estado actual de frontend y migracion"). Los cuerpos
 // en español son copia verbatim de `institutoData.intro` / `institutoData.
 // sections` (src/lib/instituto.ts), de `formacionHubData` (src/lib/
@@ -57,7 +58,8 @@ const PERFIT_SUBSCRIBE_URL = 'https://optin.myperfit.com/subscribe/usinadejustic
 // de esta página; EN/FR son traducción fiel de esos mismos textos, no
 // contenido nuevo. La card "Formación" se había quitado en una ola previa
 // porque la ruta todavía no existía; se restaura ahora que
-// /formacion está implementada.
+// /formacion está implementada. La card "Novedades" se agrega en la ola
+// Novedades, con src/lib/novedades.ts ya implementado.
 const copy: Record<Locale, HomeCopy> = {
   es: {
     hero: {
@@ -110,6 +112,11 @@ const copy: Record<Locale, HomeCopy> = {
           body: 'Archivo de ediciones, programa, medios, premios y la Declaración de Buenos Aires.',
           href: '/simposios',
         },
+        {
+          title: 'Novedades',
+          body: 'Agenda pública y difusión institucional: noticias, encuentros y reconocimientos del Instituto.',
+          href: '/novedades',
+        },
       ],
     },
     newsletter: {
@@ -117,6 +124,7 @@ const copy: Record<Locale, HomeCopy> = {
       title: 'Recibir las novedades del Instituto',
       lead: 'Suscripción por correo electrónico a la agenda pública y la producción editorial del IVUJUS, a través del sistema de novedades de Usina de Justicia.',
       cta: 'Suscribirse a las novedades',
+      verNovedades: 'Ver todas las novedades',
     },
   },
   en: {
@@ -170,6 +178,11 @@ const copy: Record<Locale, HomeCopy> = {
           body: 'Archive of editions, programs, media coverage, awards, and the Buenos Aires Declaration.',
           href: '/simposios',
         },
+        {
+          title: 'Updates',
+          body: "Public agenda and institutional outreach: news, meetings, and recognitions from the Institute.",
+          href: '/novedades',
+        },
       ],
     },
     newsletter: {
@@ -177,6 +190,7 @@ const copy: Record<Locale, HomeCopy> = {
       title: 'Receive the Institute updates',
       lead: "Email subscription to the public agenda and editorial output of IVUJUS, through Usina de Justicia's updates system.",
       cta: 'Subscribe to updates',
+      verNovedades: 'See all updates',
     },
   },
   fr: {
@@ -230,6 +244,11 @@ const copy: Record<Locale, HomeCopy> = {
           body: 'Archive des éditions, programme, médias, distinctions et Déclaration de Buenos Aires.',
           href: '/simposios',
         },
+        {
+          title: 'Actualités',
+          body: "Agenda public et diffusion institutionnelle : actualités, rencontres et distinctions de l'Institut.",
+          href: '/novedades',
+        },
       ],
     },
     newsletter: {
@@ -237,6 +256,7 @@ const copy: Record<Locale, HomeCopy> = {
       title: "Recevoir les actualités de l'Institut",
       lead: "Abonnement par courrier électronique à l'agenda public et à la production éditoriale de l'IVUJUS, via le système d'actualités de Usina de Justicia.",
       cta: "S'abonner aux actualités",
+      verNovedades: 'Voir toutes les actualités',
     },
   },
 };
@@ -392,9 +412,15 @@ export default async function HomePage({
           <p className="max-w-[54ch] text-pretty text-[15px] leading-[1.7] text-[color:var(--ui-ink-3)]">
             {content.newsletter.lead}
           </p>
-          <ButtonPrincipal href={PERFIT_SUBSCRIBE_URL} target="_blank" rel="noreferrer noopener">
-            {content.newsletter.cta}
-          </ButtonPrincipal>
+          <div className="flex flex-wrap items-center justify-center gap-5">
+            <ButtonPrincipal href={PERFIT_SUBSCRIBE_URL} target="_blank" rel="noreferrer noopener">
+              {content.newsletter.cta}
+            </ButtonPrincipal>
+            {/* Acceso directo al archivo propio de novedades del sitio,
+                distinto del alta de mail vía Perfit de arriba: ver
+                src/lib/novedades.ts. */}
+            <LinkArrow href={`/${locale}/novedades`}>{content.newsletter.verNovedades}</LinkArrow>
+          </div>
         </div>
       </section>
     </main>
