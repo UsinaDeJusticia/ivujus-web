@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 import { simposio2026 } from '@/lib/simposio2026';
-import { buildLocalizedMetadata } from '@/lib/seo';
-import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
+import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
+import { Eyebrow } from '@/components/ui/SectionHeader';
 
 export async function generateMetadata({
   params,
@@ -21,14 +21,37 @@ export async function generateMetadata({
 }
 
 export default function SymposiumIndexPage() {
+  // Home > Simposios.
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${getSiteUrl()}/es` },
+      { '@type': 'ListItem', position: 2, name: 'Simposios', item: `${getSiteUrl()}/es/simposios` },
+    ],
+  };
+
   return (
     <main className="bg-[color:var(--ui-bg-page)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={buildJsonLdScript(breadcrumbJsonLd)}
+      />
       <div className="mx-auto max-w-[var(--container-default)] space-y-14 px-6 py-16 sm:px-10">
-        <SectionHeader
-          eyebrow="Simposios"
-          title="Archivo de encuentros, declaraciones y producción derivada."
-          lead="El Simposio 2026 es hoy la pieza más desarrollada del archivo público del IVUJUS y funciona como punto de partida para la arquitectura internacional del sitio."
-        />
+        {/* Antes esta cabecera se renderizaba con <SectionHeader> (h2), que
+            dejaba la página sin ningún <h1> (el <h2> de la card de abajo
+            quedaba como único encabezado). Mismo patrón de cabecera que
+            formacion/page.tsx y formacion/ciclos/page.tsx, mismo texto. */}
+        <header className="max-w-4xl space-y-5 border-b border-[color:var(--ui-border)] pb-14">
+          <Eyebrow>Simposios</Eyebrow>
+          <h1 className="max-w-4xl text-balance text-[length:clamp(34px,5vw,60px)]">
+            Archivo de encuentros, declaraciones y producción derivada.
+          </h1>
+          <p className="max-w-3xl text-pretty text-lg leading-[1.7] text-[color:var(--ui-ink-3)]">
+            El Simposio 2026 es hoy la pieza más desarrollada del archivo público del IVUJUS y funciona
+            como punto de partida para la arquitectura internacional del sitio.
+          </p>
+        </header>
 
         <a
           className="group relative grid gap-8 overflow-hidden rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-8 shadow-[var(--shadow-1)] transition-shadow duration-[var(--motion-base)] ease-[var(--easing-standard)] hover:shadow-[var(--shadow-3)] lg:grid-cols-[minmax(0,1fr)_18rem]"

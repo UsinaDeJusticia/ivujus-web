@@ -84,9 +84,29 @@ export default async function Symposium2026Page({
     url: `${getSiteUrl()}/es/simposios/2026-buenos-aires`,
   };
 
+  // Home > Simposios > Simposio 2026.
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${getSiteUrl()}/es` },
+      { '@type': 'ListItem', position: 2, name: 'Simposios', item: `${getSiteUrl()}/es/simposios` },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: simposio2026.title,
+        item: `${getSiteUrl()}/es/simposios/2026-buenos-aires`,
+      },
+    ],
+  };
+
   return (
     <main className="bg-[color:var(--ui-bg-page)]">
       <script type="application/ld+json" dangerouslySetInnerHTML={buildJsonLdScript(jsonLd)} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={buildJsonLdScript(breadcrumbJsonLd)}
+      />
       <div className="mx-auto max-w-[var(--container-default)] space-y-24 px-6 py-16 sm:px-10">
         <header className="max-w-5xl space-y-4 border-b border-[color:var(--ui-border)] pb-14">
           <Eyebrow>{`Simposios / ${simposio2026.location}`}</Eyebrow>
@@ -95,7 +115,7 @@ export default async function Symposium2026Page({
           </h1>
           <p className="text-pretty text-xl leading-[1.7] text-[color:var(--ui-ink-3)]">{simposio2026.subtitle}</p>
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--ui-link)]">
-            {simposio2026.dates} / {simposio2026.location}
+            <time dateTime="2026-04-09">{simposio2026.dates}</time> / {simposio2026.location}
           </p>
           <p className="max-w-4xl text-pretty text-lg leading-[1.7] text-[color:var(--ui-ink-3)]">
             {simposio2026.summary}
@@ -227,6 +247,7 @@ export default async function Symposium2026Page({
                     alt={foto.alt}
                     fill
                     sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    quality={75}
                     className="object-cover"
                   />
                 </div>
@@ -256,6 +277,7 @@ export default async function Symposium2026Page({
                     alt={article.alt}
                     fill
                     sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    quality={75}
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>

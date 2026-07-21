@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import { formacionHubData } from '@/lib/formacion';
-import { buildLocalizedMetadata } from '@/lib/seo';
+import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
 import { ContentCard } from '@/components/cards/ContentCard';
 
@@ -32,8 +32,24 @@ export default async function FormacionHubPage({
 }) {
   const { locale } = await params;
 
+  // Home > Formación. Sigue el mismo criterio que el resto del JSON-LD de la
+  // sección (ver diplomatura/ciclos/simposios): URLs de la ruta canónica
+  // en /es, igual que ya hacían los `jsonLd` inline preexistentes.
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${getSiteUrl()}/es` },
+      { '@type': 'ListItem', position: 2, name: 'Formación', item: `${getSiteUrl()}/es/formacion` },
+    ],
+  };
+
   return (
     <main className="bg-[color:var(--ui-bg-page)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={buildJsonLdScript(breadcrumbJsonLd)}
+      />
       <div className="mx-auto max-w-[var(--container-default)] space-y-16 px-6 py-16 sm:px-10">
         <header className="max-w-4xl space-y-5 border-b border-[color:var(--ui-border)] pb-14">
           <Eyebrow>Formación</Eyebrow>

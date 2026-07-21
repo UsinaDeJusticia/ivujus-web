@@ -46,9 +46,29 @@ export default async function FormacionDiplomaturaPage({
     },
   };
 
+  // Home > Formación > Diplomatura.
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${getSiteUrl()}/es` },
+      { '@type': 'ListItem', position: 2, name: 'Formación', item: `${getSiteUrl()}/es/formacion` },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: diplomaturaData.titulo,
+        item: `${getSiteUrl()}/es/formacion/diplomatura`,
+      },
+    ],
+  };
+
   return (
     <main className="bg-[color:var(--ui-bg-page)]">
       <script type="application/ld+json" dangerouslySetInnerHTML={buildJsonLdScript(jsonLd)} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={buildJsonLdScript(breadcrumbJsonLd)}
+      />
       <div className="mx-auto max-w-[var(--container-default)] space-y-20 px-6 py-16 sm:px-10">
         <header className="max-w-4xl space-y-5 border-b border-[color:var(--ui-border)] pb-14">
           <Eyebrow>Formación / Diplomatura</Eyebrow>
