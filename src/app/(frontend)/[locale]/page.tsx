@@ -113,6 +113,11 @@ const copy: Record<Locale, HomeCopy> = {
           href: '/simposios',
         },
         {
+          title: 'Publicaciones',
+          body: 'Producción editorial del Instituto: la Declaración de Buenos Aires y el libro «Nuevos Paradigmas para la Justicia Penal».',
+          href: '/publicaciones',
+        },
+        {
           title: 'Novedades',
           body: 'Agenda pública y difusión institucional: noticias, encuentros y reconocimientos del Instituto.',
           href: '/novedades',
@@ -179,6 +184,11 @@ const copy: Record<Locale, HomeCopy> = {
           href: '/simposios',
         },
         {
+          title: 'Publications',
+          body: 'The Institute’s editorial output: the Buenos Aires Declaration and the book "Nuevos Paradigmas para la Justicia Penal".',
+          href: '/publicaciones',
+        },
+        {
           title: 'Updates',
           body: "Public agenda and institutional outreach: news, meetings, and recognitions from the Institute.",
           href: '/novedades',
@@ -243,6 +253,11 @@ const copy: Record<Locale, HomeCopy> = {
           title: 'Symposiums',
           body: 'Archive des éditions, programme, médias, distinctions et Déclaration de Buenos Aires.',
           href: '/simposios',
+        },
+        {
+          title: 'Publications',
+          body: "Production éditoriale de l'Institut : la Déclaration de Buenos Aires et le livre « Nuevos Paradigmas para la Justicia Penal ».",
+          href: '/publicaciones',
         },
         {
           title: 'Actualités',

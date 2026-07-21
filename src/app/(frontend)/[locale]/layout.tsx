@@ -23,34 +23,50 @@ const NAV_COPY: Record<
   {
     instituto: string;
     formacion: string;
+    publicaciones: string;
     simposios: string;
     novedades: string;
+    contacto: string;
+    privacidad: string;
     navegacion: string;
+    institucional: string;
     accederCampus: string;
   }
 > = {
   es: {
     instituto: 'Instituto',
     formacion: 'Formación',
+    publicaciones: 'Publicaciones',
     simposios: 'Simposios',
     novedades: 'Novedades',
+    contacto: 'Contacto',
+    privacidad: 'Privacidad',
     navegacion: 'Navegación',
+    institucional: 'Institucional',
     accederCampus: 'Acceder al Campus',
   },
   en: {
     instituto: 'Institute',
     formacion: 'Training',
+    publicaciones: 'Publications',
     simposios: 'Symposiums',
     novedades: 'Updates',
+    contacto: 'Contact',
+    privacidad: 'Privacy',
     navegacion: 'Navigation',
+    institucional: 'Institutional',
     accederCampus: 'Access the Campus',
   },
   fr: {
     instituto: 'Institut',
     formacion: 'Formation',
+    publicaciones: 'Publications',
     simposios: 'Symposiums',
     novedades: 'Actualités',
+    contacto: 'Contact',
+    privacidad: 'Confidentialité',
     navegacion: 'Navigation',
+    institucional: 'Institutionnel',
     accederCampus: 'Accéder au Campus',
   },
 };
@@ -102,14 +118,25 @@ export default async function LocaleLayout({
   const navItems: HeaderNavItem[] = [
     { label: nav.instituto, href: `${homeHref}/instituto` },
     { label: nav.formacion, href: `${homeHref}/formacion` },
+    { label: nav.publicaciones, href: `${homeHref}/publicaciones` },
     { label: nav.simposios, href: `${homeHref}/simposios` },
     { label: nav.novedades, href: `${homeHref}/novedades` },
   ];
 
+  // Footer: la columna "Navegación" reutiliza el nav principal; la columna
+  // "Institucional" agrega las rutas que no van en el nav superior
+  // (Contacto y la política de privacidad).
   const footerColumns: FooterColumn[] = [
     {
       title: nav.navegacion,
       links: navItems,
+    },
+    {
+      title: nav.institucional,
+      links: [
+        { label: nav.contacto, href: `${homeHref}/contacto` },
+        { label: nav.privacidad, href: `${homeHref}/terms-privacy` },
+      ],
     },
   ];
 
