@@ -25,8 +25,28 @@
 ### Performance
 - Rutas de contenido estáticas (SSG). Fuentes Cinzel/Montserrat autohospedadas (`next/font`, display swap). `next/image` con `priority` en la imagen LCP de cada ruta, `sizes` y dimensiones/aspecto fijos (sin CLS), `quality≈75`. `<h1>` único por página, jerarquía H2/H3, `<time dateTime>`, `alt` reales.
 
-## Verificación pendiente (gate G4)
-- **Lighthouse ≥ 90** (Performance, SEO, Best Practices, Accessibility) en home + 1 ruta por sección. Medir sobre el preview desplegado (`ivujus-web.vercel.app`) con PageSpeed Insights o `lighthouse` CLI. (P6.)
+## Verificación gate G4 — Lighthouse (P6, hecho)
+
+Medido con Lighthouse 12 (preset desktop, las 4 categorías) sobre un **build de producción local** (`bun run build` + `bun run start`), home + 1 ruta por sección. Tras los micro-fixes de accesibilidad/favicon:
+
+| Ruta | Performance | Accessibility | Best Practices | SEO |
+|---|---|---|---|---|
+| `/es` (home) | 100 | 100 | 100 | 100 |
+| `/es/instituto` | 100 | 100 | 96* | 100 |
+| `/es/instituto/comite-cientifico` | 100 | 100 | 96* | 100 |
+| `/es/formacion` | 100 | 100 | 100 | 100 |
+| `/es/simposios/2026-buenos-aires` | 100 | 100 | 100 | 100 |
+| `/es/novedades` | 100 | 100 | 100 | 100 |
+
+**Gate G4 cumplido** (todas las categorías ≥90, la mayoría en 100).
+
+\* El 96 en instituto y comité-científico es **solo** por `errors-in-console`: los retratos hotlinked desde `ivujus.org.ar` dan 403 en este entorno (la política de red del sandbox bloquea ese host). No es un defecto de código; se resuelve solo cuando esas imágenes carguen contra el host real o se re-alojen (tarea manual #5 más abajo).
+
+Fixes aplicados en P6 (commits de la rama): contraste WCAG AA del acento dorado (`--ui-accent-ink` → `#856726`, y el componente `Eyebrow` migrado a ese token; antes usaba `text-dorado-700` = `#b5905c`, 2.7:1); `heading-order` (footer h4→h2 + h2 accesible antes de las grillas de tarjetas de `/instituto` y `/novedades`); favicon (`favicon.ico` 16/32/48 + `icon.png` + `apple-icon.png`).
+
+**Nota sobre Performance:** el 100 local no incluye la latencia real de las imágenes de `ivujus.org.ar` (acá dan 403 rápido). Conviene confirmar el Performance definitivo con **PageSpeed Insights** sobre `ivujus-web.vercel.app` una vez propagado el deploy.
+
+### Pendiente de correr (humano)
 - **Rich Results Test** (search.google.com/test/rich-results) sobre home, un perfil de autor, el Simposio y una novedad — confirmar 0 errores.
 
 ## Tareas manuales (requieren humano — no se pueden hacer desde el código)

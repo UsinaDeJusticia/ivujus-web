@@ -2,15 +2,16 @@
 
 > Cualquier sesión nueva de Claude Code retoma desde acá. Actualizar al cierre de cada sesión: qué se hizo, decisiones, pendientes, próximo paso exacto.
 
-**Última actualización:** 21 de julio de 2026 (sesión 3 — Fase 4 P1–P5 + P3 + P7 ejecutados y en `main`; solo resta P6 = medición Lighthouse)
+**Última actualización:** 22 de julio de 2026 (sesión 3 — **Fase 4 completa**, gate G4 cumplido; todo en `main`)
 **Rama de trabajo:** `claude/ivujus-rebuild-planning-gvcf25` (todo pusheado; `main` sincronizado → `ivujus-web.vercel.app`)
-**Etapa:** ✅ G0 · ✅ Fase 1 · ✅ G1 · ✅ **Fase 2 completa (contenido v1)** · 🔄 **Fase 4 en curso** — P1·P2·P3·P4·P5·P7 hechos y mergeados a `main`; **resta P6** (medir Lighthouse ≥90 + micro-ajustes) para cerrar gate G4.
+**Etapa:** ✅ G0 · ✅ Fase 1 · ✅ G1 · ✅ **Fase 2 (contenido v1)** · ✅ **Fase 4 completa (Optimización — SEO/GEO/perf, P1–P7)** · ✅ **G4** → ⏭️ próximo hito: **Fase 3** (WordPress headless), a la espera de insumos de Emanuel.
 
 ## ▶️ RETOMAR ACÁ (próximo paso literal)
-**P6 de Fase 4** — es lo único que falta para cerrar la optimización. Medir **Lighthouse ≥90** (Performance, SEO, Best Practices, Accessibility) sobre `ivujus-web.vercel.app` en home + 1 ruta por sección; aplicar micro-fixes; correr Rich Results Test. Se puede medir con PageSpeed Insights (más fiable sobre el deploy real) o `lighthouse` CLI headless. Al cerrar P6 → gate G4.
-- **Ya hecho y en `main`** (commits `0878b09`→`fd00ec9`): P1 robots/sitemap(hreflang)/llms.txt · P2 builders JSON-LD en `seo.ts` · P3a/b/c metadata+JSON-LD+BreadcrumbList+perf de imágenes+semántica en todas las secciones · P4 OG images (`next/og`) · P5 redirects 301/308 + `docs/usina-redirects.md` · P7 `docs/SEO-GEO.md`. Endpoints verificados en runtime (robots con bots LLM, sitemap 150 URLs, llms.txt, redirect `/nosotros`→308, JSON-LD Organization+WebSite en home).
-- **Insumos de Emanuel pendientes** (P7, manuales — no bloquean P6): confirmar URLs de redes sociales para `sameAs`, ítem Wikidata, decisión de re-alojar imágenes críticas en Vercel Blob.
-Después de Fase 4: **Fase 3** (WordPress headless: `/novedades` en vivo con ISR, formulario de contacto real, Perfit) — requiere destino `oea`, idioma novedades, proveedor de email.
+Fase 4 cerrada. **Lighthouse (build de prod local, desktop): Performance/Accessibility/Best-Practices/SEO = 100** en home, formación, simposio y novedades; instituto y comité quedan en Best-Practices 96 **solo** por el 403 de las imágenes hotlinked de `ivujus.org.ar` (artefacto del sandbox, se resuelve en prod / con re-alojo). Detalle y tabla en `docs/SEO-GEO.md`.
+- **Pendiente de humano (no bloquea):** que Emanuel confirme el Performance real con PageSpeed sobre `ivujus-web.vercel.app`; correr Rich Results Test; y las tareas manuales de `docs/SEO-GEO.md` (Wikidata, Search Console, Bing, URLs de redes sociales para `sameAs`, decisión de re-alojar imágenes críticas en Vercel Blob).
+- **Fase 4 en `main`** (commits `0878b09`→P6): P1 robots/sitemap(hreflang, 150 URLs)/llms.txt · P2 builders JSON-LD en `seo.ts` · P3a/b/c metadata+JSON-LD+BreadcrumbList+perf de imágenes+semántica · P4 OG images (`next/og`) · P5 redirects 301/308 + `docs/usina-redirects.md` · P6 micro-fixes (contraste AA del acento dorado, heading-order, favicon) · P7 `docs/SEO-GEO.md`.
+
+**Próximo hito — Fase 3** (WordPress headless: `/novedades` en vivo con ISR, formulario de contacto real, Perfit). Requiere de Emanuel: destino de la categoría `oea`, idioma de novedades v1, y proveedor/credencial de email. No arrancar sin esos insumos.
 
 ## Iteración G1 (18-jul) — feedback de Emanuel sobre el primer preview
 

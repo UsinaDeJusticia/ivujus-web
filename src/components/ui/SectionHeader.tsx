@@ -21,7 +21,7 @@ export function Eyebrow({ children, className, invert = false }: EyebrowProps) {
     <span
       className={[
         'inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em]',
-        invert ? 'text-dorado-400' : 'text-dorado-700',
+        invert ? 'text-dorado-400' : 'text-[color:var(--ui-accent-ink)]',
         className,
       ]
         .filter(Boolean)
