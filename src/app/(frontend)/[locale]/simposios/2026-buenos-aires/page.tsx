@@ -212,7 +212,7 @@ export default async function Symposium2026Page({
                               </p>
                             ) : null}
                           </div>
-                          <span className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.18em] text-[color:var(--ui-ink-4)] group-open:text-[color:var(--ui-accent-ink)]">
+                          <span className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.18em] text-[color:var(--ui-ink-3)] group-open:text-[color:var(--ui-accent-ink)]">
                             Ver detalle
                           </span>
                         </div>

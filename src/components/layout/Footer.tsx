@@ -85,9 +85,9 @@ export function Footer({
 
           {columns.map((column) => (
             <div key={column.title} className="flex flex-col gap-3.5">
-              <h4 className="m-0 text-xs font-semibold uppercase tracking-[0.22em] text-dorado-400">
+              <h2 className="m-0 text-xs font-semibold uppercase tracking-[0.22em] text-dorado-400">
                 {column.title}
-              </h4>
+              </h2>
               <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
                 {column.links.map((link) => (
                   <li key={link.href}>

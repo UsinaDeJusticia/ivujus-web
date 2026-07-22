@@ -218,7 +218,7 @@
   --ui-ink-3: var(--color-gris-700); /* secundario */
   --ui-ink-4: var(--color-gris-600); /* terciario */
   --ui-display-ink: var(--color-azul-900); /* titulares Cinzel */
-  --ui-accent-ink: var(--color-dorado-700); /* eyebrows, roles, acentos */
+  --ui-accent-ink: #856726; /* eyebrows, roles, acentos — dorado oscurecido a AA (>=4.5:1 sobre blanco y azul-50); dorado-700 (#b5905c) fallaba WCAG */
   --ui-link: var(--color-azul-700);
   --ui-link-hover: var(--color-azul-800);
   --ui-shadow-1: 0 1px 2px rgba(13, 59, 102, 0.06);

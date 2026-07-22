@@ -78,6 +78,9 @@ export default async function NovedadesPage({
         </header>
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {/* h2 accesible para no saltar de h1 a los h3 de las tarjetas
+              (heading-order de Lighthouse); la grilla no lleva título visible. */}
+          <h2 className="sr-only">Últimas novedades</h2>
           {novedades.map((novedad) => (
             <ContentCard
               key={novedad.slug}
