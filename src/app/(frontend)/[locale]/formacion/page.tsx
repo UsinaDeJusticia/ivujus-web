@@ -64,7 +64,7 @@ export default async function FormacionHubPage({
         <section className="space-y-10">
           <SectionHeader
             eyebrow="Oferta"
-            title="Diplomatura de posgrado y archivo de ciclos y jornadas académicas."
+            title="Diplomatura y archivo de ciclos y jornadas académicas."
           />
 
           <div className="grid gap-6 md:grid-cols-2">

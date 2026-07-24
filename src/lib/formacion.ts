@@ -355,7 +355,7 @@ export const formacionHubData: FormacionHub = {
   // usinadejusticia.org.ar (WP ID 15851), insumo explícito para /formacion
   // según docs/USINA-CONTENIDO-RESERVADO.md §3.
   intro:
-    'Llevamos adelante estudios de legislaciones, análisis de casos y buenas prácticas nacionales e internacionales vinculados a la Justicia y la Seguridad. Estos procesos permiten generar información clave que se traslada a tomadores de decisión de los poderes Ejecutivo, Legislativo y Judicial, a organizaciones de la sociedad civil y a la comunidad en general, a través de presentaciones, charlas, mesas de diálogo, talleres y seminarios.',
+    'El instituto tiene como función desarrollar instancias de capacitación, actualización y perfeccionamiento sobre el estudio integral de la víctima, el proceso de victimización y las respuestas institucionales y sociales ante el delito. A través de la Victimología Penal se busca visibilizar el rol de la víctima en el sistema de justicia, promoviendo políticas públicas que dejen de verla como un objeto de prueba y la reconozcan como un sujeto de derechos.',
   sections: [
     {
       title: 'Diplomatura en Victimología y leyes de víctimas',

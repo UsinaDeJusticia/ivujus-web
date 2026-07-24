@@ -90,7 +90,12 @@ export default async function Symposium2026Page({
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${getSiteUrl()}/es` },
-      { '@type': 'ListItem', position: 2, name: 'Simposios', item: `${getSiteUrl()}/es/simposios` },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Eventos académicos',
+        item: `${getSiteUrl()}/es/simposios`,
+      },
       {
         '@type': 'ListItem',
         position: 3,
@@ -109,7 +114,7 @@ export default async function Symposium2026Page({
       />
       <div className="mx-auto max-w-[var(--container-default)] space-y-24 px-6 py-16 sm:px-10">
         <header className="max-w-5xl space-y-4 border-b border-[color:var(--ui-border)] pb-14">
-          <Eyebrow>{`Simposios / ${simposio2026.location}`}</Eyebrow>
+          <Eyebrow>{`Eventos académicos / ${simposio2026.location}`}</Eyebrow>
           <h1 className="max-w-5xl text-balance text-[length:clamp(34px,5vw,60px)]">
             {simposio2026.title}
           </h1>

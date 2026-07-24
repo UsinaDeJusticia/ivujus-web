@@ -83,8 +83,8 @@ const copy: Record<Locale, HomeCopy> = {
   es: {
     hero: {
       eyebrow: 'Instituto de Victimología de Usina de Justicia',
-      title: 'Un portal académico para formación, investigación y derecho victimal.',
-      lead: 'IVUJUS se está construyendo como el nodo digital de una red académica internacional: una plataforma para presentar la institución, ordenar la producción editorial y conectar simposios, formación y agenda pública.',
+      title: 'Un portal académico destinado a la difusión, la capacitación y la investigación de la Victimología Penal.',
+      lead: 'El Instituto de Victimología de Usina de Justicia (IVUJUS) tiene como finalidades poner en escena a la víctima como principal protagonista y consolidar a la Victimología como ciencia autónoma e independiente.',
       tagline: 'Conocimiento que ilumina, formación que transforma.',
       ctaPrimary: 'Explorar el instituto',
       ctaSecondary: 'Conocer el Simposio 2026',
@@ -127,8 +127,8 @@ const copy: Record<Locale, HomeCopy> = {
           href: '/instituto/estatuto',
         },
         {
-          title: 'Simposios',
-          body: 'Archivo de ediciones, programa, medios, premios y la Declaración de Buenos Aires.',
+          title: 'Eventos académicos',
+          body: 'Congresos, simposios y jornadas: programa, medios, premios y la Declaración de Buenos Aires.',
           href: '/simposios',
         },
         {
@@ -154,8 +154,8 @@ const copy: Record<Locale, HomeCopy> = {
   en: {
     hero: {
       eyebrow: 'Victimology Institute of Usina de Justicia',
-      title: 'An academic platform for training, research, and victims rights.',
-      lead: 'IVUJUS is being shaped as the digital node of an international academic network: a platform to present the institute, organize editorial production, and connect symposiums, training, and public work.',
+      title: 'An academic portal for the dissemination, training and research of Penal Victimology.',
+      lead: 'The Institute of Victimology of Usina de Justicia (IVUJUS) works to place the victim at the centre as the main protagonist, and to consolidate Victimology as an autonomous, independent science.',
       tagline: 'Conocimiento que ilumina, formación que transforma.',
       ctaPrimary: 'Explore the institute',
       ctaSecondary: 'Discover Symposium 2026',
@@ -198,8 +198,8 @@ const copy: Record<Locale, HomeCopy> = {
           href: '/instituto/estatuto',
         },
         {
-          title: 'Symposiums',
-          body: 'Archive of editions, programs, media coverage, awards, and the Buenos Aires Declaration.',
+          title: 'Academic events',
+          body: 'Congresses, symposiums, and conferences: programs, media coverage, awards, and the Buenos Aires Declaration.',
           href: '/simposios',
         },
         {
@@ -225,8 +225,8 @@ const copy: Record<Locale, HomeCopy> = {
   fr: {
     hero: {
       eyebrow: 'Institut de victimologie de Usina de Justicia',
-      title: 'Une plateforme académique pour la formation, la recherche et les droits des victimes.',
-      lead: "IVUJUS se construit comme le nœud numérique d'un réseau académique international : une plateforme pour présenter l'institut, organiser la production éditoriale et relier symposiums, formation et agenda public.",
+      title: 'Un portail académique dédié à la diffusion, à la formation et à la recherche en Victimologie pénale.',
+      lead: 'L’Institut de Victimologie d’Usina de Justicia (IVUJUS) a pour finalités de placer la victime au centre en tant que protagoniste principale et de consolider la Victimologie comme science autonome et indépendante.',
       tagline: 'Conocimiento que ilumina, formación que transforma.',
       ctaPrimary: "Explorer l'institut",
       ctaSecondary: 'Découvrir le Symposium 2026',
@@ -269,8 +269,8 @@ const copy: Record<Locale, HomeCopy> = {
           href: '/instituto/estatuto',
         },
         {
-          title: 'Symposiums',
-          body: 'Archive des éditions, programme, médias, distinctions et Déclaration de Buenos Aires.',
+          title: 'Événements académiques',
+          body: 'Congrès, symposiums et journées : programme, médias, distinctions et Déclaration de Buenos Aires.',
           href: '/simposios',
         },
         {

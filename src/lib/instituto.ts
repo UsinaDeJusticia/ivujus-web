@@ -16,7 +16,7 @@ export type InstitutePerson = {
 export const institutoData = {
   title: 'Instituto de Victimología de Usina de Justicia',
   intro:
-    'El IVUJUS articula investigación, formación, producción editorial y cooperación internacional en torno a la victimología, el derecho victimal y los derechos de las víctimas.',
+    'El IVUJUS articula actividades de capacitación, producción editorial, investigación y cooperación internacional en torno a la Victimología Penal y al derecho victimal.',
   purposes: [
     {
       title: 'Estudios e investigación',
@@ -32,7 +32,7 @@ export const institutoData = {
     },
     {
       title: 'Premios científicos',
-      body: 'Incentivar premios científicos, según aprobación de la Comisión Directiva.',
+      body: 'Distinguir las contribuciones sobresalientes en el campo de la Victimología Penal.',
     },
     {
       title: 'Publicaciones',
@@ -83,14 +83,6 @@ export const institutoData = {
       summary: 'Abogada y referente en relaciones internacionales judiciales y ciberdelincuencia.',
       bio: 'Abogada (UBA). Representante ante la OEA de Usina de Justicia. Experta en Ciberdelincuencia y Evidencia Digital. Becaria de Georgetown University y experta en Relaciones Internacionales judiciales.',
       image: 'https://ivujus.org.ar/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-14-at-10.49.35-1.jpeg',
-    },
-    {
-      slug: 'patricia-borras',
-      name: 'Patricia Borras',
-      role: 'Tecnología y comunicación',
-      summary: 'Licenciada en Sistemas con trayectoria en gestión tecnológica institucional.',
-      bio: 'Licenciada en Sistemas (UTN). Ex funcionaria del Consejo de la Magistratura. Especialista en gestión tecnológica y soporte digital institucional.',
-      image: 'https://ivujus.org.ar/wp-content/uploads/2025/12/patricia_borras_profiles.jpg',
     },
     {
       slug: 'jair-castillo',

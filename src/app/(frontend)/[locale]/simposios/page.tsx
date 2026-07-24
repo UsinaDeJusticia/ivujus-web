@@ -14,20 +14,26 @@ export async function generateMetadata({
   return buildLocalizedMetadata({
     locale,
     path: '/simposios',
-    title: 'Simposios',
+    title: 'Eventos académicos',
     description:
-      'Archivo de encuentros, declaraciones y producción derivada del Instituto de Victimología de Usina de Justicia.',
+      'Congresos, simposios y jornadas formativas que organiza y avala el Instituto de Victimología de Usina de Justicia.',
   });
 }
 
 export default function SymposiumIndexPage() {
-  // Home > Simposios.
+  // Home > Eventos académicos. La ruta sigue siendo /simposios: solo cambian
+  // las etiquetas visibles, para no romper URLs indexadas ni pedir redirects.
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${getSiteUrl()}/es` },
-      { '@type': 'ListItem', position: 2, name: 'Simposios', item: `${getSiteUrl()}/es/simposios` },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Eventos académicos',
+        item: `${getSiteUrl()}/es/simposios`,
+      },
     ],
   };
 
@@ -43,13 +49,15 @@ export default function SymposiumIndexPage() {
             quedaba como único encabezado). Mismo patrón de cabecera que
             formacion/page.tsx y formacion/ciclos/page.tsx, mismo texto. */}
         <header className="max-w-4xl space-y-5 border-b border-[color:var(--ui-border)] pb-14">
-          <Eyebrow>Simposios</Eyebrow>
+          <Eyebrow>Eventos académicos</Eyebrow>
           <h1 className="max-w-4xl text-balance text-[length:clamp(34px,5vw,60px)]">
-            Archivo de encuentros, declaraciones y producción derivada.
+            Espacios de conocimiento e innovación.
           </h1>
           <p className="max-w-3xl text-pretty text-lg leading-[1.7] text-[color:var(--ui-ink-3)]">
-            El Simposio 2026 es hoy la pieza más desarrollada del archivo público del IVUJUS y funciona
-            como punto de partida para la arquitectura internacional del sitio.
+            IVUJUS promueve el desarrollo académico y científico mediante la organización y el aval de
+            encuentros de alto nivel nacional e internacional. A través de sus congresos, simposios y
+            jornadas formativas, la institución consolida plataformas estratégicas para la divulgación de
+            investigaciones de vanguardia y el intercambio de experiencias entre expertos.
           </p>
         </header>
 

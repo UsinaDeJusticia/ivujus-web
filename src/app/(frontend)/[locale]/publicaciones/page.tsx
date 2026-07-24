@@ -63,18 +63,18 @@ export default async function PublicacionesHubPage({
         <header className="max-w-4xl space-y-5 border-b border-[color:var(--ui-border)] pb-14">
           <Eyebrow>{labels.publicaciones}</Eyebrow>
           <h1 className="max-w-4xl text-balance text-[length:clamp(34px,5vw,60px)]">
-            Publicaciones del Instituto de Victimología.
+            Publicaciones del Instituto de Victimología
           </h1>
           <p className="max-w-3xl text-pretty text-lg leading-[1.7] text-[color:var(--ui-ink-3)]">
             Declaraciones institucionales, tomas de posición y producción editorial que documentan la
-            actividad académica de Usina de Justicia y del IVUJUS.
+            actividad académica del IVUJUS.
           </p>
         </header>
 
         <section className="space-y-10">
           <SectionHeader
             eyebrow="Archivo"
-            title="Dos frentes de producción: declaraciones y libros."
+            title="Fuentes de producción: declaraciones, libros, dossier."
           />
 
           <div className="grid gap-6 md:grid-cols-2">
