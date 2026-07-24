@@ -37,7 +37,10 @@ const NAV_COPY: Record<
     instituto: 'Instituto',
     formacion: 'Formación',
     publicaciones: 'Publicaciones',
-    simposios: 'Eventos académicos',
+    // Etiqueta corta a propósito: el nombre completo de la sección
+    // («Eventos académicos») vive en el h1, el breadcrumb y la metadata. En el
+    // nav tiene que ser breve o la fila del header desborda entre 768 y 1024px.
+    simposios: 'Eventos',
     novedades: 'Novedades',
     contacto: 'Contacto',
     privacidad: 'Privacidad',
@@ -49,7 +52,7 @@ const NAV_COPY: Record<
     instituto: 'Institute',
     formacion: 'Training',
     publicaciones: 'Publications',
-    simposios: 'Academic events',
+    simposios: 'Events',
     novedades: 'Updates',
     contacto: 'Contact',
     privacidad: 'Privacy',
@@ -61,7 +64,7 @@ const NAV_COPY: Record<
     instituto: 'Institut',
     formacion: 'Formation',
     publicaciones: 'Publications',
-    simposios: 'Événements académiques',
+    simposios: 'Événements',
     novedades: 'Actualités',
     contacto: 'Contact',
     privacidad: 'Confidentialité',

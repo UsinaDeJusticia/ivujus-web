@@ -110,7 +110,10 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta, local
           scrolled ? 'py-3' : 'py-5',
         ].join(' ')}
       >
-        <Link href={homeHref} className="flex items-center gap-3.5 no-underline">
+        {/* shrink-0 en el enlace: es el flex item que se comprimía cuando el
+            nav ocupa mucho, y al angostarse deformaba el isotipo (ancho 50px
+            con alto 44px, distinto del aspect-ratio del archivo). */}
+        <Link href={homeHref} className="flex shrink-0 items-center gap-3.5 no-underline">
           {/* Doble logo: el isotipo azul se ve bien sobre claro/sepia; en
               tema oscuro el azul es casi invisible sobre el fondo azul-950,
               así que se cambia por la versión blanca. El toggle es por CSS
@@ -122,7 +125,11 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta, local
             height={140}
             priority
             className={[
-              'logo-theme-light w-auto',
+              // shrink-0: el header es flex y el isotipo, al ser comprimible por
+              // defecto, se achataba en horizontal (ancho 50px con alto 44px, o
+              // sea otro aspect-ratio que el del archivo) cuando las etiquetas
+              // del nav ocupan mucho. Deforma el logo y Lighthouse lo marca.
+              'logo-theme-light w-auto shrink-0',
               'transition-[height] duration-[var(--motion-base)] ease-[var(--easing-standard)] motion-reduce:transition-none',
               scrolled ? 'h-9' : 'h-11',
             ].join(' ')}
@@ -134,7 +141,7 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta, local
             height={140}
             priority
             className={[
-              'logo-theme-dark w-auto',
+              'logo-theme-dark w-auto shrink-0',
               'transition-[height] duration-[var(--motion-base)] ease-[var(--easing-standard)] motion-reduce:transition-none',
               scrolled ? 'h-9' : 'h-11',
             ].join(' ')}
@@ -151,8 +158,14 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta, local
           ) : null}
         </Link>
 
+        {/* La barra horizontal aparece desde xl (1280px), no desde md (768px):
+            con 5 secciones + los dos selectores + el botón de Campus, la fila
+            necesita ~1100px (el francés es el más ancho) y entre 768 y 1024
+            desbordaba la página en horizontal (defecto de reflow, WCAG 1.4.10).
+            Debajo de xl se usa el menú desplegable, que incluye navegación, CTA
+            y selectores. */}
         {items.length > 0 ? (
-          <nav aria-label="Principal" className="ml-auto hidden items-center gap-7 md:flex">
+          <nav aria-label="Principal" className="ml-auto hidden items-center gap-7 xl:flex">
             {items.map((item) => {
               const isActive = item.href === activeHref
               return (
@@ -179,8 +192,8 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta, local
             Debajo de `md` se ocultan acá y reaparecen en el panel móvil. */}
         <div
           className={[
-            'hidden items-center gap-4 md:flex',
-            items.length > 0 ? '' : 'md:ml-auto',
+            'hidden items-center gap-4 xl:flex',
+            items.length > 0 ? '' : 'xl:ml-auto',
           ].join(' ')}
         >
           {cta ? (
@@ -203,7 +216,7 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta, local
           <button
             type="button"
             className={[
-              'ml-auto flex h-9 w-9 items-center justify-center rounded-[var(--radius-sm)] md:hidden',
+              'ml-auto flex h-9 w-9 items-center justify-center rounded-[var(--radius-sm)] xl:hidden',
               'text-[color:var(--ui-ink-2)] transition-colors duration-[var(--motion-fast)] ease-[var(--easing-standard)]',
               'focus-visible:outline-none focus-visible:shadow-[var(--shadow-focus)]',
             ].join(' ')}
@@ -227,7 +240,7 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta, local
         aria-hidden={!mobileOpen}
         inert={!mobileOpen}
         className={[
-          'grid overflow-hidden border-[color:var(--ui-border)] md:hidden',
+          'grid overflow-hidden border-[color:var(--ui-border)] xl:hidden',
           'transition-[grid-template-rows] duration-[var(--motion-base)] ease-[var(--easing-standard)] motion-reduce:transition-none',
           mobileOpen ? 'grid-rows-[1fr] border-t' : 'grid-rows-[0fr]',
         ].join(' ')}
