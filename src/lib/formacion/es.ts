@@ -1,10 +1,7 @@
 // Datos curados de la sección Formación (hub, diplomatura y archivo de
-// ciclos/jornadas). Igual que src/lib/instituto.ts y src/lib/simposio2026.ts,
-// es contenido único en español: las rutas /en y /fr reutilizan estos mismos
-// datos sin traducción de cuerpo (solo cambian labels de navegación y
-// metadata de la página) — es el mismo criterio que ya usan instituto/*  y
-// simposios/2026-buenos-aires (ver docs/CLAUDE.md, "Estado actual de
-// frontend y migracion").
+// ciclos/jornadas), versión en español. Igual que src/lib/instituto.ts y
+// src/lib/simposio2026.ts, es contenido único curado a mano — no hay
+// colección de Payload equivalente todavía.
 //
 // REGLA DE ORO de esta ola: nada de lo que sigue es inventado. Cada campo
 // sale de una fuente real y verificable:
@@ -24,38 +21,15 @@
 // `usina-de-justicia` — ver docs/USINA-CONTENIDO-RESERVADO.md §4. Se dejan
 // tal cual porque documentan el origen real del contenido, no el destino
 // del redirect.
+//
+// Las traducciones EN/FR (en.ts, fr.ts) siguen docs/GLOSARIO-TRADUCCION.md.
+// Este archivo es la fuente en español, tal cual estaba en el módulo único
+// anterior (src/lib/formacion.ts).
 
-export type FuenteContenido = 'migracion_usina' | 'migracion_wp';
+import { CAMPUS_VIRTUAL_URL, DIPLOMATURA_PROGRAMA_PDF_URL } from './constants';
+import type { Ciclo, Diplomatura, FormacionContent, FormacionHub } from './types';
 
-// Fuente: docs/reference/design-system-oficial/README.md, sección
-// "Superficies del producto" ("Campus virtual | https://usinadejusticiacampus.org.ar").
-// Confirmable con Jair antes de considerarla definitiva para prensa/redes.
-export const CAMPUS_VIRTUAL_URL = 'https://usinadejusticiacampus.org.ar';
-
-// Fuente: href real dentro del HTML de la página `campus-virtual` de
-// ivujus.org.ar (id 24055), enlace de texto "Programa Diplomatura en
-// Victimología y leyes de víctimas".
-export const DIPLOMATURA_PROGRAMA_PDF_URL =
-  'https://ivujus.org.ar/wp-content/uploads/2025/09/Diplomatura.pdf';
-
-export type Diplomatura = {
-  titulo: string;
-  nombreHistorico?: string;
-  descripcion: string;
-  metricas: {
-    inscriptos: number;
-    certificados: number;
-    valoracion: string;
-  };
-  resenas: string[];
-  programaPdfUrl: string;
-  campusUrl: string;
-  fuente: FuenteContenido;
-  source_wp_id: number;
-  source_url: string;
-};
-
-export const diplomaturaData: Diplomatura = {
+const diplomaturaData: Diplomatura = {
   // Título tal cual aparece en la página `campus-virtual` de ivujus.org.ar.
   titulo: 'Diplomatura en Victimología y leyes de víctimas',
   // Nombre bajo el que se promocionó el mismo curso en paginas-planas.md
@@ -109,34 +83,6 @@ export const diplomaturaData: Diplomatura = {
 // docs/MIGRATION-MATRIX.md §5 y docs/CONTENT-MIGRATION-LEDGER.md (WP ID
 // 21312, "no migrar").
 
-export type SesionCiclo = {
-  oradores?: string[];
-  video_url?: string;
-};
-
-export type DossierCiclo = {
-  titulo: string;
-  url: string;
-};
-
-export type Ciclo = {
-  slug: string;
-  titulo: string;
-  fecha: string;
-  resumen: string;
-  oradores?: string[];
-  video_url?: string;
-  // Más de una charla/sesión con oradores y video propios (ej. un ciclo con
-  // dos jornadas grabadas por separado).
-  sesiones?: SesionCiclo[];
-  dossier?: DossierCiclo;
-  fuente: FuenteContenido;
-  // Array cuando dos o más posts documentan el mismo evento y se fusionaron
-  // en una sola entrada (ver nota puntual en cada caso).
-  source_wp_id: number | number[];
-  source_url: string;
-};
-
 // Orden cronológico descendente (más reciente primero), igual que un
 // archivo editorial. Los 10 ciclos con fuente 'migracion_usina' vienen de
 // docs/reference/usina-source-content/posts-completos.md (WP IDs de
@@ -144,7 +90,7 @@ export type Ciclo = {
 // docs/USINA-CONTENIDO-RESERVADO.md §2). Los 2 ciclos con fuente
 // 'migracion_wp' vienen del widget Elementor vivo de
 // https://ivujus.org.ar/capacitacion-y-actividades/ (id 21399).
-export const ciclosData: Ciclo[] = [
+const ciclosData: Ciclo[] = [
   {
     slug: 'jornada-cpacf-derecho-cientifico-2025',
     titulo: 'Jornada «Hacia un Derecho Científico»: Medición Cualitativa en la Era del Algoritmo',
@@ -339,17 +285,7 @@ export const ciclosData: Ciclo[] = [
   },
 ];
 
-export function getCicloBySlug(slug: string): Ciclo | undefined {
-  return ciclosData.find((ciclo) => ciclo.slug === slug);
-}
-
-export type FormacionHub = {
-  title: string;
-  intro: string;
-  sections: Array<{ title: string; body: string; href: string }>;
-};
-
-export const formacionHubData: FormacionHub = {
+const formacionHubData: FormacionHub = {
   title: 'Formación',
   // Párrafo institucional real de la página plana "capacitacion" de
   // usinadejusticia.org.ar (WP ID 15851), insumo explícito para /formacion
@@ -368,4 +304,10 @@ export const formacionHubData: FormacionHub = {
       href: '/formacion/ciclos',
     },
   ],
+};
+
+export const content: FormacionContent = {
+  hub: formacionHubData,
+  diplomatura: diplomaturaData,
+  ciclos: ciclosData,
 };

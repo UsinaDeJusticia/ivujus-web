@@ -165,6 +165,30 @@ igual en los tres idiomas). Si en cambio se trata de una referencia temática y 
 denominación oficial (por ejemplo «Ley de Datos Genéticos» usada como título de un panel),
 se traduce de forma descriptiva.
 
+**Separador decimal.** El español y el francés usan coma; el inglés usa punto: «9,7 de 10»
+→ «9.7 out of 10» → «9,7 sur 10».
+
+**Nombres de universidades e instituciones, también sin abreviar.** La regla de no
+traducir no vale solo para las siglas: «Universidad de Buenos Aires», «Universidad
+Nacional de Asunción», «Universidad Argentina de la Empresa» y «Universidad Privada
+UdeMM» se mantienen en español en los tres idiomas, con glosa entre paréntesis si aporta.
+
+**Nombres de ciclos y programas propios** («Dialogando BA», «Usina de Justicia Debate»,
+«Grupo Diálogo y Debate Jurídico Penal»): son denominaciones de marca y no se traducen; se
+puede agregar una glosa descriptiva en su primera aparición.
+
+**Términos de teoría jurídica sin equivalente** («garantismo»): se mantienen como préstamo
+en cursiva y, si hace falta, con una glosa breve. Traducirlos por aproximación deformaría
+el concepto.
+
+| Español | Inglés | Francés |
+|---|---|---|
+| Procuración / Procuraciones | Attorney General's Office(s) | parquet(s) général(aux) |
+
+**Abreviaturas de título que no tienen equivalente limpio** («Lic.»): se omiten en la
+traducción antes que inventar una equivalencia. El grado, si es relevante, se expresa en
+el texto de la biografía.
+
 ## 6. Lo que NUNCA se traduce
 
 Traducir cualquiera de estos elementos rompe el sitio o falsea el contenido.

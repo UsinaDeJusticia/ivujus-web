@@ -38,7 +38,12 @@ export type {
   PublicacionesLocaleContent,
 };
 
-const CONTENT: Record<Locale, PublicacionesLocaleContent> = { es, en, fr };
+// Exportado (además de usarse acá) para que `scripts/check-i18n.ts` pueda
+// comparar los tres idiomas entre sí: es el único modo de detectar un campo
+// invariante traducido por error o un texto que quedó sin traducir.
+export const publicacionesByLocale: Record<Locale, PublicacionesLocaleContent> = { es, en, fr };
+
+const CONTENT = publicacionesByLocale;
 
 export function getPublicacionesLabels(locale: string): PublicacionesLabels {
   return pickLocale(CONTENT, locale).labels;
