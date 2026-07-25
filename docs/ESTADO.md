@@ -2,16 +2,52 @@
 
 > Cualquier sesión nueva de Claude Code retoma desde acá. Actualizar al cierre de cada sesión: qué se hizo, decisiones, pendientes, próximo paso exacto.
 
-**Última actualización:** 22 de julio de 2026 (sesión 3 — **Fase 4 completa**, gate G4 cumplido; todo en `main`)
-**Rama de trabajo:** `claude/ivujus-rebuild-planning-gvcf25` (todo pusheado; `main` sincronizado → `ivujus-web.vercel.app`)
-**Etapa:** ✅ G0 · ✅ Fase 1 · ✅ G1 · ✅ **Fase 2 (contenido v1)** · ✅ **Fase 4 completa (Optimización — SEO/GEO/perf, P1–P7)** · ✅ **G4** → ⏭️ próximo hito: **Fase 3** (WordPress headless), a la espera de insumos de Emanuel.
+**Última actualización:** 25 de julio de 2026 (sesión 4 — **Ola 1 de las sugerencias de Jimena publicada**; arquitectura de contenido aprobada)
+**Rama de trabajo:** `claude/ivujus-rebuild-planning-gvcf25` = `main` = `d94485c` (publicado → `ivujus-web.vercel.app`)
+**Etapa:** ✅ G0 · ✅ Fase 1 · ✅ G1 · ✅ Fase 2 (contenido v1) · ✅ Fase 4 (SEO/GEO/perf) · ✅ **G4** · ✅ **Ola 1 Jimena** → ⏭️ **Olas 2 y 3, bloqueadas por insumos de contenido**.
 
 ## ▶️ RETOMAR ACÁ (próximo paso literal)
-Fase 4 cerrada. **Lighthouse (build de prod local, desktop): Performance/Accessibility/Best-Practices/SEO = 100** en home, formación, simposio y novedades; instituto y comité quedan en Best-Practices 96 **solo** por el 403 de las imágenes hotlinked de `ivujus.org.ar` (artefacto del sandbox, se resuelve en prod / con re-alojo). Detalle y tabla en `docs/SEO-GEO.md`.
-- **Pendiente de humano (no bloquea):** que Emanuel confirme el Performance real con PageSpeed sobre `ivujus-web.vercel.app`; correr Rich Results Test; y las tareas manuales de `docs/SEO-GEO.md` (Wikidata, Search Console, Bing, URLs de redes sociales para `sameAs`, decisión de re-alojar imágenes críticas en Vercel Blob).
-- **Fase 4 en `main`** (commits `0878b09`→P6): P1 robots/sitemap(hreflang, 150 URLs)/llms.txt · P2 builders JSON-LD en `seo.ts` · P3a/b/c metadata+JSON-LD+BreadcrumbList+perf de imágenes+semántica · P4 OG images (`next/og`) · P5 redirects 301/308 + `docs/usina-redirects.md` · P6 micro-fixes (contraste AA del acento dorado, heading-order, favicon) · P7 `docs/SEO-GEO.md`.
 
-**Próximo hito — Fase 3** (WordPress headless: `/novedades` en vivo con ISR, formulario de contacto real, Perfit). Requiere de Emanuel: destino de la categoría `oea`, idioma de novedades v1, y proveedor/credencial de email. No arrancar sin esos insumos.
+**La arquitectura de información está aprobada y documentada** en
+[`ARQUITECTURA-CONTENIDO.md`](./ARQUITECTURA-CONTENIDO.md) (versión clara para el equipo) y
+[`GOBERNANZA-CONTENIDO.md`](./GOBERNANZA-CONTENIDO.md) (checklist obligatorio para publicar).
+**Leer ambos antes de sumar contenido nuevo** — son el filtro que evita el desorden tipo Usina.
+Decisiones cerradas: pilar nuevo = **Observatorio** (IUJ + Estadísticas + app de sentencias) · Biblioteca **dentro de Publicaciones** · sección «Simposios» renombrada a **«Eventos académicos»** manteniendo la URL `/simposios`.
+
+**No hay tarea desbloqueada de código.** Las Olas 2 y 3 esperan material verificable de Emanuel/Jimena (regla: sin fuente → PENDIENTE, no se inventa):
+
+| Ola | Qué falta |
+|---|---|
+| 2 | Foto nueva de Jimena (`instituto.ts:53`, hoy `jimena_molina_profiles.jpg`) · dossier de **responsabilidad penal juvenil** (los de prisión perpetua y salud mental ya están referenciados en `formacion.ts`) · «Encuentros y conferencias»: fecha + descripción + imagen/enlace de cada evento (Colón · libro en UBA y DAIN · los «Usina de Justicia Debate» · imputabilidad —de este hay 2 flyers en el .docx de Jimena—) |
+| 3 | **Observatorio**: material del IUJ (la colección `IndiceLegislativoEntradas` ya existe, sin datos ni página pública) · estadísticas de Noe + formato · Biblioteca (PDFs con derechos, enlace de compra, tapas de recomendados) · identificar la app de lectura de sentencias (nombre + URL) |
+
+**Decisión de diseño pendiente (chica, ~10 min):** el menú pasó a desplegable entre 1024 y 1280px porque la barra horizontal desbordaba (el francés necesita ~1100px). Si Emanuel prefiere conservar la barra en ese rango: acortar el CTA «Acceder al Campus» → «Campus» y bajar el breakpoint a `lg`.
+
+**Pendientes de humano heredados de Fase 4** (en `docs/SEO-GEO.md`, no bloquean): PageSpeed real sobre el deploy · Rich Results Test · Wikidata · Search Console · Bing · URLs de redes para `sameAs` · decisión de re-alojar imágenes críticas en Vercel Blob.
+
+**Fase 3** (WordPress headless: `/novedades` en vivo con ISR, formulario real, Perfit) sigue en cola y requiere: destino de la categoría `oea`, idioma de novedades v1, proveedor/credencial de email.
+
+## Ola 1 de las sugerencias de Jimena (25-jul) — publicada en `main`
+
+Jimena revisó el sitio y mandó `Sugerencias_para_la_página_de_IVUJUS.docx` (6 bloques). Emanuel pidió **contrapropuesta** para no replicar el desorden de Usina y **preservar accesibilidad + SEO/GEO**. Se aprobó la arquitectura de pilares y se ejecutó solo la Ola 1 (lo que no depende de insumos):
+
+| Commit | Contenido |
+|---|---|
+| `62733d7` | `docs/ARQUITECTURA-CONTENIDO.md` + `docs/GOBERNANZA-CONTENIDO.md` |
+| `82dae11` | Reescrituras de Jimena (hero home ES/EN/FR, `instituto.intro`, «Premios científicos», `formacion.intro`, «Diplomatura» sin «de posgrado», bajada y títulos de Publicaciones) · renombre a «Eventos académicos» (nav, H1 «Espacios de conocimiento e innovación», breadcrumbs, metadata, card de home) · **quitada Patricia Borras** del consejo (sitemap 150→147 URLs) |
+| `d94485c` | **Fix del header** (ver abajo) |
+
+**Lo que NO se hizo a propósito** (y por qué): cero secciones nuevas en el menú, cero PDFs sueltos, cero URLs cambiadas. Los dossiers, Encuentros, Biblioteca, Estadísticas, IUJ y la app esperan contenido real + su página HTML propia (reglas 2 y 6 de la gobernanza). El renombre mantuvo `/simposios` para no perder posicionamiento ni pedir redirects; el slug de la colección Payload y el nombre propio del evento («Primer Simposio Americano y Europeo…») quedaron intactos.
+
+**Detalle de idioma:** la etiqueta del nav es corta a propósito («Eventos» / «Events» / «Événements»); el nombre completo «Eventos académicos» vive en H1, breadcrumb, metadata y card de home.
+
+### Fix del header (`d94485c`) — dos defectos encontrados al verificar
+1. **Logo deformado:** el header es flex y el enlace del isotipo era comprimible; con el nav ancho quedaba en 50×44 (ratio 1.14) contra el 1.23 del archivo. Arreglado con `shrink-0` en el enlace y en las dos imágenes.
+2. **Desborde horizontal 768–1024px** (WCAG 1.4.10 Reflow), **preexistente** — las etiquetas nuevas son más cortas que las viejas, y no se había detectado porque la verificación de la Ola 7 solo probó 360 y 414px en español. Contenido mínimo medido: es 1071px · en 1027px · fr 1103px. La barra horizontal pasó de `md` (768px) a `xl` (1280px); debajo se usa el menú desplegable, que ya incluía navegación, CTA y los dos selectores.
+
+**Verificación:** Lighthouse desktop **100/100/100/100** en home, eventos, formación y publicaciones · **33 casos** (3 idiomas × 11 anchos, 360–1920px) sin desborde ni deformación del logo · menú desplegable abierto y funcional en 900/1024/1180px.
+
+**Lección operativa:** el push se rompió a mitad de sesión (se desconectó el MCP de GitHub y se perdió la credencial del proxy de git; `credential.helper` vacío, falla incluso `git ls-remote`). No es reparable dentro de la sesión: las credenciales se provisionan al inicio. Se resolvió generando un `git bundle` y publicándolo Emanuel desde su máquina (fast-forward de rama y `main`). **Ante un push roto: bundle + `SendUserFile`, no esperar.** Los commits quedan como «Unverified» en GitHub por falta de clave de firmado (cosmético).
 
 ## Iteración G1 (18-jul) — feedback de Emanuel sobre el primer preview
 
