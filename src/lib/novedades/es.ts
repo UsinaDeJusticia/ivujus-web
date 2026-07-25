@@ -1,65 +1,9 @@
-// Datos curados de la sección Novedades (agenda pública y difusión
-// institucional del IVUJUS). Mismo criterio que src/lib/instituto.ts,
-// src/lib/simposio2026.ts y src/lib/formacion.ts: contenido único en
-// español — las rutas /en y /fr reutilizan estos mismos datos sin traducir
-// el cuerpo (solo cambian labels de navegación y metadata de la página),
-// igual que instituto/* y formacion/* (ver docs/CLAUDE.md, "Estado actual
-// de frontend y migracion", y src/lib/formacion.ts, comentario de cabecera).
-//
-// NOTA DE ARQUITECTURA (Fase 3): esta estructura curada es un puente hacia
-// la colección `Novedades` que ya existe en el schema de Payload (ver
-// docs/CLAUDE.md). En Fase 3, la fuente de este listado pasará a ser la
-// REST API del WP en vivo de ivujus.org.ar consumida con ISR (revalidate),
-// reemplazando este array estático por un fetch con caché — el tipo
-// `Novedad` de abajo está pensado para mapear 1 a 1 contra los campos que
-// ya devuelve `wp/v2/posts` (title, date, content/excerpt, featured media,
-// id, link), así que no debería cambiar de forma drástica cuando eso pase.
-//
-// REGLA DE ORO de esta ola: nada de lo que sigue es inventado. Los 6 posts
-// de abajo son los mapeados a `novedades` en la sección "Posts" de
-// docs/CONTENT-MIGRATION-LEDGER.md, bajados el 2026-07-21 vía la REST API
-// pública del WP vivo de ivujus.org.ar:
-//   https://ivujus.org.ar/wp-json/wp/v2/posts/<id>?_fields=id,slug,date,title,content,excerpt,link,featured_media
-// y sus imágenes destacadas vía:
-//   https://ivujus.org.ar/wp-json/wp/v2/media/<id>?_fields=id,source_url,alt_text,media_details
-//
-// El campo `contenido` reescribe el HTML de Gutenberg/Elementor de `content.
-// rendered` como párrafos de texto editorial legible (se desarman listas y
-// subtítulos <h3> en oraciones corridas, se quitan emojis usados como
-// viñetas decorativas y el markup de botones/figuras), sin agregar ni quitar
-// hechos respecto de la fuente. `bajada` es el primer párrafo real del
-// posteo (no una fuente inventada). Los links reales que traía cada post
-// (nota de prensa, PDF) se conservan en `enlacesExternos`.
-
-export type FuenteContenido = 'migracion_wp';
-
-export type EnlaceExterno = {
-  titulo: string;
-  url: string;
-};
-
-export type Novedad = {
-  slug: string;
-  titulo: string;
-  /** Fecha de publicación original en WP, formato ISO (YYYY-MM-DD) para poder ordenar y para `datePublished` en JSON-LD. */
-  fecha: string;
-  /** Bajada / resumen: primer párrafo real del posteo original, no una síntesis inventada. */
-  bajada: string;
-  /** Cuerpo editorial limpio, en párrafos. */
-  contenido: string[];
-  /** URL de la imagen destacada real del post en wp-content, si existe. */
-  imagen?: string;
-  /** Links reales citados por el post original (nota de prensa, PDF, etc.). */
-  enlacesExternos?: EnlaceExterno[];
-  fuente: FuenteContenido;
-  source_wp_id: number;
-  source_url: string;
-};
+import type { Novedad } from './types';
 
 // Orden cronológico descendente (más reciente primero). Usar
 // `getNovedadesOrdenadas()` en las páginas en vez de leer este array
 // directo, para no depender de mantener el orden a mano acá.
-export const novedadesData: Novedad[] = [
+export const novedadesEs: Novedad[] = [
   {
     slug: 'hito-en-la-justicia-argentina-sera-sede-del-primer-simposio-americano-y-europeo-de-victimologia-penal',
     titulo:
@@ -188,12 +132,3 @@ export const novedadesData: Novedad[] = [
     source_url: 'https://ivujus.org.ar/la-esc-difundio-las-proximas-presentaciones-de-usina-de-justicia/',
   },
 ];
-
-export function getNovedadBySlug(slug: string): Novedad | undefined {
-  return novedadesData.find((novedad) => novedad.slug === slug);
-}
-
-/** Copia ordenada por fecha descendente (más reciente primero). */
-export function getNovedadesOrdenadas(): Novedad[] {
-  return [...novedadesData].sort((a, b) => b.fecha.localeCompare(a.fecha));
-}

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
-import { getPublicacionesLabels, libroNuevosParadigmas } from '@/lib/publicaciones';
+import { getLibroNuevosParadigmas, getPublicacionesLabels } from '@/lib/publicaciones';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
 import { LinkArrow } from '@/components/ui/Buttons';
 
@@ -37,7 +37,7 @@ export default async function LibrosPage({
 }) {
   const { locale } = await params;
   const labels = getPublicacionesLabels(locale);
-  const libro = libroNuevosParadigmas;
+  const libro = getLibroNuevosParadigmas(locale);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -150,6 +150,10 @@ export default async function LibrosPage({
               </article>
             ))}
           </div>
+
+          {libro.quotesNote ? (
+            <p className="text-sm italic leading-7 text-[color:var(--ui-ink-4)]">{libro.quotesNote}</p>
+          ) : null}
 
           {libro.videoUrl ? (
             <div className="max-w-sm">

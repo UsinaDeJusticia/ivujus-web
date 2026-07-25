@@ -138,6 +138,33 @@ Ending Violent Crime*; en la versión inglesa se cita el título original. Si no
 exista una edición publicada en el idioma de destino, se cita el título original y no se
 inventa uno.
 
+## 5 quater. Términos y formatos surgidos durante la traducción
+
+Se suman acá para que todos los datasets usen la misma forma. Si aparece una variante en
+un archivo, se corrige contra esta tabla.
+
+| Español | Inglés | Francés |
+|---|---|---|
+| perspectiva de víctima | victim-centred perspective | perspective centrée sur la victime |
+| compiladora / compilador (de una obra colectiva) | editor | sous la direction de (etiqueta: directrice / directeur de l'ouvrage) |
+| Jefa / Jefe de Redacción | Editor-in-Chief | Rédactrice / Rédacteur en chef |
+| Juez de Ejecución Penal | Judge for the Enforcement of Sentences (Juez de Ejecución Penal) | Juge chargé de l'exécution des peines (Juez de Ejecución Penal) |
+| defensor de víctima | victim advocate | défenseur des victimes |
+
+**Horarios.** Se mantiene el dato y se adapta el formato, siempre en 24 horas (nunca
+am/pm): «15:00 hs» → «15:00» → «15h00». Rangos: «18 a 20 hs» → «18:00 to 20:00» →
+«18h à 20h».
+
+**Nombres de países.** Sí llevan su exónimo cuando existe (Panamá → Panama → Panama;
+Canadá → Canada → Canada; España → Spain → Espagne; México → Mexico → Mexique;
+Argentina → Argentina → Argentine). Las **ciudades** sin exónimo establecido se mantienen
+(Buenos Aires, Mendoza).
+
+**Leyes argentinas.** El número oficial nunca se traduce ni se altera («Ley 27.759» queda
+igual en los tres idiomas). Si en cambio se trata de una referencia temática y no de la
+denominación oficial (por ejemplo «Ley de Datos Genéticos» usada como título de un panel),
+se traduce de forma descriptiva.
+
 ## 6. Lo que NUNCA se traduce
 
 Traducir cualquiera de estos elementos rompe el sitio o falsea el contenido.
