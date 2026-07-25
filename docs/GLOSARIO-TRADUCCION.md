@@ -108,6 +108,36 @@ las formas de esta tabla.
 | Primer Simposio Americano y Europeo de Victimología Penal | First American and European Symposium on Criminal Victimology | Premier Symposium américain et européen de victimologie pénale |
 | Declaración de Buenos Aires | Buenos Aires Declaration | Déclaration de Buenos Aires |
 
+## 5 bis. Organismos internacionales y razones sociales
+
+Las siglas de organismos internacionales **sí** cambian según el idioma, porque cada
+lengua tiene su forma establecida:
+
+| Español | Inglés | Francés |
+|---|---|---|
+| ONU (Organización de las Naciones Unidas) | UN (United Nations) | ONU (Organisation des Nations unies) |
+| OEA (Organización de los Estados Americanos) | OAS (Organization of American States) | OEA (Organisation des États américains) |
+| CIPC (Centro Internacional para la Prevención de la Criminalidad) | ICPC (International Centre for the Prevention of Crime) | CIPC (Centre international pour la prévention de la criminalité) |
+| UE (Unión Europea) | EU (European Union) | UE (Union européenne) |
+
+En cambio, las **razones sociales no se traducen en ningún idioma**: «Asociación Civil
+Usina de Justicia», «Usina de Justicia – Argentina Asociación Civil».
+
+## 5 ter. Cargos judiciales y obras citadas
+
+**Cargos judiciales argentinos sin equivalente oficial en otro idioma** (por ejemplo
+«Auxiliar Letrado Relator»): se traducen de forma **descriptiva**, para que se entiendan,
+y se agrega el título original en español entre paréntesis en su primera aparición. Nunca
+se sustituye por un cargo de otra jurisdicción, porque implicaría atribuir una función que
+la persona no tiene.
+
+**Obras cuyo título en español es la traducción de un original en otro idioma:** se usa el
+**título original**, no una retraducción. Ejemplo real: «Ciencia y Secretos para Acabar con
+los Delitos Violentos», de Irvin Waller, es la traducción de *Science and Secrets of
+Ending Violent Crime*; en la versión inglesa se cita el título original. Si no consta que
+exista una edición publicada en el idioma de destino, se cita el título original y no se
+inventa uno.
+
 ## 6. Lo que NUNCA se traduce
 
 Traducir cualquiera de estos elementos rompe el sitio o falsea el contenido.
