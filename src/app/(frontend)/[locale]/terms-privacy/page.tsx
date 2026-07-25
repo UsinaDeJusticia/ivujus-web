@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
-import { termsPrivacyData } from '@/lib/legal';
+import { getTermsPrivacyData } from '@/lib/legal';
+import { resolveLocale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow } from '@/components/ui/SectionHeader';
 
@@ -10,24 +11,29 @@ import { Eyebrow } from '@/components/ui/SectionHeader';
 // declaracion-de-buenos-aires/page.tsx.
 const HOME_LABEL: Record<string, string> = { es: 'Inicio', en: 'Home', fr: 'Accueil' };
 
-// Metadata en español fijo para las 3 rutas de locale, igual que
-// instituto/page.tsx, simposios/page.tsx y formacion/page.tsx: el cuerpo
-// legal de esta página no se traduce en v1 — proviene verbatim de la
-// fuente WordPress en español (ver src/lib/legal.ts) y traducirlo sin
-// revisión jurídica violaría la regla de no inventar contenido.
+// El cuerpo legal en sí es trilingüe (ver src/lib/legal/*.ts), pero la
+// atribución de fuente ("consultado el ...") es una nota de trazabilidad
+// corta que no vive en el dataset — se resuelve acá con el mismo patrón que
+// HOME_LABEL.
+const RETRIEVED_LABEL: Record<string, string> = {
+  es: 'consultado el',
+  en: 'retrieved on',
+  fr: 'consulté le',
+};
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const data = getTermsPrivacyData(locale);
 
   return buildLocalizedMetadata({
     locale,
     path: '/terms-privacy',
-    title: termsPrivacyData.documentTitle,
-    description:
-      'Política de privacidad del Instituto de Victimología de Usina de Justicia: información recopilada, uso, cookies y derechos del usuario.',
+    title: data.documentTitle,
+    description: data.intro,
   });
 }
 
@@ -37,18 +43,16 @@ export default async function TermsPrivacyPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  // El contenido legal solo existe en español en la fuente (ver
-  // src/lib/legal.ts): para EN/FR mostramos el mismo texto con un aviso,
-  // en vez de traducir sin fuente ni revisión jurídica.
-  const showUntranslatedNotice = locale !== 'es';
+  const resolvedLocale = resolveLocale(locale);
+  const data = getTermsPrivacyData(locale);
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: termsPrivacyData.documentTitle,
-    description: termsPrivacyData.subtitle,
+    name: data.documentTitle,
+    description: data.subtitle,
     url: `${getSiteUrl()}/${locale}/terms-privacy`,
-    inLanguage: 'es',
+    inLanguage: resolvedLocale,
   };
 
   const breadcrumbJsonLd = {
@@ -64,7 +68,7 @@ export default async function TermsPrivacyPage({
       {
         '@type': 'ListItem',
         position: 2,
-        name: termsPrivacyData.documentTitle,
+        name: data.documentTitle,
         item: `${getSiteUrl()}/${locale}/terms-privacy`,
       },
     ],
@@ -81,25 +85,24 @@ export default async function TermsPrivacyPage({
         <header className="space-y-4 border-b border-[color:var(--ui-border)] pb-8">
           <Eyebrow>Legal</Eyebrow>
           <h1 className="text-balance text-[length:clamp(30px,4.5vw,48px)]">
-            {termsPrivacyData.documentTitle}
+            {data.documentTitle}
           </h1>
           <p className="max-w-2xl text-pretty text-base leading-7 text-[color:var(--ui-ink-3)]">
-            {termsPrivacyData.subtitle}
+            {data.subtitle}
           </p>
         </header>
 
-        {showUntranslatedNotice ? (
-          <p className="rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-muted)] p-4 text-sm leading-6 text-[color:var(--ui-ink-3)]">
-            This document is only available in Spanish, its language of legal record. / Ce
-            document n’est disponible qu’en espagnol, sa langue de référence juridique.
+        {data.nota ? (
+          <p className="rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-muted)] p-4 text-sm font-medium leading-6 text-[color:var(--ui-ink-3)]">
+            {data.nota}
           </p>
         ) : null}
 
         <div className="rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-6 shadow-[var(--shadow-1)] sm:p-8">
-          <p className="break-words text-base leading-8 text-[color:var(--ui-ink-3)]">{termsPrivacyData.intro}</p>
+          <p className="break-words text-base leading-8 text-[color:var(--ui-ink-3)]">{data.intro}</p>
 
           <div className="mt-8 space-y-8">
-            {termsPrivacyData.sections.map((section) => (
+            {data.sections.map((section) => (
               <section key={section.heading} className="space-y-4">
                 <h2 className="text-[length:var(--text-lg)] font-semibold uppercase tracking-[var(--tracking-wide)] text-[color:var(--ui-display-ink)]">
                   {section.heading}
@@ -134,7 +137,7 @@ export default async function TermsPrivacyPage({
         </div>
 
         <p className="text-xs leading-6 text-[color:var(--ui-ink-4)]">
-          {termsPrivacyData.source.label} · consultado el {termsPrivacyData.source.fetchedAt}.
+          {data.source.label} · {RETRIEVED_LABEL[resolvedLocale]} {data.source.fetchedAt}.
         </p>
       </div>
     </main>

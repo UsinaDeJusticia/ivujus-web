@@ -1,4 +1,7 @@
-// legal.ts — dataset de /[locale]/terms-privacy.
+// es.ts — versión española de /[locale]/terms-privacy.
+//
+// Única versión con validez legal (ver docs/GLOSARIO-TRADUCCION.md §7). EN y
+// FR son traducciones de cortesía en en.ts y fr.ts.
 //
 // Contenido trazable: texto legal real extraído de la API pública de
 // WordPress del sitio vivo de IVUJUS (page id 18848, slug "terms-privacy"),
@@ -21,16 +24,17 @@
 // (falta la "h" inicial, error de tipeo evidente en el WP de origen) — se
 // corrigió a "http://" para que el enlace funcione; no cambia contenido ni
 // clausulado.
-export type LegalBlock =
-  | { type: 'paragraph'; text: string }
-  | { type: 'list'; items: string[] };
+//
+// NOTA PENDIENTE DE ESCALAR (no corregida acá): la sección "Sus derechos"
+// contiene lenguaje de plantilla genérico (menciona "residente europeo" y
+// transferencia de datos a Canadá y Estados Unidos) que no parece adaptado
+// específicamente a una asociación civil argentina. Es un problema del
+// texto FUENTE en español, no de esta migración — se traduce tal cual en
+// en.ts/fr.ts para que los tres idiomas digan lo mismo, y se señala en el
+// reporte de la tarea para que se corrija primero acá y luego se propague.
+import type { LegalDocument } from './types';
 
-export type LegalSection = {
-  heading: string;
-  blocks: LegalBlock[];
-};
-
-export const termsPrivacyData = {
+export const es: LegalDocument = {
   documentTitle: 'Políticas de privacidad',
   subtitle: 'Política de privacidad de Usina de Justicia – Argentina Asociación Civil',
   source: {
@@ -215,5 +219,5 @@ export const termsPrivacyData = {
         },
       ],
     },
-  ] satisfies LegalSection[],
+  ],
 };
