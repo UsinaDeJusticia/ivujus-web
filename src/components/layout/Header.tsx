@@ -44,10 +44,31 @@ const SCROLL_THRESHOLD = 24
 
 // Copys del botón/menú móvil. Fuera del componente porque no dependen de
 // props que cambien entre renders; `locale` solo indexa este mapa.
-const MOBILE_MENU_LABELS: Record<string, { open: string; close: string; nav: string }> = {
-  es: { open: 'Abrir menú de navegación', close: 'Cerrar menú de navegación', nav: 'Menú' },
-  en: { open: 'Open navigation menu', close: 'Close navigation menu', nav: 'Menu' },
-  fr: { open: 'Ouvrir le menu de navigation', close: 'Fermer le menu de navigation', nav: 'Menu' },
+// `mainNav` etiqueta el landmark de navegación de escritorio: no se ve, pero
+// es lo que anuncia un lector de pantalla al llegar al menú. Estaba fijo en
+// español, así que en inglés y francés se leía «Principal».
+const MOBILE_MENU_LABELS: Record<
+  string,
+  { open: string; close: string; nav: string; mainNav: string }
+> = {
+  es: {
+    open: 'Abrir menú de navegación',
+    close: 'Cerrar menú de navegación',
+    nav: 'Menú',
+    mainNav: 'Principal',
+  },
+  en: {
+    open: 'Open navigation menu',
+    close: 'Close navigation menu',
+    nav: 'Menu',
+    mainNav: 'Main',
+  },
+  fr: {
+    open: 'Ouvrir le menu de navigation',
+    close: 'Fermer le menu de navigation',
+    nav: 'Menu',
+    mainNav: 'Principal',
+  },
 }
 
 const MOBILE_PANEL_ID = 'header-mobile-panel'
@@ -165,7 +186,7 @@ export function Header({ homeHref = '/', subtitle, items, activeHref, cta, local
             Debajo de xl se usa el menú desplegable, que incluye navegación, CTA
             y selectores. */}
         {items.length > 0 ? (
-          <nav aria-label="Principal" className="ml-auto hidden items-center gap-7 xl:flex">
+          <nav aria-label={menuLabels.mainNav} className="ml-auto hidden items-center gap-7 xl:flex">
             {items.map((item) => {
               const isActive = item.href === activeHref
               return (

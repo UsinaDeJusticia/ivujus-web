@@ -1,14 +1,17 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 
-import { simposio2026 } from '@/lib/simposio2026';
-import { institutoData } from '@/lib/instituto';
+import { getSimposio2026 } from '@/lib/simposio2026';
+import { getInstitutoData } from '@/lib/instituto';
+import { type Locale, pickLocale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
 import { ButtonPrincipal, ButtonSecundario, LinkArrow } from '@/components/ui/Buttons';
 import { ContentCard } from '@/components/cards/ContentCard';
 
-type Locale = 'es' | 'en' | 'fr';
+// El tipo Locale vive en @/lib/i18n: antes esta página declaraba el suyo,
+// igual que otros tres archivos del proyecto. Una sola definición evita que
+// las listas de idiomas se desincronicen entre sí.
 
 // Mismas cuentas oficiales que lista el JSON-LD `NGO` de
 // /instituto (src/app/(frontend)/[locale]/instituto/page.tsx) — la home
@@ -153,7 +156,7 @@ const copy: Record<Locale, HomeCopy> = {
   },
   en: {
     hero: {
-      eyebrow: 'Victimology Institute of Usina de Justicia',
+      eyebrow: 'Institute of Victimology of Usina de Justicia',
       title: 'An academic portal for the dissemination, training and research of Penal Victimology.',
       lead: 'The Institute of Victimology of Usina de Justicia (IVUJUS) works to place the victim at the centre as the main protagonist, and to consolidate Victimology as an autonomous, independent science.',
       tagline: 'Conocimiento que ilumina, formación que transforma.',
@@ -224,7 +227,7 @@ const copy: Record<Locale, HomeCopy> = {
   },
   fr: {
     hero: {
-      eyebrow: 'Institut de victimologie de Usina de Justicia',
+      eyebrow: "Institut de Victimologie d'Usina de Justicia",
       title: 'Un portail académique dédié à la diffusion, à la formation et à la recherche en Victimologie pénale.',
       lead: 'L’Institut de Victimologie d’Usina de Justicia (IVUJUS) a pour finalités de placer la victime au centre en tant que protagoniste principale et de consolider la Victimologie comme science autonome et indépendante.',
       tagline: 'Conocimiento que ilumina, formación que transforma.',
@@ -301,7 +304,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const content = copy[(locale as Locale) ?? 'es'] ?? copy.es;
+  const content = pickLocale(copy, locale);
 
   return buildLocalizedMetadata({
     locale,
@@ -317,17 +320,20 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const content = copy[(locale as Locale) ?? 'es'] ?? copy.es;
+  const content = pickLocale(copy, locale);
+  const instituto = getInstitutoData(locale);
+  const simposio2026 = getSimposio2026(locale);
 
   const organizationJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: institutoData.title,
+    name: instituto.title,
     alternateName: 'IVUJUS',
-    description: institutoData.intro,
+    description: instituto.intro,
     url: getSiteUrl(),
     logo: `${getSiteUrl()}/logos/logo-ivujus-mark.png`,
     sameAs: ORGANIZATION_SAME_AS,
+    inLanguage: locale,
   };
 
   const websiteJsonLd = {
