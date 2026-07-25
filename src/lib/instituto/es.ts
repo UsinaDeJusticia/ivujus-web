@@ -1,19 +1,9 @@
-export type InstitutePurpose = {
-  title: string;
-  body: string;
-};
+import type { InstitutoData } from './types';
 
-export type InstitutePerson = {
-  slug: string;
-  name: string;
-  role: string;
-  country?: string;
-  summary: string;
-  bio: string;
-  image: string;
-};
-
-export const institutoData = {
+// Versión en español. Es la fuente: el contenido no cambió respecto al
+// antiguo src/lib/instituto.ts, solo se movió a este archivo. Ver
+// docs/GLOSARIO-TRADUCCION.md para las reglas que siguieron en.ts y fr.ts.
+export const institutoEs: InstitutoData = {
   title: 'Instituto de Victimología de Usina de Justicia',
   intro:
     'El IVUJUS articula actividades de capacitación, producción editorial, investigación y cooperación internacional en torno a la Victimología Penal y al derecho victimal.',
@@ -42,7 +32,7 @@ export const institutoData = {
       title: 'Colaboración',
       body: 'Facilitar el intercambio científico con sociedades de victimología nacionales e internacionales.',
     },
-  ] satisfies InstitutePurpose[],
+  ],
   consejoDirectivo: [
     {
       slug: 'maria-jimena-molina',
@@ -92,7 +82,7 @@ export const institutoData = {
       bio: 'Especialista en comunicación digital e Inteligencia Artificial. Desarrollador web y estratega de posicionamiento digital del IVUJUS.',
       image: 'https://ivujus.org.ar/wp-content/uploads/2026/02/jair_ivujus.jpg',
     },
-  ] satisfies InstitutePerson[],
+  ],
   comiteCientifico: [
     {
       slug: 'irvin-waller',
@@ -166,7 +156,7 @@ export const institutoData = {
       bio: 'Lidera un influyente think tank francés dedicado a la reforma del sistema de justicia penal. Experto en transparencia ciudadana y combate a la corrupción, con una presencia regular en medios de comunicación europeos.',
       image: 'https://ivujus.org.ar/wp-content/uploads/2025/09/pierre.jpeg',
     },
-  ] satisfies InstitutePerson[],
+  ],
   estatuto: {
     heading: 'Denominación, sede, objetivos y conformación',
     articles: [
