@@ -37,3 +37,27 @@ export function resolveLocale(locale: string): Locale {
 export function pickLocale<T>(byLocale: Record<Locale, T>, locale: string): T {
   return byLocale[resolveLocale(locale)];
 }
+
+// Intl necesita un locale con región para elegir bien el formato. Con 'en' a
+// secas usa el estadounidense («April 6, 2026»), y el glosario fija inglés
+// británico/internacional («6 April 2026»).
+const INTL_LOCALE: Record<Locale, string> = {
+  es: 'es-AR',
+  en: 'en-GB',
+  fr: 'fr-FR',
+};
+
+/**
+ * Fecha larga en el idioma activo, a partir de una fecha ISO (YYYY-MM-DD).
+ *
+ * Se fija el mediodía UTC en vez de la medianoche para que el cambio de huso
+ * no corra la fecha un día hacia atrás al renderizar.
+ */
+export function formatDateLong(isoDate: string, locale: string): string {
+  return new Intl.DateTimeFormat(INTL_LOCALE[resolveLocale(locale)], {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(`${isoDate}T12:00:00Z`));
+}

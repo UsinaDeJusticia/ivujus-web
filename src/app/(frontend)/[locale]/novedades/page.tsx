@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import { getNovedadesOrdenadas } from '@/lib/novedades';
-import { type Locale, pickLocale, resolveLocale } from '@/lib/i18n';
+import { type Locale, pickLocale, resolveLocale, formatDateLong } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow } from '@/components/ui/SectionHeader';
 import { ContentCard } from '@/components/cards/ContentCard';
@@ -69,13 +69,6 @@ export async function generateMetadata({
   });
 }
 
-// Formato de fecha larga en español, consistente para toda la sección
-// (listado y detalle). `fecha` en src/lib/novedades.ts es ISO (YYYY-MM-DD).
-function formatFecha(fecha: string, locale: Locale): string {
-  return new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', year: 'numeric' }).format(
-    new Date(`${fecha}T00:00:00Z`),
-  );
-}
 
 export default async function NovedadesPage({
   params,
@@ -132,7 +125,7 @@ export default async function NovedadesPage({
             <ContentCard
               key={novedad.slug}
               href={`/${locale}/novedades/${novedad.slug}`}
-              eyebrow={formatFecha(novedad.fecha, resolvedLocale)}
+              eyebrow={formatDateLong(novedad.fecha, locale)}
               title={novedad.titulo}
               description={novedad.bajada}
             />

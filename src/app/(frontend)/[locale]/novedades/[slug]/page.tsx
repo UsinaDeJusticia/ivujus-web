@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
 import { novedadesData, getNovedadBySlug } from '@/lib/novedades';
-import { type Locale, pickLocale, resolveLocale } from '@/lib/i18n';
+import { type Locale, pickLocale, resolveLocale, formatDateLong } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow } from '@/components/ui/SectionHeader';
 import { LinkArrow, ButtonPrincipal } from '@/components/ui/Buttons';
@@ -49,12 +49,6 @@ const LABELS: Record<
     breadcrumbHome: 'Accueil',
   },
 };
-
-function formatFecha(fecha: string, locale: Locale): string {
-  return new Intl.DateTimeFormat('es-AR', { day: 'numeric', month: 'long', year: 'numeric' }).format(
-    new Date(`${fecha}T00:00:00Z`),
-  );
-}
 
 export async function generateMetadata({
   params,
@@ -150,7 +144,7 @@ export default async function NovedadDetailPage({
         <header className="space-y-5 border-b border-[color:var(--ui-border)] pb-10">
           <Eyebrow>
             {`${labels.seccion} / `}
-            <time dateTime={novedad.fecha}>{formatFecha(novedad.fecha, resolvedLocale)}</time>
+            <time dateTime={novedad.fecha}>{formatDateLong(novedad.fecha, locale)}</time>
           </Eyebrow>
           {/* break-words: mismo cuidado que en formacion/ciclos/[slug] y en
               el <h1> de la home — títulos editoriales largos en español no
