@@ -25,6 +25,10 @@ export const en: PublicacionesLocaleContent = {
     lugar: 'Location',
     autores: 'Authors',
     presentacion: 'Presentation',
+    anuncioEyebrow: 'Announcement',
+    anuncioTitle: 'A book to place victims at the centre of criminal proceedings.',
+    presentacionEyebrow: 'Book launch',
+    presentacionTitle: 'Voices from the book launch.',
     descargarDeclaracion: 'Download declaration',
     verDeclaracionCompleta: 'Read full declaration',
     verLibro: 'View book',
@@ -35,7 +39,7 @@ export const en: PublicacionesLocaleContent = {
   libro: {
     slug: 'nuevos-paradigmas-para-la-justicia-penal',
     title: 'Nuevos Paradigmas para la Justicia Penal',
-    subtitle: "Towards an era with a victim's perspective",
+    subtitle: 'Towards an era with a victim-centred perspective',
     authors: 'Diana Cohen Agrest and María Jimena Molina (editors)',
     coverImage: 'https://ivujus.org.ar/wp-content/uploads/2025/11/jimena_diana.jpg',
     coverAlt:

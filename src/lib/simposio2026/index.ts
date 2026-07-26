@@ -1,11 +1,11 @@
 // Dataset del Simposio 2026, ahora trilingüe (español, inglés, francés).
 //
-// Se reestructuró de un único archivo (`simposio2026.ts`) a un directorio
+// Se reestructuró de un único archivo (`simposio2026Es.ts`) a un directorio
 // porque cada idioma necesita su propio módulo de contenido curado a mano
-// (ver docs/GLOSARIO-TRADUCCION.md). La ruta de import `@/lib/simposio2026`
+// (ver docs/GLOSARIO-TRADUCCION.md). La ruta de import `@/lib/simposio2026Es`
 // sigue resolviendo acá sin tocar los consumidores existentes.
 //
-// Todos los exports que ya existían (`simposio2026`, `galeriaCopy`,
+// Todos los exports que ya existían (`simposio2026Es`, `galeriaCopy`,
 // `resolveGaleriaLocale`, los tipos, los payload drafts) se mantienen
 // apuntando a español para no romper las páginas que ya los consumen. El
 // contenido en los otros idiomas se expone vía `simposio2026ByLocale` y
@@ -43,7 +43,7 @@ export function getSimposio2026(locale: string): Simposio2026Content {
 
 // Export histórico: contenido en español. Para contenido localizado según el
 // `locale` de la ruta, usar `getSimposio2026(locale)`.
-export const simposio2026 = simposio2026ByLocale.es;
+export const simposio2026Es = simposio2026ByLocale.es;
 
 // Solo copy/labels de UI (mismo patrón que contactoCopy en
 // src/lib/contacto.ts): las epígrafes de cada foto viven en
@@ -68,18 +68,18 @@ export const galeriaCopy: Record<Locale, GaleriaCopy> = {
 export const resolveGaleriaLocale = resolveLocale;
 
 export const simposio2026PayloadDraft: SimposioPayloadDraft = {
-  titulo: simposio2026.title,
-  slug: simposio2026.slug,
+  titulo: simposio2026Es.title,
+  slug: simposio2026Es.slug,
   numero_edicion: 1,
   anio: 2026,
   fecha_inicio: '2026-04-09',
   fecha_fin: '2026-04-10',
   sede: {
-    institucion_organizadora: simposio2026.organizingInstitution,
+    institucion_organizadora: simposio2026Es.organizingInstitution,
     ciudad: 'Buenos Aires',
     pais: 'Argentina',
   },
-  resumen: simposio2026.summary,
+  resumen: simposio2026Es.summary,
   temario: [
     {
       titulo: 'Derechos de las víctimas y justicia penal',
@@ -105,10 +105,10 @@ export const declaracionBuenosAiresPayloadDraft: DeclaracionPayloadDraft = {
   titulo: 'Declaración de Buenos Aires',
   slug: 'declaracion-de-buenos-aires',
   fecha: '2026-04-10',
-  simposio_origen_slug_referencia: simposio2026.slug,
+  simposio_origen_slug_referencia: simposio2026Es.slug,
   texto_completo_resumen:
     'Documento oficial firmado al cierre del Primer Simposio Americano y Europeo de Victimología Penal, orientado a fijar bases para una victimología científica y una justicia penal con perspectiva de víctima.',
-  texto_completo_puntos: simposio2026.declaration.standards,
-  pdf_url: simposio2026.declaration.pdfUrl,
+  texto_completo_puntos: simposio2026Es.declaration.standards,
+  pdf_url: simposio2026Es.declaration.pdfUrl,
   fuente: 'humano',
 };

@@ -133,7 +133,7 @@ export default async function LibrosPage({
           </div>
 
           <div className="space-y-6">
-            <SectionHeader eyebrow="Anuncio" title="Un libro para colocar a las víctimas en el centro del proceso penal." />
+            <SectionHeader eyebrow={labels.anuncioEyebrow} title={labels.anuncioTitle} />
             <div className="space-y-4">
               {libro.announcementParagraphs.map((paragraph) => (
                 <p key={paragraph} className="text-base leading-[1.75] text-[color:var(--ui-ink-3)]">
@@ -156,7 +156,11 @@ export default async function LibrosPage({
         </section>
 
         <section className="space-y-10">
-          <SectionHeader eyebrow="Presentación" title="Voces de la presentación del libro." lead={libro.summaryIntro} />
+          <SectionHeader
+            eyebrow={labels.presentacionEyebrow}
+            title={labels.presentacionTitle}
+            lead={libro.summaryIntro}
+          />
 
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {libro.quotes.map((quote) => (

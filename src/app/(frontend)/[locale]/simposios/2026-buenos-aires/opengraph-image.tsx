@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-import { simposio2026 } from '@/lib/simposio2026';
+import { simposio2026Es } from '@/lib/simposio2026';
 
 // OG específica del Simposio 2026 — más concreta que la del sitio
 // (src/app/(frontend)/opengraph-image.tsx) y por eso la reemplaza para esta
@@ -8,7 +8,7 @@ import { simposio2026 } from '@/lib/simposio2026';
 // gana). `buildLocalizedMetadata` en generateMetadata (page.tsx de esta
 // misma ruta) no define `openGraph.images`, así que no hay conflicto.
 //
-// El dataset de src/lib/simposio2026.ts es curado en español únicamente
+// El dataset de src/lib/simposio2026Es.ts es curado en español únicamente
 // (sin claves por locale, igual que el título hardcodeado en
 // generateMetadata de page.tsx) — por eso esta imagen no varía por
 // `locale` aunque la ruta esté bajo `[locale]`.
@@ -21,7 +21,7 @@ export function generateStaticParams() {
 
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
-export const alt = simposio2026.title;
+export const alt = simposio2026Es.title;
 
 const AZUL_INSTITUCIONAL = '#0D3B66';
 const AZUL_900 = '#0A2E50';
@@ -54,11 +54,11 @@ async function loadGoogleFont(
 
 export default async function Image() {
   const eyebrowText = 'IVUJUS · SIMPOSIO 2026';
-  const footerText = `${simposio2026.location} · ${simposio2026.dates}`;
+  const footerText = `${simposio2026Es.location} · ${simposio2026Es.dates}`;
 
   const [cinzelData, montserratData] = await Promise.all([
-    loadGoogleFont('Cinzel', 700, `${eyebrowText}${simposio2026.title.toUpperCase()}`),
-    loadGoogleFont('Montserrat', 500, `${simposio2026.subtitle}${footerText}`),
+    loadGoogleFont('Cinzel', 700, `${eyebrowText}${simposio2026Es.title.toUpperCase()}`),
+    loadGoogleFont('Montserrat', 500, `${simposio2026Es.subtitle}${footerText}`),
   ]);
 
   const fonts: {
@@ -117,7 +117,7 @@ export default async function Image() {
             maxWidth: 980,
           }}
         >
-          {simposio2026.title}
+          {simposio2026Es.title}
         </div>
         <div
           style={{
@@ -141,7 +141,7 @@ export default async function Image() {
             marginBottom: 40,
           }}
         >
-          {simposio2026.subtitle}
+          {simposio2026Es.subtitle}
         </div>
         <div
           style={{

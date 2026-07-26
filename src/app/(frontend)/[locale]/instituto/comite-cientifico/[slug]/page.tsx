@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
-import { institutoData, type InstitutePerson } from '@/lib/instituto';
+import { getInstitutoData, type InstitutePerson } from '@/lib/instituto';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow } from '@/components/ui/SectionHeader';
 import { LinkArrow } from '@/components/ui/Buttons';
@@ -38,12 +38,14 @@ function getLabels(locale: string) {
   return LABELS[locale] ?? LABELS.es;
 }
 
-function getPersonBySlug(slug: string): InstitutePerson | undefined {
-  return institutoData.comiteCientifico.find((person) => person.slug === slug);
+function getPersonBySlug(slug: string, locale: string): InstitutePerson | undefined {
+  return getInstitutoData(locale).comiteCientifico.find((person) => person.slug === slug);
 }
 
 export function generateStaticParams() {
-  return institutoData.comiteCientifico.map((person) => ({ slug: person.slug }));
+  // Los slugs son idénticos en los tres idiomas (lo verifica check:i18n),
+  // así que alcanza con recorrer una versión.
+  return getInstitutoData('es').comiteCientifico.map((person) => ({ slug: person.slug }));
 }
 
 export async function generateMetadata({
@@ -52,7 +54,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
-  const person = getPersonBySlug(slug);
+  const person = getPersonBySlug(slug, locale);
 
   if (!person) {
     return buildLocalizedMetadata({
@@ -77,7 +79,7 @@ export default async function ComiteCientificoPersonPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const person = getPersonBySlug(slug);
+  const person = getPersonBySlug(slug, locale);
 
   if (!person) {
     notFound();
@@ -95,7 +97,7 @@ export default async function ComiteCientificoPersonPage({
     url: `${getSiteUrl()}/${locale}/instituto/comite-cientifico/${person.slug}`,
     affiliation: {
       '@type': 'NGO',
-      name: institutoData.title,
+      name: getInstitutoData(locale).title,
       url: `${getSiteUrl()}/${locale}/instituto`,
     },
   };

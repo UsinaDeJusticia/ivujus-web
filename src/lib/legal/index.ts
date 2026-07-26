@@ -19,7 +19,7 @@ export type { LegalBlock, LegalSection, LegalDocument } from './types';
 
 export const termsPrivacyByLocale: Record<Locale, LegalDocument> = { es, en, fr };
 
-export const termsPrivacyData: LegalDocument = termsPrivacyByLocale.es;
+export const termsPrivacyDataEs: LegalDocument = termsPrivacyByLocale.es;
 
 export function getTermsPrivacyData(locale: string): LegalDocument {
   return pickLocale(termsPrivacyByLocale, locale);

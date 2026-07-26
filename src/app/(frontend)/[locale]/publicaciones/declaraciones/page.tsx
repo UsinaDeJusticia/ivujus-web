@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { simposio2026 } from '@/lib/simposio2026';
+import { getSimposio2026 } from '@/lib/simposio2026';
 import { type Locale, pickLocale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { declaracionesIndex, getPublicacionesLabels } from '@/lib/publicaciones';
@@ -55,6 +55,7 @@ export default async function DeclaracionesIndexPage({
 }) {
   const { locale } = await params;
   const labels = getPublicacionesLabels(locale);
+  const simposio2026 = getSimposio2026(locale);
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',

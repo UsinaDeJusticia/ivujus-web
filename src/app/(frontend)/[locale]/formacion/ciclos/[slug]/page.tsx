@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { ciclosData, getCicloBySlug } from '@/lib/formacion';
+import { ciclosDataEs, getCicloBySlug } from '@/lib/formacion';
 import { type Locale, pickLocale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
@@ -74,7 +74,7 @@ const LABELS: Record<
 };
 
 export function generateStaticParams() {
-  return ciclosData.map((ciclo) => ({ slug: ciclo.slug }));
+  return ciclosDataEs.map((ciclo) => ({ slug: ciclo.slug }));
 }
 
 export async function generateMetadata({

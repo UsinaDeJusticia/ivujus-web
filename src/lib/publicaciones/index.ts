@@ -59,7 +59,7 @@ export function getLibroNuevosParadigmas(locale: string): Libro {
 // para no romper ningún consumidor que todavía no pase por
 // `getLibroNuevosParadigmas`; `libros/page.tsx` sí fue migrado a la versión
 // localizada.
-export const libroNuevosParadigmas: Libro = CONTENT.es.libro;
+export const libroNuevosParadigmasEs: Libro = CONTENT.es.libro;
 
 // El índice de declaraciones solo referencia el slug: título, resumen y
 // artículos siguen viviendo en simposio2026.ts para no duplicar contenido.

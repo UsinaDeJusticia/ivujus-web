@@ -34,7 +34,7 @@ export const novedadesByLocale: Record<Locale, Novedad[]> = {
 };
 
 /** Alias en español: mismo nombre y forma que el `novedadesData` original. */
-export const novedadesData: Novedad[] = novedadesEs;
+export const novedadesDataEs: Novedad[] = novedadesEs;
 
 export function getNovedadBySlug(slug: string, locale: string = 'es'): Novedad | undefined {
   return novedadesByLocale[resolveLocale(locale)].find((novedad) => novedad.slug === slug);

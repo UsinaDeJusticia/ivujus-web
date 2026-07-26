@@ -29,4 +29,4 @@ export function getInstitutoData(locale: string): InstitutoData {
 
 // Compatibilidad: las páginas todavía importan `institutoData` como valor
 // fijo (sin locale). Se migran a `getInstitutoData` en otra ola.
-export const institutoData = institutoEs;
+export const institutoDataEs = institutoEs;

@@ -2,14 +2,14 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
-import { novedadesData, getNovedadBySlug } from '@/lib/novedades';
+import { novedadesDataEs, getNovedadBySlug } from '@/lib/novedades';
 import { type Locale, pickLocale, resolveLocale, formatDateLong } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow } from '@/components/ui/SectionHeader';
 import { LinkArrow, ButtonPrincipal } from '@/components/ui/Buttons';
 
 export function generateStaticParams() {
-  return novedadesData.map((novedad) => ({ slug: novedad.slug }));
+  return novedadesDataEs.map((novedad) => ({ slug: novedad.slug }));
 }
 
 // Copys de interfaz por idioma. El contenido de la novedad ya viene traducido.

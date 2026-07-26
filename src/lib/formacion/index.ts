@@ -45,9 +45,9 @@ export function getCiclos(locale: string): Ciclo[] {
 
 // --- Compatibilidad hacia atrás: mismos nombres que exportaba
 // src/lib/formacion.ts, apuntando siempre a la versión en español ---
-export const diplomaturaData: Diplomatura = formacionByLocale.es.diplomatura;
-export const formacionHubData: FormacionHub = formacionByLocale.es.hub;
-export const ciclosData: Ciclo[] = formacionByLocale.es.ciclos;
+export const diplomaturaDataEs: Diplomatura = formacionByLocale.es.diplomatura;
+export const formacionHubDataEs: FormacionHub = formacionByLocale.es.hub;
+export const ciclosDataEs: Ciclo[] = formacionByLocale.es.ciclos;
 
 /**
  * Busca un ciclo por slug. Sin `locale` (o con un valor inválido) devuelve

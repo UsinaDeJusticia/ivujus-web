@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import {
   declaracionBuenosAiresPayloadDraft,
-  simposio2026,
+  getSimposio2026,
 } from '@/lib/simposio2026';
 import { type Locale, pickLocale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
@@ -47,6 +47,7 @@ export default async function DeclaracionBuenosAiresPage({
 }) {
   const { locale } = await params;
   const labels = getPublicacionesLabels(locale);
+  const simposio2026 = getSimposio2026(locale);
   const { declaration } = simposio2026;
 
   const jsonLd = {

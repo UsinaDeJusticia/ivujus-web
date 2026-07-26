@@ -13,6 +13,10 @@ export type PublicacionesLabels = {
   lugar: string;
   autores: string;
   presentacion: string;
+  anuncioEyebrow: string;
+  anuncioTitle: string;
+  presentacionEyebrow: string;
+  presentacionTitle: string;
   descargarDeclaracion: string;
   verDeclaracionCompleta: string;
   verLibro: string;

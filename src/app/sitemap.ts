@@ -1,9 +1,9 @@
 import type { MetadataRoute } from 'next';
 
 import { getSiteUrl } from '@/lib/seo';
-import { institutoData } from '@/lib/instituto';
-import { ciclosData } from '@/lib/formacion';
-import { novedadesData } from '@/lib/novedades';
+import { institutoDataEs } from '@/lib/instituto';
+import { ciclosDataEs } from '@/lib/formacion';
+import { novedadesDataEs } from '@/lib/novedades';
 import { declaracionesIndex } from '@/lib/publicaciones';
 
 // Mismas tres locales que src/lib/seo.ts (buildLocalizedMetadata) y
@@ -52,22 +52,22 @@ function parseIsoDate(fecha: string): Date {
 }
 
 function buildDynamicRoutes(): RouteEntry[] {
-  const consejoDirectivoRoutes = institutoData.consejoDirectivo.map((persona) => ({
+  const consejoDirectivoRoutes = institutoDataEs.consejoDirectivo.map((persona) => ({
     path: `/instituto/consejo-directivo/${persona.slug}`,
     lastModified: BUILD_DATE,
   }));
 
-  const comiteCientificoRoutes = institutoData.comiteCientifico.map((persona) => ({
+  const comiteCientificoRoutes = institutoDataEs.comiteCientifico.map((persona) => ({
     path: `/instituto/comite-cientifico/${persona.slug}`,
     lastModified: BUILD_DATE,
   }));
 
-  const ciclosRoutes = ciclosData.map((ciclo) => ({
+  const ciclosRoutes = ciclosDataEs.map((ciclo) => ({
     path: `/formacion/ciclos/${ciclo.slug}`,
     lastModified: BUILD_DATE,
   }));
 
-  const novedadesRoutes = novedadesData.map((novedad) => ({
+  const novedadesRoutes = novedadesDataEs.map((novedad) => ({
     path: `/novedades/${novedad.slug}`,
     lastModified: parseIsoDate(novedad.fecha),
   }));
