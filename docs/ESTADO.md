@@ -2,9 +2,32 @@
 
 > Cualquier sesión nueva de Claude Code retoma desde acá. Actualizar al cierre de cada sesión: qué se hizo, decisiones, pendientes, próximo paso exacto.
 
-**Última actualización:** 25 de julio de 2026 (sesión 4 — **Ola 1 de las sugerencias de Jimena publicada**; arquitectura de contenido aprobada)
-**Rama de trabajo:** `claude/ivujus-rebuild-planning-gvcf25` = `main` = `d94485c` (publicado → `ivujus-web.vercel.app`)
-**Etapa:** ✅ G0 · ✅ Fase 1 · ✅ G1 · ✅ Fase 2 (contenido v1) · ✅ Fase 4 (SEO/GEO/perf) · ✅ **G4** · ✅ **Ola 1 Jimena** → ⏭️ **Olas 2 y 3, bloqueadas por insumos de contenido**.
+**Última actualización:** 26 de julio de 2026 (sesión 4 — **sitio completo en tres idiomas**; Ola 1 de Jimena publicada; arquitectura de contenido aprobada)
+**Rama de trabajo:** `claude/ivujus-rebuild-planning-gvcf25` = `main` = `311186e` (publicado → `ivujus-web.vercel.app`)
+**Etapa:** ✅ G0 · ✅ Fase 1 · ✅ G1 · ✅ Fase 2 (contenido v1) · ✅ Fase 4 (SEO/GEO/perf) · ✅ **G4** · ✅ **Ola 1 Jimena** · ✅ **Traducción completa ES/EN/FR** → ⏭️ **Observatorio y Olas 2-3, bloqueados por insumos de contenido**.
+
+## ✅ Traducción completa a inglés y francés (26-jul)
+
+Antes, el selector de idioma solo cambiaba el menú y la portada: el resto del sitio quedaba en español. **Ahora todo el contenido está en los tres idiomas** (~6.500 palabras por idioma). Publicado en `main`, 11 commits (`6d908c3`→`311186e`).
+
+**Antes de tocar cualquier traducción, leer [`GLOSARIO-TRADUCCION.md`](./GLOSARIO-TRADUCCION.md).** Es la fuente única de terminología (~70 términos) y de lo que nunca se traduce. Si un término resulta mejorable **se corrige ahí y se propaga**; nunca se improvisa una variante en un archivo suelto.
+
+### Cómo está organizado
+Cada dataset es un directorio `src/lib/<nombre>/{types,es,en,fr,index}.ts`. El `index.ts` mantiene los exports viejos apuntando a español (compatibilidad) y agrega `Record<Locale,T>` + `getXxx(locale)`. La ruta de importación `@/lib/<nombre>` no cambió. Base compartida en `src/lib/i18n.ts` (`Locale`, `resolveLocale`, `pickLocale`, `formatDateLong`), que consolidó **cuatro** implementaciones duplicadas que existían con nombres distintos.
+
+### El verificador es la red de seguridad
+`bun run check:i18n` (`scripts/check-i18n.ts`) compara los tres idiomas y falla si un campo invariante difiere, si una lista cambia de largo, o si un texto quedó idéntico al español. **Correrlo siempre después de tocar contenido.** Hoy: 7 datasets × 3 idiomas, sin problemas.
+
+Lección de su primera corrida (reportó 108 problemas, casi todos de su propia configuración): **los invariantes no se identifican por el nombre del campo**. `fecha` puede ser el dato ISO (idéntico) o la etiqueta «Fecha»→«Date» (traducible); igual con `fuente` y `email`. Se detectan por su **valor**. Los nombres propios necesitan su categoría aparte: se esperan iguales pero no se exigen iguales.
+
+### Decisiones editoriales vigentes (Jair)
+Estatuto y política de privacidad → traducción de cortesía con aviso de que el español prevalece · citas textuales → traducidas con nota de que se pronunciaron en español · títulos de notas de prensa → **sin traducir**, indicando que el artículo está en español · el lema del hero **sí** se traduce · la Declaración de Buenos Aires tiene **traducción oficial** en PDF (ES/EN/FR/PT): no se traduce a máquina.
+
+### Pendiente menor de traducción
+`llms.txt` (mapa para IA) y las imágenes de vista previa de redes siguen solo en español.
+
+## ⚠️ Hallazgo a corregir en el texto fuente (no es de traducción)
+La **política de privacidad en español** contiene un párrafo de plantilla sobre derechos de residentes europeos, que no corresponde a una asociación civil argentina. Se tradujo tal cual a propósito: corregirlo solo en inglés y francés haría divergir las tres versiones. **Hay que corregirlo primero en español y después propagarlo.** Está documentado en un comentario en `src/lib/legal/es.ts`.
 
 ## ▶️ RETOMAR ACÁ (próximo paso literal)
 
