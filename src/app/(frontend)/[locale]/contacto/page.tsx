@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { INSTITUTIONAL_EMAIL, contactoCopy, resolveContactoLocale } from '@/lib/contacto';
+import { type Locale, pickLocale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
 import { ButtonPrincipal } from '@/components/ui/Buttons';
@@ -11,23 +12,40 @@ import { ButtonPrincipal } from '@/components/ui/Buttons';
 // declaracion-de-buenos-aires/page.tsx.
 const HOME_LABEL: Record<string, string> = { es: 'Inicio', en: 'Home', fr: 'Accueil' };
 
-// Metadata en español fijo para las 3 rutas de locale, igual que
-// instituto/page.tsx, simposios/page.tsx y formacion/page.tsx: el cuerpo de
-// esta sección no se traduce en v1 (ver docs/CLAUDE.md, "Fase 3: traducción
-// automática").
+// Metadata por idioma. El resto del copy de la página ya venía de
+// `contactoCopy`; solo el título y la descripción para buscadores seguían
+// fijos en español.
+const META: Record<Locale, { title: string; description: string }> = {
+  es: {
+    title: 'Contacto',
+    description:
+      'Vía de contacto directa y formulario del Instituto de Victimología de Usina de Justicia.',
+  },
+  en: {
+    title: 'Contact',
+    description:
+      'Direct contact channel and enquiry form of the Institute of Victimology of Usina de Justicia.',
+  },
+  fr: {
+    title: 'Contact',
+    description:
+      "Voie de contact directe et formulaire de l'Institut de Victimologie d'Usina de Justicia.",
+  },
+};
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const meta = pickLocale(META, locale);
 
   return buildLocalizedMetadata({
     locale,
     path: '/contacto',
-    title: 'Contacto',
-    description:
-      'Vía de contacto directa y formulario del Instituto de Victimología de Usina de Justicia.',
+    title: meta.title,
+    description: meta.description,
   });
 }
 
@@ -48,6 +66,7 @@ export default async function ContactoPage({
     '@type': 'ContactPage',
     name: copy.title,
     url: `${getSiteUrl()}/${locale}/contacto`,
+    inLanguage: locale,
     about: {
       '@type': 'Organization',
       name: 'Instituto de Victimología de Usina de Justicia',
