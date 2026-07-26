@@ -2,19 +2,20 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
-import { institutoData, type InstitutePerson } from '@/lib/instituto';
+import { getInstitutoData, type InstitutePerson } from '@/lib/instituto';
+import type { Locale } from '@/lib/i18n';
+import { pickLocale, resolveLocale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow } from '@/components/ui/SectionHeader';
 import { LinkArrow } from '@/components/ui/Buttons';
 
-// Copys de interfaz por locale. El contenido de la persona en sí
-// (nombre, rol, bio) viene de src/lib/instituto.ts y queda en español,
-// igual que el resto del contenido migrado (ver docs/CLAUDE.md, "Fase 3:
-// traducción automática" — este dataset no pasa por ese pipeline). Solo
-// estas etiquetas de UI varían por idioma, mismo patrón que
-// MOBILE_MENU_LABELS en components/layout/Header.tsx.
+// Copys de interfaz por locale. El contenido de la persona en sí (nombre,
+// rol, país, bio) viene de getInstitutoData(locale) —
+// src/lib/instituto/{es,en,fr}.ts. Mismo patrón que MOBILE_MENU_LABELS en
+// components/layout/Header.tsx, migrado a pickLocale (src/lib/i18n.ts) en vez
+// de un `LABELS[locale] ?? LABELS.es` a mano.
 const LABELS: Record<
-  string,
+  Locale,
   { eyebrow: string; back: string; portraitAlt: (name: string) => string }
 > = {
   es: {
@@ -28,22 +29,34 @@ const LABELS: Record<
     portraitAlt: (name) => `Portrait of ${name}`,
   },
   fr: {
-    eyebrow: 'Institut / Conseil de direction',
-    back: 'Retour au conseil de direction',
+    eyebrow: "Institut / Conseil d'administration",
+    back: "Retour au conseil d'administration",
     portraitAlt: (name) => `Portrait de ${name}`,
   },
 };
 
-function getLabels(locale: string) {
-  return LABELS[locale] ?? LABELS.es;
-}
+const NOT_FOUND_LABELS: Record<Locale, { title: string; description: string }> = {
+  es: { title: 'Perfil no encontrado', description: 'El perfil solicitado no existe.' },
+  en: { title: 'Profile not found', description: 'The requested profile does not exist.' },
+  fr: { title: 'Profil introuvable', description: "Le profil demandé n'existe pas." },
+};
 
-function getPersonBySlug(slug: string): InstitutePerson | undefined {
-  return institutoData.consejoDirectivo.find((person) => person.slug === slug);
+const HOME_LABEL: Record<Locale, string> = { es: 'Inicio', en: 'Home', fr: 'Accueil' };
+const INSTITUTO_LABEL: Record<Locale, string> = { es: 'Instituto', en: 'Institute', fr: 'Institut' };
+const CONSEJO_LABEL: Record<Locale, string> = {
+  es: 'Consejo directivo',
+  en: 'Board of directors',
+  fr: "Conseil d'administration",
+};
+
+function getPersonBySlug(locale: string, slug: string): InstitutePerson | undefined {
+  return getInstitutoData(locale).consejoDirectivo.find((person) => person.slug === slug);
 }
 
 export function generateStaticParams() {
-  return institutoData.consejoDirectivo.map((person) => ({ slug: person.slug }));
+  // `slug` es invariante entre idiomas (docs/GLOSARIO-TRADUCCION.md §6), así
+  // que cualquier locale sirve para enumerar los perfiles.
+  return getInstitutoData('es').consejoDirectivo.map((person) => ({ slug: person.slug }));
 }
 
 export async function generateMetadata({
@@ -52,14 +65,15 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
-  const person = getPersonBySlug(slug);
+  const person = getPersonBySlug(locale, slug);
+  const notFoundLabels = pickLocale(NOT_FOUND_LABELS, locale);
 
   if (!person) {
     return buildLocalizedMetadata({
       locale,
       path: `/instituto/consejo-directivo/${slug}`,
-      title: 'Perfil no encontrado',
-      description: 'El perfil solicitado no existe.',
+      title: notFoundLabels.title,
+      description: notFoundLabels.description,
     });
   }
 
@@ -77,13 +91,15 @@ export default async function ConsejoDirectivoPersonPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const person = getPersonBySlug(slug);
+  const resolvedLocale = resolveLocale(locale);
+  const institutoData = getInstitutoData(locale);
+  const person = getPersonBySlug(locale, slug);
 
   if (!person) {
     notFound();
   }
 
-  const labels = getLabels(locale);
+  const labels = pickLocale(LABELS, locale);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -93,6 +109,7 @@ export default async function ConsejoDirectivoPersonPage({
     description: person.summary,
     image: person.image,
     url: `${getSiteUrl()}/${locale}/instituto/consejo-directivo/${person.slug}`,
+    inLanguage: resolvedLocale,
     worksFor: {
       '@type': 'NGO',
       name: institutoData.title,
@@ -103,18 +120,19 @@ export default async function ConsejoDirectivoPersonPage({
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
+    inLanguage: resolvedLocale,
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${getSiteUrl()}/${locale}` },
+      { '@type': 'ListItem', position: 1, name: HOME_LABEL[resolvedLocale], item: `${getSiteUrl()}/${locale}` },
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Instituto',
+        name: INSTITUTO_LABEL[resolvedLocale],
         item: `${getSiteUrl()}/${locale}/instituto`,
       },
       {
         '@type': 'ListItem',
         position: 3,
-        name: 'Consejo directivo',
+        name: CONSEJO_LABEL[resolvedLocale],
         item: `${getSiteUrl()}/${locale}/instituto/consejo-directivo`,
       },
       {

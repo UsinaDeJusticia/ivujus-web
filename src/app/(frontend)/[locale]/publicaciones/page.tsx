@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import { pickLocale, resolveLocale, type Locale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { getPublicacionesLabels } from '@/lib/publicaciones';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
@@ -11,19 +12,85 @@ import { ContentCard } from '@/components/cards/ContentCard';
 // declaracion-de-buenos-aires/page.tsx para su JSON-LD.
 const HOME_LABEL: Record<string, string> = { es: 'Inicio', en: 'Home', fr: 'Accueil' };
 
+// Copy propio de esta página (no vive en src/lib/publicaciones porque son
+// textos fijos del hub, no contenido curado del dataset). El título de la
+// tarjeta de "Libros" queda igual en los tres idiomas a propósito: es el
+// título real del libro, publicado en español (ver docs/GLOSARIO-TRADUCCION.md
+// §5 ter).
+const PAGE_COPY: Record<
+  Locale,
+  {
+    metaTitle: string;
+    metaDescription: string;
+    h1: string;
+    bajada: string;
+    archivoEyebrow: string;
+    archivoTitle: string;
+    declaracionesCardTitle: string;
+    declaracionesCardDescription: string;
+    librosCardDescription: string;
+  }
+> = {
+  es: {
+    metaTitle: 'Publicaciones',
+    metaDescription:
+      'Declaraciones institucionales y producción editorial del Instituto de Victimología de Usina de Justicia.',
+    h1: 'Publicaciones del Instituto de Victimología',
+    bajada:
+      'Declaraciones institucionales, tomas de posición y producción editorial que documentan la actividad académica del IVUJUS.',
+    archivoEyebrow: 'Archivo',
+    archivoTitle: 'Fuentes de producción: declaraciones, libros, dossier.',
+    declaracionesCardTitle: 'Declaraciones institucionales',
+    declaracionesCardDescription:
+      'Documentos oficiales firmados al cierre de encuentros académicos, como la Declaración de Buenos Aires.',
+    librosCardDescription:
+      'Libro compilado por Diana Cohen Agrest y María Jimena Molina, con artículos de referentes del ámbito jurídico y académico.',
+  },
+  en: {
+    metaTitle: 'Publications',
+    metaDescription:
+      'Institutional declarations and editorial output from the Institute of Victimology of Usina de Justicia.',
+    h1: 'Publications of the Institute of Victimology',
+    bajada:
+      "Institutional declarations, position statements and editorial output documenting IVUJUS's academic activity.",
+    archivoEyebrow: 'Archive',
+    archivoTitle: 'Production sources: declarations, books, dossier.',
+    declaracionesCardTitle: 'Institutional declarations',
+    declaracionesCardDescription:
+      'Official documents signed at the close of academic gatherings, such as the Buenos Aires Declaration.',
+    librosCardDescription:
+      'Book edited by Diana Cohen Agrest and María Jimena Molina, with articles by leading figures from the legal and academic fields.',
+  },
+  fr: {
+    metaTitle: 'Publications',
+    metaDescription:
+      "Déclarations institutionnelles et production éditoriale de l'Institut de Victimologie d'Usina de Justicia.",
+    h1: "Publications de l'Institut de Victimologie",
+    bajada:
+      "Déclarations institutionnelles, prises de position et production éditoriale qui documentent l'activité académique de l'IVUJUS.",
+    archivoEyebrow: 'Archives',
+    archivoTitle: 'Sources de production : déclarations, livres, dossier.',
+    declaracionesCardTitle: 'Déclarations institutionnelles',
+    declaracionesCardDescription:
+      'Documents officiels signés à la clôture de rencontres académiques, comme la Déclaration de Buenos Aires.',
+    librosCardDescription:
+      "Livre sous la direction de Diana Cohen Agrest et María Jimena Molina, avec des articles de référents des milieux juridique et universitaire.",
+  },
+};
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const copy = pickLocale(PAGE_COPY, locale);
 
   return buildLocalizedMetadata({
     locale,
     path: '/publicaciones',
-    title: 'Publicaciones',
-    description:
-      'Declaraciones institucionales y producción editorial del Instituto de Victimología de Usina de Justicia.',
+    title: copy.metaTitle,
+    description: copy.metaDescription,
   });
 }
 
