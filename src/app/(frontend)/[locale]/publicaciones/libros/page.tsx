@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 
+import { type Locale, pickLocale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { getLibroNuevosParadigmas, getPublicacionesLabels } from '@/lib/publicaciones';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
@@ -10,6 +11,26 @@ import { LinkArrow } from '@/components/ui/Buttons';
 // todavía); mismo patrón manual + buildJsonLdScript que en el resto de
 // subpáginas de publicaciones/.
 const HOME_LABEL: Record<string, string> = { es: 'Inicio', en: 'Home', fr: 'Accueil' };
+
+// Metadata por idioma. El título del libro no se traduce (glosario §5 ter):
+// es una obra publicada en español y se cita por su título real.
+const META: Record<Locale, { title: string; description: string }> = {
+  es: {
+    title: 'Libros',
+    description:
+      'Nuevos Paradigmas para la Justicia Penal, libro compilado por Diana Cohen Agrest y María Jimena Molina.',
+  },
+  en: {
+    title: 'Books',
+    description:
+      'Nuevos Paradigmas para la Justicia Penal, a book edited by Diana Cohen Agrest and María Jimena Molina.',
+  },
+  fr: {
+    title: 'Livres',
+    description:
+      'Nuevos Paradigmas para la Justicia Penal, ouvrage dirigé par Diana Cohen Agrest et María Jimena Molina.',
+  },
+};
 
 export async function generateMetadata({
   params,
@@ -21,9 +42,8 @@ export async function generateMetadata({
   return buildLocalizedMetadata({
     locale,
     path: '/publicaciones/libros',
-    title: 'Libros',
-    description:
-      'Nuevos Paradigmas para la Justicia Penal, libro compilado por Diana Cohen Agrest y María Jimena Molina.',
+    title: pickLocale(META, locale).title,
+    description: pickLocale(META, locale).description,
   });
 }
 

@@ -2,9 +2,76 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { ciclosData, getCicloBySlug } from '@/lib/formacion';
+import { type Locale, pickLocale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
 import { ButtonPrincipal, LinkArrow } from '@/components/ui/Buttons';
+
+// Copys de interfaz por idioma. El contenido del ciclo ya viene traducido.
+const LABELS: Record<
+  Locale,
+  {
+    noEncontradoTitle: string;
+    noEncontradoDescription: string;
+    breadcrumbHome: string;
+    breadcrumbFormacion: string;
+    ciclos: string;
+    ciclosYJornadas: string;
+    video: string;
+    videoTitle: string;
+    sesiones: string;
+    sesionesTitle: string;
+    dossier: string;
+    descargarDossier: string;
+    volver: string;
+  }
+> = {
+  es: {
+    noEncontradoTitle: 'Ciclo no encontrado',
+    noEncontradoDescription: 'El ciclo o jornada solicitado no existe.',
+    breadcrumbHome: 'Inicio',
+    breadcrumbFormacion: 'Formación',
+    ciclos: 'Ciclos',
+    ciclosYJornadas: 'Ciclos y jornadas',
+    video: 'Video',
+    videoTitle: 'Registro audiovisual del ciclo.',
+    sesiones: 'Sesiones',
+    sesionesTitle: 'Charlas grabadas de este ciclo.',
+    dossier: 'Dossier',
+    descargarDossier: 'Descargar dossier',
+    volver: 'Volver al archivo de ciclos',
+  },
+  en: {
+    noEncontradoTitle: 'Series not found',
+    noEncontradoDescription: 'The requested debate series or conference day does not exist.',
+    breadcrumbHome: 'Home',
+    breadcrumbFormacion: 'Training',
+    ciclos: 'Series',
+    ciclosYJornadas: 'Debate series and conference days',
+    video: 'Video',
+    videoTitle: 'Audiovisual record of the series.',
+    sesiones: 'Sessions',
+    sesionesTitle: 'Recorded talks from this series.',
+    dossier: 'Dossier',
+    descargarDossier: 'Download the dossier',
+    volver: 'Back to the series archive',
+  },
+  fr: {
+    noEncontradoTitle: 'Cycle introuvable',
+    noEncontradoDescription: "Le cycle ou la journée demandée n'existe pas.",
+    breadcrumbHome: 'Accueil',
+    breadcrumbFormacion: 'Formation',
+    ciclos: 'Cycles',
+    ciclosYJornadas: 'Cycles de débats et journées',
+    video: 'Vidéo',
+    videoTitle: 'Enregistrement audiovisuel du cycle.',
+    sesiones: 'Séances',
+    sesionesTitle: 'Conférences enregistrées de ce cycle.',
+    dossier: 'Dossier',
+    descargarDossier: 'Télécharger le dossier',
+    volver: "Retour à l'archive des cycles",
+  },
+};
 
 export function generateStaticParams() {
   return ciclosData.map((ciclo) => ({ slug: ciclo.slug }));
@@ -16,14 +83,15 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
-  const ciclo = getCicloBySlug(slug);
+  const labels = pickLocale(LABELS, locale);
+  const ciclo = getCicloBySlug(slug, locale);
 
   if (!ciclo) {
     return buildLocalizedMetadata({
       locale,
       path: `/formacion/ciclos/${slug}`,
-      title: 'Ciclo no encontrado',
-      description: 'El ciclo o jornada solicitado no existe.',
+      title: labels.noEncontradoTitle,
+      description: labels.noEncontradoDescription,
     });
   }
 
@@ -114,7 +182,8 @@ export default async function FormacionCicloDetailPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const ciclo = getCicloBySlug(slug);
+  const labels = pickLocale(LABELS, locale);
+  const ciclo = getCicloBySlug(slug, locale);
 
   if (!ciclo) {
     notFound();
@@ -151,12 +220,22 @@ export default async function FormacionCicloDetailPage({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${getSiteUrl()}/es` },
-      { '@type': 'ListItem', position: 2, name: 'Formación', item: `${getSiteUrl()}/es/formacion` },
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: labels.breadcrumbHome,
+        item: `${getSiteUrl()}/${locale}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: labels.breadcrumbFormacion,
+        item: `${getSiteUrl()}/${locale}/formacion`,
+      },
       {
         '@type': 'ListItem',
         position: 3,
-        name: 'Ciclos y jornadas',
+        name: labels.ciclosYJornadas,
         item: `${getSiteUrl()}/es/formacion/ciclos`,
       },
       { '@type': 'ListItem', position: 4, name: ciclo.titulo, item: cicloUrl },
@@ -173,7 +252,8 @@ export default async function FormacionCicloDetailPage({
       <div className="mx-auto max-w-[var(--container-default)] space-y-16 px-6 py-16 sm:px-10">
         <header className="max-w-4xl space-y-5 border-b border-[color:var(--ui-border)] pb-14">
           <Eyebrow>
-            Formación / Ciclos / <time dateTime={fechaISO}>{ciclo.fecha}</time>
+            {`${labels.breadcrumbFormacion} / ${labels.ciclos} / `}
+            <time dateTime={fechaISO}>{ciclo.fecha}</time>
           </Eyebrow>
           {/* break-words: algunos títulos de ciclos tienen palabras largas
               en español ("desmantelamiento") que a 360px, con el piso de la
@@ -196,14 +276,14 @@ export default async function FormacionCicloDetailPage({
 
         {ciclo.video_url ? (
           <section className="space-y-6">
-            <SectionHeader eyebrow="Video" title="Registro audiovisual del ciclo." />
+            <SectionHeader eyebrow={labels.video} title={labels.videoTitle} />
             <VideoFrame src={ciclo.video_url} title={ciclo.titulo} />
           </section>
         ) : null}
 
         {ciclo.sesiones && ciclo.sesiones.length > 0 ? (
           <section className="space-y-10">
-            <SectionHeader eyebrow="Sesiones" title="Charlas grabadas de este ciclo." />
+            <SectionHeader eyebrow={labels.sesiones} title={labels.sesionesTitle} />
             <div className="grid gap-8 lg:grid-cols-2">
               {ciclo.sesiones.map((sesion, index) => (
                 <div key={sesion.video_url ?? index} className="space-y-4">
@@ -224,18 +304,18 @@ export default async function FormacionCicloDetailPage({
 
         {ciclo.dossier ? (
           <section className="rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-6 shadow-[var(--shadow-1)] sm:p-8">
-            <Eyebrow>Dossier</Eyebrow>
+            <Eyebrow>{labels.dossier}</Eyebrow>
             <p className="mt-4 text-base leading-7 text-[color:var(--ui-display-ink)]">
               {ciclo.dossier.titulo}
             </p>
             <ButtonPrincipal href={ciclo.dossier.url} target="_blank" rel="noreferrer" className="mt-5">
-              Descargar dossier
+              {labels.descargarDossier}
             </ButtonPrincipal>
           </section>
         ) : null}
 
         <div>
-          <LinkArrow href={`/${locale}/formacion/ciclos`}>Volver al archivo de ciclos</LinkArrow>
+          <LinkArrow href={`/${locale}/formacion/ciclos`}>{labels.volver}</LinkArrow>
         </div>
       </div>
     </main>

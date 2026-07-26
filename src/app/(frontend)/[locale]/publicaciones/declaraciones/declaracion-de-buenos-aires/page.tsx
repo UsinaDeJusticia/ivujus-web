@@ -4,6 +4,7 @@ import {
   declaracionBuenosAiresPayloadDraft,
   simposio2026,
 } from '@/lib/simposio2026';
+import { type Locale, pickLocale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { getPublicacionesLabels } from '@/lib/publicaciones';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
@@ -13,6 +14,12 @@ import { ButtonPrincipal, LinkArrow } from '@/components/ui/Buttons';
 // todavía); mismo patrón manual + buildJsonLdScript que en el resto de
 // subpáginas de publicaciones/.
 const HOME_LABEL: Record<string, string> = { es: 'Inicio', en: 'Home', fr: 'Accueil' };
+
+const TITULO: Record<Locale, string> = {
+  es: 'Declaración de Buenos Aires',
+  en: 'Buenos Aires Declaration',
+  fr: 'Déclaration de Buenos Aires',
+};
 
 export async function generateMetadata({
   params,
@@ -24,7 +31,8 @@ export async function generateMetadata({
   return buildLocalizedMetadata({
     locale,
     path: '/publicaciones/declaraciones/declaracion-de-buenos-aires',
-    title: 'Declaración de Buenos Aires',
+    // Nombre propio del documento, con su forma fijada por idioma en el glosario.
+    title: pickLocale(TITULO, locale),
     description: declaracionBuenosAiresPayloadDraft.texto_completo_resumen,
   });
 }

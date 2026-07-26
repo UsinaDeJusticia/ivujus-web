@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { simposio2026 } from '@/lib/simposio2026';
+import { type Locale, pickLocale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { declaracionesIndex, getPublicacionesLabels } from '@/lib/publicaciones';
 import { Eyebrow } from '@/components/ui/SectionHeader';
@@ -9,6 +10,25 @@ import { ContentCard } from '@/components/cards/ContentCard';
 // Sin builder dedicado en src/lib/seo.ts (no existe buildBreadcrumbJsonLd
 // todavía); mismo patrón manual + buildJsonLdScript que en publicaciones/page.tsx.
 const HOME_LABEL: Record<string, string> = { es: 'Inicio', en: 'Home', fr: 'Accueil' };
+
+// Metadata por idioma; el cuerpo de la página ya usa getPublicacionesLabels.
+const META: Record<Locale, { title: string; description: string }> = {
+  es: {
+    title: 'Declaraciones',
+    description:
+      'Archivo de declaraciones institucionales del Instituto de Victimología de Usina de Justicia, empezando por la Declaración de Buenos Aires.',
+  },
+  en: {
+    title: 'Declarations',
+    description:
+      'Archive of institutional declarations of the Institute of Victimology of Usina de Justicia, beginning with the Buenos Aires Declaration.',
+  },
+  fr: {
+    title: 'Déclarations',
+    description:
+      "Archive des déclarations institutionnelles de l'Institut de Victimologie d'Usina de Justicia, à commencer par la Déclaration de Buenos Aires.",
+  },
+};
 
 export async function generateMetadata({
   params,
@@ -20,9 +40,8 @@ export async function generateMetadata({
   return buildLocalizedMetadata({
     locale,
     path: '/publicaciones/declaraciones',
-    title: 'Declaraciones',
-    description:
-      'Archivo de declaraciones institucionales del Instituto de Victimología de Usina de Justicia, empezando por la Declaración de Buenos Aires.',
+    title: pickLocale(META, locale).title,
+    description: pickLocale(META, locale).description,
   });
 }
 
