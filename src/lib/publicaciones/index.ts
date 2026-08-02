@@ -24,6 +24,7 @@ import { es } from './es';
 import { fr } from './fr';
 import type {
   DeclaracionSummary,
+  Dossier,
   Libro,
   LibroQuote,
   PublicacionesLabels,
@@ -32,6 +33,7 @@ import type {
 
 export type {
   DeclaracionSummary,
+  Dossier,
   Libro,
   LibroQuote,
   PublicacionesLabels,
@@ -52,6 +54,11 @@ export function getPublicacionesLabels(locale: string): PublicacionesLabels {
 /** Devuelve el libro "Nuevos Paradigmas para la Justicia Penal" en el idioma pedido. */
 export function getLibroNuevosParadigmas(locale: string): Libro {
   return pickLocale(CONTENT, locale).libro;
+}
+
+/** Devuelve los tres dossiers temáticos (prisión perpetua, salud mental, responsabilidad penal juvenil) en el idioma pedido. */
+export function getDossiers(locale: string): Dossier[] {
+  return pickLocale(CONTENT, locale).dossiers;
 }
 
 // Export previo: varias páginas ya importaban `libroNuevosParadigmas` como

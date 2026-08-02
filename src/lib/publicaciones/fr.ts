@@ -37,6 +37,15 @@ export const fr: PublicacionesLocaleContent = {
     leerNotaCompleta: "Lire l'article complet",
     volverA: 'Retour à',
     fuente: 'Source',
+    dossiers: 'Dossiers',
+    dossiersMetaTitle: 'Dossiers thématiques',
+    dossiersMetaDescription:
+      "Dossiers de recherche de l'Institut de Victimologie d'Usina de Justicia sur la réclusion à perpétuité, la santé mentale et la responsabilité pénale des mineurs.",
+    dossiersEyebrow: 'Publications / Dossiers',
+    dossiersTitle: "Les dossiers thématiques de l'Institut.",
+    dossiersLead:
+      "Documents de recherche produits dans le cadre des cycles de débats de l'Institut, centrés sur trois discussions clés de la politique criminelle argentine.",
+    descargarDossier: 'Télécharger le dossier',
   },
   libro: {
     slug: 'nuevos-paradigmas-para-la-justicia-penal',
@@ -101,4 +110,31 @@ export const fr: PublicacionesLocaleContent = {
       },
     ],
   },
+  dossiers: [
+    {
+      slug: 'prision-perpetua',
+      titulo: 'Publication académique : la constitutionnalité de la réclusion à perpétuité',
+      fecha: 'janvier 2021',
+      resumen:
+        "Réalisé en collaboration avec l'Instituto de Altos Estudios de Mendoza, ce texte porte sur le débat juridique relatif à la réclusion à perpétuité dans le droit argentin. Il rassemble les analyses issues d'un forum pluridisciplinaire tenu après un arrêt de la Cour suprême de justice de Mendoza, abordant des perspectives éthiques, philosophiques et pénales. La préface souligne que le tribunal provincial a validé la légalité de cette sanction, établissant un précédent pour la justice du pays.",
+      pdfUrl: 'https://ivujus.org.ar/wp-content/uploads/2023/07/prision-perpetua.pdf',
+    },
+    {
+      slug: 'salud-mental',
+      titulo: 'Dossier sur la santé mentale',
+      fecha: 'novembre 2021',
+      resumen:
+        "Propose une critique de la loi nationale sur la santé mentale n° 26 657, soutenant que son approche abolitionniste ne protège ni les patients ni la société. Le texte affirme que la norme privilégie l'idéologie politique au détriment des connaissances scientifiques, en favorisant la fermeture d'institutions spécialisées sans offrir d'alternatives efficaces de prise en charge, et alerte sur la rigidité juridique de la loi face aux avancées médicales actuelles.",
+      pdfUrl: 'https://ivujus.org.ar/wp-content/uploads/2023/07/Dossier-Salud-Mental.pdf',
+    },
+    {
+      slug: 'responsabilidad-penal-juvenil',
+      titulo: 'Dossier sur la responsabilité pénale des mineurs',
+      fecha: 'août 2025',
+      resumen:
+        "Présente des arguments en faveur d'une réforme du système pénal des mineurs en Argentine, centrée sur l'abaissement de l'âge de la responsabilité pénale et sur un changement de paradigme plaçant la victime au premier plan. Il défend l'abaissement de l'âge minimal de responsabilité pénale à 14 ou 13 ans, en s'appuyant sur des données de neurosciences selon lesquelles le jugement moral se développe entre 10 et 12 ans, et souligne que l'Argentine fait partie d'une minorité de juridictions ayant un âge minimal de 16 ans ou plus, contre une moyenne mondiale de 12 ans. Il conclut que l'abaissement de l'âge de la responsabilité pénale n'est pas une simple mesure punitive, mais une nécessité sociale et technique pour protéger les victimes et offrir une véritable intervention institutionnelle aux mineurs en conflit avec la loi.",
+      pdfUrl:
+        'https://ivujus.org.ar/wp-content/uploads/2025/09/Dossier.-La-responsabilidad-penal-de-los-menores-delincuentes_IVUJUS-1.pdf',
+    },
+  ],
 };

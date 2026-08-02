@@ -35,6 +35,15 @@ export const en: PublicacionesLocaleContent = {
     leerNotaCompleta: 'Read the full article',
     volverA: 'Back to',
     fuente: 'Source',
+    dossiers: 'Dossiers',
+    dossiersMetaTitle: 'Thematic dossiers',
+    dossiersMetaDescription:
+      'Research dossiers by the Institute of Victimology of Usina de Justicia on life imprisonment, mental health and juvenile criminal responsibility.',
+    dossiersEyebrow: 'Publications / Dossiers',
+    dossiersTitle: 'The Institute’s thematic dossiers.',
+    dossiersLead:
+      "Research documents produced within the Institute's debate series, focused on three central discussions in Argentine criminal policy.",
+    descargarDossier: 'Download dossier',
   },
   libro: {
     slug: 'nuevos-paradigmas-para-la-justicia-penal',
@@ -98,4 +107,31 @@ export const en: PublicacionesLocaleContent = {
       },
     ],
   },
+  dossiers: [
+    {
+      slug: 'prision-perpetua',
+      titulo: 'Academic publication: the constitutionality of life imprisonment',
+      fecha: 'January 2021',
+      resumen:
+        'Produced in collaboration with the Instituto de Altos Estudios de Mendoza, this text focuses on the legal dispute over life imprisonment under Argentine law. It compiles the analyses of a multidisciplinary forum held after a ruling by the Supreme Court of Justice of Mendoza, covering ethical, philosophical and criminal-law perspectives. The prologue notes that the provincial court upheld the legality of this sanction, setting a precedent for the country’s justice system.',
+      pdfUrl: 'https://ivujus.org.ar/wp-content/uploads/2023/07/prision-perpetua.pdf',
+    },
+    {
+      slug: 'salud-mental',
+      titulo: 'Mental Health Dossier',
+      fecha: 'November 2021',
+      resumen:
+        'Offers a critique of National Mental Health Law No. 26,657, arguing that its abolitionist approach fails to protect both patients and society. It contends that the law prioritises political ideology over scientific knowledge, promoting the closure of specialised institutions without offering effective alternatives for care, and warns about the law’s rigidity in the face of modern medical advances.',
+      pdfUrl: 'https://ivujus.org.ar/wp-content/uploads/2023/07/Dossier-Salud-Mental.pdf',
+    },
+    {
+      slug: 'responsabilidad-penal-juvenil',
+      titulo: 'Juvenile Criminal Responsibility Dossier',
+      fecha: 'August 2025',
+      resumen:
+        'Presents arguments in favour of reforming the juvenile criminal justice system in Argentina, focusing on lowering the age of criminal responsibility and on a paradigm shift that puts the victim first. It argues for lowering the minimum age of criminal responsibility to 14 or 13, drawing on neuroscience evidence about the development of moral judgment between ages 10 and 12, and notes that Argentina is among a minority of jurisdictions with a minimum age of 16 or older, against a global average of 12. It concludes that lowering the age of criminal responsibility is not merely a punitive measure, but a social and technical necessity to protect victims and provide real institutional intervention for minors in conflict with the law.',
+      pdfUrl:
+        'https://ivujus.org.ar/wp-content/uploads/2025/09/Dossier.-La-responsabilidad-penal-de-los-menores-delincuentes_IVUJUS-1.pdf',
+    },
+  ],
 };

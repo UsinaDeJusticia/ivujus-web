@@ -23,11 +23,29 @@ export type PublicacionesLabels = {
   leerNotaCompleta: string;
   volverA: string;
   fuente: string;
+  dossiers: string;
+  dossiersMetaTitle: string;
+  dossiersMetaDescription: string;
+  dossiersEyebrow: string;
+  dossiersTitle: string;
+  dossiersLead: string;
+  descargarDossier: string;
 };
 
 export type DeclaracionSummary = {
   slug: string;
   fecha: string;
+};
+
+export type Dossier = {
+  slug: string;
+  titulo: string;
+  // Texto libre por idioma ("enero de 2021" / "January 2021" / "janvier
+  // 2021"), igual que Libro.presentacion.fecha: son fechas de mes y año, no
+  // sirven para <time dateTime> preciso. El pdfUrl es lo único invariante.
+  fecha: string;
+  resumen: string;
+  pdfUrl: string;
 };
 
 export type LibroQuote = {
@@ -64,4 +82,5 @@ export type Libro = {
 export type PublicacionesLocaleContent = {
   labels: PublicacionesLabels;
   libro: Libro;
+  dossiers: Dossier[];
 };

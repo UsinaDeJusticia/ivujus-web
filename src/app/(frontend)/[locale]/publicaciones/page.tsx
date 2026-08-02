@@ -29,6 +29,7 @@ const PAGE_COPY: Record<
     declaracionesCardTitle: string;
     declaracionesCardDescription: string;
     librosCardDescription: string;
+    dossiersCardDescription: string;
   }
 > = {
   es: {
@@ -45,6 +46,8 @@ const PAGE_COPY: Record<
       'Documentos oficiales firmados al cierre de encuentros académicos, como la Declaración de Buenos Aires.',
     librosCardDescription:
       'Libro compilado por Diana Cohen Agrest y María Jimena Molina, con artículos de referentes del ámbito jurídico y académico.',
+    dossiersCardDescription:
+      'Investigaciones del Instituto sobre prisión perpetua, salud mental y responsabilidad penal juvenil, con el documento completo para descargar.',
   },
   en: {
     metaTitle: 'Publications',
@@ -60,6 +63,8 @@ const PAGE_COPY: Record<
       'Official documents signed at the close of academic gatherings, such as the Buenos Aires Declaration.',
     librosCardDescription:
       'Book edited by Diana Cohen Agrest and María Jimena Molina, with articles by leading figures from the legal and academic fields.',
+    dossiersCardDescription:
+      "Institute research on life imprisonment, mental health and juvenile criminal responsibility, with the full document available for download.",
   },
   fr: {
     metaTitle: 'Publications',
@@ -75,6 +80,8 @@ const PAGE_COPY: Record<
       'Documents officiels signés à la clôture de rencontres académiques, comme la Déclaration de Buenos Aires.',
     librosCardDescription:
       "Livre sous la direction de Diana Cohen Agrest et María Jimena Molina, avec des articles de référents des milieux juridique et universitaire.",
+    dossiersCardDescription:
+      "Recherches de l'Institut sur la réclusion à perpétuité, la santé mentale et la responsabilité pénale des mineurs, avec le document complet à télécharger.",
   },
 };
 
@@ -105,6 +112,11 @@ export default async function PublicacionesHubPage({
 }) {
   const { locale } = await params;
   const labels = getPublicacionesLabels(locale);
+  // Bug encontrado al agregar la tarjeta de Dossiers: PAGE_COPY ya tenía las
+  // tres traducciones completas, pero el cuerpo de la página nunca las leía
+  // (solo generateMetadata las usaba) — el h1, la bajada y las dos tarjetas
+  // quedaban siempre en español sin importar el idioma. Corregido acá.
+  const copy = pickLocale(PAGE_COPY, locale);
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -129,33 +141,33 @@ export default async function PublicacionesHubPage({
       <div className="mx-auto max-w-[var(--container-default)] space-y-16 px-6 py-16 sm:px-10">
         <header className="max-w-4xl space-y-5 border-b border-[color:var(--ui-border)] pb-14">
           <Eyebrow>{labels.publicaciones}</Eyebrow>
-          <h1 className="max-w-4xl text-balance text-[length:clamp(34px,5vw,60px)]">
-            Publicaciones del Instituto de Victimología
-          </h1>
+          <h1 className="max-w-4xl text-balance text-[length:clamp(34px,5vw,60px)]">{copy.h1}</h1>
           <p className="max-w-3xl text-pretty text-lg leading-[1.7] text-[color:var(--ui-ink-3)]">
-            Declaraciones institucionales, tomas de posición y producción editorial que documentan la
-            actividad académica del IVUJUS.
+            {copy.bajada}
           </p>
         </header>
 
         <section className="space-y-10">
-          <SectionHeader
-            eyebrow="Archivo"
-            title="Fuentes de producción: declaraciones, libros, dossier."
-          />
+          <SectionHeader eyebrow={copy.archivoEyebrow} title={copy.archivoTitle} />
 
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             <ContentCard
               href={`/${locale}/publicaciones/declaraciones`}
               eyebrow={labels.declaraciones}
-              title="Declaraciones institucionales"
-              description="Documentos oficiales firmados al cierre de encuentros académicos, como la Declaración de Buenos Aires."
+              title={copy.declaracionesCardTitle}
+              description={copy.declaracionesCardDescription}
             />
             <ContentCard
               href={`/${locale}/publicaciones/libros`}
               eyebrow={labels.libros}
               title="Nuevos Paradigmas para la Justicia Penal"
-              description="Libro compilado por Diana Cohen Agrest y María Jimena Molina, con artículos de referentes del ámbito jurídico y académico."
+              description={copy.librosCardDescription}
+            />
+            <ContentCard
+              href={`/${locale}/publicaciones/dossiers`}
+              eyebrow={labels.dossiers}
+              title={labels.dossiersTitle}
+              description={copy.dossiersCardDescription}
             />
           </div>
         </section>
