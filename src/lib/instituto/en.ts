@@ -50,7 +50,7 @@ export const institutoEn: InstitutoData = {
       role: 'Director',
       summary: 'Lawyer and specialist in criminal law, ethics and public policy with a victim-centred perspective.',
       bio: "Lawyer (UCALP). Master's in Ethics, Political Philosophy and Anthropology (TECH, Spain). Specialist in Criminal Law (UNLP). Diploma in Freedom of Expression and Safety of Journalists (Bonavero Institute of Human Rights, University of Oxford, UNESCO). Legal Clerk and Reporting Officer (Auxiliar Letrado Relator) at the Public Prosecutor's Office of the Court of Cassation of the Province of Buenos Aires.",
-      image: 'https://ivujus.org.ar/wp-content/uploads/2025/12/jimena_molina_profiles.jpg',
+      image: 'https://usinadejusticia.org.ar/wp-content/uploads/2026/08/jimena_ivujus.webp',
     },
     {
       slug: 'diana-cohen-agrest',

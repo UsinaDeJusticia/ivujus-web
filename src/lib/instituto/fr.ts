@@ -53,7 +53,7 @@ export const institutoFr: InstitutoData = {
       role: 'Directrice',
       summary: "Avocate et spécialiste en droit pénal, éthique et politiques publiques dans une perspective centrée sur la victime.",
       bio: "Avocate (UCALP). Master en éthique, philosophie politique et anthropologie (TECH, Espagne). Spécialiste en droit pénal (UNLP). Diplômée en liberté d'expression et sécurité des journalistes (Institut Bonavero des droits de l'homme, Université d'Oxford, UNESCO). Auxiliaire juridique et rapporteure (Auxiliar Letrado Relator) au parquet de la Cour de cassation de la province de Buenos Aires.",
-      image: 'https://ivujus.org.ar/wp-content/uploads/2025/12/jimena_molina_profiles.jpg',
+      image: 'https://usinadejusticia.org.ar/wp-content/uploads/2026/08/jimena_ivujus.webp',
     },
     {
       slug: 'diana-cohen-agrest',
