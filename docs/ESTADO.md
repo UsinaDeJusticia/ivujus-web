@@ -2,9 +2,47 @@
 
 > Cualquier sesión nueva de Claude Code retoma desde acá. Actualizar al cierre de cada sesión: qué se hizo, decisiones, pendientes, próximo paso exacto.
 
-**Última actualización:** 2 de agosto de 2026 (sesión 5 — **dossiers y primeros encuentros publicados**; GitHub reconectado, push directo restablecido)
+**Última actualización:** 2 de agosto de 2026 (sesión 5 — **dossiers + los 4 encuentros + foto de Jimena, publicados**; GitHub reconectado, push directo restablecido)
 **Rama de trabajo:** `claude/ivujus-rebuild-planning-gvcf25` = `main` (push directo funcionando de nuevo — ver nota abajo; consultar `git log -1` para el HEAD exacto)
-**Etapa:** ✅ G0 · ✅ Fase 1 · ✅ G1 · ✅ Fase 2 (contenido v1) · ✅ Fase 4 (SEO/GEO/perf) · ✅ **G4** · ✅ **Ola 1 Jimena** · ✅ **Traducción completa ES/EN/FR** · ✅ **Dossiers + 2 de 3 Encuentros** → ⏭️ **Observatorio, evento del Colón y foto de Jimena, bloqueados por insumos de contenido**.
+**Etapa:** ✅ G0 · ✅ Fase 1 · ✅ G1 · ✅ Fase 2 (contenido v1) · ✅ Fase 4 (SEO/GEO/perf) · ✅ **G4** · ✅ **Ola 1 Jimena** · ✅ **Traducción completa ES/EN/FR** · ✅ **Dossiers + Encuentros (los 4) + foto de Jimena** → ⏭️ **Observatorio, bloqueado por insumos de contenido**.
+
+## ✅ Evento del Colón + foto de Jimena (2-ago, continuación)
+
+Jair mandó el enlace de la foto nueva de Jimena y las URLs de las 4 notas que cubrieron
+el evento del 10° aniversario de Usina de Justicia en el Teatro Colón (el ítem que había
+quedado pendiente de la sesión anterior).
+
+**Foto de Jimena** — actualizada en `src/lib/instituto/{es,en,fr}.ts` (único uso: su
+tarjeta en Consejo Directivo). Nueva URL:
+`https://usinadejusticia.org.ar/wp-content/uploads/2026/08/jimena_ivujus.webp` (host ya
+permitido en `next.config.ts` desde la sesión anterior). Verificado con captura de
+pantalla en `/instituto/consejo-directivo`.
+
+**Evento del Colón** — nueva entrada en `src/lib/encuentros/{es,en,fr}.ts`, primera en la
+lista (12-nov-2024, es el más antiguo de los 4). Fuentes constatadas vía la REST API de
+`usinadejusticia.org.ar`, corroborando 4 posts independientes:
+- `/wp-json/wp/v2/posts/21370` (anuncio previo, 11-nov-2024): confirma fecha exacta, hora
+  (14 hs) y lugar ("Salón Dorado del Teatro Colón") y trae la cita textual de Guillermo
+  Bargna.
+- `/wp-json/wp/v2/posts/21372`, `/22026`, `/21404` (cobertura posterior, 14/16-nov-2024),
+  con imágenes propias del acto (media 21373, 21368, 21406 — se usan 2, con Diana Cohen
+  Agrest hablando y una foto grupal; verificadas visualmente antes de usarlas).
+- Enlaces a las notas de Infobae y La Nación que mandó Jair.
+
+**Cambio de tipo:** `EncuentroEnlace.enlaceExterno` (singular) → `enlacesExternos`
+(array), porque este evento tiene cobertura de 2 medios distintos (el evento de la UBA
+solo tenía 1). Migrado también el ítem existente. Agregado `notaCita?: string` al tipo
+`Encuentro` para el aviso de traducción de cortesía (glosario §7) cuando el `resumen`
+lleva una cita textual — sigue el mismo patrón que `quotesNote` en `publicaciones/types.ts`.
+
+`check:i18n`, `typecheck` y `build` verdes; verificado visualmente con Playwright en
+`/simposios/encuentros` (los 4 encuentros, las 2 fotos nuevas y los 2 enlaces externos
+renderizan) y en `/instituto/consejo-directivo` (foto de Jimena).
+
+**Pendiente:** Jair mencionó que ahora tiene acceso total al sitio de Usina y puede pedir
+más fotos de este y otros actos — se pueden sumar a la misma entrada cuando lleguen, sin
+tocar el resto. Los demás "Usina de Justicia Debate" sin cargar como ciclos de Formación
+siguen sin material.
 
 ## ✅ Dossiers + Encuentros y conferencias (2-ago)
 
@@ -50,11 +88,11 @@ buscando específicamente eso; se encontró al ir a agregar la tercera tarjeta d
 había que generar `git bundle` porque se había perdido la credencial). Confirmar con
 `git push` antes de asumir que hace falta un bundle.
 
-**Pendiente de este documento:** el evento del Colón y los demás "Usina de Justicia
-Debate" sin cargar — no se encontró nada al buscar en ivujus.org.ar ni usinadejusticia.org.ar,
-sigue en espera de material. La foto de Jimena llegó pegada en el chat, no como archivo:
-no hay forma de guardarla a disco desde el contenido del mensaje: hace falta que la
-reenvíe como adjunto o dé una URL.
+**Pendiente de este documento (resuelto en la sección de arriba, "Evento del Colón +
+foto de Jimena"):** el evento del Colón no se encontró al buscar en ivujus.org.ar ni
+usinadejusticia.org.ar; la foto de Jimena había llegado pegada en el chat, sin forma de
+guardarla a disco. Jair mandó ambas cosas (enlaces de prensa + URL de la foto) más tarde
+en la misma sesión.
 
 ## ✅ Traducción completa a inglés y francés (26-jul)
 

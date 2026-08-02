@@ -11,10 +11,11 @@ cada uno para seguir.
 
 De las diecinueve sugerencias del primer documento, **quince ya están hechas y se pueden
 ver en la página**. El segundo documento trajo justo el material que nos faltaba para
-completar los dossiers y sumar los primeros encuentros: ya están publicados los tres
-dossiers y dos de los eventos. Lo que sigue pendiente no está frenado por trabajo de
-programación: espera material — el del Colón, la foto de Jimena, y los insumos del
-Observatorio (estadísticas, Índice Legislativo, Biblioteca, aplicación de sentencias).
+completar los dossiers y sumar los encuentros: ya están publicados los tres dossiers,
+los cuatro eventos, y la foto nueva de Jimena. Lo que sigue pendiente no está frenado
+por trabajo de programación: espera material — los insumos del Observatorio
+(estadísticas, Índice Legislativo, Biblioteca, aplicación de sentencias) y, si aparece
+más adelante, material adicional de otros "Usina de Justicia Debate".
 
 ## Lo que ya está hecho y se puede ver en la página
 
@@ -60,8 +61,12 @@ se presenta con su fecha, un resumen fiel y el botón para descargar el document
 completo — así Google y los buscadores con inteligencia artificial lo pueden encontrar
 y citar, en vez de ser un PDF suelto sin contexto.
 
-**Dos de los encuentros ya están publicados**, en una página nueva dentro de Eventos
+**Los cuatro encuentros ya están publicados**, en una página nueva dentro de Eventos
 académicos (`/simposios/encuentros`):
+- El **10° aniversario de Usina de Justicia en el Teatro Colón** (12 de noviembre de
+  2024), con dos fotos reales del acto y enlaces a las notas de Infobae y La Nación.
+  Es el evento que faltaba: Jair mandó los enlaces de las cuatro notas que lo cubrieron
+  y con eso pudimos confirmar fecha, lugar y hasta el horario exacto.
 - La presentación del libro en la **Facultad de Derecho de la UBA** (24 de abril de
   2025), con foto real del evento y enlace a la cobertura de Infobae.
 - La presentación en **DAIN Usina Cultural** ya estaba en la ficha del libro
@@ -76,16 +81,18 @@ de **2025**, pero tanto el aviso que ya está publicado en la página del IVUJUS
 dos flyers que había mandado antes coinciden en **2026** — usamos 2026, evidentemente un
 error de tipeo aislado frente a esas fuentes.
 
+**La foto nueva de Jimena ya está actualizada** en todos los lugares donde aparece,
+usando el enlace que nos pasó.
+
 ## Lo que sigue pendiente
 
-**El evento del Colón** y los demás "Usina de Justicia Debate" que no estén ya cargados
-como ciclos en Formación siguen sin material — no encontramos nada al buscar en las
-páginas de IVUJUS y de Usina, así que queda a la espera de que nos llegue.
+Los demás **"Usina de Justicia Debate"** que no estén ya cargados como ciclos en
+Formación siguen sin material — no encontramos nada al buscar en las páginas de IVUJUS
+y de Usina, así que queda a la espera de que nos llegue.
 
-**La foto nueva de Jimena.** Es el cambio más rápido de todos: con el archivo, en diez
-minutos queda actualizada su foto en todos los lugares donde aparece. La que llegó por
-el chat no la pudimos guardar como archivo — hace falta que la reenvíe como adjunto o
-que nos pase el enlace donde ya esté subida.
+Jair mencionó que, ahora que tiene acceso total al sitio de Usina, puede pedir más fotos
+del evento del Colón y de otros actos que están guardadas en distintos lugares. Cuando
+lleguen, se pueden sumar a la misma entrada sin tocar el resto.
 
 **Las cuatro secciones nuevas**: Estadísticas, el Índice Legislativo, la Biblioteca y la
 aplicación de lectura de sentencias. De estas hablamos aparte, porque acá hicimos una
@@ -125,11 +132,8 @@ Lo que necesitamos para cada una:
 
 ## En qué orden vamos a avanzar
 
-Los dossiers y dos de los tres encuentros ya están hechos. Lo que sigue es la **foto de
-Jimena** (inmediata en cuanto la tengamos) y el **evento del Colón** en cuanto llegue su
-material.
-
-Con eso hecho, arranca el **Observatorio**. Ahí empezamos por el **Índice Legislativo**,
+Los dossiers, los cuatro encuentros y la foto de Jimena ya están hechos. Lo que sigue es
+el **Observatorio**. Ahí empezamos por el **Índice Legislativo**,
 por dos razones: ya tiene la estructura armada, y es el contenido que más nos va a
 posicionar, porque es material original y propio, del tipo que Google y las inteligencias
 artificiales citan como fuente. Después van las **Estadísticas**, luego la **Biblioteca**
@@ -145,9 +149,8 @@ sección vacía perjudica el posicionamiento y da la impresión de una página i
 Se puede mandar de a una cosa: cada material desbloquea su parte por separado, no hace
 falta juntar todo para empezar.
 
-**De Jimena:** su foto nueva (como archivo adjunto o enlace, no pegada en el chat); y los
-datos del evento del Colón, con fecha, descripción breve e imagen o enlace que lo
-respalde.
+**De Jimena:** si consigue más fotos de eventos pasados (el Colón u otros), se pueden
+sumar a las entradas ya publicadas.
 
 **De Noe:** las estadísticas y el criterio de qué mostrar.
 
