@@ -23,6 +23,45 @@ export const en: EncuentrosLocaleContent = {
   },
   items: [
     {
+      slug: 'decimo-aniversario-usina-de-justicia-2024',
+      titulo: 'Usina de Justicia marked its 10th anniversary at the Teatro Colón',
+      fecha: '12 November 2024',
+      lugar: 'Salón Dorado, Teatro Colón, City of Buenos Aires',
+      modalidad: 'In person',
+      resumen:
+        'Usina de Justicia marked ten years of work with an event at the Salón Dorado of the Teatro Colón, combining reflection and music, with the presence of a French organisation sharing a similar outlook. Its president, Diana Cohen Agrest, spoke about the institution’s decade-long fight. "We are very pleased with the progress on the goals we have pursued over these years. We have worked tirelessly for victims of homicide and femicide, supporting their families," Guillermo Bargna, founder of Usina de Justicia, had said ahead of the event.',
+      oradores: ['Diana Cohen Agrest', 'Guillermo Bargna'],
+      notaCita: 'Statements were made in Spanish; quotations are courtesy translations.',
+      imagenes: [
+        {
+          src: 'https://usinadejusticia.org.ar/wp-content/uploads/2024/11/MG_0500-1.webp',
+          alt: 'Attendees at the event marking the 10th anniversary of Usina de Justicia, at the Salón Dorado of the Teatro Colón',
+        },
+        {
+          src: 'https://usinadejusticia.org.ar/wp-content/uploads/2024/11/MG_0287.webp',
+          alt: 'Diana Cohen Agrest speaks at the lectern during the event marking 10 years of Usina de Justicia at the Teatro Colón',
+        },
+      ],
+      enlacesExternos: [
+        {
+          label: 'View the article on Infobae',
+          url: 'https://www.infobae.com/sociedad/2024/11/16/usina-de-justicia-a-10-anos-de-transformar-el-dolor-en-lucha-se-sigue-privilegiando-a-unas-victimas-en-desmedro-de-otras/',
+          notaIdioma: 'Article published in Spanish.',
+        },
+        {
+          label: 'View the article on La Nación',
+          url: 'https://www.lanacion.com.ar/politica/la-usina-de-justicia-conmemoro-10-anos-de-lucha-en-defensa-de-las-victimas-y-contra-el-abolicionismo-nid12112024/',
+          notaIdioma: 'Article published in Spanish.',
+        },
+      ],
+      sourcePosts: [
+        { id: 21370, url: 'https://usinadejusticia.org.ar/2024/11/11/usina-de-justicia-cumple-diez-anos-celebrando-avances/' },
+        { id: 21372, url: 'https://usinadejusticia.org.ar/2024/11/16/usina-de-justicia-a-10-anos-de-transformar-el-dolor-en-lucha-se-sigue-privilegiando-a-unas-victimas-en-desmedro-de-otras/' },
+        { id: 22026, url: 'https://usinadejusticia.org.ar/2024/11/14/usina-de-justicia-conmemoro-10-anos-de-lucha-en-defensa-de-las-victimas-y-contra-el-abolicionismo-penal/' },
+        { id: 21404, url: 'https://usinadejusticia.org.ar/2024/11/14/la-presidenta-de-usina-de-justicia-diana-cohen-agrest-hablo-sobre-los-10-anos-de-lucha-de-la-institucion/' },
+      ],
+    },
+    {
       slug: 'uba-facultad-de-derecho-2025',
       titulo: 'Launch of «Nuevos Paradigmas para la Justicia Penal» at the Facultad de Derecho',
       fecha: '24 April 2025',
@@ -37,11 +76,13 @@ export const en: EncuentrosLocaleContent = {
           alt: 'Launch of the book Nuevos Paradigmas para la Justicia Penal at the Facultad de Derecho, UBA',
         },
       ],
-      enlaceExterno: {
-        label: 'View photo coverage on Infobae',
-        url: 'https://www.infobae.com/fotos/2025/04/25/31-fotos-taeda-y-usina-de-justicia-presentaron-el-libro-nuevos-paradigmas-para-la-justicia-penal-en-la-facultad-de-derecho/',
-        notaIdioma: 'Article published in Spanish.',
-      },
+      enlacesExternos: [
+        {
+          label: 'View photo coverage on Infobae',
+          url: 'https://www.infobae.com/fotos/2025/04/25/31-fotos-taeda-y-usina-de-justicia-presentaron-el-libro-nuevos-paradigmas-para-la-justicia-penal-en-la-facultad-de-derecho/',
+          notaIdioma: 'Article published in Spanish.',
+        },
+      ],
       sourcePosts: [
         { id: 21686, url: 'https://usinadejusticia.org.ar/2025/04/25/taeda-y-usina-de-justicia-presentaron-el-libro-nuevos-paradigmas-para-la-justicia-penal-en-la-facultad-de-derecho/' },
         { id: 21728, url: 'https://usinadejusticia.org.ar/2025/04/29/la-mirada-de-un-nuevo-libro-sobre-una-reforma-de-la-justicia-penal-en-favor-de-las-victimas/' },

@@ -65,7 +65,7 @@ export default async function EncuentrosPage({
         organizer: { '@type': 'NGO', name: 'Instituto de Victimología de Usina de Justicia' },
         url: encuentro.enlaceInterno
           ? `${getSiteUrl()}/${locale}${encuentro.enlaceInterno.href}`
-          : (encuentro.enlaceExterno?.url ?? `${getSiteUrl()}/${locale}/simposios/encuentros`),
+          : (encuentro.enlacesExternos?.[0]?.url ?? `${getSiteUrl()}/${locale}/simposios/encuentros`),
       })),
       {
         '@type': 'Event',
@@ -157,6 +157,9 @@ export default async function EncuentrosPage({
               {encuentro.resumen ? (
                 <p className="mt-4 text-base leading-[1.75] text-[color:var(--ui-ink-3)]">{encuentro.resumen}</p>
               ) : null}
+              {encuentro.notaCita ? (
+                <p className="mt-1 text-[11px] leading-5 text-[color:var(--ui-ink-4)]">{encuentro.notaCita}</p>
+              ) : null}
 
               {encuentro.imagenes && encuentro.imagenes.length > 0 ? (
                 <div
@@ -189,23 +192,23 @@ export default async function EncuentrosPage({
                     {encuentro.enlaceInterno.label}
                   </LinkArrow>
                 ) : null}
-                {encuentro.enlaceExterno ? (
-                  <div>
+                {encuentro.enlacesExternos?.map((enlace) => (
+                  <div key={enlace.url}>
                     <a
-                      href={encuentro.enlaceExterno.url}
+                      href={enlace.url}
                       target="_blank"
                       rel="noreferrer"
                       className="text-sm font-semibold text-[color:var(--ui-link)] underline decoration-dorado-600 decoration-2 underline-offset-4 transition-colors duration-[var(--motion-base)] hover:text-[color:var(--ui-link-hover)]"
                     >
-                      {encuentro.enlaceExterno.label}
+                      {enlace.label}
                     </a>
-                    {encuentro.enlaceExterno.notaIdioma ? (
+                    {enlace.notaIdioma ? (
                       <p className="mt-1 text-[11px] leading-5 text-[color:var(--ui-ink-4)]">
-                        {encuentro.enlaceExterno.notaIdioma}
+                        {enlace.notaIdioma}
                       </p>
                     ) : null}
                   </div>
-                ) : null}
+                ))}
               </div>
             </article>
           ))}

@@ -33,14 +33,20 @@ export type Encuentro = {
   // `enlaceInterno`): ese contenido no se duplica acá, se enlaza (regla de
   // gobernanza "fuente única, sin duplicar").
   resumen?: string;
+  // Presente solo cuando `resumen` incluye una cita textual de una persona
+  // real, pronunciada en español (glosario §7, "Citas textuales de
+  // personas"): lleva el aviso de traducción de cortesía en inglés/francés.
+  // Ausente en español.
+  notaCita?: string;
   // Nombres de personas: invariantes por definición (glosario §6), pero el
   // campo se llama `oradores` para que scripts/check-i18n.ts los reconozca
   // como nombres propios (no exige traducción ni prohíbe la igualdad entre
   // idiomas).
   oradores?: string[];
   imagenes?: EncuentroImagen[];
-  // Cita externa (prensa de terceros) — url invariante, label traducido.
-  enlaceExterno?: EncuentroEnlace;
+  // Citas externas (prensa de terceros) — url invariante, label traducido.
+  // Array porque un mismo evento puede tener cobertura de más de un medio.
+  enlacesExternos?: EncuentroEnlace[];
   // Cross-link a una página propia del sitio que ya cubre este evento en
   // detalle (por ejemplo una novedad o la ficha de un libro). `href` es
   // invariante (mismo slug en los tres idiomas), `label` se traduce.

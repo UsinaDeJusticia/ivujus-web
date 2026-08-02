@@ -4,6 +4,19 @@ import type { EncuentrosLocaleContent } from './types';
 // usinadejusticia.org.ar e ivujus.org.ar. Nada de lo que sigue es inventado;
 // donde una fuente entra en conflicto con otra se documenta la resolución.
 //
+// 10° aniversario de Usina de Justicia en el Teatro Colón, 12 de noviembre de
+// 2024 (evento fundacional, previo a la existencia del IVUJUS como tal, con
+// participación de su actual Directora honoraria): corroborado por CUATRO
+// posts de usinadejusticia.org.ar —
+// - /wp-json/wp/v2/posts/21370 (anuncio previo, 11-nov-2024): confirma fecha,
+//   hora y lugar exactos ("El acto será este martes a las 14 en el Salón
+//   Dorado del Teatro Colón") y la cita de Guillermo Bargna.
+// - /wp-json/wp/v2/posts/21372, /22026 y /21404 (cobertura posterior,
+//   14/16-nov-2024), con imágenes destacadas propias del evento (media 21373,
+//   21368, 21406 — se usan dos, MG_0500-1.webp y MG_0287.webp).
+// Enlaces "Leer/Ver nota" a Infobae y La Nación (hosts ya permitidos en
+// next.config.ts).
+//
 // Presentación en la Facultad de Derecho (UBA), 24 de abril de 2025:
 // corroborada por CUATRO posts independientes de usinadejusticia.org.ar:
 // - /wp-json/wp/v2/posts/21686 ("TAEDA y Usina de Justicia presentaron el
@@ -53,6 +66,42 @@ export const es: EncuentrosLocaleContent = {
   },
   items: [
     {
+      slug: 'decimo-aniversario-usina-de-justicia-2024',
+      titulo: 'Usina de Justicia conmemoró su 10° aniversario en el Teatro Colón',
+      fecha: '12 de noviembre de 2024',
+      lugar: 'Salón Dorado, Teatro Colón, Ciudad de Buenos Aires',
+      modalidad: 'Presencial',
+      resumen:
+        'Usina de Justicia conmemoró sus diez años de trabajo con un acto en el Salón Dorado del Teatro Colón, que combinó reflexión y música y contó con la presencia de una organización francesa con un ideario afín. Su presidenta, Diana Cohen Agrest, habló sobre la década de lucha de la institución. «Estamos muy contentos con el desarrollo de los objetivos que hemos venido cubriendo estos años. Hemos trabajado incansablemente por las víctimas de homicidios y femicidios, ayudando a los familiares», había expresado antes del acto Guillermo Bargna, fundador de Usina de Justicia.',
+      oradores: ['Diana Cohen Agrest', 'Guillermo Bargna'],
+      imagenes: [
+        {
+          src: 'https://usinadejusticia.org.ar/wp-content/uploads/2024/11/MG_0500-1.webp',
+          alt: 'Asistentes al acto por el 10° aniversario de Usina de Justicia, en el Salón Dorado del Teatro Colón',
+        },
+        {
+          src: 'https://usinadejusticia.org.ar/wp-content/uploads/2024/11/MG_0287.webp',
+          alt: 'Diana Cohen Agrest habla en el atril durante el acto por los 10 años de Usina de Justicia en el Teatro Colón',
+        },
+      ],
+      enlacesExternos: [
+        {
+          label: 'Ver la nota en Infobae',
+          url: 'https://www.infobae.com/sociedad/2024/11/16/usina-de-justicia-a-10-anos-de-transformar-el-dolor-en-lucha-se-sigue-privilegiando-a-unas-victimas-en-desmedro-de-otras/',
+        },
+        {
+          label: 'Ver la nota en La Nación',
+          url: 'https://www.lanacion.com.ar/politica/la-usina-de-justicia-conmemoro-10-anos-de-lucha-en-defensa-de-las-victimas-y-contra-el-abolicionismo-nid12112024/',
+        },
+      ],
+      sourcePosts: [
+        { id: 21370, url: 'https://usinadejusticia.org.ar/2024/11/11/usina-de-justicia-cumple-diez-anos-celebrando-avances/' },
+        { id: 21372, url: 'https://usinadejusticia.org.ar/2024/11/16/usina-de-justicia-a-10-anos-de-transformar-el-dolor-en-lucha-se-sigue-privilegiando-a-unas-victimas-en-desmedro-de-otras/' },
+        { id: 22026, url: 'https://usinadejusticia.org.ar/2024/11/14/usina-de-justicia-conmemoro-10-anos-de-lucha-en-defensa-de-las-victimas-y-contra-el-abolicionismo-penal/' },
+        { id: 21404, url: 'https://usinadejusticia.org.ar/2024/11/14/la-presidenta-de-usina-de-justicia-diana-cohen-agrest-hablo-sobre-los-10-anos-de-lucha-de-la-institucion/' },
+      ],
+    },
+    {
       slug: 'uba-facultad-de-derecho-2025',
       titulo: 'Presentación del libro «Nuevos Paradigmas para la Justicia Penal» en la Facultad de Derecho',
       fecha: '24 de abril de 2025',
@@ -67,10 +116,12 @@ export const es: EncuentrosLocaleContent = {
           alt: 'Presentación del libro Nuevos Paradigmas para la Justicia Penal en la Facultad de Derecho de la UBA',
         },
       ],
-      enlaceExterno: {
-        label: 'Ver cobertura fotográfica en Infobae',
-        url: 'https://www.infobae.com/fotos/2025/04/25/31-fotos-taeda-y-usina-de-justicia-presentaron-el-libro-nuevos-paradigmas-para-la-justicia-penal-en-la-facultad-de-derecho/',
-      },
+      enlacesExternos: [
+        {
+          label: 'Ver cobertura fotográfica en Infobae',
+          url: 'https://www.infobae.com/fotos/2025/04/25/31-fotos-taeda-y-usina-de-justicia-presentaron-el-libro-nuevos-paradigmas-para-la-justicia-penal-en-la-facultad-de-derecho/',
+        },
+      ],
       sourcePosts: [
         { id: 21686, url: 'https://usinadejusticia.org.ar/2025/04/25/taeda-y-usina-de-justicia-presentaron-el-libro-nuevos-paradigmas-para-la-justicia-penal-en-la-facultad-de-derecho/' },
         { id: 21728, url: 'https://usinadejusticia.org.ar/2025/04/29/la-mirada-de-un-nuevo-libro-sobre-una-reforma-de-la-justicia-penal-en-favor-de-las-victimas/' },
