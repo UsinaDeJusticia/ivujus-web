@@ -19,6 +19,7 @@
 
 import { LOCALES, type Locale } from '../src/lib/i18n';
 import { contactoCopy } from '../src/lib/contacto';
+import { encuentrosByLocale } from '../src/lib/encuentros';
 import { institutoByLocale } from '../src/lib/instituto';
 import { termsPrivacyByLocale } from '../src/lib/legal';
 import { formacionByLocale } from '../src/lib/formacion';
@@ -127,6 +128,7 @@ const REGISTRO: Registro[] = [
   { nombre: 'publicaciones', porIdioma: publicacionesByLocale },
   { nombre: 'legal', porIdioma: termsPrivacyByLocale },
   { nombre: 'contacto', porIdioma: contactoCopy },
+  { nombre: 'encuentros', porIdioma: encuentrosByLocale },
 ];
 
 const problemas: string[] = [];

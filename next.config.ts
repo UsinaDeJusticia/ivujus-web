@@ -54,6 +54,10 @@ const nextConfig: NextConfig = {
       // por las dudas aunque los datos actuales usan el host sin `www`.
       { protocol: 'https', hostname: 'ivujus.org.ar' },
       { protocol: 'https', hostname: 'www.ivujus.org.ar' },
+      // Foto del encuentro en la Facultad de Derecho (UBA) — ver
+      // src/lib/encuentros.ts. WordPress del sitio hermano Usina de
+      // Justicia (constatado vía su propia REST API, 2026-08-02).
+      { protocol: 'https', hostname: 'usinadejusticia.org.ar' },
       // Imágenes de cobertura de prensa del Simposio 2026 — ver
       // src/lib/simposio2026.ts (`press[].image`).
       { protocol: 'https', hostname: 'www.infobae.com' },

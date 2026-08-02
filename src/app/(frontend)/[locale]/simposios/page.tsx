@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 
 import { getSimposio2026 } from '@/lib/simposio2026';
+import { getEncuentrosLabels } from '@/lib/encuentros';
 import { resolveLocale, type Locale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow } from '@/components/ui/SectionHeader';
+import { ContentCard } from '@/components/cards/ContentCard';
 
 // Copys de interfaz por locale. El contenido de fondo del Simposio 2026
 // (title/subtitle/dates/highlights) viene de getSimposio2026(locale)
@@ -83,6 +85,7 @@ export default async function SymposiumIndexPage({
   const resolvedLocale = resolveLocale(locale);
   const labels = LABELS[resolvedLocale];
   const simposio2026 = getSimposio2026(locale);
+  const encuentrosLabels = getEncuentrosLabels(locale);
 
   // Home > Eventos académicos. La ruta sigue siendo /simposios: solo cambian
   // las etiquetas visibles, para no romper URLs indexadas ni pedir redirects.
@@ -152,6 +155,13 @@ export default async function SymposiumIndexPage({
             ))}
           </div>
         </a>
+
+        <ContentCard
+          href={`/${locale}/simposios/encuentros`}
+          eyebrow={encuentrosLabels.encuentros}
+          title={encuentrosLabels.heading}
+          description={encuentrosLabels.lead}
+        />
       </div>
     </main>
   );
