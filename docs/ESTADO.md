@@ -2,9 +2,59 @@
 
 > Cualquier sesión nueva de Claude Code retoma desde acá. Actualizar al cierre de cada sesión: qué se hizo, decisiones, pendientes, próximo paso exacto.
 
-**Última actualización:** 26 de julio de 2026 (sesión 4 — **sitio completo en tres idiomas**; Ola 1 de Jimena publicada; arquitectura de contenido aprobada)
-**Rama de trabajo:** `claude/ivujus-rebuild-planning-gvcf25` = `main` = `311186e` (publicado → `ivujus-web.vercel.app`)
-**Etapa:** ✅ G0 · ✅ Fase 1 · ✅ G1 · ✅ Fase 2 (contenido v1) · ✅ Fase 4 (SEO/GEO/perf) · ✅ **G4** · ✅ **Ola 1 Jimena** · ✅ **Traducción completa ES/EN/FR** → ⏭️ **Observatorio y Olas 2-3, bloqueados por insumos de contenido**.
+**Última actualización:** 2 de agosto de 2026 (sesión 5 — **dossiers y primeros encuentros publicados**; GitHub reconectado, push directo restablecido)
+**Rama de trabajo:** `claude/ivujus-rebuild-planning-gvcf25` = `main` (push directo funcionando de nuevo — ver nota abajo; consultar `git log -1` para el HEAD exacto)
+**Etapa:** ✅ G0 · ✅ Fase 1 · ✅ G1 · ✅ Fase 2 (contenido v1) · ✅ Fase 4 (SEO/GEO/perf) · ✅ **G4** · ✅ **Ola 1 Jimena** · ✅ **Traducción completa ES/EN/FR** · ✅ **Dossiers + 2 de 3 Encuentros** → ⏭️ **Observatorio, evento del Colón y foto de Jimena, bloqueados por insumos de contenido**.
+
+## ✅ Dossiers + Encuentros y conferencias (2-ago)
+
+Jimena mandó un segundo documento (`PARA_PÁGINA_DE_IVUJUS.doc`, formato legacy — sin
+`olefile` no se puede leer con las herramientas estándar del proyecto; se parseó a mano
+el Clx/PlcPcd del FIB para extraer el texto, ver notas de la sesión si hay que repetirlo)
+con el dossier que faltaba y tres eventos. Antes de usarlo se verificó/complementó todo
+contra las REST API públicas de `ivujus.org.ar` y `usinadejusticia.org.ar` (ambas
+accesibles por `curl` en este entorno; Clarín, Infobae y Revista Quorum NO lo son —
+bloqueadas por la política de red del sandbox, se linkean sin fetchear).
+
+**Publicado:**
+- `/publicaciones/dossiers` (nuevo) — los 3 dossiers (prisión perpetua, salud mental,
+  responsabilidad penal juvenil) con resumen fiel + PDF real. El de responsabilidad penal
+  juvenil no existía en el sitio hasta ahora: se encontró en la biblioteca de medios de
+  ivujus.org.ar (media id 24350, HTTP 200, 1.8 MB).
+- `/simposios/encuentros` (nuevo) — «Encuentros y conferencias»: presentación del libro en
+  la Facultad de Derecho (UBA), 24-abr-2025 (contenido nuevo, corroborado por 4 posts
+  independientes de usinadejusticia.org.ar); DAIN Usina Cultural (cross-link a
+  `/publicaciones/libros`, **no duplicado** — ya estaba completo ahí); Jornadas «Edad de
+  Imputabilidad» (cross-link a la novedad que ya existía —
+  `el-ivujus-presente-en-el-ciclo-de-formacion-2026`—, con los 2 flyers reales que Jimena
+  había mandado antes, guardados en `public/eventos/`, que la novedad no tenía).
+- Dataset nuevo `src/lib/encuentros/` (mismo patrón `{types,es,en,fr,index}.ts`).
+- `src/lib/publicaciones/{types,es,en,fr,index}.ts` — agregado `dossiers: Dossier[]`.
+- `next.config.ts` — sumado `usinadejusticia.org.ar` a `remotePatterns` (foto real de UBA).
+- `check:i18n` ahora corre sobre **8 datasets**.
+
+**Dos discrepancias entre fuentes, resueltas (no bloqueantes, quedó documentado en
+`src/lib/encuentros/es.ts`):** el doc de Jimena decía «23 de febrero de **2025**» para las
+jornadas de imputabilidad, pero el post en vivo de ivujus.org.ar (publicado 6-feb-2026) y
+los 2 flyers ya enviados coinciden en **2026** — se usa 2026. El primer flyer decía
+«Ricardo Picozzi»; 3 posts propios de usinadejusticia.org.ar dicen «**Roberto** Picozzi» —
+se usa Roberto.
+
+**Bug encontrado y corregido de paso:** `publicaciones/page.tsx` tenía un `PAGE_COPY` con
+las 3 traducciones completas, pero el cuerpo de la página nunca lo leía (solo
+`generateMetadata`) — el h1, la bajada y las 2 tarjetas quedaban siempre en español sin
+importar el idioma. Iba a pasar desapercibido porque nadie clickea hasta esa página
+buscando específicamente eso; se encontró al ir a agregar la tercera tarjeta de Dossiers.
+
+**GitHub reconectado:** el push directo volvió a funcionar a mitad de esta sesión (antes
+había que generar `git bundle` porque se había perdido la credencial). Confirmar con
+`git push` antes de asumir que hace falta un bundle.
+
+**Pendiente de este documento:** el evento del Colón y los demás "Usina de Justicia
+Debate" sin cargar — no se encontró nada al buscar en ivujus.org.ar ni usinadejusticia.org.ar,
+sigue en espera de material. La foto de Jimena llegó pegada en el chat, no como archivo:
+no hay forma de guardarla a disco desde el contenido del mensaje: hace falta que la
+reenvíe como adjunto o dé una URL.
 
 ## ✅ Traducción completa a inglés y francés (26-jul)
 

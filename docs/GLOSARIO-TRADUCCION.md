@@ -172,6 +172,10 @@ se traduce de forma descriptiva.
 traducir no vale solo para las siglas: «Universidad de Buenos Aires», «Universidad
 Nacional de Asunción», «Universidad Argentina de la Empresa» y «Universidad Privada
 UdeMM» se mantienen en español en los tres idiomas, con glosa entre paréntesis si aporta.
+Lo mismo vale para sus facultades y dependencias internas: «Facultad de Derecho»,
+«Salón Verde», «Salón Azul» — no se traducen a «School of Law», «Green Hall» ni
+equivalentes (precedente ya en `src/lib/formacion/{en,fr}.ts`, ítems de la Facultad de
+Derecho de la UBA).
 
 **Nombres de ciclos y programas propios** («Dialogando BA», «Usina de Justicia Debate»,
 «Grupo Diálogo y Debate Jurídico Penal»): son denominaciones de marca y no se traducen; se

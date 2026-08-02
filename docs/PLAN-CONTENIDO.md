@@ -1,18 +1,20 @@
 # Estado de las sugerencias para la página del IVUJUS
 
-*Actualizado el 25 de julio de 2026.*
+*Actualizado el 2 de agosto de 2026.*
 
-Jimena revisó la página y nos envió un documento con sugerencias: cambios de textos y
-títulos, un cambio de nombre de sección y varias secciones nuevas para sumar. Este
+Jimena revisó la página y nos envió dos documentos con sugerencias: uno con cambios de
+textos y títulos, y otro más reciente con los dossiers y los eventos que faltaban. Este
 documento cuenta, en lenguaje sencillo, qué se hizo ya, qué falta y qué necesitamos de
 cada uno para seguir.
 
 ## En resumen
 
-De las diecinueve sugerencias del documento, **doce ya están hechas y se pueden ver en la
-página**. Las siete que faltan no están frenadas por trabajo de programación: esperan que
-nos llegue material — una foto, un PDF, los datos de un evento. En cuanto llega cada
-cosa, se publica.
+De las diecinueve sugerencias del primer documento, **quince ya están hechas y se pueden
+ver en la página**. El segundo documento trajo justo el material que nos faltaba para
+completar los dossiers y sumar los primeros encuentros: ya están publicados los tres
+dossiers y dos de los eventos. Lo que sigue pendiente no está frenado por trabajo de
+programación: espera material — el del Colón, la foto de Jimena, y los insumos del
+Observatorio (estadísticas, Índice Legislativo, Biblioteca, aplicación de sentencias).
 
 ## Lo que ya está hecho y se puede ver en la página
 
@@ -49,24 +51,41 @@ en versión corta, porque el nombre completo no entraba sin romper el diseño en
 medianas. El nombre completo "Eventos académicos" sí aparece en el título de la página y
 en todos los lugares donde lo lee tanto una persona como Google.
 
-## Lo que falta y qué necesitamos para hacerlo
+## Lo que se sumó con el segundo documento de Jimena (2 de agosto)
+
+**Los tres dossiers ya están publicados**, en una página nueva dentro de Publicaciones
+(`/publicaciones/dossiers`). El de responsabilidad penal juvenil, que era el que
+faltaba, tiene su resumen y su PDF real, ya verificado en el sitio de IVUJUS. Cada uno
+se presenta con su fecha, un resumen fiel y el botón para descargar el documento
+completo — así Google y los buscadores con inteligencia artificial lo pueden encontrar
+y citar, en vez de ser un PDF suelto sin contexto.
+
+**Dos de los encuentros ya están publicados**, en una página nueva dentro de Eventos
+académicos (`/simposios/encuentros`):
+- La presentación del libro en la **Facultad de Derecho de la UBA** (24 de abril de
+  2025), con foto real del evento y enlace a la cobertura de Infobae.
+- La presentación en **DAIN Usina Cultural** ya estaba en la ficha del libro
+  (`/publicaciones/libros`), así que ahí no duplicamos nada: la nueva página solo
+  enlaza a esa ficha para no repetir el mismo contenido dos veces.
+- Las **Jornadas "Edad de Imputabilidad"** también ya tenían su propia novedad
+  publicada; agregamos ahí los dos flyers reales que mandó Jimena y un enlace directo
+  desde Encuentros y conferencias, sin duplicar el texto.
+
+Una aclaración: el documento de Jimena decía que estas jornadas eran del 23 de febrero
+de **2025**, pero tanto el aviso que ya está publicado en la página del IVUJUS como los
+dos flyers que había mandado antes coinciden en **2026** — usamos 2026, evidentemente un
+error de tipeo aislado frente a esas fuentes.
+
+## Lo que sigue pendiente
+
+**El evento del Colón** y los demás "Usina de Justicia Debate" que no estén ya cargados
+como ciclos en Formación siguen sin material — no encontramos nada al buscar en las
+páginas de IVUJUS y de Usina, así que queda a la espera de que nos llegue.
 
 **La foto nueva de Jimena.** Es el cambio más rápido de todos: con el archivo, en diez
-minutos queda actualizada su foto en todos los lugares donde aparece.
-
-**Los dossiers en Publicaciones.** Ya tenemos dos de los tres: el de salud mental y el de
-prisión perpetua. Falta el de responsabilidad penal juvenil. Cada dossier se va a publicar
-con una página propia que lo presenta — título, fecha, de qué trata — y desde ahí se
-descarga el PDF. Esto es importante: un PDF suelto, sin una página que lo explique, es
-invisible para Google y para los buscadores con inteligencia artificial. Con su página, en
-cambio, se encuentra y se puede citar.
-
-**La subsección de Encuentros y conferencias.** Es la que reúne el evento del Colón, la
-presentación del libro en la UBA y en DAIN, los "Usina de Justicia Debate", el debate
-sobre la edad de imputabilidad y toda otra actividad de la que tengamos registro. De cada
-evento necesitamos tres cosas: la fecha, una descripción breve y una imagen o un enlace
-que lo respalde. Del debate sobre imputabilidad ya tenemos los dos flyers que venían en el
-documento de Jimena.
+minutos queda actualizada su foto en todos los lugares donde aparece. La que llegó por
+el chat no la pudimos guardar como archivo — hace falta que la reenvíe como adjunto o
+que nos pase el enlace donde ya esté subida.
 
 **Las cuatro secciones nuevas**: Estadísticas, el Índice Legislativo, la Biblioteca y la
 aplicación de lectura de sentencias. De estas hablamos aparte, porque acá hicimos una
@@ -106,14 +125,9 @@ Lo que necesitamos para cada una:
 
 ## En qué orden vamos a avanzar
 
-El documento de Jimena listaba las sugerencias siguiendo el orden de las páginas del
-sitio, que es la forma natural de escribirlas. Para ejecutarlas conviene otro orden:
-primero lo que ya tiene material, después lo que más nos ayuda a que nos encuentren, y por
-último lo más grande.
-
-Lo primero es la **foto de Jimena**, porque es inmediata. Después los **dossiers**, que ya
-tienen dos tercios del material listo. Luego **Encuentros y conferencias**, que necesita
-juntar los datos de cada evento y por eso lleva más tiempo.
+Los dossiers y dos de los tres encuentros ya están hechos. Lo que sigue es la **foto de
+Jimena** (inmediata en cuanto la tengamos) y el **evento del Colón** en cuanto llegue su
+material.
 
 Con eso hecho, arranca el **Observatorio**. Ahí empezamos por el **Índice Legislativo**,
 por dos razones: ya tiene la estructura armada, y es el contenido que más nos va a
@@ -131,10 +145,9 @@ sección vacía perjudica el posicionamiento y da la impresión de una página i
 Se puede mandar de a una cosa: cada material desbloquea su parte por separado, no hace
 falta juntar todo para empezar.
 
-**De Jimena:** su foto nueva; los datos de los eventos (el del Colón, la presentación del
-libro en UBA y en DAIN, los "Usina de Justicia Debate" y cualquier otra actividad con
-registro), con fecha, descripción breve e imagen o enlace de cada uno; y el dossier de
-responsabilidad penal juvenil.
+**De Jimena:** su foto nueva (como archivo adjunto o enlace, no pegada en el chat); y los
+datos del evento del Colón, con fecha, descripción breve e imagen o enlace que lo
+respalde.
 
 **De Noe:** las estadísticas y el criterio de qué mostrar.
 
