@@ -2,9 +2,69 @@
 
 > Cualquier sesión nueva de Claude Code retoma desde acá. Actualizar al cierre de cada sesión: qué se hizo, decisiones, pendientes, próximo paso exacto.
 
-**Última actualización:** 2 de agosto de 2026 (sesión 5 — **dossiers + los 4 encuentros + foto de Jimena, publicados**; GitHub reconectado, push directo restablecido)
+**Última actualización:** 3 de agosto de 2026 (sesión 5 — **Biblioteca con vidriera 3D**; antes: dossiers, los 4 encuentros y la foto de Jimena)
 **Rama de trabajo:** `claude/ivujus-rebuild-planning-gvcf25` = `main` (push directo funcionando de nuevo — ver nota abajo; consultar `git log -1` para el HEAD exacto)
 **Etapa:** ✅ G0 · ✅ Fase 1 · ✅ G1 · ✅ Fase 2 (contenido v1) · ✅ Fase 4 (SEO/GEO/perf) · ✅ **G4** · ✅ **Ola 1 Jimena** · ✅ **Traducción completa ES/EN/FR** · ✅ **Dossiers + Encuentros (los 4) + foto de Jimena** → ⏭️ **Observatorio, bloqueado por insumos de contenido**.
+
+## ✅ Biblioteca con vidriera 3D (3-ago)
+
+Jair mandó `play.mint.gg/complete-shelf` (demo de Three.js) y pidió una vidriera así para
+el material del IVUJUS. **Mi objeción inicial era equivocada** y quedó registrada acá para
+que no se repita el razonamiento: dije que un `<canvas>` es opaco para Google y para los
+buscadores con IA, pero eso **solo vale si el canvas reemplaza al contenido**. Jair
+propuso el enfoque correcto: vidriera arriba, contenido semántico completo abajo.
+
+**Ruta nueva `/publicaciones/biblioteca`** (3 idiomas), cuarta tarjeta en el hub, entrada
+en el sitemap. Cuelga de Publicaciones, así que no hizo falta tocar el menú.
+
+**Principio: content-first, canvas-second.** El HTML lo renderiza siempre el servidor; el
+canvas es una capa decorativa (`aria-hidden`, `tabIndex=-1`) que se monta después.
+Escalera de arranque en `VidrieraSlot.tsx` — todas las condiciones, en orden: ancho ≥768px
+· sin `prefers-reduced-motion` · `IntersectionObserver` · `requestIdleCallback` ·
+`try/catch` sobre el `WebGLRenderer`. Si alguna falla queda `VidrieraPoster`, que es una
+vidriera plana con enlaces reales, no un "cargando".
+
+**No se duplica contenido.** La página compone las 5 piezas reales desde los datasets que
+ya existen (`getLibroNuevosParadigmas`, `getDossiers`, `declaracionesIndex`,
+`getSimposio2026().declaration`) y enlaza a la página canónica de cada una. El dataset
+nuevo `src/lib/biblioteca/` solo define los libros recomendados — hoy array vacío, y la
+sección entera se omite (no se inventan libros de relleno).
+
+**Decisión de Jair que desbloqueó la Biblioteca:** no se publica contenido completo de
+terceros, solo resumen + enlace de compra oficial. Por eso `LibroRecomendado` **no tiene
+campo `pdfUrl`**: subir un PDF sin derechos pasa de ser un descuido posible a un error de
+compilación. Con eso desapareció el bloqueo de derechos que la frenaba desde julio.
+
+**Tapas tipográficas:** no existe imagen de tapa real de ninguna pieza (constatado en las
+bibliotecas de medios de ivujus.org.ar y usinadejusticia.org.ar). Los lomos se componen
+con el título real sobre canvas, como una encuadernación de biblioteca. Nada inventado, y
+de paso no hay texturas remotas ni problema de CORS.
+
+**Medición (servidor limpio, `bunx lighthouse@12`):**
+
+| ruta | escritorio | móvil |
+|---|---|---|
+| `/publicaciones/biblioteca` | 100 · 100 · **96** · 100 | perf 94 |
+| `/publicaciones/dossiers` (base) | 100 · 100 · 100 · 100 | perf 94 |
+
+El 96 es `errors-in-console`, y es **artefacto del sandbox**: el proxy corta el fetch del
+servidor a las imágenes de WordPress (403). `/publicaciones/libros`, que no se tocó y usa
+la misma imagen, saca el mismo 96 por lo mismo. En producción carga y da 100.
+En móvil no hay regresión: 94 contra 94 de la línea base, porque three ni se carga.
+
+`productionBrowserSourceMaps: true` en `next.config.ts` — Lighthouse reprueba
+`valid-source-maps` cuando un JS grande no tiene mapa, y el chunk de three cruzaba ese
+umbral. Era lo único que sí había introducido yo.
+
+**Verificado además:** sin JavaScript se ven el h1, las 4 secciones, los 5 resúmenes y los
+36 enlaces (543 palabras en es, 507 en en, 565 en fr) · 45 paradas de tabulador sin que el
+canvas tome foco y con el poster `inert` cuando la escena está encima · canvas no
+instanciado en 390px ni con `prefers-reduced-motion` · los 3 temas.
+
+**Hallazgo aparte, preexistente, no de esta tarea:** en una corrida con los chunks caídos
+apareció `target-size` (WCAG 2.2) sobre los enlaces del pie y `LinkArrow`, que miden 17px
+de alto. No lo introdujo esta rama —falla igual en páginas intactas— y con el build sano
+Lighthouse da 100, pero conviene revisarlo en algún momento: es de todo el sitio.
 
 ## ✅ Evento del Colón + foto de Jimena (2-ago, continuación)
 

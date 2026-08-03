@@ -84,6 +84,36 @@ error de tipeo aislado frente a esas fuentes.
 **La foto nueva de Jimena ya está actualizada** en todos los lugares donde aparece,
 usando el enlace que nos pasó.
 
+## La Biblioteca ya está armada (3 de agosto)
+
+Jair mandó una página de referencia con una estantería en 3D y pidió algo así para el
+material del instituto. **Ya está hecho**, en `/publicaciones/biblioteca`: arriba una
+estantería que se puede girar con el mouse, con los lomos de cada pieza, y debajo el
+listado completo con el resumen y el enlace de cada una.
+
+Está armado en dos capas a propósito. La estantería es la parte linda, pero Google y los
+buscadores con inteligencia artificial no pueden leer adentro de una animación: por eso
+todo lo que aparece en la estantería está también abajo como texto normal. Si alguien
+entra desde un celular, con la conexión lenta o con animaciones desactivadas, ve una
+versión simple y no pierde absolutamente nada. Medimos que la página no se puso más lenta:
+en celular da exactamente el mismo puntaje que las demás.
+
+Hoy hay **cinco piezas reales** en la estantería: el libro *Nuevos Paradigmas*, los tres
+dossiers y la Declaración de Buenos Aires. La Biblioteca no guarda una copia de nada:
+muestra el resumen y lleva a la página de cada pieza, así no tenemos el mismo texto en dos
+lugares que después se desincronizan.
+
+Una decisión de Jair destrabó algo que estaba frenado desde julio: **de los libros
+recomendados no vamos a publicar el contenido completo, solo un resumen y el enlace para
+comprarlos en su sitio oficial.** Con eso desaparece todo el problema de derechos que nos
+tenía detenidos. Además lo dejamos asegurado en el propio sistema: la ficha de un libro
+recomendado directamente no tiene dónde poner un PDF, así que no se puede subir uno por
+error más adelante.
+
+Falta solamente la lista de libros recomendados: cuáles son, sus tapas y el enlace de
+compra de cada uno. Mientras no lleguen, esa sección no aparece — preferimos que no esté a
+que esté vacía.
+
 ## Lo que sigue pendiente
 
 Los demás **"Usina de Justicia Debate"** que no estén ya cargados como ciclos en
@@ -123,23 +153,22 @@ Lo que necesitamos para cada una:
 - **Estadísticas**: el archivo de Noe y una definición de qué queremos mostrar.
 - **Índice Legislativo**: el material a cargar. Esta tiene una ventaja: la estructura para
   cargarla ya está armada en el sistema, solo falta el contenido.
-- **Biblioteca**: qué libros, sus PDF y la confirmación de que tenemos derecho a
-  publicarlos, el enlace para comprar el libro de Usina, y las tapas de los libros
-  recomendados. Los libros propios y los recomendados van claramente separados, para no
-  dar a entender que son todos nuestros.
+- **Biblioteca**: ✅ ya está hecha (ver más arriba). Solo falta la lista de libros
+  recomendados: título, autores, año, tapa y enlace de compra oficial de cada uno. Ya no
+  hacen falta los PDF ni la confirmación de derechos, porque de los libros recomendados
+  publicamos resumen y enlace de compra, no la obra.
 - **Aplicación de lectura de sentencias**: saber cuál es exactamente, con qué nombre la
   presentamos y a qué dirección enlaza.
 
 ## En qué orden vamos a avanzar
 
-Los dossiers, los cuatro encuentros y la foto de Jimena ya están hechos. Lo que sigue es
-el **Observatorio**. Ahí empezamos por el **Índice Legislativo**,
-por dos razones: ya tiene la estructura armada, y es el contenido que más nos va a
-posicionar, porque es material original y propio, del tipo que Google y las inteligencias
-artificiales citan como fuente. Después van las **Estadísticas**, luego la **Biblioteca**
-—que puede adelantarse si el tema de los derechos de los PDF está resuelto— y al final la
-**aplicación de sentencias**, que es la más simple pero cobra sentido cuando el resto del
-Observatorio ya existe.
+Los dossiers, los cuatro encuentros, la foto de Jimena y la Biblioteca ya están hechos. Lo
+que sigue es el **Observatorio**. Ahí empezamos por el **Índice Legislativo**, por dos
+razones: ya tiene la estructura armada, y es el contenido que más nos va a posicionar,
+porque es material original y propio, del tipo que Google y las inteligencias artificiales
+citan como fuente. Después van las **Estadísticas** y al final la **aplicación de
+sentencias**, que es la más simple pero cobra sentido cuando el resto del Observatorio ya
+existe.
 
 El Observatorio no va a aparecer en el menú hasta que tenga contenido real cargado. Una
 sección vacía perjudica el posicionamiento y da la impresión de una página inconclusa.
@@ -154,9 +183,9 @@ sumar a las entradas ya publicadas.
 
 **De Noe:** las estadísticas y el criterio de qué mostrar.
 
-**De Emanuel y Jair:** el material del Índice Legislativo; los datos de la Biblioteca
-(libros, PDF, derechos, enlace de compra y tapas de recomendados); y la identificación de
-la aplicación de lectura de sentencias.
+**De Emanuel y Jair:** el material del Índice Legislativo; la lista de libros recomendados
+para la Biblioteca (título, autores, año, tapa y enlace de compra oficial de cada uno); y
+la identificación de la aplicación de lectura de sentencias.
 
 ## Dos detalles menores para definir
 
