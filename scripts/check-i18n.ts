@@ -18,6 +18,7 @@
 // Para sumar un dataset al control, se agrega una entrada en REGISTRO.
 
 import { LOCALES, type Locale } from '../src/lib/i18n';
+import { bibliotecaByLocale } from '../src/lib/biblioteca';
 import { contactoCopy } from '../src/lib/contacto';
 import { encuentrosByLocale } from '../src/lib/encuentros';
 import { institutoByLocale } from '../src/lib/instituto';
@@ -50,6 +51,9 @@ const CAMPOS_INVARIANTES = new Set([
   'coverImage',
   'id',
   'sourcePosts',
+  // Enlace al sitio oficial de compra de un libro recomendado: es una URL, no
+  // texto. El label que la acompaña (`compraLabel`) sí se traduce.
+  'compraUrl',
 ]);
 
 /** Una fecha ISO es un dato, no texto: debe ser idéntica en los tres idiomas. */
@@ -88,6 +92,9 @@ const RUTAS_IGUALDAD_ESPERADA: RegExp[] = [
   // Título del libro: obra publicada en español; la traducción va entre
   // paréntesis en el texto corrido, no reemplaza al título (glosario §5 ter).
   /\.libro\.title$/,
+  // Títulos de libros recomendados: son obras realmente publicadas, y se citan
+  // por el título con el que existen (mismo criterio que `.libro.title`).
+  /\.librosRecomendados\[\d+\]\.titulo$/,
 ];
 
 // Textos que legítimamente son iguales en los tres idiomas: nombres propios,
@@ -129,6 +136,7 @@ const REGISTRO: Registro[] = [
   { nombre: 'legal', porIdioma: termsPrivacyByLocale },
   { nombre: 'contacto', porIdioma: contactoCopy },
   { nombre: 'encuentros', porIdioma: encuentrosByLocale },
+  { nombre: 'biblioteca', porIdioma: bibliotecaByLocale },
 ];
 
 const problemas: string[] = [];

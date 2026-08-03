@@ -43,6 +43,7 @@ const STATIC_ROUTES: RouteEntry[] = [
   { path: '/publicaciones/libros', lastModified: BUILD_DATE },
   { path: '/publicaciones/declaraciones', lastModified: BUILD_DATE },
   { path: '/publicaciones/dossiers', lastModified: BUILD_DATE },
+  { path: '/publicaciones/biblioteca', lastModified: BUILD_DATE },
   { path: '/novedades', lastModified: BUILD_DATE },
   { path: '/contacto', lastModified: BUILD_DATE },
   { path: '/terms-privacy', lastModified: BUILD_DATE },

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import { pickLocale, resolveLocale, type Locale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
+import { getBibliotecaLabels } from '@/lib/biblioteca';
 import { getPublicacionesLabels } from '@/lib/publicaciones';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
 import { ContentCard } from '@/components/cards/ContentCard';
@@ -30,6 +31,7 @@ const PAGE_COPY: Record<
     declaracionesCardDescription: string;
     librosCardDescription: string;
     dossiersCardDescription: string;
+    bibliotecaCardDescription: string;
   }
 > = {
   es: {
@@ -48,6 +50,8 @@ const PAGE_COPY: Record<
       'Libro compilado por Diana Cohen Agrest y María Jimena Molina, con artículos de referentes del ámbito jurídico y académico.',
     dossiersCardDescription:
       'Investigaciones del Instituto sobre prisión perpetua, salud mental y responsabilidad penal juvenil, con el documento completo para descargar.',
+    bibliotecaCardDescription:
+      'Todo el material editorial reunido en una sola vista: libros, dossiers y declaraciones, cada uno con su resumen y su acceso.',
   },
   en: {
     metaTitle: 'Publications',
@@ -65,6 +69,8 @@ const PAGE_COPY: Record<
       'Book edited by Diana Cohen Agrest and María Jimena Molina, with articles by leading figures from the legal and academic fields.',
     dossiersCardDescription:
       "Institute research on life imprisonment, mental health and juvenile criminal responsibility, with the full document available for download.",
+    bibliotecaCardDescription:
+      'All the editorial output in a single view: books, dossiers and declarations, each with its summary and how to access it.',
   },
   fr: {
     metaTitle: 'Publications',
@@ -82,6 +88,8 @@ const PAGE_COPY: Record<
       "Livre sous la direction de Diana Cohen Agrest et María Jimena Molina, avec des articles de référents des milieux juridique et universitaire.",
     dossiersCardDescription:
       "Recherches de l'Institut sur la réclusion à perpétuité, la santé mentale et la responsabilité pénale des mineurs, avec le document complet à télécharger.",
+    bibliotecaCardDescription:
+      "Toute la production éditoriale en une seule vue : livres, dossiers et déclarations, chacun avec son résumé et son accès.",
   },
 };
 
@@ -112,6 +120,7 @@ export default async function PublicacionesHubPage({
 }) {
   const { locale } = await params;
   const labels = getPublicacionesLabels(locale);
+  const biblioteca = getBibliotecaLabels(locale);
   // Bug encontrado al agregar la tarjeta de Dossiers: PAGE_COPY ya tenía las
   // tres traducciones completas, pero el cuerpo de la página nunca las leía
   // (solo generateMetadata las usaba) — el h1, la bajada y las dos tarjetas
@@ -168,6 +177,12 @@ export default async function PublicacionesHubPage({
               eyebrow={labels.dossiers}
               title={labels.dossiersTitle}
               description={copy.dossiersCardDescription}
+            />
+            <ContentCard
+              href={`/${locale}/publicaciones/biblioteca`}
+              eyebrow={biblioteca.biblioteca}
+              title={biblioteca.heading}
+              description={copy.bibliotecaCardDescription}
             />
           </div>
         </section>

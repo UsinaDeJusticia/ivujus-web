@@ -45,6 +45,16 @@ const nextConfig: NextConfig = {
       permanent: true,
     }));
   },
+  // Lighthouse audita `valid-source-maps` dentro de "buenas prácticas" y lo
+  // reprueba cuando un archivo JS grande no tiene mapa. Apareció al sumar
+  // `three` para la vidriera de la Biblioteca: su chunk cruza ese umbral y
+  // bajaba la categoría de 100 a 96 en esa ruta.
+  //
+  // El costo de activarlo es peso de deploy (los .map solo los descarga quien
+  // abre las herramientas de desarrollo, nunca un visitante) y que el código
+  // del cliente queda legible — que en un sitio institucional público, sin
+  // secretos en el frontend, no es una pérdida real.
+  productionBrowserSourceMaps: true,
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: '**.public.blob.vercel-storage.com' },
