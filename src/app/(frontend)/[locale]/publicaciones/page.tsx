@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 
-import { pickLocale, resolveLocale, type Locale } from '@/lib/i18n';
+import { pickLocale, type Locale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { getPublicacionesLabels } from '@/lib/publicaciones';
+import { getBookshelfCopy } from '@/lib/publicaciones/bookshelf-copy';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
 import { ContentCard } from '@/components/cards/ContentCard';
 
@@ -160,8 +161,8 @@ export default async function PublicacionesHubPage({
             <ContentCard
               href={`/${locale}/publicaciones/libros`}
               eyebrow={labels.libros}
-              title="Nuevos Paradigmas para la Justicia Penal"
-              description={copy.librosCardDescription}
+              title={getBookshelfCopy(locale).title}
+              description={getBookshelfCopy(locale).meta}
             />
             <ContentCard
               href={`/${locale}/publicaciones/dossiers`}

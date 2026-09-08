@@ -87,7 +87,7 @@ function ButtonRoot({
   )
 }
 
-export interface ButtonPrincipalProps extends ButtonSharedProps {}
+export type ButtonPrincipalProps = ButtonSharedProps
 
 /** Botón primario: azul institucional, hover azul-900. Para la acción principal de una vista. */
 export function ButtonPrincipal(props: ButtonPrincipalProps) {
@@ -99,7 +99,7 @@ export function ButtonPrincipal(props: ButtonPrincipalProps) {
   )
 }
 
-export interface ButtonSecundarioProps extends ButtonSharedProps {}
+export type ButtonSecundarioProps = ButtonSharedProps
 
 /** Botón secundario: dorado acento, hover dorado-700. Para CTAs de apoyo ("Acceder al Campus"). */
 export function ButtonSecundario(props: ButtonSecundarioProps) {

@@ -142,3 +142,9 @@ vite.config.ts.timestamp-*
 
 # Worktrees transitorios de agentes (Claude Code) — no versionar
 .claude/
+
+# Renders y QA locales. Assets finales en public/models y assets/blender.
+output/
+.playwright-cli/
+*.blend1
+public/__bookshelf-qa/

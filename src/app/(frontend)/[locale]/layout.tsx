@@ -144,7 +144,7 @@ export default async function LocaleLayout({
   ];
 
   return (
-    <html lang={locale} className={`${cinzel.variable} ${montserrat.variable}`}>
+    <html lang={locale} className={`${cinzel.variable} ${montserrat.variable}`} suppressHydrationWarning>
       <head>
         {/* Anti-flash de tema: aplica el tema guardado antes del primer
             paint, para que sepia/oscuro no parpadeen desde claro. Debe ser

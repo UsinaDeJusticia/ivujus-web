@@ -7,7 +7,7 @@
 // acá solo sincronizamos el estado de React con lo que ya haya en el DOM.
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
 
 export type ThemeName = 'light' | 'sepia' | 'dark'
 
@@ -55,27 +55,32 @@ function isTheme(value: string | undefined): value is ThemeName {
   return value === 'light' || value === 'sepia' || value === 'dark'
 }
 
+function subscribeTheme(callback: () => void) {
+  const observer = new MutationObserver(callback)
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+  return () => observer.disconnect()
+}
+
+function readTheme(): ThemeName {
+  const value = document.documentElement.getAttribute('data-theme') ?? undefined
+  return isTheme(value) ? value : 'light'
+}
+
 export interface ThemeSwitcherProps {
   locale: string
 }
 
 export function ThemeSwitcher({ locale }: ThemeSwitcherProps) {
-  const [theme, setTheme] = useState<ThemeName>('light')
-
-  useEffect(() => {
-    const current = document.documentElement.dataset.theme
-    setTheme(isTheme(current) ? current : 'light')
-  }, [])
+  const theme = useSyncExternalStore(subscribeTheme, readTheme, () => 'light' as ThemeName)
 
   const apply = (next: ThemeName) => {
-    document.documentElement.dataset.theme = next
+    document.documentElement.setAttribute('data-theme', next)
     try {
       localStorage.setItem(STORAGE_KEY, next)
     } catch {
       // localStorage puede fallar (modo privado, cookies bloqueadas): el
       // cambio de tema en la sesión actual igual funciona.
     }
-    setTheme(next)
   }
 
   const lang = GROUP_LABEL[locale] ? locale : 'es'
