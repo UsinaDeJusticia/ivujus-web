@@ -12,7 +12,7 @@
 // ya devuelve `wp/v2/posts` (title, date, content/excerpt, featured media,
 // id, link), así que no debería cambiar de forma drástica cuando eso pase.
 //
-// REGLA DE ORO de esta ola: nada de lo que sigue es inventado. Los 9 posts
+// REGLA DE ORO de esta ola: nada de lo que sigue es inventado. Los 14 posts
 // de `es.ts` son los mapeados a `novedades` en la sección "Posts" de
 // docs/CONTENT-MIGRATION-LEDGER.md y los relevamientos vivos posteriores,
 // bajados entre el 2026-07-21 y el 2026-10-11 vía la REST API

@@ -5,9 +5,12 @@
 Se revisó `ivujus.org.ar` y la API pública de WordPress contra el inventario de
 `USINA DE JUSTICIA-WEB`. Se incorporaron a `src/lib/novedades/` las dos piezas de
 la campaña OEA (IDs 24768 y 24773) y el reconocimiento a Hilda Marchiori (ID
-24785), con traducciones ES/EN/FR, imágenes y enlaces verificables. Las tres
-páginas planas históricas del curso ahora redirigen a Formación y se preservó el
-redirect de `/victimasconderechos` hacia su aplicación externa.
+24785), con traducciones ES/EN/FR, imágenes y enlaces verificables. La segunda
+pasada incorporó también los posts 24526, 24523, 24540, 24509 y 24493, y la
+página pública de entrevistas radiales (WP 19637) como un ciclo audiovisual
+con sus tres videos. Las tres páginas planas históricas del curso ahora
+redirigen a Formación, la URL antigua de entrevistas también tiene destino y se
+preservó el redirect de `/victimasconderechos` hacia su aplicación externa.
 
 El detalle del mapa de migración, las fuentes y los pendientes del Observatorio
 está en [`RELEVAMIENTO-CONTENIDO-2026-10.md`](./RELEVAMIENTO-CONTENIDO-2026-10.md).

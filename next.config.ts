@@ -26,12 +26,86 @@ const wpLegacyRedirects: Array<{ source: string; destination: string }> = [
   { source: '/comite-cientifico', destination: '/es/instituto/comite-cientifico' },
   { source: '/campus-virtual', destination: '/es/formacion/diplomatura' },
   { source: '/capacitacion-y-actividades', destination: '/es/formacion/ciclos' },
+  { source: '/entrevistas-en-la-radio', destination: '/es/formacion/ciclos/entrevistas-en-radios' },
   // Las tres páginas planas reservadas desde el repositorio de Usina se
   // fusionan en las dos landings de Formación, sin conservar una ruta vacía.
   { source: '/capacitacion', destination: '/es/formacion' },
   { source: '/inscripcion-al-curso-de-victimologia', destination: '/es/formacion/diplomatura' },
   { source: '/preinscripcion-al-curso', destination: '/es/formacion/diplomatura' },
   { source: '/blog', destination: '/es/novedades' },
+  // Posts del WordPress de IVUJUS: conservar sus permalinks históricos al
+  // pasar al archivo localizado de Novedades. Los tres slugs que tenían
+  // emojis se mantienen percent-encoded tal como los entrega WordPress.
+  {
+    source:
+      '/felicitamos-a-hilda-marchiori-por-el-reconocimiento-a-su-trayectoria-en-la-asistencia-a-las-victimas',
+    destination:
+      '/es/novedades/felicitamos-a-hilda-marchiori-por-el-reconocimiento-a-su-trayectoria-en-la-asistencia-a-las-victimas',
+  },
+  {
+    source:
+      '/alianza-academica-internacional-ivujus-e-indodpro-promueven-la-convencion-interamericana-para-los-derechos-de-las-victimas',
+    destination:
+      '/es/novedades/alianza-academica-internacional-ivujus-e-indodpro-promueven-la-convencion-interamericana-para-los-derechos-de-las-victimas',
+  },
+  {
+    source:
+      '/aporte-normativo-y-academico-texto-completo-del-proyecto-de-convencion-interamericana-sobre-derechos-de-las-victimas',
+    destination:
+      '/es/novedades/aporte-normativo-y-academico-texto-completo-del-proyecto-de-convencion-interamericana-sobre-derechos-de-las-victimas',
+  },
+  {
+    source:
+      '/hito-en-la-justicia-argentina-sera-sede-del-primer-simposio-americano-y-europeo-de-victimologia-penal',
+    destination:
+      '/es/novedades/hito-en-la-justicia-argentina-sera-sede-del-primer-simposio-americano-y-europeo-de-victimologia-penal',
+  },
+  {
+    source: '/el-ivujus-presente-en-el-ciclo-de-formacion-2026',
+    destination: '/es/novedades/el-ivujus-presente-en-el-ciclo-de-formacion-2026',
+  },
+  {
+    source: '/reconocimiento-a-marcelo-aebi',
+    destination: '/es/novedades/reconocimiento-a-marcelo-aebi',
+  },
+  {
+    source:
+      '/%e2%9a%96%ef%b8%8f%f0%9f%92%bb-asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf',
+    destination:
+      '/es/novedades/asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf',
+  },
+  {
+    source: '/usina-de-justicia-lanza-el-primer-indice-de-calidad-legislativa-enfocado-en-victimas',
+    destination:
+      '/es/novedades/usina-de-justicia-lanza-el-primer-indice-de-calidad-legislativa-enfocado-en-victimas',
+  },
+  {
+    source: '/%f0%9f%93%96-resumen-de-la-presentacion-nuevos-paradigmas-para-la-justicia-penal',
+    destination:
+      '/es/novedades/resumen-de-la-presentacion-nuevos-paradigmas-para-la-justicia-penal',
+  },
+  {
+    source: '/usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal',
+    destination:
+      '/es/novedades/usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal',
+  },
+  {
+    source: '/jornada-en-el-cpacf-derecho-y-algoritmos-%e2%9a%96%ef%b8%8f%f0%9f%92%bb',
+    destination: '/es/novedades/jornada-en-el-cpacf-derecho-y-algoritmos',
+  },
+  {
+    source: '/encuentro-empresarial-argentina-israel-2025',
+    destination: '/es/novedades/encuentro-empresarial-argentina-israel-2025',
+  },
+  {
+    source: '/la-esc-difundio-las-proximas-presentaciones-de-usina-de-justicia',
+    destination: '/es/novedades/la-esc-difundio-las-proximas-presentaciones-de-usina-de-justicia',
+  },
+  {
+    source:
+      '/en-el-marco-de-la-presentacion-del-indice-legislativo-de-usina-de-justicia-marcelo-aebi-miembro-de-nuestro-comite-cientifico-nos-invita-a-reflexionar-sobre-el-derecho-cientifico',
+    destination: '/es/novedades/marcelo-aebi-reflexiona-sobre-el-derecho-cientifico',
+  },
   { source: '/simposio-2026', destination: '/es/simposios/2026-buenos-aires' },
   // `suscripcion` no se migra como pagina propia (decision cerrada en
   // CONTENT-MIGRATION-LEDGER.md): el alta a Perfit vive en la franja
