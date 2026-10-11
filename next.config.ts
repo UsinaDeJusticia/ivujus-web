@@ -26,6 +26,11 @@ const wpLegacyRedirects: Array<{ source: string; destination: string }> = [
   { source: '/comite-cientifico', destination: '/es/instituto/comite-cientifico' },
   { source: '/campus-virtual', destination: '/es/formacion/diplomatura' },
   { source: '/capacitacion-y-actividades', destination: '/es/formacion/ciclos' },
+  // Las tres páginas planas reservadas desde el repositorio de Usina se
+  // fusionan en las dos landings de Formación, sin conservar una ruta vacía.
+  { source: '/capacitacion', destination: '/es/formacion' },
+  { source: '/inscripcion-al-curso-de-victimologia', destination: '/es/formacion/diplomatura' },
+  { source: '/preinscripcion-al-curso', destination: '/es/formacion/diplomatura' },
   { source: '/blog', destination: '/es/novedades' },
   { source: '/simposio-2026', destination: '/es/simposios/2026-buenos-aires' },
   // `suscripcion` no se migra como pagina propia (decision cerrada en
@@ -43,7 +48,13 @@ const nextConfig: NextConfig = {
       source,
       destination,
       permanent: true,
-    }));
+    })).concat({
+      // WordPress mantiene esta página como un stub que redirige a la app
+      // externa de la campaña; conservarlo evita perder ese acceso histórico.
+      source: '/victimasconderechos',
+      destination: 'https://victimas-derechos-app.vercel.app',
+      permanent: false,
+    });
   },
   images: {
     remotePatterns: [
