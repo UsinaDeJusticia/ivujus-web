@@ -6,6 +6,77 @@ import type { Novedad } from './types';
 // propre à l'IVUJUS : ni résumé, ni ajout.
 export const novedadesFr: Novedad[] = [
   {
+    slug: 'felicitamos-a-hilda-marchiori-por-el-reconocimiento-a-su-trayectoria-en-la-asistencia-a-las-victimas',
+    titulo: 'Nous félicitons Hilda Marchiori pour la reconnaissance de sa carrière dans l’assistance aux victimes',
+    fecha: '2026-10-09',
+    bajada:
+      'L’Institut de Victimologie d’Usina de Justicia (IVUJUS) félicite Hilda Marchiori, membre de son Comité scientifique, pour la reconnaissance de sa carrière et de son travail en faveur des victimes.',
+    contenido: [
+      'L’Institut de Victimologie d’Usina de Justicia (IVUJUS) félicite Hilda Marchiori, membre de son Comité scientifique, pour la reconnaissance de sa carrière et de son travail en faveur des victimes, à l’occasion des 40 ans de la création du Centre d’assistance aux victimes de délits de Córdoba.',
+      'Marchiori a porté la création de ce centre en 1986 et en fut la première directrice. Son travail de recherche, de formation des professionnels et d’assistance victimologique a contribué à rendre visibles les besoins des victimes et de leurs familles et à développer des réponses institutionnelles pour les accompagner.',
+      'La commémoration s’est tenue dans le cadre des XVe Journées nationales du Conseil fédéral des bureaux d’assistance aux victimes d’infractions, une rencontre qui a réuni des représentants de différentes juridictions afin de partager des expériences sur la protection et l’assistance aux victimes.',
+      'Pour toutes les personnes qui composent l’IVUJUS, c’est une fierté de compter Hilda Marchiori au sein de notre Comité scientifique. Nous célébrons cette reconnaissance et la remercions pour sa contribution à la connaissance et à une victimologie engagée en faveur de l’écoute, de l’accompagnement et de la dignité des personnes.',
+    ],
+    imagen:
+      'https://ivujus.org.ar/wp-content/uploads/2026/10/WhatsApp-Image-2026-10-09-at-18.35.05-1.jpeg',
+    fuente: 'migracion_wp',
+    source_wp_id: 24785,
+    source_url:
+      'https://ivujus.org.ar/felicitamos-a-hilda-marchiori-por-el-reconocimiento-a-su-trayectoria-en-la-asistencia-a-las-victimas/',
+  },
+  {
+    slug: 'alianza-academica-internacional-ivujus-e-indodpro-promueven-la-convencion-interamericana-para-los-derechos-de-las-victimas',
+    titulo:
+      'Alliance académique internationale : IVUJUS et INDODPRO promeuvent la Convention interaméricaine sur les droits des victimes',
+    fecha: '2026-06-05',
+    bajada:
+      'Dans le cadre des efforts continus d’internationalisation du droit procédural centré sur les droits humains, l’Institut de Victimologie d’Usina de Justicia (IVUJUS) et l’Instituto Dominicano de Derecho Procesal (INDODPRO) ont officialisé un accord de coopération scientifique et académique.',
+    contenido: [
+      'Dans le cadre des efforts continus d’internationalisation du droit procédural centré sur les droits humains, l’Institut de Victimologie d’Usina de Justicia (IVUJUS) et l’Instituto Dominicano de Derecho Procesal (INDODPRO) ont officialisé un accord de coopération scientifique et académique.',
+      'L’accord, approuvé par la directrice de l’IVUJUS, María Jimena Molina, et le président de l’INDODPRO, Freddy Ángel Castro Díaz, établit un cadre de coopération technique destiné à promouvoir l’adoption de la Convention interaméricaine sur la protection intégrale des droits humains des victimes d’infractions dans les différents systèmes judiciaires d’Amérique latine.',
+      'L’agenda de travail commun donnera la priorité à la recherche, aux séminaires, aux congrès et à la conception de propositions législatives visant à actualiser les standards d’accès à la justice, de réparation effective et d’atténuation de la revictimisation procédurale.',
+      '« Cet accord représente une étape décisive vers une transformation juridique et institutionnelle qui place la victime au centre des politiques publiques et de la procédure pénale », a déclaré Castro Díaz lors de la cérémonie, en soulignant l’importance de construire un système garantiste et équilibré dans la région. Les déclarations ont été faites en espagnol ; la citation est une traduction de courtoisie.',
+      'Grâce à cette alliance stratégique, l’IVUJUS consolide son rôle technique auprès des organisations internationales et ses liens avec la communauté académique du continent, en favorisant la modernisation des systèmes d’administration de la justice selon une perspective rigoureuse et humaniste.',
+    ],
+    imagen:
+      'https://ivujus.org.ar/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-05-at-1.34.41-PM.webp',
+    enlacesExternos: [
+      {
+        titulo: 'Lire l’article sur Noticias Dominicanas',
+        url: 'https://noticiasdominicanas.com/?p=20088',
+        notaIdioma: 'Article publié en espagnol.',
+      },
+    ],
+    fuente: 'migracion_wp',
+    source_wp_id: 24773,
+    source_url:
+      'https://ivujus.org.ar/alianza-academica-internacional-ivujus-e-indodpro-promueven-la-convencion-interamericana-para-los-derechos-de-las-victimas/',
+  },
+  {
+    slug: 'aporte-normativo-y-academico-texto-completo-del-proyecto-de-convencion-interamericana-sobre-derechos-de-las-victimas',
+    titulo:
+      'Contribution normative et académique : texte intégral du projet de Convention interaméricaine sur les droits des victimes',
+    fecha: '2026-06-04',
+    bajada:
+      'L’IVUJUS met à disposition le texte intégral du projet de Convention interaméricaine sur la protection intégrale des droits humains des victimes d’infractions.',
+    contenido: [
+      'L’Institut de Victimologie d’Usina de Justicia (IVUJUS), conçu comme un espace de recherche, de formation et de développement de la pensée victimologique selon un nouveau paradigme centré sur la perspective de la victime, met à disposition le texte intégral du projet de Convention interaméricaine sur la protection intégrale des droits humains des victimes d’infractions. Cet instrument a été structuré à partir de diagnostics techniques rigoureux, en analysant des variables de l’ONUDC, de la Banque mondiale et de la BID sur l’impact social et institutionnel, ainsi que le coût fiscal, de la criminalité organisée et de la violence létale sur le continent.',
+      'Le document établit les principes directeurs essentiels —notamment la dignité humaine, l’approche intersectionnelle, la progressivité et le respect de la procédure régulière— et détaille les obligations concrètes d’adaptation institutionnelle que les États hispano-américains devraient adopter. Pour les chercheurs, les professionnels du droit et les étudiants, cet articulé constitue une ressource académique et doctrinale indispensable pour comprendre l’avenir de la protection des droits humains et de la réparation intégrale dans notre région.',
+    ],
+    imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/06/OEA-ESP-Vert-01-scaled.png',
+    enlacesExternos: [
+      {
+        titulo: 'Télécharger le texte intégral de la Convention (PDF)',
+        url: 'https://ivujus.org.ar/wp-content/uploads/2026/06/Convencion-Interamericana-sobre-Proteccion-Integral-de-los-Derechos-Humanos-de-las-Victimas-de-Delito.pdf',
+        notaIdioma: 'Document publié en espagnol.',
+      },
+    ],
+    fuente: 'migracion_wp',
+    source_wp_id: 24768,
+    source_url:
+      'https://ivujus.org.ar/aporte-normativo-y-academico-texto-completo-del-proyecto-de-convencion-interamericana-sobre-derechos-de-las-victimas/',
+  },
+  {
     slug: 'hito-en-la-justicia-argentina-sera-sede-del-primer-simposio-americano-y-europeo-de-victimologia-penal',
     titulo:
       "Une avancée historique pour la justice : l'Argentine accueillera le Premier Symposium américain et européen de victimologie pénale",
