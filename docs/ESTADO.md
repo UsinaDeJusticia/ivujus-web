@@ -1,5 +1,17 @@
 # ESTADO — fuente de verdad viva del proyecto `ivujus-web`
 
+## Relevamiento vivo del sitio (11-oct-2026)
+
+Se revisó `ivujus.org.ar` y la API pública de WordPress contra el inventario de
+`USINA DE JUSTICIA-WEB`. Se incorporaron a `src/lib/novedades/` las dos piezas de
+la campaña OEA (IDs 24768 y 24773) y el reconocimiento a Hilda Marchiori (ID
+24785), con traducciones ES/EN/FR, imágenes y enlaces verificables. Las tres
+páginas planas históricas del curso ahora redirigen a Formación y se preservó el
+redirect de `/victimasconderechos` hacia su aplicación externa.
+
+El detalle del mapa de migración, las fuentes y los pendientes del Observatorio
+está en [`RELEVAMIENTO-CONTENIDO-2026-10.md`](./RELEVAMIENTO-CONTENIDO-2026-10.md).
+
 > Cualquier sesión nueva de Claude Code retoma desde acá. Actualizar al cierre de cada sesión: qué se hizo, decisiones, pendientes, próximo paso exacto.
 
 **Última actualización:** 2 de agosto de 2026 (sesión 5 — **dossiers + los 4 encuentros + foto de Jimena, publicados**; GitHub reconectado, push directo restablecido)
