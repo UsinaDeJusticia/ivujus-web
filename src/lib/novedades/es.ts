@@ -141,6 +141,112 @@ export const novedadesEs: Novedad[] = [
     source_url: 'https://ivujus.org.ar/reconocimiento-a-marcelo-aebi/',
   },
   {
+    slug: 'asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf',
+    titulo: 'Así vivimos la jornada «Hacia un Derecho Científico» en el CPACF',
+    fecha: '2025-11-12',
+    bajada:
+      'El Salón Auditorio del Colegio Público de la Abogacía (CPACF) fue el escenario del debate «Hacia un Derecho Científico: Medición Cualitativa en la Era del Algoritmo».',
+    contenido: [
+      'El Salón Auditorio del Colegio Público de la Abogacía (CPACF) fue el escenario del debate «Hacia un Derecho Científico: Medición Cualitativa en la Era del Algoritmo». Durante la jornada, organizada por el Instituto de Victimología de Usina de Justicia (IVUJUS), se presentó formalmente el primer índice del país que utiliza inteligencia artificial para evaluar la calidad de las leyes desde la perspectiva de las víctimas.',
+      'Los expositores analizaron los desafíos y oportunidades de estas nuevas tecnologías para los derechos humanos y la justicia. Fue un encuentro enriquecedor del que se anunciaron más detalles y cuyo registro fotográfico quedó publicado en el sitio de origen.',
+    ],
+    imagen: 'https://ivujus.org.ar/wp-content/uploads/2025/11/CPACF.png',
+    fuente: 'migracion_wp',
+    source_wp_id: 24526,
+    source_url:
+      'https://ivujus.org.ar/%e2%9a%96%ef%b8%8f%f0%9f%92%bb-asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf/',
+  },
+  {
+    slug: 'usina-de-justicia-lanza-el-primer-indice-de-calidad-legislativa-enfocado-en-victimas',
+    titulo: 'Usina de Justicia lanza el primer Índice de Calidad Legislativa enfocado en víctimas',
+    fecha: '2025-11-10',
+    bajada:
+      'La Asociación Civil Usina de Justicia ha creado una herramienta inédita en Argentina: el primer índice de calidad legislativa que utiliza Inteligencia Artificial para medir el impacto real de las leyes en las víctimas de delitos graves.',
+    contenido: [
+      'La Asociación Civil Usina de Justicia ha creado una herramienta inédita en Argentina: el primer índice de calidad legislativa que utiliza Inteligencia Artificial para medir el impacto real de las leyes en las víctimas de delitos graves. El objetivo es introducir un método científico para calificar y comparar normas.',
+      'El índice evalúa tres dimensiones clave: perspectiva de la víctima (50% de la puntuación), basada en estándares de la ONU; impacto normativo (30%), siguiendo lineamientos de la OCDE; e impacto fiscal (20%), según parámetros de la Oficina de Presupuesto del Congreso.',
+      'Según sus impulsores, el sistema garantiza transparencia y una precisión algorítmica superior al 85%. El nuevo índice sería presentado el 12 de noviembre de 2025 en el Colegio Público de la Abogacía de la Capital Federal (CPACF).',
+    ],
+    imagen: 'https://ivujus.org.ar/wp-content/uploads/2025/11/quorum_diana.jpg',
+    enlacesExternos: [
+      {
+        titulo: 'Leer la nota en Revista Quórum',
+        url: 'https://revistaquorum.com.ar/2025/11/10/presentan-el-primer-indice-nacional-que-evalua-leyes-segun-su-impacto-en-las-victimas/',
+      },
+    ],
+    fuente: 'migracion_wp',
+    source_wp_id: 24523,
+    source_url:
+      'https://ivujus.org.ar/usina-de-justicia-lanza-el-primer-indice-de-calidad-legislativa-enfocado-en-victimas/',
+  },
+  {
+    slug: 'resumen-de-la-presentacion-nuevos-paradigmas-para-la-justicia-penal',
+    titulo: 'Resumen de la presentación: «Nuevos paradigmas para la Justicia Penal»',
+    fecha: '2025-11-10',
+    bajada:
+      'Resumen audiovisual de la presentación del libro «Nuevos paradigmas para la Justicia Penal», compilado por Diana Cohen Agrest y María Jimena Molina.',
+    contenido: [
+      'Les compartimos un resumen de lo que fue la presentación del libro «Nuevos paradigmas para la Justicia Penal», compilado por Diana Cohen Agrest y María Jimena Molina.',
+      'Silvia Fesquet, Diana Cohen Agrest, María Jimena Molina, Marcelo Peluzzi y Florencia Abramzon destacaron la necesidad de volver a poner a las víctimas en el centro del debate, el lenguaje accesible de la obra, la formación de operadores del sistema y el cambio de paradigma que propone el libro.',
+    ],
+    imagen: 'https://ivujus.org.ar/wp-content/uploads/2025/11/jimena_diana.jpg',
+    enlacesExternos: [
+      {
+        titulo: 'Ver el resumen audiovisual',
+        url: 'https://ivujus.org.ar/wp-content/uploads/2025/11/WhatsApp-Video-2025-11-12-at-12.38.13-1.mp4',
+      },
+    ],
+    fuente: 'migracion_wp',
+    source_wp_id: 24540,
+    source_url:
+      'https://ivujus.org.ar/%f0%9f%93%96-resumen-de-la-presentacion-nuevos-paradigmas-para-la-justicia-penal/',
+  },
+  {
+    slug: 'usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal',
+    titulo: 'Usina de Justicia presenta el libro «Nuevos Paradigmas para la Justicia Penal»',
+    fecha: '2025-11-04',
+    bajada:
+      'La asociación civil Usina de Justicia, fundada y presidida por Diana Cohen Agrest, anunció la presentación de su nuevo libro: «Nuevos Paradigmas para la Justicia Penal. Hacia una era con perspectiva de víctima».',
+    contenido: [
+      'La asociación civil Usina de Justicia, fundada y presidida por Diana Cohen Agrest, anunció la presentación de su nuevo libro: «Nuevos Paradigmas para la Justicia Penal. Hacia una era con perspectiva de víctima».',
+      'El libro, escrito por Cohen Agrest y María Jimena Molina, propone una profunda transformación del sistema judicial argentino. El eje central de la obra es la necesidad de impulsar un debate que coloque a las víctimas en el centro del proceso penal, garantizando sus derechos y atendiendo sus necesidades.',
+      'El texto reúne artículos de referentes del ámbito jurídico y académico y propone un modelo de justicia más humano, equitativo y sensible ante las consecuencias del delito. La presentación se anunció para el 10 de noviembre de 2025 en Dain Usina Cultural, con palabras de apertura de Silvia Fesquet y Florencia Abramzon.',
+    ],
+    imagen: 'https://ivujus.org.ar/wp-content/uploads/2025/11/jimena_diana.jpg',
+    enlacesExternos: [
+      {
+        titulo: 'Leer la nota en Revista Quórum',
+        url: 'https://revistaquorum.com.ar/2025/11/04/usina-de-justicia-presenta-nuevos-paradigmas-para-la-justicia-penal-un-libro-centrado-en-la-perspectiva-de-la-victima/',
+      },
+    ],
+    fuente: 'migracion_wp',
+    source_wp_id: 24509,
+    source_url:
+      'https://ivujus.org.ar/usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal/',
+  },
+  {
+    slug: 'marcelo-aebi-reflexiona-sobre-el-derecho-cientifico',
+    titulo:
+      'Marcelo Aebi reflexiona sobre el derecho científico en el marco de la presentación del Índice Legislativo',
+    fecha: '2025-10-29',
+    bajada:
+      'En el marco de la presentación del Índice Legislativo de Usina de Justicia, Marcelo Aebi, miembro del Comité Científico del IVUJUS, invita a reflexionar sobre el derecho científico.',
+    contenido: [
+      'En el marco de la presentación del Índice Legislativo de Usina de Justicia, Marcelo Aebi, miembro del Comité Científico del IVUJUS, invita a reflexionar sobre el derecho científico.',
+    ],
+    imagen: 'https://ivujus.org.ar/wp-content/uploads/2025/09/marcelo-aebi.jpg',
+    enlacesExternos: [
+      {
+        titulo: 'Ver la entrevista en video',
+        url: 'https://ivujus.org.ar/wp-content/uploads/2025/10/WhatsApp-Video-2025-10-28-at-8.34.58-PM.mp4',
+      },
+    ],
+    fuente: 'migracion_wp',
+    source_wp_id: 24493,
+    source_url:
+      'https://ivujus.org.ar/en-el-marco-de-la-presentacion-del-indice-legislativo-de-usina-de-justicia-marcelo-aebi-miembro-de-nuestro-comite-cientifico-nos-invita-a-reflexionar-sobre-el-derecho-cientifico/',
+  },
+  {
     // Slug limpiado: el original (`jornada-en-el-cpacf-derecho-y-algoritmos-
     // %e2%9a%96%ef%b8%8f%f0%9f%92%bb`) terminaba en un emoji URL-encoded
     // (⚖️💻); ver docs/CONTENT-MIGRATION-LEDGER.md, nota sobre el WP ID

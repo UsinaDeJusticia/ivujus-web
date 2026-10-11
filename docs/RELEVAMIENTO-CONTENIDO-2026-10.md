@@ -27,6 +27,59 @@ fechas, IDs, imágenes y URLs de origen. Las traducciones son de cortesía; los
 enlaces conservan el documento y la cobertura publicados originalmente en
 español.
 
+## Segunda pasada: censo completo del WordPress vivo
+
+El 11 de octubre de 2026 se volvió a consultar la REST API pública y el HTML
+renderizado de las páginas Elementor. El sitio conserva **20 páginas publicadas,
+14 posts y 5 categorías**. La primera revisión había cubierto 9 de esos posts
+en `Novedades`; esta segunda pasada incorporó los 5 que faltaban (IDs 24526,
+24523, 24540, 24509 y 24493) con sus imágenes, enlaces de prensa o videos y
+slugs de origen. Los dos posts del libro también permanecen modelados en
+`Publicaciones / Libros`, de modo que el registro editorial no depende solo del
+listado de noticias.
+
+La página `entrevistas-en-la-radio` (WP 19637) era el único destino migrable de
+baja prioridad que todavía no estaba visible. Su respuesta REST solo devuelve
+el encabezado, pero el HTML público mantiene tres videos: Radio Caput, Radio
+Urbana y Radio UNDAV, publicados en junio de 2023. Se incorporaron como el
+ciclo `/formacion/ciclos/entrevistas-en-radios` y se añadió el redirect de la
+URL antigua.
+
+También se preservaron los 14 permalinks antiguos de esos posts en
+`next.config.ts`, incluidos los tres slugs con emojis percent-encoded. Cada
+URL vieja ahora llega a su ficha de Novedades en `/es`, sin perder el enlace
+editorial que el WordPress ya había indexado.
+
+Las otras páginas nuevas del censo son operativas del Campus o de WooCommerce:
+`preguntas-frecuentes`, `guia-rapida`, `servicio`, `encuesta-de-calidad-de-servicio`,
+`tienda`, `carrito`, `finalizar-compra-2`, `mi-cuenta-2` y `gracias`. Se dejan
+fuera del frontend institucional según el ledger de migración; el Campus sigue
+siendo la superficie responsable de pagos, cuentas, certificados y soporte.
+
+El Índice Legislativo aparece en tres publicaciones (24523, 24493 y la crónica
+24526), ahora preservadas en Novedades. La sección Observatorio sigue sin
+publicarse como producto propio porque todavía faltan el índice canónico, sus
+series estadísticas y la aplicación de sentencias; no se inventan esos datos.
+
+## Auditoría de medios
+
+La biblioteca de medios pública contiene 95 archivos cargados desde enero de
+2025. La mayoría son fotografías del Simposio, perfiles institucionales y
+duplicados de los PDFs ya enlazados. Se verificó que los recursos públicos que
+sí tienen destino editorial están cubiertos: la Declaración de Buenos Aires,
+la Convención Interamericana, los tres dossiers, el programa de la Diplomatura
+y el newsletter de la ESC.
+
+Quedaron identificados cuatro PDFs huérfanos que no aparecen enlazados por
+ninguna página o post publicado: `Como_elige_un_delincuente_a_sus_victima-2`
+(media 24667), `2017-Politicas-publicas-2ed-1` (24664), `Laguna-Hermida,
+Manual-de-Victimologia` (24663) y `Leyes-de-victimas-en-Argentina-1` (24430).
+Los tres primeros son libros de terceros con avisos de derechos de autor; el
+último es material de referencia del curso. También existe un `Programacurso`
+antiguo (24229) junto al programa vigente de la Diplomatura (24222). No se
+publican como nuevas fichas sin una decisión editorial y autorización de uso:
+son archivos de biblioteca del Campus, no contenido institucional demostrado.
+
 ## Mapa de lo ya trasladado
 
 | Fuente pública | Ruta canónica nueva |

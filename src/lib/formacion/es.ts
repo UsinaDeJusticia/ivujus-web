@@ -185,6 +185,27 @@ const ciclosData: Ciclo[] = [
     // no conserva la URL real del archivo — no se inventa un enlace.
   },
   {
+    // La página pública `entrevistas-en-la-radio` conserva tres embeds de
+    // YouTube aunque su respuesta REST solo devuelve el encabezado. Las
+    // fechas y títulos de los videos se verificaron en sus páginas públicas
+    // el 11-oct-2026; se agrupan como archivo audiovisual secundario, tal
+    // como prevé CONTENT-MIGRATION-LEDGER.md para el WP ID 19637.
+    slug: 'entrevistas-en-radios',
+    titulo: 'Entrevistas en radios',
+    fecha: 'junio de 2023',
+    resumen:
+      'Archivo audiovisual de tres entrevistas radiales a María Jimena Molina, directora del IVUJUS, emitidas por Radio Caput, Radio Urbana y Radio UNDAV durante junio de 2023.',
+    oradores: ['María Jimena Molina'],
+    sesiones: [
+      { oradores: ['María Jimena Molina'], video_url: 'https://youtu.be/3S0naw77slk' },
+      { oradores: ['María Jimena Molina'], video_url: 'https://www.youtube.com/watch?v=s4c-S2EAVAo' },
+      { oradores: ['María Jimena Molina'], video_url: 'https://youtu.be/_jvPJ9cZ8nY' },
+    ],
+    fuente: 'migracion_wp',
+    source_wp_id: 19637,
+    source_url: 'https://ivujus.org.ar/entrevistas-en-la-radio/',
+  },
+  {
     slug: 'clases-uba-derechos-victimas-2019',
     titulo: 'Clases sobre Derechos de las Víctimas — Facultad de Derecho (UBA)',
     fecha: '30 de octubre de 2019',

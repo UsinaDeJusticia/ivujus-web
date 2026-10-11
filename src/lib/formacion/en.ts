@@ -131,6 +131,22 @@ const ciclosData: Ciclo[] = [
     source_url: 'https://usinadejusticia.org.ar/2023/07/01/usina-de-justicia-lanzo-su-nuevo-campus-virtual/',
   },
   {
+    slug: 'entrevistas-en-radios',
+    titulo: 'Radio interviews',
+    fecha: 'June 2023',
+    resumen:
+      'Audiovisual archive of three radio interviews with María Jimena Molina, IVUJUS Director, broadcast by Radio Caput, Radio Urbana and Radio UNDAV in June 2023.',
+    oradores: ['María Jimena Molina'],
+    sesiones: [
+      { oradores: ['María Jimena Molina'], video_url: 'https://youtu.be/3S0naw77slk' },
+      { oradores: ['María Jimena Molina'], video_url: 'https://www.youtube.com/watch?v=s4c-S2EAVAo' },
+      { oradores: ['María Jimena Molina'], video_url: 'https://youtu.be/_jvPJ9cZ8nY' },
+    ],
+    fuente: 'migracion_wp',
+    source_wp_id: 19637,
+    source_url: 'https://ivujus.org.ar/entrevistas-en-la-radio/',
+  },
+  {
     slug: 'clases-uba-derechos-victimas-2019',
     titulo: 'Classes on Victims’ Rights — Faculty of Law (UBA)',
     fecha: '30 October 2019',
