@@ -82,7 +82,6 @@ export const content: Simposio2026Content = {
         {
           time: '18h30',
           title: 'Remise de distinctions et clôture de la journée',
-          notes: 'Réserver la photographie officielle de la clôture dès que le fichier définitif sera disponible.',
         },
       ],
     },
@@ -137,7 +136,6 @@ export const content: Simposio2026Content = {
           title: 'Lecture et signature de la Déclaration de Buenos Aires',
           summary: 'Remise de distinctions et clôture officielle du symposium.',
           youtubeUrl: 'https://www.youtube.com/embed/nnGiCHyhgzw',
-          notes: 'Réserver la photographie officielle de la signature dès que le fichier définitif sera disponible.',
         },
       ],
     },

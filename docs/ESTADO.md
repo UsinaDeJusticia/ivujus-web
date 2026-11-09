@@ -1,6 +1,19 @@
 # ESTADO — fuente de verdad viva del proyecto `ivujus-web`
 
-> **20-nov-2026:** Emanuel eligió la Biblioteca de Claude (`/publicaciones/biblioteca`) sobre la de Codex (rama `codex/relevamiento-contenido-2026-10`, sin mergear). El contenido de esa rama (14 novedades, redirects, entrevistas de radio, Simposio) está revisado y pendiente de incorporar por separado.
+> **20-nov-2026:** Emanuel eligió la Biblioteca de Claude (`/publicaciones/biblioteca`) sobre la de Codex (rama `codex/relevamiento-contenido-2026-10`, sin mergear). El contenido de esa rama (14 novedades, redirects, entrevistas de radio, Simposio) se incorporó el mismo día (sin su biblioteca), con el texto de las entrevistas de radio corregido.
+
+## Comparación y decisión de presentación (9-nov-2026)
+
+Se comparó el frontend local con las páginas públicas de WordPress y con el
+censo REST documentado el 11 de octubre. El sitio nuevo está listo para
+presentar como portal institucional/editorial; el Campus conserva las
+operaciones de cursada y comercio. Antes de publicar faltan confirmar el acceso
+al Campus, las cifras de certificados, el precio/promoción, el formulario de
+contacto, la fuente de edición del contenido y los redireccionamientos de
+producción.
+
+La decisión completa, el inventario por sección y el guion de presentación
+están en [`DECISION-PRESENTACION-ALCANCE-IVUJUS.md`](./DECISION-PRESENTACION-ALCANCE-IVUJUS.md).
 
 ## Relevamiento vivo del sitio (11-oct-2026)
 
@@ -19,9 +32,9 @@ está en [`RELEVAMIENTO-CONTENIDO-2026-10.md`](./RELEVAMIENTO-CONTENIDO-2026-10.
 
 > Cualquier sesión nueva de Claude Code retoma desde acá. Actualizar al cierre de cada sesión: qué se hizo, decisiones, pendientes, próximo paso exacto.
 
-**Última actualización:** 3 de agosto de 2026 (sesión 5 — **Biblioteca con vidriera 3D**; antes: dossiers, los 4 encuentros y la foto de Jimena)
-**Rama de trabajo:** `claude/ivujus-rebuild-planning-gvcf25` = `main` (push directo funcionando de nuevo — ver nota abajo; consultar `git log -1` para el HEAD exacto)
-**Etapa:** ✅ G0 · ✅ Fase 1 · ✅ G1 · ✅ Fase 2 (contenido v1) · ✅ Fase 4 (SEO/GEO/perf) · ✅ **G4** · ✅ **Ola 1 Jimena** · ✅ **Traducción completa ES/EN/FR** · ✅ **Dossiers + Encuentros (los 4) + foto de Jimena** → ⏭️ **Observatorio, bloqueado por insumos de contenido**.
+**Última actualización:** 20 de noviembre de 2026 (Biblioteca propia + contenido de Codex en `main`; Campus → `mi-cuenta-2`; preparación del cambio de dominio).
+**Rama de trabajo:** `claude/vibrant-wozniak-6aj186` (se pasa a `main` con permiso de Emanuel).
+**Etapa:** contenido v1 completo → ⏭️ **Fase 5, cambio de dominio** (requisito previo: mudar el WordPress/Campus a su propio host).
 
 ## ✅ Biblioteca con vidriera 3D (3-ago)
 

@@ -77,7 +77,6 @@ export const content: Simposio2026Content = {
         {
           time: '18:30 hs',
           title: 'Entrega de distinciones y cierre de la jornada',
-          notes: 'Reservar fotografía oficial del cierre cuando el asset definitivo esté disponible.',
         },
       ],
     },
@@ -132,7 +131,6 @@ export const content: Simposio2026Content = {
           title: 'Lectura y firma de la Declaración de Buenos Aires',
           summary: 'Entrega de distinciones y cierre oficial del simposio.',
           youtubeUrl: 'https://www.youtube.com/embed/nnGiCHyhgzw',
-          notes: 'Reservar fotografía oficial de la firma cuando el asset definitivo esté disponible.',
         },
       ],
     },

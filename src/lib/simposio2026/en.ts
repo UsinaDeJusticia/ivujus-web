@@ -82,7 +82,6 @@ export const content: Simposio2026Content = {
         {
           time: '18:30',
           title: 'Awards ceremony and closing of the day',
-          notes: 'Reserve the official closing photograph once the final asset is available.',
         },
       ],
     },
@@ -137,7 +136,6 @@ export const content: Simposio2026Content = {
           title: 'Reading and signing of the Buenos Aires Declaration',
           summary: 'Awards ceremony and official closing of the symposium.',
           youtubeUrl: 'https://www.youtube.com/embed/nnGiCHyhgzw',
-          notes: 'Reserve the official signing photograph once the final asset is available.',
         },
       ],
     },
