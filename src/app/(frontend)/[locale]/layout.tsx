@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
 import localFont from 'next/font/local';
+import { Analytics } from '@vercel/analytics/next';
 
 import { Header, type HeaderNavItem } from '@/components/layout/Header';
 import { Footer, type FooterColumn } from '@/components/layout/Footer';
@@ -186,6 +187,8 @@ export default async function LocaleLayout({
           // Sin socialLinks: no hay URLs de redes oficiales confirmadas
           // (ver Footer.tsx, prop socialLinks, y el README del design system).
         />
+        {/* Vercel Web Analytics: sin cookies ni datos personales; mide visitas para vigilar el consumo. */}
+        <Analytics />
       </body>
     </html>
   );

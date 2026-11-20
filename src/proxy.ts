@@ -22,7 +22,8 @@ export function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     // Solo rutas SIN prefijo de idioma: las de /es, /en y /fr no necesitan el
-    // proxy y así no se cobra una invocación por cada página vista.
-    '/((?!es(?:/|$)|en(?:/|$)|fr(?:/|$)|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|llms.txt|.*\\..*).*)',
+    // proxy y así no se cobra una invocación por cada página vista. `_vercel`
+    // es donde Web Analytics envía las visitas: no debe redirigirse.
+    '/((?!es(?:/|$)|en(?:/|$)|fr(?:/|$)|_vercel|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|llms.txt|.*\\..*).*)',
   ],
 };
