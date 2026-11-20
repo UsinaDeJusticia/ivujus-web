@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
-import { Cinzel, Montserrat } from 'next/font/google';
+import localFont from 'next/font/local';
 
 import { Header, type HeaderNavItem } from '@/components/layout/Header';
 import { Footer, type FooterColumn } from '@/components/layout/Footer';
@@ -84,17 +84,25 @@ const FOOTER_LEGAL_NAME = 'Instituto de Victimología de Usina de Justicia';
 
 // Fuentes oficiales IVUJUS: Cinzel para display/titulares, Montserrat para
 // cuerpo/UI. Ver docs/reference/design-system-oficial/colors_and_type.css.
-const cinzel = Cinzel({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+//
+// Autohospedadas en src/fonts (archivos variables, subconjunto latin, bajados
+// de Google Fonts el 20-nov-2026; licencia SIL OFL). Antes se usaba
+// next/font/google, que descarga las fuentes en cada build: el 20-nov un
+// deploy de producción falló porque Google no respondió. Con archivos
+// locales el build no depende de la red. Mismos rangos de peso que antes.
+const cinzel = localFont({
+  src: '../../../fonts/Cinzel-latin-var.woff2',
+  weight: '400 700',
+  style: 'normal',
   variable: '--font-display',
   display: 'swap',
 });
 
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
+const montserrat = localFont({
+  src: [
+    { path: '../../../fonts/Montserrat-latin-var.woff2', weight: '300 700', style: 'normal' },
+    { path: '../../../fonts/Montserrat-Italic-latin-var.woff2', weight: '300 700', style: 'italic' },
+  ],
   variable: '--font-body',
   display: 'swap',
 });
