@@ -190,11 +190,13 @@ const ciclosData: Ciclo[] = [
     // fechas y títulos de los videos se verificaron en sus páginas públicas
     // el 11-oct-2026; se agrupan como archivo audiovisual secundario, tal
     // como prevé CONTENT-MIGRATION-LEDGER.md para el WP ID 19637.
+    // «hoy directora»: en junio de 2023 el IVUJUS todavía no existía (se fundó
+    // en marzo de 2025) y la página fuente no le da ese cargo.
     slug: 'entrevistas-en-radios',
     titulo: 'Entrevistas en radios',
     fecha: 'junio de 2023',
     resumen:
-      'Archivo audiovisual de tres entrevistas radiales a María Jimena Molina, directora del IVUJUS, emitidas por Radio Caput, Radio Urbana y Radio UNDAV durante junio de 2023.',
+      'Archivo audiovisual de tres entrevistas radiales a María Jimena Molina, hoy directora del IVUJUS, emitidas por Radio Caput, Radio Urbana y Radio UNDAV durante junio de 2023.',
     oradores: ['María Jimena Molina'],
     sesiones: [
       { oradores: ['María Jimena Molina'], video_url: 'https://youtu.be/3S0naw77slk' },

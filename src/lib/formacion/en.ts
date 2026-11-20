@@ -135,7 +135,7 @@ const ciclosData: Ciclo[] = [
     titulo: 'Radio interviews',
     fecha: 'June 2023',
     resumen:
-      'Audiovisual archive of three radio interviews with María Jimena Molina, IVUJUS Director, broadcast by Radio Caput, Radio Urbana and Radio UNDAV in June 2023.',
+      'Audiovisual archive of three radio interviews with María Jimena Molina, now Director of IVUJUS, broadcast by Radio Caput, Radio Urbana and Radio UNDAV in June 2023.',
     oradores: ['María Jimena Molina'],
     sesiones: [
       { oradores: ['María Jimena Molina'], video_url: 'https://youtu.be/3S0naw77slk' },
