@@ -30,6 +30,26 @@ preservó el redirect de `/victimasconderechos` hacia su aplicación externa.
 El detalle del mapa de migración, las fuentes y los pendientes del Observatorio
 está en [`RELEVAMIENTO-CONTENIDO-2026-10.md`](./RELEVAMIENTO-CONTENIDO-2026-10.md).
 
+## ✅ SITIO EN LÍNEA en https://ivujus.org.ar (20-nov-2026)
+
+- **DNS** (Hostinger, nameservers sin cambiar): `A @` → `216.150.1.1` y `216.150.16.1`;
+  `CNAME www` → `fa62debc6353ee5f.vercel-dns-017.com.` (Vercel redirige `www` al apex).
+  MX, TXT, CAA y `cms` intactos. Vuelta atrás: `ALIAS @ → ivujus.org.ar.cdn.hstgr.net.` y
+  `CNAME www → www.ivujus.org.ar.cdn.hstgr.net.`
+- **WordPress** sigue vivo en `https://cms.ivujus.org.ar` (misma instalación, symlink del
+  subdominio; noindex). Es el CMS de novedades, el Campus y la tienda. Backup previo en
+  `~/backup-antes-cms-2026-11-20*` (Hostinger).
+- **Vercel:** `NEXT_PUBLIC_WP_ORIGIN=https://cms.ivujus.org.ar`. Novedades en vivo cada 5 min.
+  `/mi-cuenta-2`, tienda, LearnDash, `wp-admin`, `wp-login`, `wp-content` → 307 al CMS.
+- **Correo institucional:** `info@usinadejusticia.org.ar` (no existe buzón en ivujus.org.ar).
+- **Fuentes autohospedadas** (`src/fonts`): el build ya no depende de Google Fonts.
+- Detalle y checklist: [`CUTOVER-DOMINIO.md`](./CUTOVER-DOMINIO.md).
+
+**Pendientes post-lanzamiento:** Search Console (alta + sitemap) · retirar `/admin` de
+Payload · marcar `DATABASE_URI`/`PAYLOAD_SECRET` de Vercel como sensibles · `bun run lint`
+roto (usa `next lint`, retirado en Next 16) · actualizar las 22 redirecciones de Usina hacia
+rutas finales · re-alojar imágenes de prensa de terceros.
+
 > Cualquier sesión nueva de Claude Code retoma desde acá. Actualizar al cierre de cada sesión: qué se hizo, decisiones, pendientes, próximo paso exacto.
 
 **Última actualización:** 20 de noviembre de 2026 (Biblioteca propia + contenido de Codex en `main`; Campus → `mi-cuenta-2`; preparación del cambio de dominio).
