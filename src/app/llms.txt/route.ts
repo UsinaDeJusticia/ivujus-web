@@ -67,7 +67,7 @@ async function buildLlmsTxt(): Promise<string> {
   return lines.join('\n');
 }
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export async function GET(): Promise<Response> {
   return new Response(await buildLlmsTxt(), {

@@ -23,7 +23,8 @@ export const config = {
   matcher: [
     // Solo rutas SIN prefijo de idioma: las de /es, /en y /fr no necesitan el
     // proxy y así no se cobra una invocación por cada página vista. `_vercel`
-    // es donde Web Analytics envía las visitas: no debe redirigirse.
-    '/((?!es(?:/|$)|en(?:/|$)|fr(?:/|$)|_vercel|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|llms.txt|.*\\..*).*)',
+    // es donde Web Analytics envía las visitas y `api/` el aviso del WordPress:
+    // ninguno de los dos debe redirigirse a /es.
+    '/((?!es(?:/|$)|en(?:/|$)|fr(?:/|$)|_vercel|api/|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|llms.txt|.*\\..*).*)',
   ],
 };

@@ -10,8 +10,9 @@ import { LinkArrow, ButtonPrincipal } from '@/components/ui/Buttons';
 
 // Las novedades curadas se generan en el build; las que el equipo publique
 // después en WordPress se generan a pedido la primera vez que alguien las
-// visita (dynamicParams, activo por defecto) y se refrescan cada 5 minutos.
-export const revalidate = 300;
+// visita (dynamicParams, activo por defecto). Se actualizan al instante por
+// el aviso del WordPress (api/revalidate) y, como respaldo, cada 1 hora.
+export const revalidate = 3600;
 
 export function generateStaticParams() {
   return novedadesDataEs.map((novedad) => ({ slug: novedad.slug }));

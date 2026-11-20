@@ -13,8 +13,12 @@ import 'server-only';
 import type { EnlaceExterno, Novedad } from '@/lib/novedades/types';
 import { WP_HOSTNAME, WP_ORIGIN } from './origin';
 
-/** Segundos que una lista leída de WordPress se reutiliza antes de volver a pedirla. */
-export const WP_REVALIDATE_SECONDS = 300;
+/**
+ * Respaldo: segundos que una lista leída de WordPress se reutiliza antes de
+ * volver a pedirla. Lo normal es que se actualice antes, por el aviso que
+ * manda el WordPress al publicar (src/app/api/revalidate/route.ts).
+ */
+export const WP_REVALIDATE_SECONDS = 3600;
 
 const FETCH_TIMEOUT_MS = 8000;
 

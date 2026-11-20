@@ -70,8 +70,9 @@ export async function generateMetadata({
 }
 
 
-// Incluye lo que el equipo publique en WordPress: se vuelve a leer cada 5 minutos.
-export const revalidate = 300;
+// Incluye lo que se publique en WordPress: se actualiza al instante por el
+// aviso del WordPress (api/revalidate) y, como respaldo, cada 1 hora.
+export const revalidate = 3600;
 
 export default async function NovedadesPage({
   params,

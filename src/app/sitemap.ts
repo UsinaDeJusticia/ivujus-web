@@ -93,7 +93,7 @@ function buildLanguageAlternates(siteUrl: string, path: string): Record<string, 
   return Object.fromEntries(LOCALES.map((locale) => [locale, `${siteUrl}/${locale}${path}`]));
 }
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = getSiteUrl();
