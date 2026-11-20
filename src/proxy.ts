@@ -21,6 +21,8 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!admin|api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|llms.txt|.*\\..*).*)',
+    // Solo rutas SIN prefijo de idioma: las de /es, /en y /fr no necesitan el
+    // proxy y así no se cobra una invocación por cada página vista.
+    '/((?!es(?:/|$)|en(?:/|$)|fr(?:/|$)|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|llms.txt|.*\\..*).*)',
   ],
 };

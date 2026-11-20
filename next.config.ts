@@ -1,4 +1,3 @@
-import { withPayload } from '@payloadcms/next/withPayload';
 import type { NextConfig } from 'next';
 
 import { WP_HOSTNAME, WP_ORIGIN } from './src/lib/wordpress/origin';
@@ -167,6 +166,7 @@ function wordpressRedirects() {
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false,
   async redirects() {
     return [...wordpressRedirects(), ...wpLegacyRedirects.map(({ source, destination }) => ({
       source,
@@ -191,6 +191,14 @@ const nextConfig: NextConfig = {
   // secretos en el frontend, no es una pérdida real.
   productionBrowserSourceMaps: true,
   images: {
+    // Consumo en Vercel: cada imagen optimizada se cachea 31 días en vez de
+    // las 4 h por defecto, y solo se generan anchos de la lista acotada de
+    // abajo. Las fotos del WordPress casi nunca cambian; si una cambia, se
+    // sube con otro nombre de archivo.
+    minimumCacheTTL: 2678400,
+    deviceSizes: [640, 828, 1200, 1920],
+    imageSizes: [96, 256, 384],
+    formats: ['image/webp'],
     remotePatterns: [
       { protocol: 'https', hostname: '**.public.blob.vercel-storage.com' },
       { protocol: 'https', hostname: '**.r2.cloudflarestorage.com' },
@@ -217,4 +225,8 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withPayload(nextConfig, { devBundleServerPackages: false });
+// Payload (CMS del brief de abril) quedó sin uso desde que se decidió seguir
+// con WordPress. Su panel /admin y su API se retiraron del sitio el
+// 20-nov-2026; el código de colecciones sigue en src/ por si se retoma, pero
+// ya no se publica ni se conecta a la base de datos.
+export default nextConfig;
