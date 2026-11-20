@@ -1,5 +1,7 @@
 # ESTADO — fuente de verdad viva del proyecto `ivujus-web`
 
+> **20-nov-2026:** Emanuel eligió la Biblioteca de Claude (`/publicaciones/biblioteca`) sobre la de Codex (rama `codex/relevamiento-contenido-2026-10`, sin mergear). El contenido de esa rama (14 novedades, redirects, entrevistas de radio, Simposio) está revisado y pendiente de incorporar por separado.
+
 > Cualquier sesión nueva de Claude Code retoma desde acá. Actualizar al cierre de cada sesión: qué se hizo, decisiones, pendientes, próximo paso exacto.
 
 **Última actualización:** 3 de agosto de 2026 (sesión 5 — **Biblioteca con vidriera 3D**; antes: dossiers, los 4 encuentros y la foto de Jimena)
@@ -309,7 +311,7 @@ Fue una **campaña camino a la OEA**, nada más. Su app (`victimas-derechos-app.
 
 1. **Gate G1**: aprobar el look del preview de Vercel de la rama (o pedir ajustes). (Repo hecho público y Vercel reconectado por Emanuel el 18-jul ✅)
 3. **Destino editorial de la categoría `oea`** (Convención Interamericana / INDODPRO): ¿novedades o sección propia? (necesario en Fase 3).
-4. **Dominio real del campus** (`usinadejusticiacampus.org.ar` vs `campus.ivujus.org.ar`) → habilita el CTA "Acceder al Campus" del Header (prop ya lista).
+4. ✅ **Campus** (20-nov): el CTA apunta a `https://ivujus.org.ar/mi-cuenta-2/` (mismo destino que el botón del WP; `usinadejusticiacampus.org.ar` no funcionaba). **Requisito del cutover:** mudar el Campus a su propio host antes de apuntar `ivujus.org.ar` a Vercel, o el enlace se rompe.
 5. **Redes sociales oficiales** (URLs confirmadas) → habilita `socialLinks` del Footer (prop ya lista).
 6. **Parkear código Payload** en rama `payload-v2-parked` (recomendado) ¿ok?
 7. **Novedades en inglés v1**: ¿ES-only o traducción selectiva? (necesario en Fase 3).
