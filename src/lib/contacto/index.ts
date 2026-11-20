@@ -24,7 +24,10 @@ export type { ContactoCopy };
 // el tipo propio de este módulo (idéntico en forma a `Locale`).
 export type ContactoLocale = Locale;
 
-export const INSTITUTIONAL_EMAIL = 'info@ivujus.org.ar';
+// 20-nov-2026: info@ivujus.org.ar no existe (no hay buzones para
+// ivujus.org.ar). La comisión definió usar info@usinadejusticia.org.ar
+// (Google Workspace), el mismo que recibe los avisos del WordPress.
+export const INSTITUTIONAL_EMAIL = 'info@usinadejusticia.org.ar';
 
 // Solo copy/labels de UI (siguiendo el patrón de NAV_COPY en
 // src/app/(frontend)/[locale]/layout.tsx): el cuerpo institucional en

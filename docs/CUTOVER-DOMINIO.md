@@ -1,5 +1,17 @@
 # Cambio de dominio: ivujus.org.ar → sitio nuevo, WordPress → cms.ivujus.org.ar
 
+> **Estado 20-nov-2026:** pasos 1-3 hechos por OpenCode (WordPress funcionando en
+> `cms.ivujus.org.ar`, backup en `~/backup-antes-cms-2026-11-20*`). Pasos 4-5 por
+> Claude. Hallazgos del reporte de OpenCode:
+> - La zona DNS real usa **ALIAS `@` → `ivujus.org.ar.cdn.hstgr.net.`** y **CNAME `www` →
+>   `www.ivujus.org.ar.cdn.hstgr.net.`** (CDN de Hostinger); las IPs del paso 6 de abajo
+>   ya no aplican. Vuelta atrás = restaurar ese ALIAS y ese CNAME.
+> - **`info@ivujus.org.ar` no existe.** El correo institucional es
+>   `info@usinadejusticia.org.ar` (Google Workspace). Los MX de ivujus.org.ar se
+>   mantienen igual.
+> - **No cambiar los nameservers a Vercel** aunque lo sugiera: se perderían MX/TXT.
+> - Si aparece un 301 raro, purgar la caché del CDN en hPanel.
+
 **Preparado:** 20-nov-2026. **Regla:** el WordPress NO se elimina. Sigue siendo el
 CMS (novedades), el Campus (LearnDash), la tienda (WooCommerce) y el host de
 `wp-content`. Solo cambia de dirección.
