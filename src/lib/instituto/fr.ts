@@ -1,4 +1,5 @@
 import type { InstitutoData } from './types';
+import { WP_ORIGIN } from '@/lib/wordpress/origin';
 
 // Version française. Suit docs/GLOSARIO-TRADUCCION.md : slugs et images sont
 // copiés tels quels depuis es.ts, les noms de personnes ne sont jamais
@@ -61,7 +62,7 @@ export const institutoFr: InstitutoData = {
       role: 'Directrice honoraire',
       summary: "Docteure en philosophie et fondatrice d'Usina de Justicia.",
       bio: "Docteure en philosophie (UBA). Fondatrice et présidente de l'Asociación Civil Usina de Justicia. Chercheuse et enseignante universitaire, reconnue au niveau national et international pour son travail en faveur de la protection des victimes d'actes délictueux.",
-      image: 'https://ivujus.org.ar/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-14-at-10.33.50.jpeg',
+      image: `${WP_ORIGIN}/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-14-at-10.33.50.jpeg`,
     },
     {
       slug: 'daniel-roggero',
@@ -69,7 +70,7 @@ export const institutoFr: InstitutoData = {
       role: 'Conseiller académique',
       summary: 'Avocat, communicateur et auteur spécialisé dans les droits humains des victimes.',
       bio: "Avocat (UBA). Licencié en communication sociale et psychologie sociale. Auteur du Manual de Derechos Humanos y Garantías de las Personas Víctimas de Delito (Manuel des droits humains et des garanties des personnes victimes d'actes délictueux). Coordinateur de diverses audiences internationales sur les politiques publiques et l'avenir.",
-      image: 'https://ivujus.org.ar/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-14-at-11.41.02.jpeg',
+      image: `${WP_ORIGIN}/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-14-at-11.41.02.jpeg`,
     },
     {
       slug: 'noelia-juarez',
@@ -77,7 +78,7 @@ export const institutoFr: InstitutoData = {
       role: 'Secrétaire',
       summary: 'Avocate spécialisée en droit constitutionnel et administratif.',
       bio: "Avocate (UNLaM). Secrétaire générale d'Usina de Justicia. Spécialiste en droit constitutionnel et administratif. Auteure de plusieurs articles sur la délinquance juvénile et le régime migratoire.",
-      image: 'https://ivujus.org.ar/wp-content/uploads/2025/12/noelia_juarez_profiles.jpg',
+      image: `${WP_ORIGIN}/wp-content/uploads/2025/12/noelia_juarez_profiles.jpg`,
     },
     {
       slug: 'mariana-romano',
@@ -85,7 +86,7 @@ export const institutoFr: InstitutoData = {
       role: 'Relations institutionnelles',
       summary: 'Avocate et référente en relations judiciaires internationales et cybercriminalité.',
       bio: "Avocate (UBA). Représentante d'Usina de Justicia auprès de l'OEA. Experte en cybercriminalité et preuve numérique. Boursière de la Georgetown University et experte en relations judiciaires internationales.",
-      image: 'https://ivujus.org.ar/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-14-at-10.49.35-1.jpeg',
+      image: `${WP_ORIGIN}/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-14-at-10.49.35-1.jpeg`,
     },
     {
       slug: 'jair-castillo',
@@ -93,7 +94,7 @@ export const institutoFr: InstitutoData = {
       role: 'Technologie et communication',
       summary: 'Spécialiste en communication numérique, développement web et intelligence artificielle.',
       bio: "Spécialiste en communication numérique et intelligence artificielle. Développeur web et stratège du positionnement numérique de l'IVUJUS.",
-      image: 'https://ivujus.org.ar/wp-content/uploads/2026/02/jair_ivujus.jpg',
+      image: `${WP_ORIGIN}/wp-content/uploads/2026/02/jair_ivujus.jpg`,
     },
   ],
   comiteCientifico: [
@@ -104,7 +105,7 @@ export const institutoFr: InstitutoData = {
       country: 'Canada',
       summary: "Professeur émérite de criminologie et auteur intellectuel de la Déclaration de l'ONU de 1985 sur la justice pour les victimes.",
       bio: "Professeur émérite de criminologie à l'Université d'Ottawa. Titulaire d'un Ph.D. de l'Université de Cambridge, il est mondialement reconnu comme l'auteur de la Déclaration sur les principes fondamentaux de justice pour les victimes de la criminalité (ONU, 1985). Il a été directeur exécutif fondateur du Centre international pour la prévention de la criminalité (CIPC) et a contribué à la fondation de la Société mondiale de victimologie. Il a conseillé plus de 50 gouvernements, dont celui de Nelson Mandela en Afrique du Sud. Auteur d'ouvrages fondamentaux tels que « Science and Secrets of Ending Violent Crime », son travail a transformé la sécurité publique et les droits des victimes à l'échelle mondiale.",
-      image: 'https://ivujus.org.ar/wp-content/uploads/2026/02/Irvin-Waller_HD.jpeg',
+      image: `${WP_ORIGIN}/wp-content/uploads/2026/02/Irvin-Waller_HD.jpeg`,
     },
     {
       slug: 'hilda-marchiori',
@@ -113,7 +114,7 @@ export const institutoFr: InstitutoData = {
       country: 'Argentine',
       summary: 'Figure historique de la victimologie en Amérique latine.',
       bio: "Ancienne professeure de criminologie et du troisième cycle de victimologie (UNC). Membre de la Société internationale de criminologie (Paris) et de la World Society of Victimology. Fondatrice de l'Asociación Argentina de Victimología (Société argentine de victimologie) et auteure de plus de 40 ouvrages dans la spécialité.",
-      image: 'https://ivujus.org.ar/wp-content/uploads/2025/09/hildam.jpeg',
+      image: `${WP_ORIGIN}/wp-content/uploads/2025/09/hildam.jpeg`,
     },
     {
       slug: 'beatrice-coscas-williams',
@@ -122,7 +123,7 @@ export const institutoFr: InstitutoData = {
       country: 'Israël',
       summary: 'Spécialiste de la participation des victimes et de la mémoire collective.',
       bio: "Experte en participation des victimes dans les systèmes de justice pénale et en mémoire collective. Elle préside le groupe de travail sur la victimologie de la Société européenne de criminologie. Ses recherches portent sur les processus judiciaires culturellement informés et la résolution des conflits.",
-      image: 'https://ivujus.org.ar/wp-content/uploads/2025/09/beatrice.jpeg',
+      image: `${WP_ORIGIN}/wp-content/uploads/2025/09/beatrice.jpeg`,
     },
     {
       slug: 'marcelo-aebi',
@@ -131,7 +132,7 @@ export const institutoFr: InstitutoData = {
       country: 'Argentine-Suisse',
       summary: "Professeur de criminologie et responsable des statistiques SPACE du Conseil de l'Europe.",
       bio: "Responsable des statistiques pénales annuelles du Conseil de l'Europe (SPACE) et secrétaire exécutif de la Société européenne de criminologie. Auteur de plus de 150 publications scientifiques sur les prisons, la délinquance juvénile et la méthodologie criminologique.",
-      image: 'https://ivujus.org.ar/wp-content/uploads/2025/09/marcelo-aebi.jpg',
+      image: `${WP_ORIGIN}/wp-content/uploads/2025/09/marcelo-aebi.jpg`,
     },
     {
       slug: 'maria-de-la-luz-lima-malvido',
@@ -140,7 +141,7 @@ export const institutoFr: InstitutoData = {
       country: 'Mexique',
       summary: "Juriste et référente régionale en matière d'assistance aux victimes et de violence familiale.",
       bio: "Ancienne procureure spécialisée en délits sexuels et sous-procureure générale du Mexique. Présidente honoraire de la Sociedad Mexicana de Victimología (Société mexicaine de victimologie). Elle a dirigé l'élaboration de normes internationales sur l'assistance aux victimes et la violence familiale au sein des Nations unies.",
-      image: 'https://ivujus.org.ar/wp-content/uploads/2025/09/Maria-de-la-Luz-Lima-Malvido-229x285-1.png',
+      image: `${WP_ORIGIN}/wp-content/uploads/2025/09/Maria-de-la-Luz-Lima-Malvido-229x285-1.png`,
     },
     {
       slug: 'dario-solis-garcia',
@@ -149,7 +150,7 @@ export const institutoFr: InstitutoData = {
       country: 'Panama',
       summary: 'Spécialiste du système pénal accusatoire, de la victimologie et des droits humains.',
       bio: "Spécialiste du système pénal accusatoire, formé au Panama et en Europe. Collaborateur actif de la Sociedad Vasca de Victimología (Société basque de victimologie) et de la World Society of Victimology. Il a géré des projets d'échange scientifique avec Usina de Justicia.",
-      image: 'https://ivujus.org.ar/wp-content/uploads/2025/09/dario.jpeg',
+      image: `${WP_ORIGIN}/wp-content/uploads/2025/09/dario.jpeg`,
     },
     {
       slug: 'catherine-rossi',
@@ -158,7 +159,7 @@ export const institutoFr: InstitutoData = {
       country: 'Canada',
       summary: 'Chercheuse en violence, justice et assistance aux victimes.',
       bio: "Directrice de l'équipe de recherche « Violence-Justice ». Spécialiste des violences intimes et familiales, elle préside le Centre d'aide aux victimes d'agression sexuelle du Québec et est membre de l'Ordre des criminologues du Québec.",
-      image: 'https://ivujus.org.ar/wp-content/uploads/2025/09/catherine.jpeg',
+      image: `${WP_ORIGIN}/wp-content/uploads/2025/09/catherine.jpeg`,
     },
     {
       slug: 'pierre-marie-seve',
@@ -167,7 +168,7 @@ export const institutoFr: InstitutoData = {
       country: 'France',
       summary: "Juriste et directeur de l'Institut pour la Justice.",
       bio: "Il dirige un think tank français influent, consacré à la réforme du système de justice pénale. Expert en transparence citoyenne et en lutte contre la corruption, il est régulièrement présent dans les médias européens.",
-      image: 'https://ivujus.org.ar/wp-content/uploads/2025/09/pierre.jpeg',
+      image: `${WP_ORIGIN}/wp-content/uploads/2025/09/pierre.jpeg`,
     },
   ],
   estatuto: {

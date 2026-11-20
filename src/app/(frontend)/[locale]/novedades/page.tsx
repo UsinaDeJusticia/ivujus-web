@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { getNovedadesOrdenadas } from '@/lib/novedades';
+import { getNovedades } from '@/lib/novedades';
 import { type Locale, pickLocale, resolveLocale, formatDateLong } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow } from '@/components/ui/SectionHeader';
@@ -70,6 +70,9 @@ export async function generateMetadata({
 }
 
 
+// Incluye lo que el equipo publique en WordPress: se vuelve a leer cada 5 minutos.
+export const revalidate = 300;
+
 export default async function NovedadesPage({
   params,
 }: {
@@ -78,7 +81,7 @@ export default async function NovedadesPage({
   const { locale } = await params;
   const resolvedLocale = resolveLocale(locale);
   const labels = pickLocale(LABELS, locale);
-  const novedades = getNovedadesOrdenadas(locale);
+  const novedades = await getNovedades(locale);
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',

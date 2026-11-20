@@ -1,4 +1,5 @@
 import type { GaleriaImagen, PressArticle, Simposio2026Content, SymposiumDay } from './types';
+import { WP_ORIGIN } from '@/lib/wordpress/origin';
 
 export const content: Simposio2026Content = {
   slug: '2026-buenos-aires',
@@ -26,7 +27,7 @@ export const content: Simposio2026Content = {
       'Artículo 5: Compromiso académico e institucional para financiar y desarrollar el paradigma de la victimología científica.',
     ],
     pdfUrl:
-      'https://ivujus.org.ar/wp-content/uploads/2026/04/Declaracion-de-Buenos-Aires-Traduccion-al-Ingles-Frances-y-Portugues.pdf',
+      `${WP_ORIGIN}/wp-content/uploads/2026/04/Declaracion-de-Buenos-Aires-Traduccion-al-Ingles-Frances-y-Portugues.pdf`,
     pdfNote: 'Incluye versiones en español, inglés, francés y portugués.',
   },
   days: [
@@ -197,59 +198,59 @@ export const content: Simposio2026Content = {
   // nombre + su condición de expositor, que sí está documentada.
   galeria: [
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/aebi-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/aebi-1024x862.jpeg`,
       alt: 'Marcelo Aebi expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
       epigrafe: 'Marcelo Aebi, expositor en el simposio.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/slotolow-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/slotolow-1024x862.jpeg`,
       alt: 'Raquel Slotolow expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
       epigrafe: 'Raquel Slotolow, expositora en el simposio.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/pascua-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/pascua-1024x862.jpeg`,
       alt: 'Francisco Javier Pascua expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
       epigrafe: 'Francisco Javier Pascua, expositor en el simposio.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/molina-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/molina-1024x862.jpeg`,
       alt: 'María Jimena Molina expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
       epigrafe: 'María Jimena Molina, expositora en el simposio.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/garavano-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/garavano-1024x862.jpeg`,
       alt: 'Germán Garavano expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
       epigrafe: 'Germán Garavano, expositor en el simposio.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/console-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/console-1024x862.jpeg`,
       alt: 'José Console expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
       epigrafe: 'José Console, expositor en el simposio.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/casares-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/casares-1024x862.jpeg`,
       alt: 'Martín Casares expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
       epigrafe: 'Martín Casares, expositor en el simposio.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/bargna-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/bargna-1024x862.jpeg`,
       alt: 'Guillermo Bargna expone en el Primer Simposio Americano y Europeo de Victimología Penal.',
       epigrafe: 'Guillermo Bargna, expositor en el simposio.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/1-1024x1024.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/1-1024x1024.jpeg`,
       alt: 'Fotografía grupal de cierre del Primer Simposio Americano y Europeo de Victimología Penal, CPACF, abril de 2026.',
       epigrafe: 'Fotografía de cierre en el escenario del CPACF.',
     },
     {
       imagen:
-        'https://ivujus.org.ar/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-14-at--1024x862.jpeg',
+        `${WP_ORIGIN}/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-14-at--1024x862.jpeg`,
       alt: 'Público en la sala durante el Primer Simposio Americano y Europeo de Victimología Penal, CPACF, abril de 2026.',
       epigrafe: 'La sala del CPACF durante una de las jornadas.',
     },
     {
       imagen:
-        'https://ivujus.org.ar/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-14-at-11.06.08-1024x576.jpeg',
+        `${WP_ORIGIN}/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-14-at-11.06.08-1024x576.jpeg`,
       alt: 'Entrega de distinciones durante el Primer Simposio Americano y Europeo de Victimología Penal, CPACF, abril de 2026.',
       epigrafe: 'Entrega de distinciones al cierre de una de las jornadas.',
     },

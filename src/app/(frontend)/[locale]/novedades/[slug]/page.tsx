@@ -2,11 +2,16 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
-import { novedadesDataEs, getNovedadBySlug } from '@/lib/novedades';
+import { novedadesDataEs, getNovedad } from '@/lib/novedades';
 import { type Locale, pickLocale, resolveLocale, formatDateLong } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow } from '@/components/ui/SectionHeader';
 import { LinkArrow, ButtonPrincipal } from '@/components/ui/Buttons';
+
+// Las novedades curadas se generan en el build; las que el equipo publique
+// después en WordPress se generan a pedido la primera vez que alguien las
+// visita (dynamicParams, activo por defecto) y se refrescan cada 5 minutos.
+export const revalidate = 300;
 
 export function generateStaticParams() {
   return novedadesDataEs.map((novedad) => ({ slug: novedad.slug }));
@@ -22,6 +27,7 @@ const LABELS: Record<
     fuenteExterna: string;
     volver: string;
     breadcrumbHome: string;
+    soloEspanol: string;
   }
 > = {
   es: {
@@ -31,6 +37,7 @@ const LABELS: Record<
     fuenteExterna: 'Fuente externa',
     volver: 'Volver a Novedades',
     breadcrumbHome: 'Inicio',
+    soloEspanol: '',
   },
   en: {
     seccion: 'Updates',
@@ -39,6 +46,7 @@ const LABELS: Record<
     fuenteExterna: 'External source',
     volver: 'Back to Updates',
     breadcrumbHome: 'Home',
+    soloEspanol: 'This update is only available in Spanish.',
   },
   fr: {
     seccion: 'Actualités',
@@ -47,6 +55,7 @@ const LABELS: Record<
     fuenteExterna: 'Source externe',
     volver: 'Retour aux actualités',
     breadcrumbHome: 'Accueil',
+    soloEspanol: "Cette actualité n'est disponible qu'en espagnol.",
   },
 };
 
@@ -57,7 +66,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params;
   const labels = pickLocale(LABELS, locale);
-  const novedad = getNovedadBySlug(slug, locale);
+  const novedad = await getNovedad(slug, locale);
 
   if (!novedad) {
     return buildLocalizedMetadata({
@@ -84,7 +93,7 @@ export default async function NovedadDetailPage({
   const { locale, slug } = await params;
   const resolvedLocale = resolveLocale(locale);
   const labels = pickLocale(LABELS, locale);
-  const novedad = getNovedadBySlug(slug, locale);
+  const novedad = await getNovedad(slug, locale);
 
   if (!novedad) {
     notFound();
@@ -150,9 +159,17 @@ export default async function NovedadDetailPage({
               el <h1> de la home — títulos editoriales largos en español no
               siempre caben a 360px sin permitir el corte dentro de la
               palabra. */}
-          <h1 className="max-w-3xl text-balance break-words text-[length:clamp(30px,4.4vw,48px)]">
+          <h1
+            lang={novedad.soloEspanol ? 'es' : undefined}
+            className="max-w-3xl text-balance break-words text-[length:clamp(30px,4.4vw,48px)]"
+          >
             {novedad.titulo}
           </h1>
+          {novedad.soloEspanol && labels.soloEspanol ? (
+            <p lang={resolvedLocale} className="text-sm italic text-[color:var(--ui-ink-3)]">
+              {labels.soloEspanol}
+            </p>
+          ) : null}
         </header>
 
         {novedad.imagen ? (
@@ -169,7 +186,7 @@ export default async function NovedadDetailPage({
           </div>
         ) : null}
 
-        <div className="space-y-5">
+        <div className="space-y-5" lang={novedad.soloEspanol ? 'es' : undefined}>
           {novedad.contenido.map((parrafo, index) => (
             <p key={index} className="text-pretty text-base leading-[1.8] text-[color:var(--ui-ink-3)]">
               {parrafo}

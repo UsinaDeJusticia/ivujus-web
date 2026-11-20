@@ -29,6 +29,7 @@
 
 import { CAMPUS_VIRTUAL_URL, DIPLOMATURA_PROGRAMA_PDF_URL } from './constants';
 import type { Ciclo, Diplomatura, FormacionContent, FormacionHub } from './types';
+import { WP_ORIGIN } from '@/lib/wordpress/origin';
 
 const diplomaturaData: Diplomatura = {
   titulo: 'Diploma Programme in Victimology and Victims’ Rights Legislation',
@@ -50,7 +51,7 @@ const diplomaturaData: Diplomatura = {
   campusUrl: CAMPUS_VIRTUAL_URL,
   fuente: 'migracion_wp',
   source_wp_id: 24055,
-  source_url: 'https://ivujus.org.ar/campus-virtual/',
+  source_url: `${WP_ORIGIN}/campus-virtual/`,
 };
 
 const ciclosData: Ciclo[] = [
@@ -144,7 +145,7 @@ const ciclosData: Ciclo[] = [
     ],
     fuente: 'migracion_wp',
     source_wp_id: 19637,
-    source_url: 'https://ivujus.org.ar/entrevistas-en-la-radio/',
+    source_url: `${WP_ORIGIN}/entrevistas-en-la-radio/`,
   },
   {
     slug: 'clases-uba-derechos-victimas-2019',
@@ -223,11 +224,11 @@ const ciclosData: Ciclo[] = [
     ],
     dossier: {
       titulo: 'Mental Health Dossier',
-      url: 'https://ivujus.org.ar/wp-content/uploads/2023/07/Dossier-Salud-Mental.pdf',
+      url: `${WP_ORIGIN}/wp-content/uploads/2023/07/Dossier-Salud-Mental.pdf`,
     },
     fuente: 'migracion_wp',
     source_wp_id: 21399,
-    source_url: 'https://ivujus.org.ar/capacitacion-y-actividades/',
+    source_url: `${WP_ORIGIN}/capacitacion-y-actividades/`,
   },
   {
     slug: 'ciclo-juicio-por-jurados-2021',
@@ -239,11 +240,11 @@ const ciclosData: Ciclo[] = [
     video_url: 'https://youtu.be/2MlqecC0tv8',
     dossier: {
       titulo: 'Academic publication: the constitutionality of life imprisonment',
-      url: 'https://ivujus.org.ar/wp-content/uploads/2023/07/prision-perpetua.pdf',
+      url: `${WP_ORIGIN}/wp-content/uploads/2023/07/prision-perpetua.pdf`,
     },
     fuente: 'migracion_wp',
     source_wp_id: 21399,
-    source_url: 'https://ivujus.org.ar/capacitacion-y-actividades/',
+    source_url: `${WP_ORIGIN}/capacitacion-y-actividades/`,
   },
 ];
 

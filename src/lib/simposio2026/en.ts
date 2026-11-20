@@ -1,4 +1,5 @@
 import type { GaleriaImagen, PressArticle, Simposio2026Content, SymposiumDay } from './types';
+import { WP_ORIGIN } from '@/lib/wordpress/origin';
 
 // Nota de idioma para las notas de prensa: son artículos reales publicados en
 // español (docs/GLOSARIO-TRADUCCION.md §7, "Títulos de notas de prensa"). El
@@ -31,7 +32,7 @@ export const content: Simposio2026Content = {
       'Article 5: Academic and institutional commitment to fund and develop the paradigm of scientific victimology.',
     ],
     pdfUrl:
-      'https://ivujus.org.ar/wp-content/uploads/2026/04/Declaracion-de-Buenos-Aires-Traduccion-al-Ingles-Frances-y-Portugues.pdf',
+      `${WP_ORIGIN}/wp-content/uploads/2026/04/Declaracion-de-Buenos-Aires-Traduccion-al-Ingles-Frances-y-Portugues.pdf`,
     pdfNote: 'Includes versions in Spanish, English, French and Portuguese.',
   },
   days: [
@@ -196,59 +197,59 @@ export const content: Simposio2026Content = {
   ] satisfies PressArticle[],
   galeria: [
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/aebi-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/aebi-1024x862.jpeg`,
       alt: 'Marcelo Aebi speaks at the First American and European Symposium on Criminal Victimology.',
       epigrafe: 'Marcelo Aebi, speaker at the symposium.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/slotolow-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/slotolow-1024x862.jpeg`,
       alt: 'Raquel Slotolow speaks at the First American and European Symposium on Criminal Victimology.',
       epigrafe: 'Raquel Slotolow, speaker at the symposium.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/pascua-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/pascua-1024x862.jpeg`,
       alt: 'Francisco Javier Pascua speaks at the First American and European Symposium on Criminal Victimology.',
       epigrafe: 'Francisco Javier Pascua, speaker at the symposium.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/molina-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/molina-1024x862.jpeg`,
       alt: 'María Jimena Molina speaks at the First American and European Symposium on Criminal Victimology.',
       epigrafe: 'María Jimena Molina, speaker at the symposium.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/garavano-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/garavano-1024x862.jpeg`,
       alt: 'Germán Garavano speaks at the First American and European Symposium on Criminal Victimology.',
       epigrafe: 'Germán Garavano, speaker at the symposium.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/console-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/console-1024x862.jpeg`,
       alt: 'José Console speaks at the First American and European Symposium on Criminal Victimology.',
       epigrafe: 'José Console, speaker at the symposium.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/casares-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/casares-1024x862.jpeg`,
       alt: 'Martín Casares speaks at the First American and European Symposium on Criminal Victimology.',
       epigrafe: 'Martín Casares, speaker at the symposium.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/bargna-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/bargna-1024x862.jpeg`,
       alt: 'Guillermo Bargna speaks at the First American and European Symposium on Criminal Victimology.',
       epigrafe: 'Guillermo Bargna, speaker at the symposium.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/1-1024x1024.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/1-1024x1024.jpeg`,
       alt: 'Group closing photograph of the First American and European Symposium on Criminal Victimology, CPACF, April 2026.',
       epigrafe: 'Closing photograph on the CPACF stage.',
     },
     {
       imagen:
-        'https://ivujus.org.ar/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-14-at--1024x862.jpeg',
+        `${WP_ORIGIN}/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-14-at--1024x862.jpeg`,
       alt: 'Audience in the hall during the First American and European Symposium on Criminal Victimology, CPACF, April 2026.',
       epigrafe: 'The CPACF hall during one of the conference days.',
     },
     {
       imagen:
-        'https://ivujus.org.ar/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-14-at-11.06.08-1024x576.jpeg',
+        `${WP_ORIGIN}/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-14-at-11.06.08-1024x576.jpeg`,
       alt: 'Awards ceremony during the First American and European Symposium on Criminal Victimology, CPACF, April 2026.',
       epigrafe: 'Awards ceremony at the close of one of the conference days.',
     },

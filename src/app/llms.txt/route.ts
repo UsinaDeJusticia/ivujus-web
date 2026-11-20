@@ -1,7 +1,7 @@
 import { getSiteUrl } from '@/lib/seo';
 import { institutoDataEs } from '@/lib/instituto';
 import { ciclosDataEs, diplomaturaDataEs } from '@/lib/formacion';
-import { getNovedadesOrdenadas } from '@/lib/novedades';
+import { getNovedades } from '@/lib/novedades';
 import { simposio2026Es } from '@/lib/simposio2026';
 
 // Mapa curado GEO (Generative Engine Optimization) en `/llms.txt`, formato
@@ -11,7 +11,7 @@ import { simposio2026Es } from '@/lib/simposio2026';
 // memoria, así que el costo es despreciable y el contenido queda siempre
 // consistente con el resto del sitio.
 
-function buildLlmsTxt(): string {
+async function buildLlmsTxt(): Promise<string> {
   const siteUrl = getSiteUrl();
   const lines: string[] = [];
 
@@ -58,7 +58,7 @@ function buildLlmsTxt(): string {
 
   lines.push('## Novedades');
   lines.push('');
-  for (const novedad of getNovedadesOrdenadas()) {
+  for (const novedad of await getNovedades()) {
     const url = `${siteUrl}/es/novedades/${novedad.slug}`;
     lines.push(`- [${novedad.titulo} (${novedad.fecha})](${url}): ${novedad.bajada}`);
   }
@@ -67,8 +67,10 @@ function buildLlmsTxt(): string {
   return lines.join('\n');
 }
 
-export function GET(): Response {
-  return new Response(buildLlmsTxt(), {
+export const revalidate = 300;
+
+export async function GET(): Promise<Response> {
+  return new Response(await buildLlmsTxt(), {
     headers: {
       'content-type': 'text/plain; charset=utf-8',
     },

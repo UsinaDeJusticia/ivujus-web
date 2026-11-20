@@ -1,4 +1,5 @@
 import type { PublicacionesLocaleContent } from './types';
+import { WP_ORIGIN } from '@/lib/wordpress/origin';
 
 // English version. See es.ts for sourcing notes and the fidelity rule that
 // governs this dataset. Fields that never translate (slug, coverImage,
@@ -50,7 +51,7 @@ export const en: PublicacionesLocaleContent = {
     title: 'Nuevos Paradigmas para la Justicia Penal',
     subtitle: 'Towards an era with a victim-centred perspective',
     authors: 'Diana Cohen Agrest and María Jimena Molina (editors)',
-    coverImage: 'https://ivujus.org.ar/wp-content/uploads/2025/11/jimena_diana.jpg',
+    coverImage: `${WP_ORIGIN}/wp-content/uploads/2025/11/jimena_diana.jpg`,
     coverAlt:
       'Diana Cohen Agrest and María Jimena Molina, editors of the book Nuevos Paradigmas para la Justicia Penal',
     fecha: '2025-11-04',
@@ -95,15 +96,15 @@ export const en: PublicacionesLocaleContent = {
     ],
     quotesNote: 'Statements were made in Spanish; quotations are courtesy translations.',
     videoUrl:
-      'https://ivujus.org.ar/wp-content/uploads/2025/11/WhatsApp-Video-2025-11-12-at-12.38.13-1.mp4',
+      `${WP_ORIGIN}/wp-content/uploads/2025/11/WhatsApp-Video-2025-11-12-at-12.38.13-1.mp4`,
     sourcePosts: [
       {
         id: 24509,
-        url: 'https://ivujus.org.ar/usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal/',
+        url: `${WP_ORIGIN}/usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal/`,
       },
       {
         id: 24540,
-        url: 'https://ivujus.org.ar/%f0%9f%93%96-resumen-de-la-presentacion-nuevos-paradigmas-para-la-justicia-penal/',
+        url: `${WP_ORIGIN}/%f0%9f%93%96-resumen-de-la-presentacion-nuevos-paradigmas-para-la-justicia-penal/`,
       },
     ],
   },
@@ -114,7 +115,7 @@ export const en: PublicacionesLocaleContent = {
       fecha: 'January 2021',
       resumen:
         'Produced in collaboration with the Instituto de Altos Estudios de Mendoza, this text focuses on the legal dispute over life imprisonment under Argentine law. It compiles the analyses of a multidisciplinary forum held after a ruling by the Supreme Court of Justice of Mendoza, covering ethical, philosophical and criminal-law perspectives. The prologue notes that the provincial court upheld the legality of this sanction, setting a precedent for the country’s justice system.',
-      pdfUrl: 'https://ivujus.org.ar/wp-content/uploads/2023/07/prision-perpetua.pdf',
+      pdfUrl: `${WP_ORIGIN}/wp-content/uploads/2023/07/prision-perpetua.pdf`,
     },
     {
       slug: 'salud-mental',
@@ -122,7 +123,7 @@ export const en: PublicacionesLocaleContent = {
       fecha: 'November 2021',
       resumen:
         'Offers a critique of National Mental Health Law No. 26,657, arguing that its abolitionist approach fails to protect both patients and society. It contends that the law prioritises political ideology over scientific knowledge, promoting the closure of specialised institutions without offering effective alternatives for care, and warns about the law’s rigidity in the face of modern medical advances.',
-      pdfUrl: 'https://ivujus.org.ar/wp-content/uploads/2023/07/Dossier-Salud-Mental.pdf',
+      pdfUrl: `${WP_ORIGIN}/wp-content/uploads/2023/07/Dossier-Salud-Mental.pdf`,
     },
     {
       slug: 'responsabilidad-penal-juvenil',
@@ -131,7 +132,7 @@ export const en: PublicacionesLocaleContent = {
       resumen:
         'Presents arguments in favour of reforming the juvenile criminal justice system in Argentina, focusing on lowering the age of criminal responsibility and on a paradigm shift that puts the victim first. It argues for lowering the minimum age of criminal responsibility to 14 or 13, drawing on neuroscience evidence about the development of moral judgment between ages 10 and 12, and notes that Argentina is among a minority of jurisdictions with a minimum age of 16 or older, against a global average of 12. It concludes that lowering the age of criminal responsibility is not merely a punitive measure, but a social and technical necessity to protect victims and provide real institutional intervention for minors in conflict with the law.',
       pdfUrl:
-        'https://ivujus.org.ar/wp-content/uploads/2025/09/Dossier.-La-responsabilidad-penal-de-los-menores-delincuentes_IVUJUS-1.pdf',
+        `${WP_ORIGIN}/wp-content/uploads/2025/09/Dossier.-La-responsabilidad-penal-de-los-menores-delincuentes_IVUJUS-1.pdf`,
     },
   ],
 };

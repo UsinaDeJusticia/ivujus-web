@@ -1,4 +1,5 @@
 import type { PublicacionesLocaleContent } from './types';
+import { WP_ORIGIN } from '@/lib/wordpress/origin';
 
 // Libro "Nuevos Paradigmas para la Justicia Penal": contenido tomado de dos
 // posts reales y vivos de la REST API pública de ivujus.org.ar (constatado
@@ -53,7 +54,7 @@ export const es: PublicacionesLocaleContent = {
     title: 'Nuevos Paradigmas para la Justicia Penal',
     subtitle: 'Hacia una era con perspectiva de víctima',
     authors: 'Diana Cohen Agrest y María Jimena Molina (compiladoras)',
-    coverImage: 'https://ivujus.org.ar/wp-content/uploads/2025/11/jimena_diana.jpg',
+    coverImage: `${WP_ORIGIN}/wp-content/uploads/2025/11/jimena_diana.jpg`,
     coverAlt:
       'Diana Cohen Agrest y María Jimena Molina, compiladoras del libro Nuevos Paradigmas para la Justicia Penal',
     fecha: '2025-11-04',
@@ -97,15 +98,15 @@ export const es: PublicacionesLocaleContent = {
       },
     ],
     videoUrl:
-      'https://ivujus.org.ar/wp-content/uploads/2025/11/WhatsApp-Video-2025-11-12-at-12.38.13-1.mp4',
+      `${WP_ORIGIN}/wp-content/uploads/2025/11/WhatsApp-Video-2025-11-12-at-12.38.13-1.mp4`,
     sourcePosts: [
       {
         id: 24509,
-        url: 'https://ivujus.org.ar/usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal/',
+        url: `${WP_ORIGIN}/usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal/`,
       },
       {
         id: 24540,
-        url: 'https://ivujus.org.ar/%f0%9f%93%96-resumen-de-la-presentacion-nuevos-paradigmas-para-la-justicia-penal/',
+        url: `${WP_ORIGIN}/%f0%9f%93%96-resumen-de-la-presentacion-nuevos-paradigmas-para-la-justicia-penal/`,
       },
     ],
   },
@@ -125,7 +126,7 @@ export const es: PublicacionesLocaleContent = {
       fecha: 'enero de 2021',
       resumen:
         'Realizado en colaboración con el Instituto de Altos Estudios de Mendoza, este texto se centra en la disputa legal sobre la prisión perpetua dentro del marco jurídico argentino. Recopila los análisis surgidos de un foro multidisciplinario tras una audiencia de la Suprema Corte de Justicia mendocina, con perspectivas éticas, filosóficas y penales. El prólogo destaca que el tribunal provincial validó la legalidad de esta sanción, marcando un precedente para la justicia del país.',
-      pdfUrl: 'https://ivujus.org.ar/wp-content/uploads/2023/07/prision-perpetua.pdf',
+      pdfUrl: `${WP_ORIGIN}/wp-content/uploads/2023/07/prision-perpetua.pdf`,
     },
     {
       slug: 'salud-mental',
@@ -133,7 +134,7 @@ export const es: PublicacionesLocaleContent = {
       fecha: 'noviembre de 2021',
       resumen:
         'Presenta una crítica a la Ley Nacional de Salud Mental 26.657, argumentando que su enfoque abolicionista desprotege tanto a los pacientes como a la sociedad. Sostiene que la normativa prioriza la ideología política sobre el conocimiento científico, promoviendo el cierre de instituciones especializadas sin ofrecer alternativas efectivas de contención, y advierte sobre la rigidez jurídica de la ley frente a los avances médicos modernos.',
-      pdfUrl: 'https://ivujus.org.ar/wp-content/uploads/2023/07/Dossier-Salud-Mental.pdf',
+      pdfUrl: `${WP_ORIGIN}/wp-content/uploads/2023/07/Dossier-Salud-Mental.pdf`,
     },
     {
       slug: 'responsabilidad-penal-juvenil',
@@ -142,7 +143,7 @@ export const es: PublicacionesLocaleContent = {
       resumen:
         'Presenta argumentos a favor de reformar el sistema penal juvenil en Argentina, centrándose en la baja de la edad de imputabilidad y en un cambio de paradigma que priorice a la víctima. Defiende la baja de la edad mínima de responsabilidad penal a los 14 o 13 años, apoyándose en evidencia de neurociencia sobre el desarrollo del juicio moral entre los 10 y 12 años, y señala que Argentina integra una minoría de jurisdicciones con edad mínima de 16 años o más frente a un promedio global de 12. Concluye que la baja de la edad de imputabilidad no es una medida meramente punitiva, sino una necesidad social y técnica para proteger a las víctimas y brindar una intervención institucional real a los menores en conflicto con la ley.',
       pdfUrl:
-        'https://ivujus.org.ar/wp-content/uploads/2025/09/Dossier.-La-responsabilidad-penal-de-los-menores-delincuentes_IVUJUS-1.pdf',
+        `${WP_ORIGIN}/wp-content/uploads/2025/09/Dossier.-La-responsabilidad-penal-de-los-menores-delincuentes_IVUJUS-1.pdf`,
     },
   ],
 };

@@ -33,13 +33,14 @@
 // en.ts/fr.ts para que los tres idiomas digan lo mismo, y se señala en el
 // reporte de la tarea para que se corrija primero acá y luego se propague.
 import type { LegalDocument } from './types';
+import { WP_ORIGIN } from '@/lib/wordpress/origin';
 
 export const es: LegalDocument = {
   documentTitle: 'Políticas de privacidad',
   subtitle: 'Política de privacidad de Usina de Justicia – Argentina Asociación Civil',
   source: {
     label: 'Fuente: WordPress institucional de IVUJUS (page id 18848, slug "terms-privacy")',
-    url: 'https://ivujus.org.ar/wp-json/wp/v2/pages?slug=terms-privacy&_fields=title,content',
+    url: `${WP_ORIGIN}/wp-json/wp/v2/pages?slug=terms-privacy&_fields=title,content`,
     fetchedAt: '2026-07-21',
   },
   intro:

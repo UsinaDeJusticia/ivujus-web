@@ -1,6 +1,8 @@
 import { withPayload } from '@payloadcms/next/withPayload';
 import type { NextConfig } from 'next';
 
+import { WP_HOSTNAME, WP_ORIGIN } from './src/lib/wordpress/origin';
+
 // Mapeo de URLs viejas de WordPress (ivujus.org.ar, pre-migracion) a las
 // rutas nuevas bajo `/[locale]`. Ver docs/MIGRATION-MATRIX.md y
 // docs/CONTENT-MIGRATION-LEDGER.md para el detalle item por item.
@@ -115,14 +117,62 @@ const wpLegacyRedirects: Array<{ source: string; destination: string }> = [
   { source: '/terms-privacy', destination: '/es/terms-privacy' },
 ];
 
+// Rutas que siguen siendo del WordPress (Campus LearnDash, tienda
+// WooCommerce, archivos y administración). Cuando el WordPress se muda a
+// cms.ivujus.org.ar y ivujus.org.ar pasa a servir este sitio, los enlaces y
+// favoritos viejos (por ejemplo, el de los alumnos a /mi-cuenta-2) llegan
+// acá: se reenvían al WordPress conservando el resto de la ruta.
+//
+// Solo se activan si el WordPress está en otro host. Mientras WP_ORIGIN sea
+// ivujus.org.ar, reenviar ahí desde ivujus.org.ar sería un bucle.
+const wpOperationalPaths = [
+  '/mi-cuenta-2/:path*',
+  '/carrito/:path*',
+  '/finalizar-compra-2/:path*',
+  '/tienda/:path*',
+  '/producto/:path*',
+  '/categoria-producto/:path*',
+  '/gracias/:path*',
+  '/preguntas-frecuentes/:path*',
+  '/guia-rapida/:path*',
+  '/servicio/:path*',
+  '/encuesta-de-calidad-de-servicio/:path*',
+  '/courses/:path*',
+  '/lessons/:path*',
+  '/topic/:path*',
+  '/quizzes/:path*',
+  '/certificates/:path*',
+  '/groups/:path*',
+  '/exams/:path*',
+  '/wp-content/:path*',
+  '/wp-includes/:path*',
+  '/wp-admin/:path*',
+  '/wp-json/:path*',
+  '/wp-login.php',
+  '/feed/:path*',
+];
+
+const SITE_HOSTNAMES = new Set(['ivujus.org.ar', 'www.ivujus.org.ar']);
+
+function wordpressRedirects() {
+  if (SITE_HOSTNAMES.has(WP_HOSTNAME)) return [];
+  return wpOperationalPaths.map((source) => ({
+    source,
+    destination: `${WP_ORIGIN}${source}`,
+    // 307: si algún día una de estas rutas pasa a este sitio, que los
+    // navegadores no tengan cacheado un reenvío permanente.
+    permanent: false,
+  }));
+}
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   async redirects() {
-    return wpLegacyRedirects.map(({ source, destination }) => ({
+    return [...wordpressRedirects(), ...wpLegacyRedirects.map(({ source, destination }) => ({
       source,
       destination,
       permanent: true,
-    })).concat({
+    }))].concat({
       // WordPress mantiene esta página como un stub que redirige a la app
       // externa de la campaña; conservarlo evita perder ese acceso histórico.
       source: '/victimasconderechos',
@@ -149,6 +199,11 @@ const nextConfig: NextConfig = {
       // por las dudas aunque los datos actuales usan el host sin `www`.
       { protocol: 'https', hostname: 'ivujus.org.ar' },
       { protocol: 'https', hostname: 'www.ivujus.org.ar' },
+      // WordPress de IVUJUS desde el cambio de dominio (ver
+      // src/lib/wordpress/origin.ts). Se declara siempre para que el día del
+      // cambio solo haya que modificar la variable de entorno.
+      { protocol: 'https', hostname: 'cms.ivujus.org.ar' },
+      { protocol: 'https', hostname: WP_HOSTNAME },
       // Foto del encuentro en la Facultad de Derecho (UBA) — ver
       // src/lib/encuentros.ts. WordPress del sitio hermano Usina de
       // Justicia (constatado vía su propia REST API, 2026-08-02).

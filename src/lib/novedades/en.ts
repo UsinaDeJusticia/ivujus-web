@@ -1,4 +1,5 @@
 import type { Novedad } from './types';
+import { WP_ORIGIN } from '@/lib/wordpress/origin';
 
 // English translation of `es.ts`. Same order, same slugs/dates/images/URLs
 // (see docs/GLOSARIO-TRADUCCION.md — those fields must stay identical across
@@ -18,11 +19,11 @@ export const novedadesEn: Novedad[] = [
       'For all of us at IVUJUS, it is a privilege to have Hilda Marchiori on our Scientific Committee. We celebrate this recognition and thank her for her contribution to knowledge and to a form of victimology committed to listening, support and the dignity of people.',
     ],
     imagen:
-      'https://ivujus.org.ar/wp-content/uploads/2026/10/WhatsApp-Image-2026-10-09-at-18.35.05-1.jpeg',
+      `${WP_ORIGIN}/wp-content/uploads/2026/10/WhatsApp-Image-2026-10-09-at-18.35.05-1.jpeg`,
     fuente: 'migracion_wp',
     source_wp_id: 24785,
     source_url:
-      'https://ivujus.org.ar/felicitamos-a-hilda-marchiori-por-el-reconocimiento-a-su-trayectoria-en-la-asistencia-a-las-victimas/',
+      `${WP_ORIGIN}/felicitamos-a-hilda-marchiori-por-el-reconocimiento-a-su-trayectoria-en-la-asistencia-a-las-victimas/`,
   },
   {
     slug: 'alianza-academica-internacional-ivujus-e-indodpro-promueven-la-convencion-interamericana-para-los-derechos-de-las-victimas',
@@ -39,7 +40,7 @@ export const novedadesEn: Novedad[] = [
       'Through this strategic alliance, IVUJUS strengthens its technical role before international organisations and its ties with the continent\'s academic community, promoting the modernisation of justice administration systems from a rigorous and humanistic perspective.',
     ],
     imagen:
-      'https://ivujus.org.ar/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-05-at-1.34.41-PM.webp',
+      `${WP_ORIGIN}/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-05-at-1.34.41-PM.webp`,
     enlacesExternos: [
       {
         titulo: 'Read the article on Noticias Dominicanas',
@@ -50,7 +51,7 @@ export const novedadesEn: Novedad[] = [
     fuente: 'migracion_wp',
     source_wp_id: 24773,
     source_url:
-      'https://ivujus.org.ar/alianza-academica-internacional-ivujus-e-indodpro-promueven-la-convencion-interamericana-para-los-derechos-de-las-victimas/',
+      `${WP_ORIGIN}/alianza-academica-internacional-ivujus-e-indodpro-promueven-la-convencion-interamericana-para-los-derechos-de-las-victimas/`,
   },
   {
     slug: 'aporte-normativo-y-academico-texto-completo-del-proyecto-de-convencion-interamericana-sobre-derechos-de-las-victimas',
@@ -63,18 +64,18 @@ export const novedadesEn: Novedad[] = [
       'The Institute of Victimology of Usina de Justicia (IVUJUS) is a space for research, training and the development of victimological thought through a new paradigm focused on the victim\'s perspective. We are making available the full text of the draft Inter-American Convention on the Comprehensive Protection of the Human Rights of Victims of Crime. The instrument was structured on the basis of rigorous technical assessments, analysing UNODC, World Bank and IDB variables on the social and institutional impact, and the fiscal cost, of organised crime and lethal violence across the continent.',
       'The document sets out essential guiding principles —including human dignity, an intersectional approach, progressivity and due process— and details the concrete institutional-adjustment obligations that Spanish-American states should adopt. For researchers, legal practitioners and students, this text is an essential academic and doctrinal resource for understanding the future of human-rights protection and comprehensive reparation in our region.',
     ],
-    imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/06/OEA-ESP-Vert-01-scaled.png',
+    imagen: `${WP_ORIGIN}/wp-content/uploads/2026/06/OEA-ESP-Vert-01-scaled.png`,
     enlacesExternos: [
       {
         titulo: 'Download the full Convention text (PDF)',
-        url: 'https://ivujus.org.ar/wp-content/uploads/2026/06/Convencion-Interamericana-sobre-Proteccion-Integral-de-los-Derechos-Humanos-de-las-Victimas-de-Delito.pdf',
+        url: `${WP_ORIGIN}/wp-content/uploads/2026/06/Convencion-Interamericana-sobre-Proteccion-Integral-de-los-Derechos-Humanos-de-las-Victimas-de-Delito.pdf`,
         notaIdioma: 'Document published in Spanish.',
       },
     ],
     fuente: 'migracion_wp',
     source_wp_id: 24768,
     source_url:
-      'https://ivujus.org.ar/aporte-normativo-y-academico-texto-completo-del-proyecto-de-convencion-interamericana-sobre-derechos-de-las-victimas/',
+      `${WP_ORIGIN}/aporte-normativo-y-academico-texto-completo-del-proyecto-de-convencion-interamericana-sobre-derechos-de-las-victimas/`,
   },
   {
     slug: 'hito-en-la-justicia-argentina-sera-sede-del-primer-simposio-americano-y-europeo-de-victimologia-penal',
@@ -93,7 +94,7 @@ export const novedadesEn: Novedad[] = [
       "Participation and registration: from Usina de Justicia we invite the entire legal and academic community, as well as citizens interested in defending victims' rights, to take part in this unprecedented event. Date: Thursday 9 and Friday 10 April. Venue: Colegio Público de la Abogacía de la Capital Federal. Registration: free of charge (limited places) via www.simposiousinadejusticia.org.ar.",
       'This symposium is not just a gathering of experts: it is the beginning of a new era in which the voice and the science of the victim become central to justice.',
     ],
-    imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/logossimposio.webp',
+    imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/logossimposio.webp`,
     enlacesExternos: [
       {
         titulo: 'Read the article on DEF',
@@ -104,7 +105,7 @@ export const novedadesEn: Novedad[] = [
     fuente: 'migracion_wp',
     source_wp_id: 24625,
     source_url:
-      'https://ivujus.org.ar/hito-en-la-justicia-argentina-sera-sede-del-primer-simposio-americano-y-europeo-de-victimologia-penal/',
+      `${WP_ORIGIN}/hito-en-la-justicia-argentina-sera-sede-del-primer-simposio-americano-y-europeo-de-victimologia-penal/`,
   },
   {
     slug: 'el-ivujus-presente-en-el-ciclo-de-formacion-2026',
@@ -118,10 +119,10 @@ export const novedadesEn: Novedad[] = [
       'Dates: 23 and 24 February. Time: 6:00 p.m. Format: Zoom.',
       "A key space for technical debate and training on criminal policies that place victims' rights at the centre.",
     ],
-    imagen: 'https://ivujus.org.ar/wp-content/uploads/2025/12/jimena_molina_profiles.jpg',
+    imagen: `${WP_ORIGIN}/wp-content/uploads/2025/12/jimena_molina_profiles.jpg`,
     fuente: 'migracion_wp',
     source_wp_id: 24591,
-    source_url: 'https://ivujus.org.ar/el-ivujus-presente-en-el-ciclo-de-formacion-2026/',
+    source_url: `${WP_ORIGIN}/el-ivujus-presente-en-el-ciclo-de-formacion-2026/`,
   },
   {
     slug: 'reconocimiento-a-marcelo-aebi',
@@ -132,10 +133,10 @@ export const novedadesEn: Novedad[] = [
     contenido: [
       'Marcelo Aebi, a member of the IVUJUS Scientific Committee, has been awarded the Freda Adler 2025 Prize. This prestigious recognition was presented to him in Washington, D.C. by the American Society of Criminology in honour of his outstanding work.',
     ],
-    imagen: 'https://ivujus.org.ar/wp-content/uploads/2025/09/marcelo-aebi.jpg',
+    imagen: `${WP_ORIGIN}/wp-content/uploads/2025/09/marcelo-aebi.jpg`,
     fuente: 'migracion_wp',
     source_wp_id: 24544,
-    source_url: 'https://ivujus.org.ar/reconocimiento-a-marcelo-aebi/',
+    source_url: `${WP_ORIGIN}/reconocimiento-a-marcelo-aebi/`,
   },
   {
     slug: 'asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf',
@@ -147,11 +148,11 @@ export const novedadesEn: Novedad[] = [
       'The Auditorium Hall of the Colegio Público de la Abogacía (CPACF) hosted the debate “Towards a Scientific Law: Qualitative Measurement in the Age of the Algorithm”. During the conference, organised by the Institute of Victimology of Usina de Justicia (IVUJUS), the country’s first index using artificial intelligence to assess the quality of laws from the victims’ perspective was formally presented.',
       'The speakers examined the challenges and opportunities these new technologies create for human rights and justice. It was a productive meeting whose photographic record was published on the source site.',
     ],
-    imagen: 'https://ivujus.org.ar/wp-content/uploads/2025/11/CPACF.png',
+    imagen: `${WP_ORIGIN}/wp-content/uploads/2025/11/CPACF.png`,
     fuente: 'migracion_wp',
     source_wp_id: 24526,
     source_url:
-      'https://ivujus.org.ar/%e2%9a%96%ef%b8%8f%f0%9f%92%bb-asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf/',
+      `${WP_ORIGIN}/%e2%9a%96%ef%b8%8f%f0%9f%92%bb-asi-vivimos-la-jornada-hacia-un-derecho-cientifico-en-el-cpacf/`,
   },
   {
     slug: 'usina-de-justicia-lanza-el-primer-indice-de-calidad-legislativa-enfocado-en-victimas',
@@ -164,7 +165,7 @@ export const novedadesEn: Novedad[] = [
       'The index assesses three key dimensions: the victim’s perspective (50% of the score), based on United Nations standards; regulatory impact (30%), following OECD guidelines; and fiscal impact (20%), according to the parameters of the Congressional Budget Office.',
       'According to its promoters, the system guarantees transparency and algorithmic accuracy above 85%. The new index was scheduled to be presented on 12 November 2025 at the Colegio Público de la Abogacía de la Capital Federal (CPACF).',
     ],
-    imagen: 'https://ivujus.org.ar/wp-content/uploads/2025/11/quorum_diana.jpg',
+    imagen: `${WP_ORIGIN}/wp-content/uploads/2025/11/quorum_diana.jpg`,
     enlacesExternos: [
       {
         titulo: 'Read the article in Revista Quórum',
@@ -175,7 +176,7 @@ export const novedadesEn: Novedad[] = [
     fuente: 'migracion_wp',
     source_wp_id: 24523,
     source_url:
-      'https://ivujus.org.ar/usina-de-justicia-lanza-el-primer-indice-de-calidad-legislativa-enfocado-en-victimas/',
+      `${WP_ORIGIN}/usina-de-justicia-lanza-el-primer-indice-de-calidad-legislativa-enfocado-en-victimas/`,
   },
   {
     slug: 'resumen-de-la-presentacion-nuevos-paradigmas-para-la-justicia-penal',
@@ -187,18 +188,18 @@ export const novedadesEn: Novedad[] = [
       'We share a summary of the presentation of the book “New Paradigms for Criminal Justice”, compiled by Diana Cohen Agrest and María Jimena Molina.',
       'Silvia Fesquet, Diana Cohen Agrest, María Jimena Molina, Marcelo Peluzzi and Florencia Abramzon highlighted the need to put victims back at the centre of the debate, the book’s accessible language, the training of justice-system operators and the paradigm shift it proposes.',
     ],
-    imagen: 'https://ivujus.org.ar/wp-content/uploads/2025/11/jimena_diana.jpg',
+    imagen: `${WP_ORIGIN}/wp-content/uploads/2025/11/jimena_diana.jpg`,
     enlacesExternos: [
       {
         titulo: 'Watch the audiovisual summary',
-        url: 'https://ivujus.org.ar/wp-content/uploads/2025/11/WhatsApp-Video-2025-11-12-at-12.38.13-1.mp4',
+        url: `${WP_ORIGIN}/wp-content/uploads/2025/11/WhatsApp-Video-2025-11-12-at-12.38.13-1.mp4`,
         notaIdioma: 'Video published in Spanish.',
       },
     ],
     fuente: 'migracion_wp',
     source_wp_id: 24540,
     source_url:
-      'https://ivujus.org.ar/%f0%9f%93%96-resumen-de-la-presentacion-nuevos-paradigmas-para-la-justicia-penal/',
+      `${WP_ORIGIN}/%f0%9f%93%96-resumen-de-la-presentacion-nuevos-paradigmas-para-la-justicia-penal/`,
   },
   {
     slug: 'usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal',
@@ -211,7 +212,7 @@ export const novedadesEn: Novedad[] = [
       'Written by Cohen Agrest and María Jimena Molina, the book proposes a profound transformation of Argentina’s justice system. Its central argument is the need for a debate that places victims at the centre of criminal proceedings, guarantees their rights and responds to their needs.',
       'The book brings together articles by legal and academic figures and proposes a more humane, equitable and sensitive model of justice. The presentation was announced for 10 November 2025 at Dain Usina Cultural, with opening remarks by Silvia Fesquet and Florencia Abramzon.',
     ],
-    imagen: 'https://ivujus.org.ar/wp-content/uploads/2025/11/jimena_diana.jpg',
+    imagen: `${WP_ORIGIN}/wp-content/uploads/2025/11/jimena_diana.jpg`,
     enlacesExternos: [
       {
         titulo: 'Read the article in Revista Quórum',
@@ -222,7 +223,7 @@ export const novedadesEn: Novedad[] = [
     fuente: 'migracion_wp',
     source_wp_id: 24509,
     source_url:
-      'https://ivujus.org.ar/usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal/',
+      `${WP_ORIGIN}/usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal/`,
   },
   {
     slug: 'marcelo-aebi-reflexiona-sobre-el-derecho-cientifico',
@@ -234,18 +235,18 @@ export const novedadesEn: Novedad[] = [
     contenido: [
       'As part of the presentation of Usina de Justicia’s Legislative Index, Marcelo Aebi, a member of the IVUJUS Scientific Committee, invites reflection on scientific law.',
     ],
-    imagen: 'https://ivujus.org.ar/wp-content/uploads/2025/09/marcelo-aebi.jpg',
+    imagen: `${WP_ORIGIN}/wp-content/uploads/2025/09/marcelo-aebi.jpg`,
     enlacesExternos: [
       {
         titulo: 'Watch the video interview',
-        url: 'https://ivujus.org.ar/wp-content/uploads/2025/10/WhatsApp-Video-2025-10-28-at-8.34.58-PM.mp4',
+        url: `${WP_ORIGIN}/wp-content/uploads/2025/10/WhatsApp-Video-2025-10-28-at-8.34.58-PM.mp4`,
         notaIdioma: 'Video published in Spanish.',
       },
     ],
     fuente: 'migracion_wp',
     source_wp_id: 24493,
     source_url:
-      'https://ivujus.org.ar/en-el-marco-de-la-presentacion-del-indice-legislativo-de-usina-de-justicia-marcelo-aebi-miembro-de-nuestro-comite-cientifico-nos-invita-a-reflexionar-sobre-el-derecho-cientifico/',
+      `${WP_ORIGIN}/en-el-marco-de-la-presentacion-del-indice-legislativo-de-usina-de-justicia-marcelo-aebi-miembro-de-nuestro-comite-cientifico-nos-invita-a-reflexionar-sobre-el-derecho-cientifico/`,
   },
   {
     slug: 'jornada-en-el-cpacf-derecho-y-algoritmos',
@@ -257,11 +258,11 @@ export const novedadesEn: Novedad[] = [
       'Not to be missed! The Colegio Público de la Abogacía de la Capital Federal (CPACF, the Buenos Aires Bar Association) invites you to the in-person conference "Towards a Scientific Law: Qualitative Measurement in the Age of the Algorithm".',
       'When: Wednesday 12 November, from 3:00 to 5:00 p.m. Venue: Salón Auditorio (Corrientes 1441, 1st floor). Registration: prior registration required by emailing infoacademicas@cpacf.org.ar.',
     ],
-    imagen: 'https://ivujus.org.ar/wp-content/uploads/2025/11/CPACF.png',
+    imagen: `${WP_ORIGIN}/wp-content/uploads/2025/11/CPACF.png`,
     fuente: 'migracion_wp',
     source_wp_id: 24513,
     source_url:
-      'https://ivujus.org.ar/jornada-en-el-cpacf-derecho-y-algoritmos-%e2%9a%96%ef%b8%8f%f0%9f%92%bb/',
+      `${WP_ORIGIN}/jornada-en-el-cpacf-derecho-y-algoritmos-%e2%9a%96%ef%b8%8f%f0%9f%92%bb/`,
   },
   {
     slug: 'encuentro-empresarial-argentina-israel-2025',
@@ -272,10 +273,10 @@ export const novedadesEn: Novedad[] = [
     contenido: [
       'Our President, Diana Cohen Agrest, and our Director of the Institute of Victimology, María Jimena Molina, took part in the 2025 Argentina-Israel Business Meeting.',
     ],
-    imagen: 'https://ivujus.org.ar/wp-content/uploads/2025/11/jimena_diana2.jpeg',
+    imagen: `${WP_ORIGIN}/wp-content/uploads/2025/11/jimena_diana2.jpeg`,
     fuente: 'migracion_wp',
     source_wp_id: 24517,
-    source_url: 'https://ivujus.org.ar/encuentro-empresarial-argentina-israel-2025/',
+    source_url: `${WP_ORIGIN}/encuentro-empresarial-argentina-israel-2025/`,
   },
   {
     slug: 'la-esc-difundio-las-proximas-presentaciones-de-usina-de-justicia',
@@ -287,15 +288,15 @@ export const novedadesEn: Novedad[] = [
       'The European Society of Criminology (ESC) shared the upcoming presentations of the Legislative Index of Usina de Justicia and of our book «Nuevos paradigmas para la justicia penal. Hacia una era con perspectiva de víctima» [New Paradigms for Criminal Justice: Towards an Era with a Victim\'s Perspective].',
       'The full article can be read in the October 2025 newsletter of the European Society of Criminology (ESC Victimology Newsletter).',
     ],
-    imagen: 'https://ivujus.org.ar/wp-content/uploads/2025/10/ESC.png',
+    imagen: `${WP_ORIGIN}/wp-content/uploads/2025/10/ESC.png`,
     enlacesExternos: [
       {
         titulo: 'Read the full newsletter (PDF)',
-        url: 'https://ivujus.org.ar/wp-content/uploads/2025/10/ESC-Victimology-Newsletter-7_October-2025.pdf',
+        url: `${WP_ORIGIN}/wp-content/uploads/2025/10/ESC-Victimology-Newsletter-7_October-2025.pdf`,
       },
     ],
     fuente: 'migracion_wp',
     source_wp_id: 24504,
-    source_url: 'https://ivujus.org.ar/la-esc-difundio-las-proximas-presentaciones-de-usina-de-justicia/',
+    source_url: `${WP_ORIGIN}/la-esc-difundio-las-proximas-presentaciones-de-usina-de-justicia/`,
   },
 ];

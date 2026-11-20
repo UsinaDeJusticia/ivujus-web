@@ -1,4 +1,5 @@
 import type { PublicacionesLocaleContent } from './types';
+import { WP_ORIGIN } from '@/lib/wordpress/origin';
 
 // Version française. Voir es.ts pour les notes de source et la règle de
 // fidélité qui régit ce jeu de contenu. Les champs jamais traduits (slug,
@@ -52,7 +53,7 @@ export const fr: PublicacionesLocaleContent = {
     title: 'Nuevos Paradigmas para la Justicia Penal',
     subtitle: 'Vers une ère avec une perspective de victime',
     authors: 'Diana Cohen Agrest et María Jimena Molina (directrices de l\'ouvrage)',
-    coverImage: 'https://ivujus.org.ar/wp-content/uploads/2025/11/jimena_diana.jpg',
+    coverImage: `${WP_ORIGIN}/wp-content/uploads/2025/11/jimena_diana.jpg`,
     coverAlt:
       "Diana Cohen Agrest et María Jimena Molina, directrices de l'ouvrage Nuevos Paradigmas para la Justicia Penal",
     fecha: '2025-11-04',
@@ -98,15 +99,15 @@ export const fr: PublicacionesLocaleContent = {
     quotesNote:
       'Les déclarations ont été faites en espagnol ; les citations sont des traductions de courtoisie.',
     videoUrl:
-      'https://ivujus.org.ar/wp-content/uploads/2025/11/WhatsApp-Video-2025-11-12-at-12.38.13-1.mp4',
+      `${WP_ORIGIN}/wp-content/uploads/2025/11/WhatsApp-Video-2025-11-12-at-12.38.13-1.mp4`,
     sourcePosts: [
       {
         id: 24509,
-        url: 'https://ivujus.org.ar/usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal/',
+        url: `${WP_ORIGIN}/usina-de-justicia-presenta-el-libro-nuevos-paradigmas-para-la-justicia-penal/`,
       },
       {
         id: 24540,
-        url: 'https://ivujus.org.ar/%f0%9f%93%96-resumen-de-la-presentacion-nuevos-paradigmas-para-la-justicia-penal/',
+        url: `${WP_ORIGIN}/%f0%9f%93%96-resumen-de-la-presentacion-nuevos-paradigmas-para-la-justicia-penal/`,
       },
     ],
   },
@@ -117,7 +118,7 @@ export const fr: PublicacionesLocaleContent = {
       fecha: 'janvier 2021',
       resumen:
         "Réalisé en collaboration avec l'Instituto de Altos Estudios de Mendoza, ce texte porte sur le débat juridique relatif à la réclusion à perpétuité dans le droit argentin. Il rassemble les analyses issues d'un forum pluridisciplinaire tenu après un arrêt de la Cour suprême de justice de Mendoza, abordant des perspectives éthiques, philosophiques et pénales. La préface souligne que le tribunal provincial a validé la légalité de cette sanction, établissant un précédent pour la justice du pays.",
-      pdfUrl: 'https://ivujus.org.ar/wp-content/uploads/2023/07/prision-perpetua.pdf',
+      pdfUrl: `${WP_ORIGIN}/wp-content/uploads/2023/07/prision-perpetua.pdf`,
     },
     {
       slug: 'salud-mental',
@@ -125,7 +126,7 @@ export const fr: PublicacionesLocaleContent = {
       fecha: 'novembre 2021',
       resumen:
         "Propose une critique de la loi nationale sur la santé mentale n° 26 657, soutenant que son approche abolitionniste ne protège ni les patients ni la société. Le texte affirme que la norme privilégie l'idéologie politique au détriment des connaissances scientifiques, en favorisant la fermeture d'institutions spécialisées sans offrir d'alternatives efficaces de prise en charge, et alerte sur la rigidité juridique de la loi face aux avancées médicales actuelles.",
-      pdfUrl: 'https://ivujus.org.ar/wp-content/uploads/2023/07/Dossier-Salud-Mental.pdf',
+      pdfUrl: `${WP_ORIGIN}/wp-content/uploads/2023/07/Dossier-Salud-Mental.pdf`,
     },
     {
       slug: 'responsabilidad-penal-juvenil',
@@ -134,7 +135,7 @@ export const fr: PublicacionesLocaleContent = {
       resumen:
         "Présente des arguments en faveur d'une réforme du système pénal des mineurs en Argentine, centrée sur l'abaissement de l'âge de la responsabilité pénale et sur un changement de paradigme plaçant la victime au premier plan. Il défend l'abaissement de l'âge minimal de responsabilité pénale à 14 ou 13 ans, en s'appuyant sur des données de neurosciences selon lesquelles le jugement moral se développe entre 10 et 12 ans, et souligne que l'Argentine fait partie d'une minorité de juridictions ayant un âge minimal de 16 ans ou plus, contre une moyenne mondiale de 12 ans. Il conclut que l'abaissement de l'âge de la responsabilité pénale n'est pas une simple mesure punitive, mais une nécessité sociale et technique pour protéger les victimes et offrir une véritable intervention institutionnelle aux mineurs en conflit avec la loi.",
       pdfUrl:
-        'https://ivujus.org.ar/wp-content/uploads/2025/09/Dossier.-La-responsabilidad-penal-de-los-menores-delincuentes_IVUJUS-1.pdf',
+        `${WP_ORIGIN}/wp-content/uploads/2025/09/Dossier.-La-responsabilidad-penal-de-los-menores-delincuentes_IVUJUS-1.pdf`,
     },
   ],
 };

@@ -44,3 +44,28 @@ export function getNovedadBySlug(slug: string, locale: string = 'es'): Novedad |
 export function getNovedadesOrdenadas(locale: string = 'es'): Novedad[] {
   return [...novedadesByLocale[resolveLocale(locale)]].sort((a, b) => b.fecha.localeCompare(a.fecha));
 }
+
+/** Novedad tal como la muestran las páginas: curada (traducida) o leída de WordPress (solo español). */
+export type NovedadPublicada = Novedad & { soloEspanol?: boolean };
+
+/**
+ * Novedades para mostrar: el dataset curado del idioma más los posts de
+ * WordPress que todavía no están en él (Fase 3). Así, lo que el equipo
+ * publique en WordPress aparece en el sitio sin tocar código, y lo ya
+ * curado conserva su traducción revisada. Ordenadas de la más reciente a la
+ * más antigua.
+ */
+export async function getNovedades(locale: string = 'es'): Promise<NovedadPublicada[]> {
+  const { fetchWpNovedades } = await import('@/lib/wordpress/posts');
+  const curadas = novedadesByLocale[resolveLocale(locale)];
+  const idsCurados = new Set(curadas.map((novedad) => novedad.source_wp_id));
+  const slugsCurados = new Set(curadas.map((novedad) => novedad.slug));
+  const nuevas = (await fetchWpNovedades()).filter(
+    (novedad) => !idsCurados.has(novedad.source_wp_id) && !slugsCurados.has(novedad.slug),
+  );
+  return [...curadas, ...nuevas].sort((a, b) => b.fecha.localeCompare(a.fecha));
+}
+
+export async function getNovedad(slug: string, locale: string = 'es'): Promise<NovedadPublicada | undefined> {
+  return (await getNovedades(locale)).find((novedad) => novedad.slug === slug);
+}

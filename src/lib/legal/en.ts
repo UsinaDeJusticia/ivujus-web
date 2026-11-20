@@ -19,13 +19,14 @@
 // adapted to an Argentine civil association. That is a source-text issue in
 // Spanish, translated faithfully as-is rather than corrected here.
 import type { LegalDocument } from './types';
+import { WP_ORIGIN } from '@/lib/wordpress/origin';
 
 export const en: LegalDocument = {
   documentTitle: 'Privacy Policy',
   subtitle: 'Privacy policy of Usina de Justicia – Argentina Asociación Civil',
   source: {
     label: 'Source: WordPress institucional de IVUJUS (page id 18848, slug "terms-privacy")',
-    url: 'https://ivujus.org.ar/wp-json/wp/v2/pages?slug=terms-privacy&_fields=title,content',
+    url: `${WP_ORIGIN}/wp-json/wp/v2/pages?slug=terms-privacy&_fields=title,content`,
     fetchedAt: '2026-07-21',
   },
   nota: 'Courtesy translation. The Spanish version is the only legally binding text.',

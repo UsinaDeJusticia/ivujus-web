@@ -1,4 +1,5 @@
 import type { GaleriaImagen, PressArticle, Simposio2026Content, SymposiumDay } from './types';
+import { WP_ORIGIN } from '@/lib/wordpress/origin';
 
 // Nota de idioma para las notas de prensa: son artículos reales publicados en
 // español (docs/GLOSARIO-TRADUCCION.md §7, "Títulos de notas de prensa"). El
@@ -31,7 +32,7 @@ export const content: Simposio2026Content = {
       'Article 5 : Engagement académique et institutionnel à financer et développer le paradigme de la victimologie scientifique.',
     ],
     pdfUrl:
-      'https://ivujus.org.ar/wp-content/uploads/2026/04/Declaracion-de-Buenos-Aires-Traduccion-al-Ingles-Frances-y-Portugues.pdf',
+      `${WP_ORIGIN}/wp-content/uploads/2026/04/Declaracion-de-Buenos-Aires-Traduccion-al-Ingles-Frances-y-Portugues.pdf`,
     pdfNote: 'Comprend des versions en espagnol, anglais, français et portugais.',
   },
   days: [
@@ -196,59 +197,59 @@ export const content: Simposio2026Content = {
   ] satisfies PressArticle[],
   galeria: [
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/aebi-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/aebi-1024x862.jpeg`,
       alt: 'Marcelo Aebi intervient lors du Premier Symposium américain et européen de victimologie pénale.',
       epigrafe: 'Marcelo Aebi, intervenant au symposium.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/slotolow-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/slotolow-1024x862.jpeg`,
       alt: 'Raquel Slotolow intervient lors du Premier Symposium américain et européen de victimologie pénale.',
       epigrafe: 'Raquel Slotolow, intervenante au symposium.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/pascua-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/pascua-1024x862.jpeg`,
       alt: 'Francisco Javier Pascua intervient lors du Premier Symposium américain et européen de victimologie pénale.',
       epigrafe: 'Francisco Javier Pascua, intervenant au symposium.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/molina-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/molina-1024x862.jpeg`,
       alt: 'María Jimena Molina intervient lors du Premier Symposium américain et européen de victimologie pénale.',
       epigrafe: 'María Jimena Molina, intervenante au symposium.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/garavano-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/garavano-1024x862.jpeg`,
       alt: 'Germán Garavano intervient lors du Premier Symposium américain et européen de victimologie pénale.',
       epigrafe: 'Germán Garavano, intervenant au symposium.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/console-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/console-1024x862.jpeg`,
       alt: 'José Console intervient lors du Premier Symposium américain et européen de victimologie pénale.',
       epigrafe: 'José Console, intervenant au symposium.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/casares-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/casares-1024x862.jpeg`,
       alt: 'Martín Casares intervient lors du Premier Symposium américain et européen de victimologie pénale.',
       epigrafe: 'Martín Casares, intervenant au symposium.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/bargna-1024x862.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/bargna-1024x862.jpeg`,
       alt: 'Guillermo Bargna intervient lors du Premier Symposium américain et européen de victimologie pénale.',
       epigrafe: 'Guillermo Bargna, intervenant au symposium.',
     },
     {
-      imagen: 'https://ivujus.org.ar/wp-content/uploads/2026/04/1-1024x1024.jpeg',
+      imagen: `${WP_ORIGIN}/wp-content/uploads/2026/04/1-1024x1024.jpeg`,
       alt: 'Photographie de groupe de clôture du Premier Symposium américain et européen de victimologie pénale, CPACF, avril 2026.',
       epigrafe: 'Photographie de clôture sur la scène du CPACF.',
     },
     {
       imagen:
-        'https://ivujus.org.ar/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-14-at--1024x862.jpeg',
+        `${WP_ORIGIN}/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-14-at--1024x862.jpeg`,
       alt: 'Public dans la salle pendant le Premier Symposium américain et européen de victimologie pénale, CPACF, avril 2026.',
       epigrafe: "La salle du CPACF pendant l'une des journées.",
     },
     {
       imagen:
-        'https://ivujus.org.ar/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-14-at-11.06.08-1024x576.jpeg',
+        `${WP_ORIGIN}/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-14-at-11.06.08-1024x576.jpeg`,
       alt: 'Remise de distinctions pendant le Premier Symposium américain et européen de victimologie pénale, CPACF, avril 2026.',
       epigrafe: "Remise de distinctions à la clôture de l'une des journées.",
     },

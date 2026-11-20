@@ -3,7 +3,7 @@ import type { MetadataRoute } from 'next';
 import { getSiteUrl } from '@/lib/seo';
 import { institutoDataEs } from '@/lib/instituto';
 import { ciclosDataEs } from '@/lib/formacion';
-import { novedadesDataEs } from '@/lib/novedades';
+import { getNovedades } from '@/lib/novedades';
 import { declaracionesIndex } from '@/lib/publicaciones';
 
 // Mismas tres locales que src/lib/seo.ts (buildLocalizedMetadata) y
@@ -54,7 +54,7 @@ function parseIsoDate(fecha: string): Date {
   return Number.isNaN(parsed.getTime()) ? BUILD_DATE : parsed;
 }
 
-function buildDynamicRoutes(): RouteEntry[] {
+async function buildDynamicRoutes(): Promise<RouteEntry[]> {
   const consejoDirectivoRoutes = institutoDataEs.consejoDirectivo.map((persona) => ({
     path: `/instituto/consejo-directivo/${persona.slug}`,
     lastModified: BUILD_DATE,
@@ -70,7 +70,7 @@ function buildDynamicRoutes(): RouteEntry[] {
     lastModified: BUILD_DATE,
   }));
 
-  const novedadesRoutes = novedadesDataEs.map((novedad) => ({
+  const novedadesRoutes = (await getNovedades()).map((novedad) => ({
     path: `/novedades/${novedad.slug}`,
     lastModified: parseIsoDate(novedad.fecha),
   }));
@@ -93,9 +93,11 @@ function buildLanguageAlternates(siteUrl: string, path: string): Record<string, 
   return Object.fromEntries(LOCALES.map((locale) => [locale, `${siteUrl}/${locale}${path}`]));
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 300;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = getSiteUrl();
-  const routes = [...STATIC_ROUTES, ...buildDynamicRoutes()];
+  const routes = [...STATIC_ROUTES, ...(await buildDynamicRoutes())];
 
   return LOCALES.flatMap((locale) =>
     routes.map((route) => ({
