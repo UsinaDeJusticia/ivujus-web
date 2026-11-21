@@ -39,6 +39,18 @@ que trabajan en este repositorio. Leer primero
 - No agregar dependencias nuevas sin justificación en el brief o aprobación
   explícita de Jair.
 
+## Interfaz web: usar Modern Web Guidance
+
+Antes de escribir o cambiar HTML, CSS o JavaScript del navegador (menús,
+diálogos, formularios, accesibilidad, animaciones, rendimiento), consultar la
+habilidad del proyecto `.claude/skills/modern-web-guidance` (guías de Chrome,
+Edge, Firefox y MDN): `npx -y modern-web-guidance@latest search "<tema>"` y
+luego `retrieve "<id>"`. No aplica a backend, scripts ni configuración.
+
+**Navegadores soportados:** el criterio por defecto de esa guía. Las funciones
+«Baseline widely available» se usan sin más; las más nuevas, solo con el
+respaldo (fallback) que indica cada guía. Sin polyfills pesados.
+
 ## Flujo de trabajo por fases
 
 Cada fase del brief tiene criterios de aceptación cerrados. No avanzar a la
