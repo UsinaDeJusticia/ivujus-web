@@ -130,10 +130,27 @@ function isSectionActive(section: HeaderNavSection, pathname: string | null): bo
   return hrefs.some((href) => href && (pathname === href || pathname.startsWith(`${href}/`)))
 }
 
-function DropdownLink({ link, onNavigate }: { link: HeaderNavItem; onNavigate: () => void }) {
+function DropdownLink({
+  link,
+  onNavigate,
+  current,
+}: {
+  link: HeaderNavItem
+  onNavigate: () => void
+  /** Es la página que se está viendo: se anuncia como «página actual». */
+  current?: boolean
+}) {
   const content = (
     <>
-      <span className="block text-[13px] font-semibold text-[color:var(--ui-display-ink)]">{link.label}</span>
+      <span
+        className={[
+          'block text-[13px] font-semibold text-[color:var(--ui-display-ink)]',
+          // La página actual se marca con subrayado, no solo con color (WCAG 1.4.1).
+          current ? 'underline decoration-dorado-600 decoration-2 underline-offset-4' : '',
+        ].join(' ')}
+      >
+        {link.label}
+      </span>
       {link.description ? (
         <span className="mt-0.5 block text-[12px] leading-snug text-[color:var(--ui-ink-3)]">{link.description}</span>
       ) : null}
@@ -149,7 +166,7 @@ function DropdownLink({ link, onNavigate }: { link: HeaderNavItem; onNavigate: (
       {content}
     </a>
   ) : (
-    <Link href={link.href} className={className} onClick={onNavigate}>
+    <Link href={link.href} className={className} onClick={onNavigate} aria-current={current ? 'page' : undefined}>
       {content}
     </Link>
   )
@@ -286,7 +303,16 @@ export function Header({ homeHref = '/', subtitle, sections, cta, locale }: Head
                 const active = isSectionActive(section, pathname)
                 const panelId = `nav-panel-${section.id}`
                 return (
-                  <li key={section.id} className="relative">
+                  <li
+                    key={section.id}
+                    className="relative"
+                    // Si el foco del teclado sale de esta sección (Tab o
+                    // Shift+Tab fuera del desplegable), se cierra.
+                    onBlur={(event) => {
+                      const next = event.relatedTarget as Node | null
+                      if (open && next && !event.currentTarget.contains(next)) setOpenSection(null)
+                    }}
+                  >
                     <button
                       type="button"
                       ref={(element) => {
@@ -316,7 +342,7 @@ export function Header({ homeHref = '/', subtitle, sections, cta, locale }: Head
                       <ul className="space-y-0.5">
                         {section.links.map((link) => (
                           <li key={link.href}>
-                            <DropdownLink link={link} onNavigate={closeAll} />
+                            <DropdownLink link={link} onNavigate={closeAll} current={!link.external && link.href === pathname} />
                           </li>
                         ))}
                       </ul>
@@ -427,7 +453,7 @@ export function Header({ homeHref = '/', subtitle, sections, cta, locale }: Head
                           <ul className="space-y-0.5">
                             {section.links.map((link) => (
                               <li key={link.href}>
-                                <DropdownLink link={link} onNavigate={closeAll} />
+                                <DropdownLink link={link} onNavigate={closeAll} current={!link.external && link.href === pathname} />
                               </li>
                             ))}
                             {section.href && section.overview ? (
