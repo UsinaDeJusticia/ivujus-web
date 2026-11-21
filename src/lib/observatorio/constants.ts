@@ -2,6 +2,7 @@
 // (no una copia por idioma) porque son datos invariantes.
 //
 // Mapa Nacional del Delito: aplicación de Usina de Justicia (proyecto Vercel
-// `mapa-delito-usina`). Cuando `mapa.ivujus.org.ar` esté verificado en
-// Vercel, se cambia acá y listo.
-export const MAPA_DEL_DELITO_URL = 'https://mapa-delito-usina.vercel.app/mapa-del-delito';
+// `mapa-delito-usina`), servida desde el 21-nov-2026 en mapa.ivujus.org.ar
+// (CNAME en Hostinger, certificado de Vercel). La dirección
+// mapa-delito-usina.vercel.app sigue funcionando.
+export const MAPA_DEL_DELITO_URL = 'https://mapa.ivujus.org.ar/mapa-del-delito';
