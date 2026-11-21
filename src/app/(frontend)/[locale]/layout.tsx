@@ -3,9 +3,10 @@ import { notFound } from 'next/navigation';
 import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/next';
 
-import { Header, type HeaderNavItem } from '@/components/layout/Header';
+import { Header, type HeaderNavSection } from '@/components/layout/Header';
 import { Footer, type FooterColumn } from '@/components/layout/Footer';
 import { CAMPUS_VIRTUAL_URL } from '@/lib/formacion';
+import { getNavSections } from '@/lib/navigation';
 
 const LOCALES = ['es', 'en', 'fr'] as const;
 type Locale = (typeof LOCALES)[number];
@@ -22,55 +23,20 @@ type Locale = (typeof LOCALES)[number];
 const NAV_COPY: Record<
   Locale,
   {
-    instituto: string;
-    formacion: string;
-    publicaciones: string;
-    simposios: string;
-    novedades: string;
-    contacto: string;
     privacidad: string;
-    navegacion: string;
-    institucional: string;
     accederCampus: string;
   }
 > = {
   es: {
-    instituto: 'Instituto',
-    formacion: 'Formación',
-    publicaciones: 'Publicaciones',
-    // Etiqueta corta a propósito: el nombre completo de la sección
-    // («Eventos académicos») vive en el h1, el breadcrumb y la metadata. En el
-    // nav tiene que ser breve o la fila del header desborda entre 768 y 1024px.
-    simposios: 'Eventos',
-    novedades: 'Novedades',
-    contacto: 'Contacto',
     privacidad: 'Privacidad',
-    navegacion: 'Navegación',
-    institucional: 'Institucional',
     accederCampus: 'Acceder al Campus',
   },
   en: {
-    instituto: 'Institute',
-    formacion: 'Training',
-    publicaciones: 'Publications',
-    simposios: 'Events',
-    novedades: 'Updates',
-    contacto: 'Contact',
     privacidad: 'Privacy',
-    navegacion: 'Navigation',
-    institucional: 'Institutional',
     accederCampus: 'Access the Campus',
   },
   fr: {
-    instituto: 'Institut',
-    formacion: 'Formation',
-    publicaciones: 'Publications',
-    simposios: 'Événements',
-    novedades: 'Actualités',
-    contacto: 'Contact',
     privacidad: 'Confidentialité',
-    navegacion: 'Navigation',
-    institucional: 'Institutionnel',
     accederCampus: 'Accéder au Campus',
   },
 };
@@ -127,30 +93,31 @@ export default async function LocaleLayout({
   const nav = NAV_COPY[locale as Locale];
   const homeHref = `/${locale}`;
 
-  const navItems: HeaderNavItem[] = [
-    { label: nav.instituto, href: `${homeHref}/instituto` },
-    { label: nav.formacion, href: `${homeHref}/formacion` },
-    { label: nav.publicaciones, href: `${homeHref}/publicaciones` },
-    { label: nav.simposios, href: `${homeHref}/simposios` },
-    { label: nav.novedades, href: `${homeHref}/novedades` },
-  ];
+  // Menú: cinco secciones con desplegable (src/lib/navigation.ts). Los href
+  // del dataset no llevan idioma; se les antepone acá.
+  const withLocale = (href: string) => `${homeHref}${href}`;
+  const navSections: HeaderNavSection[] = getNavSections(locale).map((section) => ({
+    id: section.id,
+    label: section.label,
+    href: section.href ? withLocale(section.href) : undefined,
+    overview: section.overview,
+    links: section.links.map((link) => ({
+      label: link.label,
+      description: link.description,
+      href: link.external ? link.href : withLocale(link.href),
+      external: link.external,
+    })),
+  }));
 
-  // Footer: la columna "Navegación" reutiliza el nav principal; la columna
-  // "Institucional" agrega las rutas que no van en el nav superior
-  // (Contacto y la política de privacidad).
-  const footerColumns: FooterColumn[] = [
-    {
-      title: nav.navegacion,
-      links: navItems,
-    },
-    {
-      title: nav.institucional,
-      links: [
-        { label: nav.contacto, href: `${homeHref}/contacto` },
-        { label: nav.privacidad, href: `${homeHref}/terms-privacy` },
-      ],
-    },
-  ];
+  // Pie: una columna por sección del menú (mapa completo del sitio). La
+  // política de privacidad se suma a la columna de Instituto.
+  const footerColumns: FooterColumn[] = navSections.map((section) => ({
+    title: section.label,
+    links: [
+      ...section.links.map((link) => ({ label: link.label, href: link.href })),
+      ...(section.id === 'instituto' ? [{ label: nav.privacidad, href: `${homeHref}/terms-privacy` }] : []),
+    ],
+  }));
 
   return (
     <html lang={locale} className={`${cinzel.variable} ${montserrat.variable}`}>
@@ -168,7 +135,7 @@ export default async function LocaleLayout({
       <body>
         <Header
           homeHref={homeHref}
-          items={navItems}
+          sections={navSections}
           locale={locale}
           // CTA "Acceder al Campus": URL tomada de
           // docs/reference/design-system-oficial/README.md ("Superficies del

@@ -33,12 +33,13 @@ export async function POST(request: Request): Promise<Response> {
 
   // `expire: 0`: la lista de posts del WordPress vence ya; la próxima visita
   // la vuelve a pedir. Las rutas se invalidan para que el HTML cacheado
-  // (listado, cada novedad, sitemap y llms.txt) se regenere con esos datos.
+  // (portada, listado, cada novedad, sitemap y llms.txt) se regenere.
   revalidateTag('wp-posts', { expire: 0 });
+  revalidatePath('/[locale]', 'page');
   revalidatePath('/[locale]/novedades', 'page');
   revalidatePath('/[locale]/novedades/[slug]', 'page');
   revalidatePath('/sitemap.xml');
   revalidatePath('/llms.txt');
 
-  return Response.json({ ok: true, revalidated: ['wp-posts', 'novedades', 'sitemap', 'llms'] });
+  return Response.json({ ok: true, revalidated: ['wp-posts', 'portada', 'novedades', 'sitemap', 'llms'] });
 }

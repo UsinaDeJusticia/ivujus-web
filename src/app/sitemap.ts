@@ -4,6 +4,7 @@ import { getSiteUrl } from '@/lib/seo';
 import { institutoDataEs } from '@/lib/instituto';
 import { ciclosDataEs } from '@/lib/formacion';
 import { getNovedades } from '@/lib/novedades';
+import { herramientasDataEs } from '@/lib/observatorio';
 import { declaracionesIndex } from '@/lib/publicaciones';
 
 // Mismas tres locales que src/lib/seo.ts (buildLocalizedMetadata) y
@@ -44,6 +45,7 @@ const STATIC_ROUTES: RouteEntry[] = [
   { path: '/publicaciones/declaraciones', lastModified: BUILD_DATE },
   { path: '/publicaciones/dossiers', lastModified: BUILD_DATE },
   { path: '/publicaciones/biblioteca', lastModified: BUILD_DATE },
+  { path: '/observatorio', lastModified: BUILD_DATE },
   { path: '/novedades', lastModified: BUILD_DATE },
   { path: '/contacto', lastModified: BUILD_DATE },
   { path: '/terms-privacy', lastModified: BUILD_DATE },
@@ -70,6 +72,11 @@ async function buildDynamicRoutes(): Promise<RouteEntry[]> {
     lastModified: BUILD_DATE,
   }));
 
+  const observatorioRoutes = herramientasDataEs.map((herramienta) => ({
+    path: `/observatorio/${herramienta.slug}`,
+    lastModified: BUILD_DATE,
+  }));
+
   const novedadesRoutes = (await getNovedades()).map((novedad) => ({
     path: `/novedades/${novedad.slug}`,
     lastModified: parseIsoDate(novedad.fecha),
@@ -84,6 +91,7 @@ async function buildDynamicRoutes(): Promise<RouteEntry[]> {
     ...consejoDirectivoRoutes,
     ...comiteCientificoRoutes,
     ...ciclosRoutes,
+    ...observatorioRoutes,
     ...novedadesRoutes,
     ...declaracionesRoutes,
   ];

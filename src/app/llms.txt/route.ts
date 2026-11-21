@@ -2,6 +2,7 @@ import { getSiteUrl } from '@/lib/seo';
 import { institutoDataEs } from '@/lib/instituto';
 import { ciclosDataEs, diplomaturaDataEs } from '@/lib/formacion';
 import { getNovedades } from '@/lib/novedades';
+import { herramientasDataEs } from '@/lib/observatorio';
 import { simposio2026Es } from '@/lib/simposio2026';
 
 // Mapa curado GEO (Generative Engine Optimization) en `/llms.txt`, formato
@@ -53,6 +54,14 @@ async function buildLlmsTxt(): Promise<string> {
   for (const ciclo of ciclosDataEs) {
     const url = `${siteUrl}/es/formacion/ciclos/${ciclo.slug}`;
     lines.push(`- [${ciclo.titulo} (${ciclo.fecha})](${url}): ${ciclo.resumen}`);
+  }
+  lines.push('');
+
+  lines.push('## Observatorio');
+  lines.push('');
+  for (const herramienta of herramientasDataEs) {
+    const url = `${siteUrl}/es/observatorio/${herramienta.slug}`;
+    lines.push(`- [${herramienta.nombre}](${url}): ${herramienta.resumen} ${herramienta.credito}`);
   }
   lines.push('');
 

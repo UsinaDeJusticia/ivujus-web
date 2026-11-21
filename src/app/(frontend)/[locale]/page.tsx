@@ -8,6 +8,8 @@ import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
 import { ButtonPrincipal, ButtonSecundario, LinkArrow } from '@/components/ui/Buttons';
 import { ContentCard } from '@/components/cards/ContentCard';
+import { getNovedades } from '@/lib/novedades';
+import { formatDateLong } from '@/lib/i18n';
 
 // El tipo Locale vive en @/lib/i18n: antes esta página declaraba el suyo,
 // igual que otros tres archivos del proyecto. Una sola definición evita que
@@ -64,6 +66,10 @@ type HomeCopy = {
     cta: string;
     verNovedades: string;
   };
+  ultimas: {
+    eyebrow: string;
+    title: string;
+  };
 };
 
 // Endpoint real de alta a la lista de novedades de Usina de Justicia en
@@ -72,7 +78,7 @@ type HomeCopy = {
 // es un link externo directo al alta pública.
 const PERFIT_SUBSCRIBE_URL = 'https://optin.myperfit.com/subscribe/usinadejusticia/RUknaImy';
 
-// Los 7 accesos institucionales apuntan únicamente a rutas que ya existen
+// Los accesos institucionales apuntan únicamente a rutas que ya existen
 // (ver docs/CLAUDE.md, "Estado actual de frontend y migracion"). Los cuerpos
 // en español son copia verbatim de `institutoData.intro` / `institutoData.
 // sections` (src/lib/instituto.ts), de `formacionHubData` (src/lib/
@@ -140,6 +146,11 @@ const copy: Record<Locale, HomeCopy> = {
           href: '/publicaciones',
         },
         {
+          title: 'Observatorio',
+          body: 'Herramientas de datos y análisis, como el Mapa Nacional del Delito de Usina de Justicia.',
+          href: '/observatorio',
+        },
+        {
           title: 'Novedades',
           body: 'Agenda pública y difusión institucional: noticias, encuentros y reconocimientos del Instituto.',
           href: '/novedades',
@@ -152,6 +163,10 @@ const copy: Record<Locale, HomeCopy> = {
       lead: 'Suscripción por correo electrónico a la agenda pública y la producción editorial del IVUJUS, a través del sistema de novedades de Usina de Justicia.',
       cta: 'Suscribirse a las novedades',
       verNovedades: 'Ver todas las novedades',
+    },
+    ultimas: {
+      eyebrow: 'Novedades',
+      title: 'Lo último del Instituto.',
     },
   },
   en: {
@@ -211,6 +226,11 @@ const copy: Record<Locale, HomeCopy> = {
           href: '/publicaciones',
         },
         {
+          title: 'Observatory',
+          body: 'Data and analysis tools, such as the National Crime Map by Usina de Justicia.',
+          href: '/observatorio',
+        },
+        {
           title: 'Updates',
           body: "Public agenda and institutional outreach: news, meetings, and recognitions from the Institute.",
           href: '/novedades',
@@ -223,6 +243,10 @@ const copy: Record<Locale, HomeCopy> = {
       lead: "Email subscription to the public agenda and editorial output of IVUJUS, through Usina de Justicia's updates system.",
       cta: 'Subscribe to updates',
       verNovedades: 'See all updates',
+    },
+    ultimas: {
+      eyebrow: 'Updates',
+      title: 'Latest from the Institute.',
     },
   },
   fr: {
@@ -282,6 +306,11 @@ const copy: Record<Locale, HomeCopy> = {
           href: '/publicaciones',
         },
         {
+          title: 'Observatoire',
+          body: "Outils de données et d'analyse, comme la Carte nationale de la criminalité d'Usina de Justicia.",
+          href: '/observatorio',
+        },
+        {
           title: 'Actualités',
           body: "Agenda public et diffusion institutionnelle : actualités, rencontres et distinctions de l'Institut.",
           href: '/novedades',
@@ -294,6 +323,10 @@ const copy: Record<Locale, HomeCopy> = {
       lead: "Abonnement par courrier électronique à l'agenda public et à la production éditoriale de l'IVUJUS, via le système d'actualités de Usina de Justicia.",
       cta: "S'abonner aux actualités",
       verNovedades: 'Voir toutes les actualités',
+    },
+    ultimas: {
+      eyebrow: 'Actualités',
+      title: 'Les dernières nouvelles de l’Institut.',
     },
   },
 };
@@ -314,6 +347,10 @@ export async function generateMetadata({
   });
 }
 
+// La portada muestra las últimas novedades del WordPress: se actualiza al
+// instante con el aviso de publicación (api/revalidate) y cada 1 hora.
+export const revalidate = 3600;
+
 export default async function HomePage({
   params,
 }: {
@@ -323,6 +360,7 @@ export default async function HomePage({
   const content = pickLocale(copy, locale);
   const instituto = getInstitutoData(locale);
   const simposio2026 = getSimposio2026(locale);
+  const ultimasNovedades = (await getNovedades(locale)).slice(0, 3);
 
   const organizationJsonLd = {
     '@context': 'https://schema.org',
@@ -465,6 +503,27 @@ export default async function HomePage({
           </dl>
         </div>
       </section>
+
+      {/* Últimas novedades: las tres más recientes (curadas + WordPress). */}
+      {ultimasNovedades.length > 0 ? (
+        <section className="mx-auto max-w-[var(--container-default)] px-6 pt-24 sm:px-10">
+          <SectionHeader eyebrow={content.ultimas.eyebrow} title={content.ultimas.title} />
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {ultimasNovedades.map((novedad) => (
+              <ContentCard
+                key={novedad.slug}
+                href={`/${locale}/novedades/${novedad.slug}`}
+                eyebrow={formatDateLong(novedad.fecha, locale)}
+                title={novedad.titulo}
+                description={novedad.bajada.length > 220 ? `${novedad.bajada.slice(0, 217).trimEnd()}…` : novedad.bajada}
+              />
+            ))}
+          </div>
+          <div className="mt-8">
+            <LinkArrow href={`/${locale}/novedades`}>{content.newsletter.verNovedades}</LinkArrow>
+          </div>
+        </section>
+      ) : null}
 
       {/* Grilla de acceso institucional — solo rutas navegables hoy. */}
       <section className="mx-auto max-w-[var(--container-default)] px-6 py-24 sm:px-10">

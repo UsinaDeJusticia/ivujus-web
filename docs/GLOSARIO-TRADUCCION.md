@@ -78,6 +78,8 @@ las formas de esta tabla.
 | Novedades | Updates | Actualités |
 | Contacto | Contact | Contact |
 | Observatorio | Observatory | Observatoire |
+| Actualidad (grupo del menú) | News & Events | Agenda |
+| Mapa Nacional del Delito | Mapa Nacional del Delito (National Crime Map) | Mapa Nacional del Delito (Carte nationale de la criminalité) |
 | Índice Legislativo | Legislative Index | Index législatif |
 | Estadísticas | Statistics | Statistiques |
 | Biblioteca | Library | Bibliothèque |
@@ -85,8 +87,12 @@ las formas de esta tabla.
 | Libros | Books | Livres |
 | Dossiers temáticos | Thematic Dossiers | Dossiers thématiques |
 
-**Nota:** en el menú, «Eventos académicos» se abrevia a «Eventos» / «Events» /
-«Événements» por espacio. El nombre completo se usa en todo lo demás.
+**Nota (menú, desde el 21-nov-2026):** el menú tiene cinco secciones con desplegable
+(`src/lib/navigation.ts`). «Eventos académicos» y «Novedades» van dentro del grupo
+**Actualidad**, que en francés se llama **Agenda** porque «Actualités» ya es el nombre de
+Novedades y quedarían dos rótulos casi iguales. «Mapa Nacional del Delito» es nombre propio
+de una herramienta de Usina de Justicia: se mantiene en español y se agrega la traducción
+entre paréntesis.
 
 ## 5. Formación y actividades
 

@@ -58,7 +58,10 @@ export function Footer({
           className={[
             'grid gap-12 border-b border-white/10 pb-14',
             columns.length > 0
-              ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(auto-fit,minmax(140px,1fr))]'
+              ? // La marca ocupa la fila completa hasta xl; desde xl va al lado de
+                // las columnas. (El `repeat(auto-fit, …)` que había antes era
+                // inválido combinado con `1.4fr` y caía a dos columnas.)
+                'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1.3fr_repeat(5,minmax(0,1fr))] [&>*:first-child]:sm:col-span-2 [&>*:first-child]:lg:col-span-3 [&>*:first-child]:xl:col-span-1'
               : 'grid-cols-1',
           ].join(' ')}
         >
