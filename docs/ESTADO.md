@@ -50,6 +50,20 @@ Payload · marcar `DATABASE_URI`/`PAYLOAD_SECRET` de Vercel como sensibles · `b
 roto (usa `next lint`, retirado en Next 16) · actualizar las 22 redirecciones de Usina hacia
 rutas finales · re-alojar imágenes de prensa de terceros.
 
+## Microinteracciones (22-nov-2026)
+
+Integración de microinteractions.dev (MIT, aviso en `THIRD_PARTY-NOTICES.md`), siempre
+consultando Modern Web Guidance:
+- **Tanda 1:** movimiento reducido caso por caso (sin regla global), curva
+  `--easing-emphasized`, flecha que se estira (`MorphArrow`) en todos los «Ver todo»,
+  desplegables del menú con entrada animada, botones con leve escala al presionar.
+- **Tanda 2:** índice lateral (`SectionRail`) en Privacidad (≥1280px) y Simposio (≥1440px).
+- **Tanda 3 (parcial):** pestañas por jornada (`Tabs`) en el programa del Simposio, con
+  `hidden="until-found"` para que la jornada cerrada siga apareciendo en búsquedas.
+- **Pendiente:** FAQ de la Diplomatura con las preguntas de `cms.ivujus.org.ar/preguntas-frecuentes/`
+  (aprobado por Emanuel). Bloqueado porque la red de la sesión de Claude no permite
+  `cms.ivujus.org.ar`: hay que agregarlo a los dominios permitidos del entorno.
+
 > Cualquier sesión nueva de Claude Code retoma desde acá. Actualizar al cierre de cada sesión: qué se hizo, decisiones, pendientes, próximo paso exacto.
 
 **Última actualización:** 20 de noviembre de 2026 (Biblioteca propia + contenido de Codex en `main`; Campus → `mi-cuenta-2`; preparación del cambio de dominio).

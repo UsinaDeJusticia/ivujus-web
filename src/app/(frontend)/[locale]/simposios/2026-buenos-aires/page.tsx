@@ -7,6 +7,7 @@ import { type Locale, pickLocale, resolveLocale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
 import { SectionRail } from '@/components/ui/SectionRail';
+import { Tabs } from '@/components/ui/Tabs';
 import { ON_THIS_PAGE } from '@/lib/slug';
 import { ButtonPrincipal } from '@/components/ui/Buttons';
 
@@ -212,7 +213,7 @@ export default async function Symposium2026Page({
         ariaLabel={ON_THIS_PAGE[locale] ?? ON_THIS_PAGE.es}
         items={[
           { id: 'declaracion', label: simposio2026.declaration.title },
-          ...simposio2026.days.map((day) => ({ id: `jornada-${day.id}`, label: `${day.shortLabel}: ${day.title}` })),
+          { id: 'programa', label: labels.programaEyebrow },
           { id: 'galeria', label: galeriaLabels.eyebrow },
           { id: 'cobertura', label: labels.coberturaEyebrow },
         ]}
@@ -289,27 +290,30 @@ export default async function Symposium2026Page({
           </aside>
         </section>
 
-        <section className="space-y-10">
+        <section id="programa" tabIndex={-1} className="scroll-mt-28 space-y-10 focus:outline-none">
           <SectionHeader
             eyebrow={labels.programaEyebrow}
             title={labels.programaTitle}
           />
 
-          <div className="space-y-10">
-            {simposio2026.days.map((day) => (
+          {/* Una pestaña por jornada (antes, las dos seguidas). La jornada
+              cerrada sigue en el HTML con hidden="until-found": la encuentran
+              «Buscar en la página» y los buscadores. */}
+          <Tabs
+            label={labels.programaEyebrow}
+            items={simposio2026.days.map((day) => ({
+              id: day.id,
+              kicker: day.shortLabel,
+              label: day.title,
+              panel: (
               <section
-                key={day.id}
-                id={`jornada-${day.id}`}
-                tabIndex={-1}
-                className="scroll-mt-28 rounded-md border focus:outline-none border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-6 shadow-[var(--shadow-1)] sm:p-8"
+                aria-label={`${day.shortLabel}: ${day.title}`}
+                className="rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-6 shadow-[var(--shadow-1)] sm:p-8"
               >
-                <div className="mb-8 flex flex-col gap-3 border-b border-[color:var(--ui-border)] pb-6 sm:flex-row sm:items-end sm:justify-between">
-                  <div>
-                    <MetaLabel>{day.shortLabel}</MetaLabel>
-                    <h3 className="mt-2 text-[length:clamp(22px,2.6vw,30px)]">{day.title}</h3>
-                  </div>
-                  <p className="max-w-2xl text-sm leading-7 text-[color:var(--ui-ink-3)]">{day.summary}</p>
-                </div>
+                {/* El título de la jornada ya se ve en la pestaña; acá queda
+                    para lectores de pantalla y para el orden h2 → h3 → h4. */}
+                <h3 className="sr-only">{`${day.shortLabel}: ${day.title}`}</h3>
+                <p className="mb-8 max-w-3xl border-b border-[color:var(--ui-border)] pb-6 text-sm leading-7 text-[color:var(--ui-ink-3)]">{day.summary}</p>
 
                 <div className="space-y-4">
                   {day.sessions.map((session) => (
@@ -347,8 +351,9 @@ export default async function Symposium2026Page({
                   ))}
                 </div>
               </section>
-            ))}
-          </div>
+              ),
+            }))}
+          />
         </section>
 
         <section id="galeria" tabIndex={-1} className="scroll-mt-28 space-y-10 focus:outline-none">

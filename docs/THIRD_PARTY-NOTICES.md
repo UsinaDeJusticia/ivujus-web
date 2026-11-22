@@ -8,6 +8,7 @@ Partes del sitio adaptadas de sus estudios:
 - `src/components/ui/MorphArrow.tsx` y estilos `.morph-arrow` en
   `src/app/(frontend)/globals.css` — estudio «Chevron morph».
 - `src/components/ui/SectionRail.tsx` — estudio «Tick rail».
+- `src/components/ui/Tabs.tsx` — estudio «Tab indicator».
 - Reglas generales de movimiento (curva, tiempos, hover solo con mouse,
   foco sin animación, movimiento reducido) en `globals.css`.
 
