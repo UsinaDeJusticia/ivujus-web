@@ -9,6 +9,7 @@ Partes del sitio adaptadas de sus estudios:
   `src/app/(frontend)/globals.css` — estudio «Chevron morph».
 - `src/components/ui/SectionRail.tsx` — estudio «Tick rail».
 - `src/components/ui/Tabs.tsx` — estudio «Tab indicator».
+- `src/components/ui/FaqAccordion.tsx` y estilos `.faq` — estética del estudio «FAQ panel» (el comportamiento sigue la guía «accordion» de Modern Web Guidance).
 - Reglas generales de movimiento (curva, tiempos, hover solo con mouse,
   foco sin animación, movimiento reducido) en `globals.css`.
 

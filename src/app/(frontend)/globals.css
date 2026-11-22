@@ -455,6 +455,91 @@ a:hover {
       }
     }
   }
+
+  /* Preguntas frecuentes (FaqAccordion): `<details>` nativos. Cerrado, el
+     contenido queda en `::details-content` con content-visibility: hidden
+     (no display: none), así «Buscar en la página» lo encuentra. */
+  .faq__item {
+    border: 1px solid var(--ui-border);
+    border-radius: var(--radius-md, 6px);
+    background: var(--ui-bg-page);
+    transition: background-color 200ms var(--easing-emphasized), border-color 200ms var(--easing-emphasized);
+  }
+  .faq__item[open] {
+    background: var(--ui-bg-surface);
+    border-color: var(--color-dorado-600);
+    box-shadow: var(--shadow-1);
+  }
+  .faq__question {
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    min-height: 48px;
+    padding: 0.9rem 1.25rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.45;
+    color: var(--ui-display-ink);
+    border-radius: inherit;
+  }
+  .faq__question::-webkit-details-marker {
+    display: none;
+  }
+  /* Chevron antes del texto (se lee en vertical); apunta al costado cerrado
+     y hacia abajo abierto: se rota, no se cambia, para poder animarlo. */
+  .faq__question::before {
+    content: '';
+    flex-shrink: 0;
+    width: 0.55em;
+    height: 0.55em;
+    margin-top: 0.42em;
+    border-right: 2px solid var(--ui-accent-ink);
+    border-bottom: 2px solid var(--ui-accent-ink);
+    rotate: -45deg;
+  }
+  .faq__item[open] > .faq__question::before {
+    rotate: 45deg;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .faq__item:not([open]) > .faq__question:hover {
+      background: var(--ui-bg-muted);
+    }
+  }
+  .faq__question:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus);
+  }
+  .faq__answer {
+    padding: 0 1.25rem 1.1rem calc(1.25rem + 0.55em + 0.75rem);
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--ui-ink-3);
+  }
+  .faq__answer > p + p {
+    margin-top: 0.6rem;
+  }
+  .faq__item::details-content {
+    interpolate-size: allow-keywords;
+    overflow: clip;
+    contain: layout;
+  }
+  .faq__item:not([open])::details-content {
+    block-size: 0;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .faq__question::before {
+      transition: rotate 300ms cubic-bezier(0.64, 0, 0.2, 1);
+    }
+    .faq__item::details-content {
+      transition:
+        block-size 300ms cubic-bezier(0.64, 0, 0.2, 1),
+        content-visibility 300ms,
+        display 300ms;
+      transition-behavior: allow-discrete;
+    }
+  }
 }
 
 /* --- Swap de logo por tema --------------------------------------

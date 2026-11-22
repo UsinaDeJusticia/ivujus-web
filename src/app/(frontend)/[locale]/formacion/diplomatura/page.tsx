@@ -5,6 +5,7 @@ import { resolveLocale, type Locale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
 import { ButtonPrincipal, ButtonSecundario } from '@/components/ui/Buttons';
+import { FaqAccordion, faqRespuestaTexto } from '@/components/ui/FaqAccordion';
 
 // Copys de interfaz por locale. El contenido de fondo (título, descripción,
 // reseñas) viene de getDiplomatura(locale) (@/lib/formacion), ya trilingüe.
@@ -242,6 +243,33 @@ export default async function FormacionDiplomaturaPage({
               </blockquote>
             ))}
           </div>
+        </section>
+
+        <section id="preguntas-frecuentes" className="scroll-mt-28 space-y-8">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={buildJsonLdScript({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              inLanguage: locale,
+              mainEntity: diplomaturaData.faq.items.map((item) => ({
+                '@type': 'Question',
+                name: item.pregunta,
+                acceptedAnswer: { '@type': 'Answer', text: faqRespuestaTexto(item) },
+              })),
+            })}
+          />
+          <div className="space-y-4">
+            <Eyebrow>{diplomaturaData.faq.eyebrow}</Eyebrow>
+            <h2 id="faq-titulo" className="max-w-3xl text-balance text-[length:clamp(26px,3.2vw,36px)]">
+              {diplomaturaData.faq.titulo}
+            </h2>
+            <p className="max-w-3xl text-pretty text-base leading-7 text-[color:var(--ui-ink-3)]">{diplomaturaData.faq.bajada}</p>
+            {diplomaturaData.faq.notaIdioma ? (
+              <p className="max-w-3xl text-sm italic text-[color:var(--ui-ink-3)]">{diplomaturaData.faq.notaIdioma}</p>
+            ) : null}
+          </div>
+          <FaqAccordion items={diplomaturaData.faq.items} locale={locale} labelledBy="faq-titulo" />
         </section>
 
         <section className="rounded-md border border-white/10 bg-azul-900 p-8 text-white shadow-[var(--shadow-2)] sm:p-10">

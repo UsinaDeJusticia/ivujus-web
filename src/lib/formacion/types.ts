@@ -4,6 +4,31 @@
 
 export type FuenteContenido = 'migracion_usina' | 'migracion_wp';
 
+/** Un tramo de texto de una respuesta: texto plano o un enlace. */
+export type FaqSegmento = string | { texto: string; url: string };
+
+export type FaqItem = {
+  pregunta: string;
+  /** Párrafos de la respuesta; cada párrafo es una lista de tramos. */
+  respuesta: FaqSegmento[][];
+};
+
+/**
+ * Preguntas frecuentes de la Diplomatura. Fuente: la página
+ * `preguntas-frecuentes` del WordPress (cms.ivujus.org.ar, WP 21312),
+ * adaptada a cómo funciona hoy el sitio (aprobado por Emanuel, 22-nov-2026).
+ */
+export type DiplomaturaFaq = {
+  eyebrow: string;
+  titulo: string;
+  bajada: string;
+  /** Aviso de que el Campus está en español. Vacío en `es`. */
+  notaIdioma?: string;
+  items: FaqItem[];
+  source_wp_id: number;
+  source_url: string;
+};
+
 export type Diplomatura = {
   titulo: string;
   nombreHistorico?: string;
@@ -16,6 +41,7 @@ export type Diplomatura = {
   resenas: string[];
   programaPdfUrl: string;
   campusUrl: string;
+  faq: DiplomaturaFaq;
   fuente: FuenteContenido;
   source_wp_id: number;
   source_url: string;

@@ -18,3 +18,10 @@ export const CAMPUS_VIRTUAL_URL = `${WP_ORIGIN}/mi-cuenta-2/`;
 // Victimología y leyes de víctimas".
 export const DIPLOMATURA_PROGRAMA_PDF_URL =
   `${WP_ORIGIN}/wp-content/uploads/2025/09/Diplomatura.pdf`;
+
+// Enlaces del Campus que usan las preguntas frecuentes de la Diplomatura
+// (verificados el 22-nov-2026 en cms.ivujus.org.ar).
+export const DIPLOMATURA_FICHA_URL = `${WP_ORIGIN}/producto/curso-las-leyes-de-las-victimas-en-el-marco-de-la-victimologia-particulares/`;
+export const CAMPUS_RECUPERAR_CLAVE_URL = `${WP_ORIGIN}/mi-cuenta-2/lost-password/`;
+export const CAMPUS_GUIA_CLAVE_PDF_URL = `${WP_ORIGIN}/wp-content/uploads/2023/07/CAMBIO.-DE-CONTRASENA2.pdf`;
+export const FAQ_SOURCE_URL = `${WP_ORIGIN}/preguntas-frecuentes/`;

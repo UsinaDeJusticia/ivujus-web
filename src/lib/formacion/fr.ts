@@ -28,7 +28,15 @@
 //   espagnol, par extension de la même règle qui protège UBA/UADE/UdeMM ;
 //   seuls les mots descriptifs qui les entourent sont traduits.
 
-import { CAMPUS_VIRTUAL_URL, DIPLOMATURA_PROGRAMA_PDF_URL } from './constants';
+import {
+  CAMPUS_GUIA_CLAVE_PDF_URL,
+  CAMPUS_RECUPERAR_CLAVE_URL,
+  CAMPUS_VIRTUAL_URL,
+  DIPLOMATURA_FICHA_URL,
+  DIPLOMATURA_PROGRAMA_PDF_URL,
+  FAQ_SOURCE_URL,
+} from './constants';
+import { INSTITUTIONAL_EMAIL } from '@/lib/contacto';
 import type { Ciclo, Diplomatura, FormacionContent, FormacionHub } from './types';
 import { WP_ORIGIN } from '@/lib/wordpress/origin';
 
@@ -50,6 +58,82 @@ const diplomaturaData: Diplomatura = {
   ],
   programaPdfUrl: DIPLOMATURA_PROGRAMA_PDF_URL,
   campusUrl: CAMPUS_VIRTUAL_URL,
+  faq: {
+    eyebrow: 'Questions fréquentes',
+    titulo: 'Inscription, accès et certificat.',
+    bajada: 'Réponses sur l’inscription, l’accès au Campus virtuel et le téléchargement du certificat.',
+    notaIdioma: 'Le Campus est en espagnol : les noms des boutons et des courriels sont cités tels qu’ils y apparaissent, avec leur traduction entre parenthèses.',
+    items: [
+      {
+        pregunta: 'Quels cours sont disponibles ?',
+        respuesta: [
+          ['L’offre actuelle est ce Diplôme, suivi sur le Campus virtuel.'],
+          ['Les cours, journées et entretiens enregistrés de l’Institut se trouvent dans ', { texto: 'Cycles de formation', url: '/formacion/ciclos' }, '.'],
+        ],
+      },
+      {
+        pregunta: 'Comment m’inscrire ?',
+        respuesta: [
+          ['Rendez-vous sur la ', { texto: 'fiche du Diplôme sur le Campus', url: DIPLOMATURA_FICHA_URL }, '. Vous y verrez la description du cours. Cliquez sur « Añadir al carrito » (Ajouter au panier) et finalisez l’achat.'],
+        ],
+      },
+      {
+        pregunta: 'Comment le compte est-il créé ?',
+        respuesta: [['Le compte est créé automatiquement lors de la commande.']],
+      },
+      {
+        pregunta: 'Quels moyens de paiement puis-je utiliser ?',
+        respuesta: [
+          ['Vous pouvez utiliser Mercado Pago ou le virement bancaire.'],
+          ['En cas de virement bancaire, l’identifiant d’accès au cours vous sera envoyé une fois le paiement crédité.'],
+        ],
+      },
+      {
+        pregunta: 'Comment m’inscrire dans le cadre d’une convention signée ?',
+        respuesta: [
+          ['La procédure est la même que pour « Comment m’inscrire ? », mais avec un coupon de réduction de 100 %. Le coupon est remis par le représentant de la province.'],
+        ],
+      },
+      {
+        pregunta: 'Que se passe-t-il à la fin de l’achat ?',
+        respuesta: [
+          ['Un écran vous confirme que votre commande a été acceptée. Vous recevrez également deux courriels :'],
+          ['Le premier, « ¡Se ha creado tu cuenta en USINA DE JUSTICIA CAMPUS! » (Votre compte USINA DE JUSTICIA CAMPUS a été créé), avec votre nom d’utilisateur et le lien vers votre compte, où vous pouvez consulter vos commandes et changer votre mot de passe.'],
+          ['Le second, « ¡Hemos recibido tu pedido en USINA DE JUSTICIA CAMPUS! » (Nous avons bien reçu votre commande), avec le détail de votre commande.'],
+        ],
+      },
+      {
+        pregunta: 'Je n’ai pas reçu le courriel de confirmation d’achat',
+        respuesta: [['Écrivez à ', { texto: INSTITUTIONAL_EMAIL, url: `mailto:${INSTITUTIONAL_EMAIL}` }, '.']],
+      },
+      {
+        pregunta: 'Comment accéder au cours ?',
+        respuesta: [
+          ['Avec le bouton « Accéder au Campus », en haut à droite de ce site (sur mobile, dans le menu). Connectez-vous ensuite avec votre nom d’utilisateur et votre mot de passe.'],
+        ],
+      },
+      {
+        pregunta: 'J’ai oublié mon mot de passe',
+        respuesta: [
+          ['Sur l’écran de connexion du Campus, utilisez l’option « ¿Olvidaste la contraseña? » (Mot de passe oublié ?), ou allez directement à la ', { texto: 'page de récupération du mot de passe', url: CAMPUS_RECUPERAR_CLAVE_URL }, '.'],
+          ['Un ', { texto: 'guide PDF pas à pas', url: CAMPUS_GUIA_CLAVE_PDF_URL }, ' est également disponible (en espagnol).'],
+        ],
+      },
+      {
+        pregunta: 'Comment télécharger le certificat ?',
+        respuesta: [
+          ['À la fin du cours, le système revient automatiquement à l’écran du cours, où apparaît le lien de téléchargement.'],
+          ['Vous pouvez aussi vous connecter à votre compte et sélectionner le cours : le lien de téléchargement apparaît en bas de la page.'],
+        ],
+      },
+      {
+        pregunta: 'Qui contacter en cas de problème ?',
+        respuesta: [['Écrivez à ', { texto: INSTITUTIONAL_EMAIL, url: `mailto:${INSTITUTIONAL_EMAIL}` }, '.']],
+      },
+    ],
+    source_wp_id: 21312,
+    source_url: FAQ_SOURCE_URL,
+  },
   fuente: 'migracion_wp',
   source_wp_id: 24055,
   source_url: `${WP_ORIGIN}/campus-virtual/`,

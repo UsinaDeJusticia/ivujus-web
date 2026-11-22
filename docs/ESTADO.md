@@ -60,9 +60,10 @@ consultando Modern Web Guidance:
 - **Tanda 2:** índice lateral (`SectionRail`) en Privacidad (≥1280px) y Simposio (≥1440px).
 - **Tanda 3 (parcial):** pestañas por jornada (`Tabs`) en el programa del Simposio, con
   `hidden="until-found"` para que la jornada cerrada siga apareciendo en búsquedas.
-- **Pendiente:** FAQ de la Diplomatura con las preguntas de `cms.ivujus.org.ar/preguntas-frecuentes/`
-  (aprobado por Emanuel). Bloqueado porque la red de la sesión de Claude no permite
-  `cms.ivujus.org.ar`: hay que agregarlo a los dominios permitidos del entorno.
+- **Tanda 3 (completa):** preguntas frecuentes de la Diplomatura (`FaqAccordion`, 11 preguntas)
+  tomadas de `cms.ivujus.org.ar/preguntas-frecuentes/` y adaptadas al sitio actual (menú,
+  botón «Acceder al Campus», ficha de la Diplomatura, recuperar contraseña). Medios de pago
+  verificados en la tienda (Mercado Pago y transferencia). JSON-LD `FAQPage`.
 
 > Cualquier sesión nueva de Claude Code retoma desde acá. Actualizar al cierre de cada sesión: qué se hizo, decisiones, pendientes, próximo paso exacto.
 

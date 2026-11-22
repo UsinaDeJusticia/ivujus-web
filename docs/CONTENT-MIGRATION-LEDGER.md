@@ -33,7 +33,7 @@ Decision cerrada adicional:
 | 22720 | `suscripcion` | Suscripcion | no migrar | CTA o proxy a Perfit | baja | El brief dice que Perfit se mantiene; no hace falta clonar la pagina completa. |
 | 9 | `blog` | Blog | migrar | `novedades` | alta | La page en si no importa tanto; importa el listado de posts. |
 | 19637 | `entrevistas-en-la-radio` | ENTREVISTAS EN LA RADIO | migrar | archivo audiovisual secundario dentro de `formacion/ciclos` o `novedades` | baja | Tiene videos reales; migrar solo si aporta valor al archivo institucional. |
-| 21312 | `preguntas-frecuentes` | Preguntas frecuentes | no migrar | fuera del frontend principal | media | FAQ operativa del LMS, pagos, usuarios y certificados. |
+| 21312 | `preguntas-frecuentes` | Preguntas frecuentes | no migrar | fuera del frontend principal | media | FAQ operativa del LMS, pagos, usuarios y certificados. | **22-nov-2026:** adaptada (aprobado por Emanuel) como preguntas frecuentes en `/formacion/diplomatura`, con referencias actualizadas al sitio actual; ver `src/lib/formacion/es.ts`.
 | 19075 | `tienda` | Tienda | no migrar | fuera de alcance | alta | WooCommerce / pagos, explicitamente excluido por el brief. |
 | 19900 | `carrito` | Carrito | no migrar | fuera de alcance | alta | WooCommerce. |
 | 19896 | `finalizar-compra-2` | Finalizar compra | no migrar | fuera de alcance | alta | WooCommerce. |

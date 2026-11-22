@@ -26,7 +26,15 @@
 // Este archivo es la fuente en español, tal cual estaba en el módulo único
 // anterior (src/lib/formacion.ts).
 
-import { CAMPUS_VIRTUAL_URL, DIPLOMATURA_PROGRAMA_PDF_URL } from './constants';
+import {
+  CAMPUS_GUIA_CLAVE_PDF_URL,
+  CAMPUS_RECUPERAR_CLAVE_URL,
+  CAMPUS_VIRTUAL_URL,
+  DIPLOMATURA_FICHA_URL,
+  DIPLOMATURA_PROGRAMA_PDF_URL,
+  FAQ_SOURCE_URL,
+} from './constants';
+import { INSTITUTIONAL_EMAIL } from '@/lib/contacto';
 import type { Ciclo, Diplomatura, FormacionContent, FormacionHub } from './types';
 import { WP_ORIGIN } from '@/lib/wordpress/origin';
 
@@ -65,6 +73,90 @@ const diplomaturaData: Diplomatura = {
   ],
   programaPdfUrl: DIPLOMATURA_PROGRAMA_PDF_URL,
   campusUrl: CAMPUS_VIRTUAL_URL,
+  // Fuente: página `preguntas-frecuentes` del WordPress (WP 21312, última
+  // edición 23-ago-2025), leída el 22-nov-2026. Adaptaciones (aprobadas por
+  // Emanuel): se reemplazan las referencias al menú viejo («CURSOS», «MI
+  // CUENTA») por los caminos del sitio actual; se quitan «como se muestra en
+  // la imagen» (no hay imagen) y un ítem vacío; «¿Cómo compro un curso?» pasa
+  // a «¿Cómo me inscribo?» porque hoy la única propuesta a la venta es la
+  // Diplomatura (verificado en la tienda). Medios de pago verificados en la
+  // tienda: Mercado Pago y transferencia bancaria. Nombres de botones del
+  // Campus citados tal cual aparecen ahí.
+  faq: {
+    eyebrow: 'Preguntas frecuentes',
+    titulo: 'Inscripción, acceso y certificado.',
+    bajada: 'Respuestas sobre cómo inscribirse, ingresar al Campus virtual y descargar el certificado.',
+    items: [
+      {
+        pregunta: '¿Qué cursos están disponibles?',
+        respuesta: [
+          ['La propuesta vigente es esta Diplomatura, que se cursa en el Campus virtual.'],
+          ['Las clases, jornadas y entrevistas grabadas del Instituto están en ', { texto: 'Ciclos de formación', url: '/formacion/ciclos' }, '.'],
+        ],
+      },
+      {
+        pregunta: '¿Cómo me inscribo?',
+        respuesta: [
+          ['Ingrese a la ', { texto: 'ficha de la Diplomatura en el Campus', url: DIPLOMATURA_FICHA_URL }, '. Allí verá la descripción del curso. Haga clic en «Añadir al carrito» y complete la compra.'],
+        ],
+      },
+      {
+        pregunta: '¿Cómo se crea una cuenta?',
+        respuesta: [['La cuenta se crea automáticamente cuando se realiza el pedido.']],
+      },
+      {
+        pregunta: '¿Qué medios de pago puedo usar?',
+        respuesta: [
+          ['Puede usar Mercado Pago o transferencia bancaria.'],
+          ['En el caso de la transferencia bancaria, luego de acreditado el pago se enviará el usuario de acceso al curso.'],
+        ],
+      },
+      {
+        pregunta: '¿Cómo me inscribo si estoy dentro de un convenio firmado?',
+        respuesta: [
+          ['Se usa el mismo procedimiento que en «¿Cómo me inscribo?», pero con un cupón de descuento del 100 %. El cupón lo entrega el representante de la provincia.'],
+        ],
+      },
+      {
+        pregunta: '¿Qué pasa al finalizar la compra?',
+        respuesta: [
+          ['Verá una pantalla que le informa que su pedido fue aceptado. Además recibirá dos correos:'],
+          ['El primero, «¡Se ha creado tu cuenta en USINA DE JUSTICIA CAMPUS!», con su nombre de usuario y el enlace para acceder a su cuenta, donde puede ver sus pedidos y cambiar la contraseña.'],
+          ['El segundo, «¡Hemos recibido tu pedido en USINA DE JUSTICIA CAMPUS!», con los detalles del pedido del curso.'],
+        ],
+      },
+      {
+        pregunta: 'No me llegó el correo de confirmación de la compra',
+        respuesta: [['Escriba a ', { texto: INSTITUTIONAL_EMAIL, url: `mailto:${INSTITUTIONAL_EMAIL}` }, '.']],
+      },
+      {
+        pregunta: '¿Cómo ingreso al curso?',
+        respuesta: [
+          ['Con el botón «Acceder al Campus», arriba a la derecha en este sitio (en el celular, dentro del menú). Allí ingrese con su nombre de usuario y su contraseña.'],
+        ],
+      },
+      {
+        pregunta: 'Me olvidé la contraseña',
+        respuesta: [
+          ['En la pantalla de ingreso al Campus use la opción «¿Olvidaste la contraseña?», o vaya directamente a la ', { texto: 'página para recuperar la contraseña', url: CAMPUS_RECUPERAR_CLAVE_URL }, '.'],
+          ['También hay una ', { texto: 'guía paso a paso en PDF', url: CAMPUS_GUIA_CLAVE_PDF_URL }, '.'],
+        ],
+      },
+      {
+        pregunta: '¿Cómo descargo el certificado?',
+        respuesta: [
+          ['Cuando termina el curso, el sistema vuelve automáticamente a la pantalla del curso, donde aparece el enlace para descargarlo.'],
+          ['También puede ingresar a su cuenta, seleccionar el curso: el enlace de descarga aparece al pie de la página.'],
+        ],
+      },
+      {
+        pregunta: '¿Dónde comunicarse en caso de tener algún inconveniente?',
+        respuesta: [['Escriba a ', { texto: INSTITUTIONAL_EMAIL, url: `mailto:${INSTITUTIONAL_EMAIL}` }, '.']],
+      },
+    ],
+    source_wp_id: 21312,
+    source_url: FAQ_SOURCE_URL,
+  },
   fuente: 'migracion_wp',
   source_wp_id: 24055,
   source_url: `${WP_ORIGIN}/campus-virtual/`,
@@ -76,13 +168,6 @@ const diplomaturaData: Diplomatura = {
 // descargable (`DIPLOMATURA_PROGRAMA_PDF_URL`); no se inventa una lista de
 // módulos para no contradecir ese documento. Si en el futuro se consigue el
 // texto del programa, agregar un campo `modulos: { titulo: string }[]` acá.
-
-// PENDIENTE: la mini-FAQ que sugiere el brief para /formacion/diplomatura no
-// se agrega: la única FAQ real detectada (`/preguntas-frecuentes/` de
-// ivujus.org.ar) es enteramente operativa del campus/LMS (pagos, cuentas,
-// certificados) y está explícitamente excluida por
-// docs/MIGRATION-MATRIX.md §5 y docs/CONTENT-MIGRATION-LEDGER.md (WP ID
-// 21312, "no migrar").
 
 // Orden cronológico descendente (más reciente primero), igual que un
 // archivo editorial. Los 10 ciclos con fuente 'migracion_usina' vienen de

@@ -27,7 +27,15 @@
 //   in Spanish, by extension of the same rule that protects UBA/UADE/UdeMM;
 //   only their surrounding descriptive words are translated.
 
-import { CAMPUS_VIRTUAL_URL, DIPLOMATURA_PROGRAMA_PDF_URL } from './constants';
+import {
+  CAMPUS_GUIA_CLAVE_PDF_URL,
+  CAMPUS_RECUPERAR_CLAVE_URL,
+  CAMPUS_VIRTUAL_URL,
+  DIPLOMATURA_FICHA_URL,
+  DIPLOMATURA_PROGRAMA_PDF_URL,
+  FAQ_SOURCE_URL,
+} from './constants';
+import { INSTITUTIONAL_EMAIL } from '@/lib/contacto';
 import type { Ciclo, Diplomatura, FormacionContent, FormacionHub } from './types';
 import { WP_ORIGIN } from '@/lib/wordpress/origin';
 
@@ -49,6 +57,82 @@ const diplomaturaData: Diplomatura = {
   ],
   programaPdfUrl: DIPLOMATURA_PROGRAMA_PDF_URL,
   campusUrl: CAMPUS_VIRTUAL_URL,
+  faq: {
+    eyebrow: 'Frequently asked questions',
+    titulo: 'Enrolment, access and certificate.',
+    bajada: 'Answers on how to enrol, log in to the virtual Campus and download the certificate.',
+    notaIdioma: 'The Campus is in Spanish: button and email names are quoted as they appear there, with a translation in brackets.',
+    items: [
+      {
+        pregunta: 'Which courses are available?',
+        respuesta: [
+          ['The current programme is this Diploma Programme, taken on the virtual Campus.'],
+          ['The Institute’s recorded classes, sessions and interviews are in ', { texto: 'Training cycles', url: '/formacion/ciclos' }, '.'],
+        ],
+      },
+      {
+        pregunta: 'How do I enrol?',
+        respuesta: [
+          ['Go to the ', { texto: 'Diploma Programme page on the Campus', url: DIPLOMATURA_FICHA_URL }, '. It shows the course description. Click «Añadir al carrito» (Add to cart) and complete the purchase.'],
+        ],
+      },
+      {
+        pregunta: 'How is an account created?',
+        respuesta: [['The account is created automatically when the order is placed.']],
+      },
+      {
+        pregunta: 'Which payment methods can I use?',
+        respuesta: [
+          ['You can use Mercado Pago or bank transfer.'],
+          ['If you pay by bank transfer, your course login will be sent once the payment has cleared.'],
+        ],
+      },
+      {
+        pregunta: 'How do I enrol under a signed agreement?',
+        respuesta: [
+          ['Follow the same steps as in «How do I enrol?», but with a 100% discount coupon. The coupon is provided by the representative of the province.'],
+        ],
+      },
+      {
+        pregunta: 'What happens when I complete the purchase?',
+        respuesta: [
+          ['A screen will confirm that your order has been accepted. You will also receive two emails:'],
+          ['The first, «¡Se ha creado tu cuenta en USINA DE JUSTICIA CAMPUS!» (Your USINA DE JUSTICIA CAMPUS account has been created), with your username and the link to your account, where you can see your orders and change your password.'],
+          ['The second, «¡Hemos recibido tu pedido en USINA DE JUSTICIA CAMPUS!» (We have received your order), with the details of your course order.'],
+        ],
+      },
+      {
+        pregunta: 'I did not receive the purchase confirmation email',
+        respuesta: [['Write to ', { texto: INSTITUTIONAL_EMAIL, url: `mailto:${INSTITUTIONAL_EMAIL}` }, '.']],
+      },
+      {
+        pregunta: 'How do I access the course?',
+        respuesta: [
+          ['Use the «Access the Campus» button at the top right of this site (on mobile, inside the menu). Then log in with your username and password.'],
+        ],
+      },
+      {
+        pregunta: 'I forgot my password',
+        respuesta: [
+          ['On the Campus login screen, use the «¿Olvidaste la contraseña?» (Forgot your password?) option, or go straight to the ', { texto: 'password recovery page', url: CAMPUS_RECUPERAR_CLAVE_URL }, '.'],
+          ['There is also a ', { texto: 'step-by-step PDF guide', url: CAMPUS_GUIA_CLAVE_PDF_URL }, ' (in Spanish).'],
+        ],
+      },
+      {
+        pregunta: 'How do I download the certificate?',
+        respuesta: [
+          ['When you finish the course, the system automatically returns to the course screen, where the download link appears.'],
+          ['You can also log in to your account and select the course: the download link appears at the bottom of the page.'],
+        ],
+      },
+      {
+        pregunta: 'Who do I contact if I have a problem?',
+        respuesta: [['Write to ', { texto: INSTITUTIONAL_EMAIL, url: `mailto:${INSTITUTIONAL_EMAIL}` }, '.']],
+      },
+    ],
+    source_wp_id: 21312,
+    source_url: FAQ_SOURCE_URL,
+  },
   fuente: 'migracion_wp',
   source_wp_id: 24055,
   source_url: `${WP_ORIGIN}/campus-virtual/`,
