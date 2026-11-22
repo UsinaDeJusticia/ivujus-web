@@ -13,6 +13,7 @@ import { useEffect, useRef, useState } from 'react'
 import { ButtonSecundario } from '@/components/ui/Buttons'
 import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher'
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
+import { MorphArrow } from '@/components/ui/MorphArrow'
 
 export interface HeaderNavItem {
   label: string
@@ -337,7 +338,7 @@ export function Header({ homeHref = '/', subtitle, sections, cta, locale }: Head
                     <div
                       id={panelId}
                       hidden={!open}
-                      className="absolute left-1/2 top-full z-50 mt-3 w-[320px] -translate-x-1/2 rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-2 shadow-[var(--shadow-2)]"
+                      className="nav-dropdown absolute left-1/2 top-full z-50 mt-3 w-[320px] -translate-x-1/2 rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-2 shadow-[var(--shadow-2)]"
                     >
                       <ul className="space-y-0.5">
                         {section.links.map((link) => (
@@ -351,9 +352,10 @@ export function Header({ homeHref = '/', subtitle, sections, cta, locale }: Head
                           <Link
                             href={section.href}
                             onClick={closeAll}
-                            className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[color:var(--ui-accent-ink)] no-underline hover:underline"
+                            className="morph-trigger inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[color:var(--ui-accent-ink)] no-underline hover:underline"
                           >
-                            {section.overview} <span aria-hidden="true">→</span>
+                            {section.overview}
+                                  <MorphArrow />
                           </Link>
                         </div>
                       ) : null}
@@ -449,7 +451,7 @@ export function Header({ homeHref = '/', subtitle, sections, cta, locale }: Head
                           {section.label}
                           <ChevronIcon open={open} />
                         </button>
-                        <div id={panelId} hidden={!open} className="pb-3">
+                        <div id={panelId} hidden={!open} className="nav-dropdown pb-3">
                           <ul className="space-y-0.5">
                             {section.links.map((link) => (
                               <li key={link.href}>
@@ -461,9 +463,10 @@ export function Header({ homeHref = '/', subtitle, sections, cta, locale }: Head
                                 <Link
                                   href={section.href}
                                   onClick={closeAll}
-                                  className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[color:var(--ui-accent-ink)] no-underline"
+                                  className="morph-trigger inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[color:var(--ui-accent-ink)] no-underline"
                                 >
-                                  {section.overview} <span aria-hidden="true">→</span>
+                                  {section.overview}
+                                  <MorphArrow />
                                 </Link>
                               </li>
                             ) : null}

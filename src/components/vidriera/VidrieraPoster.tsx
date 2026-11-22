@@ -41,7 +41,7 @@ export function VidrieraPoster({
           <Link
             key={pieza.id}
             href={pieza.href}
-            className="group relative flex h-[clamp(150px,26vw,250px)] shrink-0 flex-col items-center overflow-hidden rounded-[2px] py-3 no-underline shadow-[var(--shadow-2)] outline-none transition-transform duration-[var(--motion-base)] ease-[var(--easing-out)] hover:-translate-y-2 focus-visible:-translate-y-2 focus-visible:shadow-[var(--shadow-focus)]"
+            className="group relative flex h-[clamp(150px,26vw,250px)] shrink-0 flex-col items-center overflow-hidden rounded-[2px] py-3 no-underline shadow-[var(--shadow-2)] outline-none transition-transform duration-[var(--motion-base)] ease-[var(--easing-out)] motion-reduce:transition-none hover:-translate-y-2 focus-visible:-translate-y-2 focus-visible:shadow-[var(--shadow-focus)]"
             style={{
               width: `clamp(${36 + grosor * 24}px, ${5 + grosor * 3}vw, ${50 + grosor * 40}px)`,
               backgroundColor: lomo,

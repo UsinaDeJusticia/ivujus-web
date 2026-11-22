@@ -10,6 +10,7 @@
 // interactividad la aporta el árbol cliente que lo invoca, no este módulo.
 
 import Link from 'next/link'
+import { MorphArrow } from './MorphArrow'
 import type { ReactNode } from 'react'
 
 export type ButtonSize = 'sm' | 'md' | 'lg'
@@ -24,7 +25,7 @@ const SIZE_CLASSES: Record<ButtonSize, string> = {
 // `rounded-sm` nativo de Tailwind), sin sombras, sin scale — solo cambios
 // de color/opacidad en 200/120ms según el manual.
 const BUTTON_BASE =
-  'inline-flex items-center gap-2 whitespace-nowrap rounded-sm border font-semibold uppercase tracking-[0.18em] leading-none no-underline outline-none transition-[background-color,color,border-color,opacity] duration-[var(--motion-base)] ease-[var(--easing-standard)] focus-visible:shadow-[var(--shadow-focus)] active:opacity-[0.92] disabled:cursor-not-allowed disabled:opacity-45 disabled:active:opacity-45'
+  'inline-flex items-center gap-2 whitespace-nowrap rounded-sm border font-semibold uppercase tracking-[0.18em] leading-none no-underline outline-none transition-[background-color,color,border-color,opacity] duration-[var(--motion-base)] ease-[var(--easing-standard)] focus-visible:shadow-[var(--shadow-focus)] active:opacity-[0.92] motion-safe:transition-[background-color,color,border-color,opacity,scale] motion-safe:active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-45 disabled:active:opacity-45'
 
 interface ButtonSharedProps {
   children: ReactNode
@@ -142,19 +143,12 @@ export interface LinkArrowProps {
 /** Link discreto con flecha animada — para llamadas tipo "Ver más". */
 export function LinkArrow({ children, href, onClick, className, invert = false }: LinkArrowProps) {
   const classes = joinClasses(
-    'group inline-flex items-center gap-2.5 border-b border-dorado-600 pb-[3px] text-[11px] font-semibold uppercase tracking-[0.22em] no-underline outline-none transition-colors duration-[var(--motion-base)] hover:border-dorado-700 focus-visible:shadow-[var(--shadow-focus)]',
+    'morph-trigger group inline-flex items-center gap-2 border-b border-dorado-600 pb-[3px] text-[11px] font-semibold uppercase tracking-[0.22em] no-underline outline-none transition-colors duration-[var(--motion-base)] hover:border-dorado-700 focus-visible:shadow-[var(--shadow-focus)]',
     invert ? 'text-dorado-400' : 'text-[color:var(--ui-link)]',
     className,
   )
 
-  const arrow = (
-    <span
-      aria-hidden="true"
-      className="inline-block transition-transform duration-[var(--motion-base)] ease-[var(--easing-out)] group-hover:translate-x-[3px]"
-    >
-      →
-    </span>
-  )
+  const arrow = <MorphArrow />
 
   if (href) {
     return (

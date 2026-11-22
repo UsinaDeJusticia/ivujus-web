@@ -6,6 +6,8 @@ import { galeriaCopy, getSimposio2026, resolveGaleriaLocale } from '@/lib/simpos
 import { type Locale, pickLocale, resolveLocale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow, SectionHeader } from '@/components/ui/SectionHeader';
+import { SectionRail } from '@/components/ui/SectionRail';
+import { ON_THIS_PAGE } from '@/lib/slug';
 import { ButtonPrincipal } from '@/components/ui/Buttons';
 
 // Copys de interfaz por idioma. El contenido del simposio (título, programa,
@@ -203,6 +205,18 @@ export default async function Symposium2026Page({
 
   return (
     <main className="bg-[color:var(--ui-bg-page)]">
+      {/* Índice lateral: solo desde 1440px, donde el margen al costado del
+          contenedor de 1180px deja lugar para las marcas. */}
+      <SectionRail
+        showFrom="wide"
+        ariaLabel={ON_THIS_PAGE[locale] ?? ON_THIS_PAGE.es}
+        items={[
+          { id: 'declaracion', label: simposio2026.declaration.title },
+          ...simposio2026.days.map((day) => ({ id: `jornada-${day.id}`, label: `${day.shortLabel}: ${day.title}` })),
+          { id: 'galeria', label: galeriaLabels.eyebrow },
+          { id: 'cobertura', label: labels.coberturaEyebrow },
+        ]}
+      />
       <script type="application/ld+json" dangerouslySetInnerHTML={buildJsonLdScript(jsonLd)} />
       <script
         type="application/ld+json"
@@ -234,7 +248,7 @@ export default async function Symposium2026Page({
           ))}
         </section>
 
-        <section className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_20rem]">
+        <section id="declaracion" tabIndex={-1} className="grid scroll-mt-28 gap-8 focus:outline-none lg:grid-cols-[minmax(0,1.2fr)_20rem]">
           <div className="space-y-6">
             <SectionHeader
               eyebrow={simposio2026.declaration.title}
@@ -285,7 +299,9 @@ export default async function Symposium2026Page({
             {simposio2026.days.map((day) => (
               <section
                 key={day.id}
-                className="rounded-md border border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-6 shadow-[var(--shadow-1)] sm:p-8"
+                id={`jornada-${day.id}`}
+                tabIndex={-1}
+                className="scroll-mt-28 rounded-md border focus:outline-none border-[color:var(--ui-border)] bg-[color:var(--ui-bg-surface)] p-6 shadow-[var(--shadow-1)] sm:p-8"
               >
                 <div className="mb-8 flex flex-col gap-3 border-b border-[color:var(--ui-border)] pb-6 sm:flex-row sm:items-end sm:justify-between">
                   <div>
@@ -335,7 +351,7 @@ export default async function Symposium2026Page({
           </div>
         </section>
 
-        <section className="space-y-10">
+        <section id="galeria" tabIndex={-1} className="scroll-mt-28 space-y-10 focus:outline-none">
           <SectionHeader eyebrow={galeriaLabels.eyebrow} title={galeriaLabels.title} />
 
           <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
@@ -359,7 +375,7 @@ export default async function Symposium2026Page({
           </div>
         </section>
 
-        <section className="space-y-10">
+        <section id="cobertura" tabIndex={-1} className="scroll-mt-28 space-y-10 focus:outline-none">
           <SectionHeader eyebrow={labels.coberturaEyebrow} title={labels.coberturaTitle} />
 
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -378,7 +394,7 @@ export default async function Symposium2026Page({
                     fill
                     sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
                     quality={75}
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover transition-transform duration-500 ease-[var(--easing-emphasized)] motion-reduce:transition-none motion-reduce:group-hover:scale-100 group-hover:scale-105"
                   />
                 </div>
                 <div className="space-y-2 p-4">

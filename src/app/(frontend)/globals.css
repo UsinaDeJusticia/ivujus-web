@@ -89,6 +89,9 @@
   --motion-slow: 320ms;
   --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
   --easing-out: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Curva de las microinteracciones (microinteractions.dev): arranca rápido
+     y frena suave, sin rebote. Se usa en flechas, desplegables e índice. */
+  --easing-emphasized: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 /* -------------------------------------------------------------------------
@@ -347,13 +350,110 @@ a:hover {
 } /* fin @layer base */
 
 /* --- Movimiento reducido -------------------------------------------------
-   `prefers-reduced-motion` desactiva la transición de color/fondo del
-   cambio de tema (y cualquier otra transición decorativa de esta hoja),
-   sin afectar la funcionalidad. */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
+   Antes había acá una regla global que llevaba toda transición a 0.01ms.
+   Modern Web Guidance la desaconseja (puede volver más bruscos algunos
+   cambios) y pide resolverlo caso por caso: cada movimiento espacial
+   (desplazar, escalar, rotar) se desactiva en su propio componente con
+   `motion-reduce:` o con su `@media (prefers-reduced-motion: …)`, y las
+   transiciones de color se mantienen porque no son movimiento. */
+
+/* --- Microinteracciones --------------------------------------------------
+   Reglas comunes, adaptadas de microinteractions.dev (Juan Di Nella, MIT):
+   transiciones (no keyframes) para que reviertan desde donde están, efectos
+   de hover solo con mouse, foco de teclado sin esperar animaciones y
+   movimiento reducido respetado. */
+
+/* Flecha que se estira: en reposo es un chevron; al pasar el mouse, el
+   trazo crece desde su base y el chevron avanza 2px. Se anima solo
+   transform/opacity (Safari no interpola el atributo `d`). */
+@layer components {
+  .morph-arrow {
+    width: 1.05em;
+    height: 1.05em;
+    flex-shrink: 0;
+    overflow: visible;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .morph-arrow__chevron {
+    transition: transform 190ms var(--easing-emphasized);
+  }
+  .morph-arrow__stem {
+    opacity: 0;
+    transform: scaleX(0.5);
+    transform-box: fill-box;
+    transform-origin: left center;
+    transition:
+      opacity 190ms var(--easing-emphasized),
+      transform 190ms var(--easing-emphasized);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .morph-trigger:hover .morph-arrow__chevron {
+      transform: translateX(2px);
+    }
+    .morph-trigger:hover .morph-arrow__stem {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+  /* Teclado: la flecha completa aparece al instante. */
+  .morph-trigger:focus-visible .morph-arrow__chevron {
+    transform: translateX(2px);
+    transition-duration: 0ms;
+  }
+  .morph-trigger:focus-visible .morph-arrow__stem {
+    opacity: 1;
+    transform: scaleX(1);
+    transition-duration: 0ms;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .morph-arrow__chevron,
+    .morph-arrow__stem {
+      transition: none;
+    }
+  }
+
+  /* Desplegables del menú: aparecen desde su botón (fundido + 4px hacia
+     abajo, 160ms) y se van más rápido (120ms). `@starting-style` da el punto
+     de partida de la entrada; `allow-discrete` deja animar `display`. En
+     Firefox la salida es instantánea (no transiciona `display`), sin otro
+     efecto. Se usa `transform` y no `translate` porque el panel ya se centra
+     con la utilidad de Tailwind, que ocupa la propiedad `translate`. Con
+     movimiento reducido queda solo el fundido. */
+  .nav-dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 160ms var(--easing-emphasized),
+      transform 160ms var(--easing-emphasized),
+      display 160ms;
+    transition-behavior: allow-discrete;
+  }
+  .nav-dropdown[hidden] {
+    display: none;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition-duration: 120ms;
+  }
+  @starting-style {
+    .nav-dropdown {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-dropdown,
+    .nav-dropdown[hidden] {
+      transform: none;
+    }
+    @starting-style {
+      .nav-dropdown {
+        transform: none;
+      }
+    }
   }
 }
 

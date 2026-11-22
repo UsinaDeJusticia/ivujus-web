@@ -35,7 +35,7 @@ export function ContentCard({ title, description, href, meta, eyebrow, className
       {/* Borde inferior dorado, animado 200ms — variante mínima de hover del manual. */}
       <span
         aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-dorado-600 transition-transform duration-200 ease-[var(--easing-out)] group-hover:scale-x-100"
+        className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-dorado-600 transition-transform duration-200 ease-[var(--easing-out)] motion-reduce:transition-none group-hover:scale-x-100 group-focus-visible:scale-x-100"
       />
 
       {eyebrow ? (

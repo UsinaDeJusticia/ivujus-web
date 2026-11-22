@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 
 import { getTermsPrivacyData } from '@/lib/legal';
+import { ON_THIS_PAGE, slugify } from '@/lib/slug';
+import { SectionRail } from '@/components/ui/SectionRail';
 import { resolveLocale } from '@/lib/i18n';
 import { buildJsonLdScript, buildLocalizedMetadata, getSiteUrl } from '@/lib/seo';
 import { Eyebrow } from '@/components/ui/SectionHeader';
@@ -76,6 +78,10 @@ export default async function TermsPrivacyPage({
 
   return (
     <main className="bg-[color:var(--ui-bg-page)]">
+      <SectionRail
+        ariaLabel={ON_THIS_PAGE[locale] ?? ON_THIS_PAGE.es}
+        items={data.sections.map((section) => ({ id: slugify(section.heading), label: section.heading }))}
+      />
       <script type="application/ld+json" dangerouslySetInnerHTML={buildJsonLdScript(jsonLd)} />
       <script
         type="application/ld+json"
@@ -103,7 +109,12 @@ export default async function TermsPrivacyPage({
 
           <div className="mt-8 space-y-8">
             {data.sections.map((section) => (
-              <section key={section.heading} className="space-y-4">
+              <section
+                key={section.heading}
+                id={slugify(section.heading)}
+                tabIndex={-1}
+                className="scroll-mt-28 space-y-4 focus:outline-none"
+              >
                 <h2 className="text-[length:var(--text-lg)] font-semibold uppercase tracking-[var(--tracking-wide)] text-[color:var(--ui-display-ink)]">
                   {section.heading}
                 </h2>
